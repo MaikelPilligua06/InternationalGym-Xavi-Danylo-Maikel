@@ -6,32 +6,28 @@
 </head>
 <body>	
 	<div class="perdidaCal">
-		<h1>Pérdida de Calorías</h1>
-		<?php
-		// Crear imagen a base de las calorias
-		// Crear un texto como el siguiente: "0/Objetivo Calórico 
-		?>
+		<h2>Pérdida de Calorías</h2>
+		<a href="index.php?controller=Permisos&action=">
+			<img src="" alt ="Perdida de Calorias"/>
+		</a>
 	</div>
-	<?php
-		// Las cosas con la etiqueta básico solo apareceran para las personas que solo tengan el rol de básico
-	?>
-	<div class="rutinasBasico">
+	<div class="rutinas">
 		<h2>Lista Rutinas</h2>
+		<a href="index.php?controller=Permisos&action=rutinas">
+			<img src="" alt="Lista de Rutinas"/>
+		</a>
 	</div>
-	<div clas="entrenamientoBasico">
+	<div clas="entrenamiento">
 		<h2>Lista Entrenamiento</h2>
-	</div>
-	<?php
-		// Cosas con la etiqueta premium
-	?>
-	<div clas="rutinasPremium">
-		<h2>Lista de Rutinas</h2>
-	</div>
-	<div class="entrenamientoPremium">
-		<h2>Lista de Entrenamiento</h2>
+		<a href="index.php?controller=Permisos&action=entrenamiento">
+			<img src="" alt="Lista de Entrenamientos">
+		</a>
 	</div>
 	<div class="Entrenadores">
 		<h2>Lista de Entrenadores</h2>
+		<a href="index.php?controller=Permisos&action=entrenadores">
+			<img src="" alit="Lista de Entrenadores"/>	
+		</a>
 	</div>
 	
 <footer>
