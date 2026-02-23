@@ -6,10 +6,10 @@ class Rutinas{
     public $objetivo;
 
     public function __construct($datos = []) {
-        $this->id               = $datos["id_rutina"];
-        $this->id_usuario       = $datos["id_usuario"];
-        $this->usuario_rutina    = $datos["usuario_rutina"];
-        $this->objetivo         = $datos["objetivo"];
+        $this->id_rutina           = $datos["id_rutina"];
+        $this->id_usuario          = $datos["id_usuario"];
+        $this->nombre_rutina       = $datos["nombre_rutina"];
+        $this->objetivo            = $datos["objetivo"];
     }
 }
 ?>

@@ -7,7 +7,7 @@
 <body>	
 	<div class="perdidaCal">
 		<h2>Pérdida de Calorías</h2>
-		<a href="index.php?controller=Permisos&action=">
+		<a href="index.php?controller=Resumen&action=index">
 			<img src="" alt ="Perdida de Calorias"/>
 		</a>
 	</div>
