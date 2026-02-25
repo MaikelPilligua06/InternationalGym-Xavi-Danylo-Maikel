@@ -8,7 +8,7 @@ function conectar() {
 
     return new PDO(
         "mysql:host=localhost;dbname=InternationalGym;charset=utf8mb4",
-        "cliente",
+        "intgym",
         "1234",
         $opciones
     );
