@@ -1,5 +1,5 @@
 <?php
-class Rutinas{
+class SesionesDeClases{
     public $id;
     public $tipoDeClases;
     public $fechaClases;
