@@ -1,6 +1,8 @@
 <?php
 require_once "db.php";
 require_once "ResumenDiario.php";
+// Cosas que hacer
+// 1. Obtener
 class ResumenModel{
     public function getAll(){
         $db = conectar();
