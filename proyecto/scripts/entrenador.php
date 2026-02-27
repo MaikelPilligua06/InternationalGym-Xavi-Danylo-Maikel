@@ -8,7 +8,7 @@ $sql = "INSERT INTO Usuarios (nombre, apellido, numeroTelefono, tipoDocumento, n
 
 VALUES ('manuel', 'molina', '+34631772378', 'DNI', '52566487A', 'mmolina@institutmvm.cat', '$passwordAdmin', 'tarde’)";
 
-$db->exec($sql);  // Direct execution
+$db->execute($sql);
 echo "Usuario insertado correctamente.";
 exit;
 ?>
