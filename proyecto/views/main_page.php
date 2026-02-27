@@ -8,8 +8,12 @@
 	<div class="perdidaCal">
 		<h2>Pérdida de Calorías</h2>
 		<a href="index.php?controller=Resumen&action=index">
-			<img src="" alt ="Perdida de Calorias"/>
+			<p>Revisar mis calorias</p>
+			<img src="gymFotos/kCAL.png" alt ="Perdida de Calorias" img="kCAL"/>
 		</a>
+		<?
+			echo "Haz perdido un total de x Calorias";
+		?>
 	</div>
 	<div class="rutinas">
 		<h2>Lista Rutinas</h2>
