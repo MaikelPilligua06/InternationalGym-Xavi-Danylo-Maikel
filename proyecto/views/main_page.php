@@ -4,7 +4,10 @@
 	<meta name="author" content="InternationalGYM">
 	<title>International GYM</title>
 </head>
-<body>	
+<body>
+<?php
+    include 'header.php';
+?>
 	<div class="perdidaCal">
 		<h2>Pérdida de Calorías</h2>
 		<a href="index.php?controller=Rutinas&action=redirectEntrenamiento">
@@ -33,9 +36,9 @@
 			<img src="" alit="Lista de Entrenadores"/>	
 		</a>
 	</div>
-	
-<footer>
-	<p>Crear footer solo para páginas web...
-</footer>
+
+<?php
+ include 'footer.php';
+?>
 </body>
 </html>
