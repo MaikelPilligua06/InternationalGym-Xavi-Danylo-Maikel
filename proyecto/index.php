@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 $publicActions = ['login', 'loginProcess'];
 
 $action = $_GET['action'] ?? 'index';
-$controller = $_GET['controller'] ?? 'Resumen';
+$controller = $_GET['controller'] ?? 'Rutinas';
 $controllerName = $controller . "Controller";
 
 if (!isset($_SESSION['usuario']) && !in_array($action, $publicActions)) {
