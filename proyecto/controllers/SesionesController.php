@@ -2,31 +2,29 @@
 require_once 'models/SesionesModel.php';
 class SesionesController{
 
+
     // Ver las sesiones
     public function index() {
         $model = new SesionesModel();
         $sesiones = $model->getAll();
-        require_once "views/index.php";
+        require_once "";
     }
 
     // El usuario pueda crear sesiones
-    public function crear_form() {
-        require_once "views/sesiones_crear.php";
-    }
 
-    public function crear() {
+
+ public function crear() {
+
         $model = new SesionesModel();
-        $sesiones = new SesionesDeClases( [
-            'tipoClases' => $_POST['tipoClases'],
-            'fechaClases' => $_POST['fechaClases'],
-            'duracion' => $_POST['duracion'],
-            'id_entrenador' => $_POST['id_entrenador']
-        ]);
-        $model->crear($sesiones);
+        $datos = $_POST["datos"];
+        $sesiones = new SesionesDeClases($datos);
+        $model->save($sesiones);
         $_SESSION['mensaje'] = "Sesion creada correctamente";
         header("Location: index.php?controller=Sesiones&action=index");
+        require_once "views/sesiones.php";
         exit;
     }
+
 
     // 2. Que un usuario se pueda apuntar a la session
     public function apuntar() {
