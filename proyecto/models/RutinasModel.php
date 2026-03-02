@@ -8,7 +8,7 @@ require_once "Alimentacion.php";
 // Para poder ver los objetivos cáloricos
 require_once "ResumenDiario.php";
 class RutinasModel{
-    // Funcion para ver la alimentacion de un usuario
+    // Funcion para ver los ejercicios del usuario(rutina)
     public function verEntrenamiento($id){
         $db = conectar();
         $stmt = $db->prepare("SELECT * FROM rutina where id_usuario = :id");
@@ -24,7 +24,7 @@ class RutinasModel{
         $alimentacion = $stmt->fetch(PDO::FETCH_ASSOC);
         return new Alimentacion($alimentacion);;
     }
-    // Funcion para ver la alimentacion de un usuarii
+    // Funcion para ver la alimentacion de un usuari
     public function verObjetivo($id){
         $db = conectar();
         $stmt = $db->prepare("SELECT * FROM ResumenDiario where id_usuario = :id ");

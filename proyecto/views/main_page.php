@@ -4,14 +4,17 @@
 	<meta name="author" content="InternationalGYM">
 	<title>International GYM</title>
 </head>
-<body>	
+<body>
+<?php
+    include 'header.php';
+?>
 	<div class="perdidaCal">
 		<h2>Pérdida de Calorías</h2>
-		<a href="index.php?controller=Resumen&action=index">
+		<a href="index.php?controller=Rutinas&action=redirectEntrenamiento">
 			<p>Revisar mis calorias</p>
 			<img src="gymFotos/kCAL.png" alt ="Perdida de Calorias" img="kCAL"/>
 		</a>
-		<?
+		<?php
 			echo "Haz perdido un total de x Calorias";
 		?>
 	</div>
@@ -23,19 +26,19 @@
 	</div>
 	<div clas="entrenamiento">
 		<h2>Lista Entrenamiento</h2>
-		<a href="index.php?controller=Permisos&action=entrenamiento">
+		<a href="index.php?controller=Rutinas&action=rediretAlimentacion">
 			<img src="" alt="Lista de Entrenamientos">
 		</a>
 	</div>
 	<div class="Entrenadores">
 		<h2>Lista de Entrenadores</h2>
-		<a href="index.php?controller=Permisos&action=entrenadores">
+		<a href="index.php?controller=Rutinas&action=redirectObjetivo">
 			<img src="" alit="Lista de Entrenadores"/>	
 		</a>
 	</div>
-	
-<footer>
-	<p>Crear footer solo para páginas web...
-</footer>
+
+<?php
+ include 'footer.php';
+?>
 </body>
 </html>
