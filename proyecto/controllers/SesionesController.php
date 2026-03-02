@@ -1,5 +1,5 @@
 <?php
-require_once 'models/SesionesModel.php';
+require_once "models/SesionesModel.php";
 class SesionesController{
 
 
@@ -7,7 +7,7 @@ class SesionesController{
     public function index() {
         $model = new SesionesModel();
         $sesiones = $model->getAll();
-        require_once "";
+        require_once "views/sesiones_listado.php";
     }
 
     // El usuario pueda crear sesiones

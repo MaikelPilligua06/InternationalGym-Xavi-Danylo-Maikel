@@ -9,7 +9,7 @@ class SesionesDeClases{
     public function __construct($datos = []) {
         $this->id               = $datos["id"];
         $this->tipoDeClases     = $datos["tipoDeClases"];
-        $this->fehcaClases      = $datos["fechaClases"];
+        $this->fechaClases      = $datos["fechaClases"];
         $this->duracion         = $datos["duracion"];
         $this->id_entrenador    = $datos["id_entrenador"];
         $this->id_usuario       = $datos["id_usuario"];
