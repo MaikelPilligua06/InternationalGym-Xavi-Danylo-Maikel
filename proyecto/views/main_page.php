@@ -20,7 +20,7 @@
 	</div>
 	<div class="rutinas">
 		<h2>Lista Rutinas</h2>
-		<a href="index.php?controller=Permisos&action=rutinas">
+		<a href="index.php?controller=Rutinas&action=redirectRutinas">
 			<img src="" alt="Lista de Rutinas"/>
 		</a>
 	</div>

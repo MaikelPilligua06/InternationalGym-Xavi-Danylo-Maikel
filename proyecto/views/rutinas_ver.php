@@ -4,7 +4,10 @@
 	<meta name="author" content="InternationalGYM">
 	<title>International GYM- Rutinas</title>
 </head>
-<body>	
+<body>
+<?php
+    include 'header.php';
+?>
     <div id="RutinaUsuario">
         <h2>Rutinas del Usuario</h2>    
         <a href="index.php?controller=Permisos&action=rutinaUsuario">
@@ -23,8 +26,8 @@
         <img src="" alt="Crea una Rutina"/>
      </a>
     </div>
-<footer>
-	<p>Crear footer solo para páginas web...
-</footer>
+<?php
+    include 'footer.php';
+?>
 </body>
 </html>
