@@ -16,7 +16,7 @@ class EjerciciosController{
     }
     public function infoEjercicio(){
         $model = new EjerciciosModel();
-        $ejercicios = $model->getById($_GET["id"]);
+        $ejercicios = $model->getById($_SESSION["id"]);
         require "views/ejercicios_ver.php";
     }
 }

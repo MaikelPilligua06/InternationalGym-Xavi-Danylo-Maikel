@@ -5,12 +5,11 @@ class AuthModel {
 
     public function login($correo, $password) {
         $db = conectar();
-
         $stmt = $db->prepare("
-            SELECT id, correoElectronico, contrasenia 
-            FROM Usuarios 
-            WHERE correoElectronico = :correo
-        ");
+SELECT id, correoElectronico, contrasenia
+FROM Usuarios
+WHERE correoElectronico = :correo
+");
         $stmt->execute([':correo' => $correo]);
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -21,5 +20,6 @@ class AuthModel {
 
         return false;
     }
+
 }
 

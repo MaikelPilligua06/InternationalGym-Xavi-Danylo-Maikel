@@ -1,12 +1,19 @@
 <?php
 require_once "models/SesionesModel.php";
+<<<<<<< HEAD
 class SesionesController {
+=======
+class SesionesController{
+
+    // Ver las sesiones
+>>>>>>> 58d213019d5755e6d2a42d132e4e61c72d60c57f
     public function index() {
         $model = new SesionesModel();
         $sesiones = $model->getAll();
         require_once "views/sesiones_listado.php";
     }
 
+<<<<<<< HEAD
 
 
 
@@ -15,6 +22,10 @@ class SesionesController {
     }
 
     public function crear() {
+=======
+    // El usuario pueda crear sesiones
+ public function crear() {
+>>>>>>> 58d213019d5755e6d2a42d132e4e61c72d60c57f
 
         $model = new SesionesModel();
         $datos = $_POST["datos"];
@@ -25,8 +36,6 @@ class SesionesController {
         require_once "views/sesiones.php";
         exit;
     }
-
-
     // 2. Que un usuario se pueda apuntar a la session
     public function apuntar() {
         $model = new SesionesModel();
@@ -39,8 +48,11 @@ class SesionesController {
 
         header("Location: index.php?controller=Sesiones&action=index");
         exit;
-
     }
+<<<<<<< HEAD
 }
 
 
+=======
+}
+>>>>>>> 58d213019d5755e6d2a42d132e4e61c72d60c57f

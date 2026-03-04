@@ -12,7 +12,7 @@
 		<h2>Pérdida de Calorías</h2>
 		<a href="index.php?controller=Rutinas&action=redirectEntrenamiento">
 			<p>Revisar mis calorias</p>
-			<img src="gymFotos/kCAL.png" alt ="Perdida de Calorias" img="kCAL"/>
+			<img src="views/gymFotos/kCAL.png" alt ="Perdida de Calorias" img="kCAL"/>
 		</a>
 		<?php
 			echo "Haz perdido un total de x Calorias";
@@ -20,7 +20,7 @@
 	</div>
 	<div class="rutinas">
 		<h2>Lista Rutinas</h2>
-		<a href="index.php?controller=Permisos&action=rutinas">
+		<a href="index.php?controller=Rutinas&action=redirectRutinas">
 			<img src="" alt="Lista de Rutinas"/>
 		</a>
 	</div>
@@ -30,6 +30,13 @@
 			<img src="" alt="Lista de Entrenamientos">
 		</a>
 	</div>
+    <div class="Sesiones">
+        <h2>Lista de Sesiones</h2>
+        <a href="index.php?controller=Sesiones&action=index">
+            <p>Ver las clases disponibles</p>
+            <img src="" alit="Lista de Sesiones"/>
+        </a>
+    </div>
 	<div class="Entrenadores">
 		<h2>Lista de Entrenadores</h2>
 		<a href="index.php?controller=Rutinas&action=redirectObjetivo">

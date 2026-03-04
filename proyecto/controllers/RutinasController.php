@@ -2,20 +2,26 @@
 require_once "models/RutinasModel.php";
 
 class RutinasController{
+    public function redirectRutinas(){
+        $id = $_SESSION['id'];
+        $rutinas = new RutinasModel();
+        $ver = $rutinas->verRutinas($id);
+        require "views/rutinas_ver.php";
+    }
     // funciones simplemente para redirigir a otras páginas
     public function redirectEntrenamiento(){
         $rutinas = new RutinasModel();
-        $entrenamiento = $rutinas->verEntrenamiento($_POST['id']);
+        $entrenamiento = $rutinas->verEntrenamiento($_SESSION['id']);
         require "views/entrnamientoUsuario.php";
     }
     public function rediretAlimentacion(){
         $alimentacion = new RutinasModel();
-        $rutinaAlimentacion = $alimentacion->verAlimentacion($_POST['id']);
+        $rutinaAlimentacion = $alimentacion->verAlimentacion($_SESSION['id']);
         require "views/alimentacionUsuario.php";
     }
     public function redirectObjetivo(){
         $verObjetivos = new RutinasModel();
-        $objetivo = $verObjetivos->verObjetivo($_POST['id']);
+        $objetivo = $verObjetivos->verObjetivo($_SESSION['id']);
         require "views/objetivoUsuario.php";
     }
 }
