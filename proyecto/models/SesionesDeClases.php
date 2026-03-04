@@ -12,7 +12,5 @@ class SesionesDeClases{
         $this->fechaClases      = $datos["fechaClases"];
         $this->duracion         = $datos["duracion"];
         $this->id_entrenador    = $datos["id_entrenador"];
-        $this->id_usuario       = $datos["id_usuario"];
     }
 }
-?>
