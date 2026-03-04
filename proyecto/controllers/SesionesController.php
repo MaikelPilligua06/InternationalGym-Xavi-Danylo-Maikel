@@ -6,11 +6,10 @@ class SesionesController{
     public function index() {
         $model = new SesionesModel();
         $sesiones = $model->getAll();
-        require_once "views/sesiones_listado.php";
+        require "views/sesiones_listado.php";
     }
-
     public function crear_form() {
-        require_once "views/sesiones_crear.php";
+        require "views/sesiones_crear.php";
     }
 
  public function crear() {

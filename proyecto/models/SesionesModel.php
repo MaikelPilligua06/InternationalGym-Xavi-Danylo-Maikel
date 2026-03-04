@@ -9,7 +9,7 @@ class SesionesModel{
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $sesiones = [];
         foreach ($resultado as $fila) {
-            $sesiones = new SesionesDeClases($fila);
+            $sesiones[] = new SesionesDeClases($fila);
         }
         return $sesiones;
     }
