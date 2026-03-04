@@ -2,15 +2,7 @@
 
 require_once "db.php";
 require_once "SesionesDeClases.php";
-class SesionesModel
-{
-    private $db;
-
-    public function __construct()
-    {
-        $this->db = conectar();
-    }
-
+class SesionesModel{
     public function getAll(){
         $db = conectar();
         $stmt = $db->query("SELECT * FROM SesionesDeClases Order by fechaClases DESC");
@@ -38,22 +30,14 @@ class SesionesModel
         //return $stmt->fetchAll(PDO::FETCH_ASSOC);
     //}
 
-    public function save(SesionesDeClases $sesiones): bool
-    {
+    public function save(SesionesDeClases $sesiones){
         $db = conectar();
-        $estadosValidos = ['Cardio', 'Cycling', 'trenSuperior', 'trenInferior'];
-        $estado = in_array($sesiones->tipoDeClases, $estadosValidos) ? $sesiones->tipoDeClases : 'Cardio';
-        $stmt = $db->prepare("INSERT INTO SesionesDeClases (tipoClases, fechaClases, duracion, id_entrenador, id_usuario) VALUES (:tipoClases, :fechaClases, :duracion, :id_entrenador, :id_usuario)");
-
-        return $stmt->execute([
-            ':tipoClases'   => $estado,
-            ':fechaClases' => $sesiones->fechaClases,
-            ':duracion' => $sesiones->duracion,
-            ':id_entrenador' => $sesiones->id_entrenador,
-            ':id_usuario' => $sesiones->id_usuario
-
+        $stmt = $db->prepare("INSERT INTO SesionesDeClases (tipoDeClases, fechaClases, duracion, id_entrenador)  VALUES (:tipoDeClase, :fechaClases, :duracion, :entrenador)");
+        $stmt->execute([
+            'tipoDeClases' => $sesiones->tipoDeClases,
+            'fechaClases' => $sesiones->fechaClases,
+            'duracion' => $sesiones->duracion,
+            'id_entrenador' => $sesiones->id_entrenador
         ]);
-        }
-
-
+    }
 }

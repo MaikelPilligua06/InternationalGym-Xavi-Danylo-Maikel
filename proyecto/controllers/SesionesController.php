@@ -9,16 +9,23 @@ class SesionesController{
         require_once "views/sesiones_listado.php";
     }
 
-    // El usuario pueda crear sesiones
- public function crear() {
+    public function crear_form() {
+        require_once "views/sesiones_crear.php";
+    }
 
+ public function crear() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $datos = [
+              'tipoDeClases' => $_POST['tipoDeClases'],
+                'fechaClases' => $_POST['fechaClases'],
+                'duracion' => $_POST['duracion'],
+                'id_entrenador' => $_SESSION['id']
+            ];
+        }
         $model = new SesionesModel();
-        $datos = $_POST["datos"];
         $sesiones = new SesionesDeClases($datos);
         $model->save($sesiones);
-        $_SESSION['mensaje'] = "Sesion creada correctamente";
         header("Location: index.php?controller=Sesiones&action=index");
-        require_once "views/sesiones.php";
         exit;
     }
     // 2. Que un usuario se pueda apuntar a la session

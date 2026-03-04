@@ -2,26 +2,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="InternationalGYM">
-    <title>International GYM</title>
+    <title>Listado de Sesiones</title>
 </head>
 <body>
 <?php
 include 'header.php';
 ?>
+<h1>Listado de Sesiones</h1>
 
-
-<?php
-
-foreach ($sesiones as $sesion): ?>
-    <li>
-        <?=htmlspecialchars($sesion->tipoDeClases)?>
-        (<?= $sesion->fechaClases ?> - <?= $sesion->duracion ?>)
-    </li>
-<?php endforeach; ?>
-
+<div>
+<h1>Crear una Sesion</h1>
+    <a href="index.php?controller=Sesiones&action=crear_form">
+        <p>Proximamente solo para el entrenador</p>
+    </a>
+</div>
 <?php
 include 'footer.php';
 ?>
 </body>
 </html>
+<a href="index.php?controller=Rutinas&action=redirectObjetivo">
+
 
