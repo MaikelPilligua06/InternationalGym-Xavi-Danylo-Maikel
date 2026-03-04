@@ -5,23 +5,12 @@
     <title>International GYM</title>
 </head>
 <body>
-<?php
-include 'header.php';
-?>
+
+<h1>Listado de Sesiones</h1>
 
 
-<?php
 
-foreach ($sesiones as $sesion): ?>
-    <li>
-        <?=htmlspecialchars($sesion->tipoDeClases)?>
-        (<?= $sesion->fechaClases ?> - <?= $sesion->duracion ?>)
-    </li>
-<?php endforeach; ?>
 
-<?php
-include 'footer.php';
-?>
 </body>
 </html>
 

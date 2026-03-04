@@ -1,19 +1,20 @@
 <?php
 require_once "models/SesionesModel.php";
-class SesionesController{
-
-
-    // Ver las sesiones
+class SesionesController {
     public function index() {
         $model = new SesionesModel();
         $sesiones = $model->getAll();
         require_once "views/sesiones_listado.php";
     }
 
-    // El usuario pueda crear sesiones
 
 
- public function crear() {
+
+    public function crear_form() {
+        require_once "views/sesiones_crear.php";
+    }
+
+    public function crear() {
 
         $model = new SesionesModel();
         $datos = $_POST["datos"];
@@ -41,6 +42,5 @@ class SesionesController{
 
     }
 }
-?>
 
 
