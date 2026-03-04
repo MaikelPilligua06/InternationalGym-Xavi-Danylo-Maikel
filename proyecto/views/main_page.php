@@ -33,7 +33,8 @@
     <div class="Sesiones">
         <h2>Lista de Sesiones</h2>
         <a href="index.php?controller=Sesiones&action=index">
-        <img src="" alit="Lista de Sesiones"/>
+            <p>Ver las clases disponibles</p>
+            <img src="" alit="Lista de Sesiones"/>
         </a>
     </div>
 	<div class="Entrenadores">
