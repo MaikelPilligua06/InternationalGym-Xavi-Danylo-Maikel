@@ -3,8 +3,9 @@ require_once "models/RutinasModel.php";
 
 class RutinasController{
     public function redirectRutinas(){
+        $id = $_SESSION['id'];
         $rutinas = new RutinasModel();
-        $ver = $rutinas->verRutinas($_SESSION['id']);
+        $ver = $rutinas->verRutinas($id);
         require "views/rutinas_ver.php";
     }
     // funciones simplemente para redirigir a otras páginas

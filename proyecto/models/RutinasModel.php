@@ -9,6 +9,13 @@ require_once "Alimentacion.php";
 require_once "ResumenDiario.php";
 class RutinasModel{
     // Funcion para ver los ejercicios del usuario(rutina)
+    public function verRutinas($id){
+        $db = conectar();
+        $stmt = $db->prepare("SELECT * FROM Rutina where id = :id");
+        $stmt->execute([":id" => $id]);
+        $rutinas = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Rutinas($rutinas);
+    }
     public function verEntrenamiento(){
         $db = conectar();
         $stmt = $db->prepare("SELECT * FROM Rutina");
