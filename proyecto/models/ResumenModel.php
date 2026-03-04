@@ -7,13 +7,12 @@ class ResumenModel{
     public function getAll(){
         $db = conectar();
         $stmt = $db->prepare("SELECT * FROM ResumenDiario");
+        $stmt->execute();
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $resumen = [];
         foreach ($resultado as $fila){
-            $resumen = new ResumenDiario($fila);
+            $resumen[] = new ResumenDiario($fila);
         }
         return $resumen;
     }
-
 }
-?>

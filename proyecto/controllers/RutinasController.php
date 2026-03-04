@@ -5,7 +5,7 @@ class RutinasController{
     // funciones simplemente para redirigir a otras páginas
     public function redirectEntrenamiento(){
         $rutinas = new RutinasModel();
-        $entrenamiento = $rutinas->verEntrenamiento($_POST['id']);
+        $entrenamiento = $rutinas->verEntrenamiento();
         require "views/entrnamientoUsuario.php";
     }
     public function rediretAlimentacion(){

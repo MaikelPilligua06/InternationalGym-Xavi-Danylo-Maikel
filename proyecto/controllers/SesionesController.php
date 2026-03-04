@@ -2,7 +2,6 @@
 require_once "models/SesionesModel.php";
 class SesionesController{
 
-
     // Ver las sesiones
     public function index() {
         $model = new SesionesModel();
@@ -11,8 +10,6 @@ class SesionesController{
     }
 
     // El usuario pueda crear sesiones
-
-
  public function crear() {
 
         $model = new SesionesModel();
@@ -24,8 +21,6 @@ class SesionesController{
         require_once "views/sesiones.php";
         exit;
     }
-
-
     // 2. Que un usuario se pueda apuntar a la session
     public function apuntar() {
         $model = new SesionesModel();
@@ -38,9 +33,7 @@ class SesionesController{
 
         header("Location: index.php?controller=Sesiones&action=index");
         exit;
-
     }
 }
-?>
 
 
