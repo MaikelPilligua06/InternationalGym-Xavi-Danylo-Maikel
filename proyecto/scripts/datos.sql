@@ -1,0 +1,8 @@
+INSERT INTO Alimentacion (objetivo, id_usuario, calorias, nombrePlato, descripcion, proteinas, carbohidratos, grasas) VALUES ('ganar fuerza', '1', '750', 'Pan de pita con patatas y champiñones', 'Plato sabroso gracias a las verduras frescas, además puede usarlo como postre si le pones encima algo dulce.', '30g', '134g', '10g');
+INSERT INTO Ejercicios (nombre, descripcion, series, repeticiones, peso) VALUES ('Press Inclinado con Mancuernas', 'Ejercicio para trabajar la parte superior del pecho, empujando mancuernas hacia arriba en un banco inclinado entre 30-45 grados', '3', '8', '20kg');
+INSERT INTO Rutina (id_usuario, nombre_Rutina, objetivo) VALUES ('1', 'Tren Superior', 'ganar fuerza');
+INSERT INTO Chat (id_usuario, id_entrenador, mensaje, fechaHora) VALUES ('1', '1', 'Como ejecutar correctamente el press inclinado con mancuernas', '12:04');
+INSERT INTO Pago (id_usuario, metodoPago, tipoPlan, precio, fechaPago, estado) VALUES ('1', 'Tarjeta', 'Premium', '40', '22-1-2026', 'Aceptado');
+INSERT INTO ResumenDiario (id_usuario, fecha, entrenamientosRealizados, caloriasConsumidas, notas) VALUES ('1', '04-03-2026', '1', '2600', 'Hoy hice Press inclinado con mancuernas: 3x8, 20kg. Buen trabajo en pecho superior');
+INSERT INTO SesionesDeClases (tipoDeClases, fechaClases, duracion, id_entrenador, id_usuario) VALUES ('trenSuperior', '04-03-2026', '60min', '1', '1');
+INSERT INTO Usuario_Sesion (id_usuario, id_sesion) VALUES ('1', '1');
