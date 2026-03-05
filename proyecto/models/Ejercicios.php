@@ -1,13 +1,15 @@
 <?php
 class Ejercicios{
-    public $id;
+    public $id_ejercicio;
     public $nombre;
     public $series;
     public $repeticiones;
     public $peso;
+    public $descripcion;
+
 
     public function __construct($datos = []) {
-        $this->id               = $datos["id"];
+        $this->id_ejercicio     = $datos["id_ejercicio"];
         $this->nombre           = $datos["nombre"];
         $this->descripcion      = $datos["descripcion"];
         $this->series           = $datos["series"];

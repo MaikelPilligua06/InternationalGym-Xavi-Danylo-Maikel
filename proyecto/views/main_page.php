@@ -12,7 +12,7 @@
 		<h2>Pérdida de Calorías</h2>
 		<a href="index.php?controller=Rutinas&action=redirectEntrenamiento">
 			<p>Revisar mis calorias</p>
-			<img src="views/gymFotos/kCAL.png" alt ="Perdida de Calorias" img="kCAL"/>
+			<img src="" alt ="Perdida de Calorias" img="kCAL"/>
 		</a>
 		<?php
 			echo "Haz perdido un total de x Calorias";
@@ -26,7 +26,7 @@
 	</div>
 	<div clas="entrenamiento">
 		<h2>Lista Entrenamiento</h2>
-		<a href="index.php?controller=Rutinas&action=rediretAlimentacion">
+		<a href="index.php?controller=Ejercicios&action=listadoEjercicios">
 			<img src="" alt="Lista de Entrenamientos">
 		</a>
 	</div>

@@ -1,10 +1,12 @@
 <?php
 
-require "models/Ejercicios.php";
+require_once "models/EjerciciosModel.php";
 
 class EjerciciosController{
     public function listadoEjercicios(){
-
+        $model = new EjerciciosModel();
+        $ejercicio = $model->getAll();
+        require "views/entrnamientoUsuario.php";
     }
     public function addEjercicio(){
         $model = new EjerciciosModel();
