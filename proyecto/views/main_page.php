@@ -40,14 +40,15 @@
 	<div class="Entrenadores">
 		<h2>Lista de Entrenadores</h2>
 		<a href="index.php?controller=Rutinas&action=redirectObjetivo">
-			<img src="" alit="Lista de Entrenadores"/>	
+			<img src="" alt="Lista de Entrenadores"/>
 		</a>
 	</div>
 
     <div class="Publicaciones">
          <h2>Lista de Publicaciones</h2>
-            <a href="sesiones_publicar.php">
-                <button>Publicar sesión</button>
+            <a href="index.php?controller=Sesiones&action=ver">
+              <img src="" alt="Crear Publicacion"/>
+
     </a>
     </div>
 
