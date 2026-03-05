@@ -40,4 +40,24 @@ class SesionesController{
         header("Location: index.php?controller=Sesiones&action=index");
         exit;
     }
+
+    public function ver() {
+        if (!isset($_GET['idSesion'])) {
+            header("Location: index.php?controller=Sesiones&action=index");
+            exit;
+        }
+        $model = new SesionesModel();
+        $sesiones = $model->getById($id);
+        require "views/sesiones_publicar.php";
+    }
+    public function publicar() {
+        $model = new SesionesModel();
+        $id_sesion = $_POST['idSesion'];
+        $texto = $_POST['texto'];
+        $foto = $_POST['foto'];
+
+        $_SESSION['mensaje'] = "Publicacion publicada correctamente";
+        header("Location: index.php?controller=Sesiones&action=index");
+        exit;
+    }
 }

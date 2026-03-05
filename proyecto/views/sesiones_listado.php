@@ -8,8 +8,11 @@
 
 <h1>Sesiones</h1>
 
+
 <?php foreach($sesiones as $sesion): ?>
     <p><?= $sesion->tipoDeClases ?> - <?= $sesion->fechaClases ?></p>
+
+
 <?php endforeach; ?>
 
 <?php include 'footer.php'; ?>

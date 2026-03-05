@@ -44,6 +44,13 @@
 		</a>
 	</div>
 
+    <div class="Publicaciones">
+         <h2>Lista de Publicaciones</h2>
+            <a href="sesiones_publicar.php">
+                <button>Publicar sesión</button>
+    </a>
+    </div>
+
 <?php
  include 'footer.php';
 ?>

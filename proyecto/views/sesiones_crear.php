@@ -10,7 +10,7 @@
     ?>
 
         <h1>Crear nueva sesión de clases</h1>
-        <form action="inex.php?controller=Sesiones&action=crear" method="POST">
+        <form action="index.php?controller=Sesiones&action=crear" method="POST">
             Tipo de clases: <select name="tipoDeClases">
                 <option value="Cardio">Cardio</option>
                 <option value="Cycling">Cycling</option>
