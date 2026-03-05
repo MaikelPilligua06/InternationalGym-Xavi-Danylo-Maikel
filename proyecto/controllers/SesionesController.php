@@ -60,11 +60,21 @@ class SesionesController
         $foto = $_FILES['foto']['name'];
 
 
-        $_SESSION['mensaje'] = "¡Publicación creada OK!";
+        if (!isset($_SESSION['publicaciones'])) {
+            $_SESSION['publicaciones'] = [];
+        }
+        $_SESSION['publicaciones'][] = [
+            'foto' => $foto,
+            'texto' => $texto,
+            'fecha' => date('Y-m-d H:i')
+        ];
 
-        header("Location: index.php?controller=Sesiones&action=index");
+
+        header("Location: index.php?controller=Sesiones&action=misPublicaciones");
         exit;
     }
-
+    public function misPublicaciones() {
+        require "views/publicaciones_listado.php";
+    }
 
 }
