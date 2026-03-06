@@ -2,25 +2,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="InternationalGYM">
-    <title>International GYM</title>
+    <title>International GYM - Entrenamiento</title>
 </head>
 <body>
 <?php
 include 'header.php';
 ?>
-<h2>Lista Rutinas</h2>
+<h2>Ejercicios</h2>
 <hr>
 
 <div>
-    <h2>Tu lista</h2>
-    <?php
-
-    ?>
+    <h2>Tu Playlist</h2>
+        <ul>
+            <?php foreach($lista as $fila): ?>
+                <li>
+                    <p><?= $fila->nombre ?></p>
+                </li>
+            <?php endforeach; ?>
+        </ul>
 </div>
 <div>
     <h2>Añadir Ejercicio</h2>
     <?php foreach($ejercicio as $sesion): ?>
-        <p><?= $sesion->nombre ?></p>
+        <ul>
+            <li>
+                <a href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $sesion->id ?>">
+                    <p><?= $sesion->nombre ?></p>
+                </a>
+                <a href="index.php?controller=Ejercicios&action=addEjercicio&id=<?= $sesion->id ?>">
+                    <button>Añadir ejercicio</button>
+                </a>
+            </li>
+        </ul>
     <?php endforeach; ?>
 </div>
 <?php
