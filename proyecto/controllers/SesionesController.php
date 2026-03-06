@@ -56,21 +56,20 @@ class SesionesController
     }
 
     public function publicar() {
-        $texto = $_POST['texto'];
-        $foto = $_FILES['foto']['name'];
-
-
-        if (!isset($_SESSION['publicaciones'])) {
-            $_SESSION['publicaciones'] = [];
+        if(!empty($_POST)) {
+            $datos = [
+                'nombre'  => $_POST['nombre'],
+                'tipoDeClases' => $_POST['tipoDeClases'],
+                'fechaClases' => $_POST['fechaClases'],
+                'duracion' => $_POST['duracion'],
+                'descripcion' => $_POST['descripcion']
+            ];
         }
-        $_SESSION['publicaciones'][] = [
-            'foto' => $foto,
-            'texto' => $texto,
-            'fecha' => date('Y-m-d H:i')
-        ];
-
-
-        header("Location: index.php?controller=Sesiones&action=misPublicaciones");
+        $id_entrenador = $_SESSION['id'];
+        $model = new SesionesModel();
+        $sesiones = new SesionesDeClases($datos);
+        $model->sesionesCrear($sesiones, $id_entrenador);
+        header("Location: index.php?controller=Sesiones&action=index");
         exit;
     }
     public function misPublicaciones() {
