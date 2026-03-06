@@ -3,7 +3,7 @@ class ResumenDiario{
     public $id_resumen;
     public $id_usuario;
     public $fecha;
-    public $entrenamientosRealizado;
+    public $entrenamientosRealizados;
     public $caloriasConsumidas;
     public $notas;
 
@@ -11,7 +11,7 @@ class ResumenDiario{
         $this->id_resumen                       = $datos["id_resumen"];
         $this->id_usuario                       = $datos["id_usuario"];
         $this->fecha                            = $datos["fecha"];
-        $this->entrenamientosRealizado          = $datos["entrenamientosRealizado"];
+        $this->entrenamientosRealizados          = $datos["entrenamientosRealizados"];
         $this->caloriasConsumidas               = $datos["caloriasConsumidas"];
         $this->notas                            = $datos["notas"];
     }
