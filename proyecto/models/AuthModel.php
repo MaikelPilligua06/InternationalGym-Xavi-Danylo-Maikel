@@ -25,7 +25,7 @@ SELECT id, correoElectronico, contrasenia
 FROM Entrenadores
 WHERE correoElectronico = :correo
 ");
-        $stmt->execute([":correo"=>$correo]);
+        $stmt->execute([":correo" => $correo]);
 
         $entrenador = $stmt->fetch(PDO::FETCH_ASSOC);
 
