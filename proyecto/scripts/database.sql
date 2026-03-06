@@ -112,6 +112,7 @@ CREATE TABLE SesionesDeClases (
                                   fechaClases DATE,
                                   duracion TIME,
                                   id_entrenador INT,
+                                  descripcion VARHCAR(8000),
                                   FOREIGN KEY (id_entrenador) REFERENCES Entrenadores(id)
 );
 
