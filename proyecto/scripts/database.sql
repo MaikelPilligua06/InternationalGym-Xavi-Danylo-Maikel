@@ -108,12 +108,12 @@ CREATE TABLE ResumenDiario (
 
 CREATE TABLE SesionesDeClases (
                                   id INT AUTO_INCREMENT PRIMARY KEY,
-                                  nombre VARCHAR(255);
+                                  nombre VARCHAR(255),
                                   tipoDeClases ENUM('Cardio','Cycling','trenSuperior','trenInferior'),
                                   fechaClases DATE,
                                   duracion TIME,
                                   id_entrenador INT,
-                                  descripcion VARHCAR(8000),
+                                  descripcion VARCHAR(8000),
                                   FOREIGN KEY (id_entrenador) REFERENCES Entrenadores(id)
 );
 
@@ -125,5 +125,5 @@ CREATE TABLE Usuario_Sesion (
 );
 
 CREATE USER 'intgym'@'localhost' IDENTIFIED BY '1234';
-GRANT ALL PRIVILEGES ON Usuarios.* TO 'intgym'@'localhost';
+GRANT ALL PRIVILEGES ON InternationalGym.* TO 'intgym'@'localhost';
 FLUSH PRIVILEGES;
