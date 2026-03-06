@@ -1,7 +1,6 @@
 <?php
 require_once "models/AuthModel.php";
 
-
 class AuthController {
     public function login() {
         require "views/login.php";
@@ -23,6 +22,7 @@ class AuthController {
             $_SESSION['correo'] = $entrenador['correoElectronico'];
             header("Location: index.php?controller=Resumen&action=index");
         }
+        return false;
         $error = "Usuario o contraseña incorrectos";
         require "views/login.php";
     }
@@ -32,7 +32,6 @@ class AuthController {
         exit;
     }
 }
-?>
 
 
 
