@@ -8,7 +8,7 @@
     <h3>Duración: <?= $sesion->duracion?></h3>
     <h3>Descripción: <?= $sesion->descripcion?></h3>
 
-<form action="index.php?controller=Sesiones&action=apuntarme&id<?= $sesion->id ?>" method="POST">
+<form action="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>" method="POST">
     <button onclick="history.back()">Volver</button>
     <button>Apuntarme</button>
 </form>
