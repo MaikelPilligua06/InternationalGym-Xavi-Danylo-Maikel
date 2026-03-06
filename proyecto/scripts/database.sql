@@ -108,6 +108,7 @@ CREATE TABLE ResumenDiario (
 
 CREATE TABLE SesionesDeClases (
                                   id INT AUTO_INCREMENT PRIMARY KEY,
+                                  nombre VARCHAR(255);
                                   tipoDeClases ENUM('Cardio','Cycling','trenSuperior','trenInferior'),
                                   fechaClases DATE,
                                   duracion TIME,
