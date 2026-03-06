@@ -14,10 +14,14 @@ class SesionesModel{
         return $sesiones;
     }
 
-    public function asignarSesion($id_usuario, $id_sesion): bool
-    {
-        $stmt = $this->db->prepare("INSERT IGNORE INTO Usuario_Sesion (id_usuario, id_sesion) VALUES (?, ?)");
-        return $stmt->execute([$id_usuario, $id_sesion]);
+    public function asignarSesion($id, $usuario){
+        $db = conectar();
+        $stmt = $db->prepare("INSERT INTO Usuario_Sesion (id_sesion, id_usuario) VALUES (:id, :usuario)");
+        $stmt->execute([
+            ':id' => $id,
+            'usuario' => $usuario
+        ]);
+
     }
 
     //public function getSesionesUsuario($id_usuario) {
@@ -47,4 +51,12 @@ class SesionesModel{
             ':id_entrenador' => $id_entrenador
         ]);
     }
+    public function ver($id){
+        $db = conectar();
+        $stmt = $db->prepare("SELECT * FROM SesionesDeClases where id = :id");
+        $stmt->execute([':id' => $id]);
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new SesionesDeClases($fila);
+    }
+
 }
