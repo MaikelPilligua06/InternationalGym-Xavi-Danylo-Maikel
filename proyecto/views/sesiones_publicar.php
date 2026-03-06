@@ -1,16 +1,23 @@
+<?php
+    include 'header.php'
+?>
 <h1>Crear nueva publicación</h1>
 
 <form action="index.php?controller=Sesiones&action=publicar"
       method="post" enctype="multipart/form-data">
 
-    <p>
-        <label>Foto de tu sesión:</label><br>
-        <input type="file" name="foto" accept="image/*" required>
-    </p>
+    <label>Nombre de la Sesión</label>
+        <input type="text" name="nombre"/></br>
 
+    <label>Fecha de la Sesión</label>
+        <input type="date" name="fechaClases"/>
+</br>
+    <label>Duración de la clase</label>
+        <input type="tine" name="duración"
     <p>
+    </br>
         <label>Descripción de tu sesión:</label><br>
-        <textarea name="texto" rows="4" cols="50"
+        <textarea name="descripcion" rows="4" cols="50"
                   placeholder="" required></textarea>
     </p>
 
@@ -19,5 +26,10 @@
         <button type="submit">Publicar</button>
     </p>
 </form>
+<?php
+    include 'footer.php';
+    ?>
+
+
 
 
