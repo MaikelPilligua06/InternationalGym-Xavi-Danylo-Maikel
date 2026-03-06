@@ -10,7 +10,7 @@
 ?>
 	<div class="perdidaCal">
 		<h2>Pérdida de Calorías</h2>
-		<a href="index.php?controller=Rutinas&action=redirectEntrenamiento">
+		<a href="index.php?controller=Resumen&action=redirectResuem">
 			<p>Revisar mis calorias</p>
 			<img src="" alt ="Perdida de Calorias" img="kCAL"/>
 		</a>
@@ -44,15 +44,6 @@
 		</a>
 	</div>
 
-    <div class="Publicaciones">
-         <h2>Lista de Publicaciones</h2>
-            <a href="index.php?controller=Sesiones&action=ver">
-              <img src="" alt="Crear Publicacion"/>
-    </a>
-        <a href="index.php?controller=Sesiones&action=misPublicaciones">
-            <p>Ver mis publicaciones</p>
-        </a>
-    </div>
 
 <?php
  include 'footer.php';
