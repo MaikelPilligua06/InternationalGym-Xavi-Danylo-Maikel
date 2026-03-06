@@ -1,41 +1,38 @@
 <?php
-require_once "db.php";
-
-class AuthModel {
-
-    public function login($correo, $password) {
-        // Login para usuario
-        $db = conectar();
-        $stmt = $db->prepare("
-SELECT id, correoElectronico, contrasenia
-FROM Usuarios
-WHERE correoElectronico = :correo
-");
-        $stmt->execute([':correo' => $correo]);
-
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user && password_verify($password, $user['contrasenia'])) {
-            return $user;
-        }
-
-        // Login para entrenador
-        $stmt = $db->prepare("
-SELECT id, correoElectronico, contrasenia
-FROM Entrenadores
-WHERE correoElectronico = :correo
-");
-        $stmt->execute([":correo"=>$correo]);
-
-        $entrenador = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if($entrenador && password_verify($password, $entrenador["contrasenia"])){
-            return $entrenador;
-        }
+require_once "models/AuthModel.php";
 
 
-        return false;
+class AuthController {
+    public function login() {
+        require "views/login.php";
     }
-
+    public function loginProcess() {
+        $model = new AuthModel();
+        $correo = $_POST['correo'] ?? null;
+        $password = $_POST['password'] ?? null;
+        $user = $model->login($correo, $password);
+        if ($user) {
+            $_SESSION['usuario'] = $user;
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['correo'] = $user['correoElectronico'];
+            header("Location: index.php?controller=Resumen&action=index");
+            exit;
+        } else if($entrenador) {
+            $_SESSION['usuario'] = $entrenador;
+            $_SESSION['id'] = $entrenador['id'];
+            $_SESSION['correo'] = $entrenador['correoElectronico'];
+            header("Location: index.php?controller=Resumen&action=index");
+        }
+        $error = "Usuario o contraseña incorrectos";
+        require "views/login.php";
+    }
+    public function logout() {
+        session_destroy();
+        header("Location: index.php");
+        exit;
+    }
 }
+?>
+
+
 
