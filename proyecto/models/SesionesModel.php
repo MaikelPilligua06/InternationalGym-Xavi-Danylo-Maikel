@@ -16,12 +16,11 @@ class SesionesModel{
 
     public function asignarSesion($id, $usuario){
         $db = conectar();
-        $stmt = $db->prepare("INSERT INTO Usuario_Sesion (id_sesion, id_usuario) VALUES (:id, :usuario)");
+        $stmt = $db->prepare("INSERT INTO Usuario_Sesion (id_usuario, id_sesion) VALUES (:id_usuario, :id_sesion)");
         $stmt->execute([
-            ':id' => $id,
-            'usuario' => $usuario
+            ':id_usuario' => $usuario,
+            ':id_sesion' => $id
         ]);
-
     }
 
     //public function getSesionesUsuario($id_usuario) {
