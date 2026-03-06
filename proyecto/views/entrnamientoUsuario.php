@@ -16,7 +16,12 @@ include 'header.php';
         <ul>
             <?php foreach($lista as $fila): ?>
                 <li>
-                    <p><?= $fila->nombre ?></p>
+                    <a href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $fila->id ?>">
+                        <p><?= $fila->nombre ?></p>
+                    </a>
+                    <a href="index.php?controller=Ejercicios&action=eliminarEjercicio&id=<?= $fila->id ?>">
+                        <button>Eliminar</button>
+                    </a>
                 </li>
             <?php endforeach; ?>
         </ul>
