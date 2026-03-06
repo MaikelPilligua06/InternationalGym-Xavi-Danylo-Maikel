@@ -30,14 +30,21 @@ class SesionesModel{
         //return $stmt->fetchAll(PDO::FETCH_ASSOC);
     //}
 
-    public function save(SesionesDeClases $sesiones){
+    public function sesionesCrear($sesion, $id_entrenador){
         $db = conectar();
-        $stmt = $db->prepare("INSERT INTO SesionesDeClases (tipoDeClases, fechaClases, duracion, id_entrenador)  VALUES (:tipoDeClase, :fechaClases, :duracion, :entrenador)");
+        $stmt = $db->prepare("
+        INSERT INTO SesionesDeClases
+        (nombre, tipoDeClases, fechaClases, duracion, descripcion, id_entrenador)
+        VALUES
+        (:nombre, :tipoDeClases, :fechaClases, :duracion, :descripcion, :id_entrenador)
+    ");
         $stmt->execute([
-            'tipoDeClases' => $sesiones->tipoDeClases,
-            'fechaClases' => $sesiones->fechaClases,
-            'duracion' => $sesiones->duracion,
-            'id_entrenador' => $sesiones->id_entrenador
+            ':nombre' => $sesion->nombre,
+            ':tipoDeClases' => $sesion->tipoDeClases,
+            ':fechaClases' => $sesion->fechaClases,
+            ':duracion' => $sesion->duracion,
+            ':descripcion' => $sesion->descripcion,
+            ':id_entrenador' => $id_entrenador
         ]);
     }
 }
