@@ -10,7 +10,7 @@
         <a class="tn-brand" href="#">
             <span class="tn-brand__mark" aria-hidden="true">TN</span>
             <span class="tn-brand__text">
-        <strong>TechNational</strong>
+        <strong>InternationalGym</strong>
         <small>Gym • Performance • Tech</small>
       </span>
         </a>

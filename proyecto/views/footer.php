@@ -11,15 +11,15 @@
             <div class="tn-footer__brand">
                 <span class="tn-brand__mark" aria-hidden="true">TN</span>
                 <div>
-                    <strong>TechNational</strong>
+                    <strong>InternationalGym</strong>
                     <p>Entrena con método, tecnología y constancia.</p>
                 </div>
             </div>
 
             <ul class="tn-footer__meta">
-                <li><span class="tn-dot"></span> Av. Example 123, Sofia</li>
-                <li><span class="tn-dot"></span> +359 000 000 000</li>
-                <li><span class="tn-dot"></span> hello@technational.com</li>
+                <li><span class="tn-dot"></span> Av. d'Eduard Maristany, 59, 08930 Sant Adrià de Besòs, Barcelona, España</li>
+                <li><span class="tn-dot"></span> +34 631004556</li>
+                <li><span class="tn-dot"></span> internationalgym@institutmvm.cat</li>
             </ul>
         </div>
 
@@ -56,7 +56,7 @@
     </div>
 
     <div class="tn-container tn-footer__bottom">
-        <p>© <span id="tn-year"></span> TechNational. Todos los derechos reservados.</p>
+        <p>© <span id="tn-year"></span> InternationalGym. Todos los derechos reservados.</p>
         <a class="tn-top" href="#" aria-label="Volver arriba">↑</a>
     </div>
 </footer>
