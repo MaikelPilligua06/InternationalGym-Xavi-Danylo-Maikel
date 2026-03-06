@@ -19,7 +19,13 @@
 
 
 <?php foreach($sesiones as $sesion): ?>
-    <p><?= $sesion->tipoDeClases ?> - <?= $sesion->fechaClases ?></p>
+<ul>
+    <li>
+        <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
+            <?= $sesion->nombre ?> - <?= $sesion->tipoDeClases ?> - <?= $sesion->fechaClases ?>
+        </a>
+    </li>
+</ul>
 
 
 <?php endforeach; ?>
