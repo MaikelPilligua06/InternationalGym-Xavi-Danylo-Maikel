@@ -34,26 +34,26 @@ class SesionesController
     }
 
     // 2. Que un usuario se pueda apuntar a la session
-    public function apuntar()
-    {
+    public function apuntarme(){
+        $usuario = $_SESSION['id'];
         $model = new SesionesModel();
-        $id_usuario = 1;
-        $id_sesion = $_POST['idSesion'];
-
-        if ($model->asignarSesion($id_sesion, $id_usuario)) {
-            $_SESSION['mensaje'] = "Sesion apuntada correctamente";
-        }
-
+        $sesion = $model->asignarSesion($_GET['id'], $usuario);
         header("Location: index.php?controller=Sesiones&action=index");
         exit;
     }
-
 
     public function ver() {
         $sesiones = new SesionesDeClases();
 
         require "views/sesiones_publicar.php";
     }
+    public function getId(){
+        $model = new SesionesModel();
+        $sesion = $model->ver($_GET["id"]);
+        require "views/sesiones_ver.php";
+    }
+
+
 
     public function publicar() {
         if(!empty($_POST)) {
