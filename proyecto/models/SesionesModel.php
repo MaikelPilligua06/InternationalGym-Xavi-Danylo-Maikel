@@ -23,15 +23,19 @@ class SesionesModel{
         ]);
     }
 
-    //public function getSesionesUsuario($id_usuario) {
-        // $stmt = $this->pdo->prepare("
-            //SELECT s.* FROM SesionesDeClases s
-            //INNER JOIN Usuario_Sesion us ON s.id = u.id_sesion
-            //WHERE u.id_usuario = ?
-        //");
-        //$stmt->execute([$id_usuario]);
-        //return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //}
+    public function sesionUsuario($usuario) {
+        $db = conectar();
+        $stmt = $db->prepare("
+SELECT sesiones.*, usuario_sesion.id_usuario
+FROM SesionesDeClases sesiones
+JOIN Usuario_Sesion usuario_sesion 
+ON sesiones.id = usuario_sesion.id_sesion
+WHERE usuario_sesion.id_usuario = :id;
+    ");
+
+        $stmt->execute([':id' => $usuario]);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 
     public function sesionesCrear($sesion, $id_entrenador){
         $db = conectar();
@@ -57,5 +61,9 @@ class SesionesModel{
         $fila = $stmt->fetch(PDO::FETCH_ASSOC);
         return new SesionesDeClases($fila);
     }
-
+    public function delete($id){
+        $db = conectar();
+        $stmt = $db->prepare("DELETE FROM Usuario_Sesion WHERE id_sesion = :id");
+        $stmt->execute([':id' => $id]);
+    }
 }

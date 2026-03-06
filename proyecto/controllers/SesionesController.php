@@ -7,7 +7,9 @@ class SesionesController
     public function index()
     {
         $model = new SesionesModel();
+        $usuario = $_SESSION['id'];
         $sesiones = $model->getAll();
+        $lista = ($usuario) ? $model->sesionUsuario($usuario) : [];
         require "views/sesiones_listado.php";
     }
 
@@ -75,5 +77,10 @@ class SesionesController
     public function misPublicaciones() {
         require "views/publicaciones_listado.php";
     }
-
+    public function eliminarSesion(){
+        $model = new SesionesModel();
+        $model->delete($_GET["id"]);
+        header("Location: index.php?controller=Sesiones&action=index");
+        exit;
+    }
 }

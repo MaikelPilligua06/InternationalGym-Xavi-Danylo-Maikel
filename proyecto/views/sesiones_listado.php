@@ -14,8 +14,20 @@
         <p>Ver mis publicaciones</p>
     </a>
 </div>
-
-<h1>Sesiones</h1>
+<h2>Mis sesiones</h2>
+<ul>
+    <?php foreach($lista as $fila): ?>
+        <li>
+            <a href="index.php?controller=Sesiones&action=getId&id=<?= $fila->id ?>">
+                <p><?= $fila->nombre ?></p>
+            </a>
+            <a href="index.php?controller=Sesiones&action=eliminarSesion&id=<?= $fila->id ?>">
+                <button>Eliminar</button>
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>
+<h1>Sesiones Disponibles</h1>
 
 
 <?php foreach($sesiones as $sesion): ?>
