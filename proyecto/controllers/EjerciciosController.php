@@ -24,4 +24,10 @@ class EjerciciosController{
         $ejercicios = $model->getById($_GET["id"]);
         require "views/ejercicios_ver.php";
     }
+    public function eliminarEjercicio(){
+        $model = new EjerciciosModel();
+        $model->delete($_GET["id"]);
+        header("Location: index.php?controller=Ejercicios&action=listadoEjercicios");
+        exit;
+    }
 }
