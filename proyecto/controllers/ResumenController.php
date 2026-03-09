@@ -13,4 +13,9 @@ class ResumenController{
         $resumen = $model->getResumen($usuario);
         require "views/resumen_ver.php";
     }
+    public function masMenos(){
+        $usuario = $_SESSION['id'];
+        $model = new ResumenModel();
+        $resumen = $model->getResumen($usuario);
+    }
 }
