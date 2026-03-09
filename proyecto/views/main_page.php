@@ -10,7 +10,7 @@
 ?>
 	<div class="perdidaCal">
 		<h2>Pérdida de Calorías</h2>
-		<a href="index.php?controller=Resumen&action=redirectResuem">
+		<a href="index.php?controller=Resumen&action=verResumen">
 			<p>Revisar mis calorias</p>
 			<img src="" alt ="Perdida de Calorias" img="kCAL"/>
 		</a>

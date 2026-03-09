@@ -15,4 +15,10 @@ class ResumenModel{
         }
         return $resumen;
     }
+    public function getResumen($id){
+        $db = conectar();
+        $stmt = $db->prepare("SELECT * FROM ResumenDiario where id_usuario = :id");
+        $stmt->execute([":id" => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

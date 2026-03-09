@@ -7,4 +7,10 @@ class ResumenController{
         $resumen = $model->getAll();
         require "views/main_page.php";
     }
+    public function verResumen() {
+        $usuario = $_SESSION['id'];
+        $model = new ResumenModel();
+        $resumen = $model->getResumen($usuario);
+        require "views/resumen_ver.php";
+    }
 }
