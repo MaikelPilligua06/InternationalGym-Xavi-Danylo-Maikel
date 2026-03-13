@@ -1,5 +1,5 @@
 <?php
-require_once "models/db.php";
+require_once '../models/db.php';
 
 $db = conectar();
 $passwordAdmin = password_hash("entrenador", PASSWORD_DEFAULT);
