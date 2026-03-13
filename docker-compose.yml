@@ -1,10 +1,12 @@
 services:
   web:
-    build: ./
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: gym-php
     container_name: gymproyecto
     ports:
-      - 8088:80
+      - "8088:80"
     volumes:
       - ./proyecto:/var/www/html
     depends_on:
