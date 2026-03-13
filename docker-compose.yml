@@ -1,7 +1,6 @@
-version: '3.1'
 services:
   web:
-    build: ../
+    build: ./
     container_name: gymproyecto
     ports:
       - 8088:80
