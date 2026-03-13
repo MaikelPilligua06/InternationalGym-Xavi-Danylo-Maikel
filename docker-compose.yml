@@ -1,6 +1,7 @@
 services:
   web:
     build: ./
+    image: gym-php
     container_name: gymproyecto
     ports:
       - 8088:80
@@ -9,7 +10,10 @@ services:
     depends_on:
       - mysql
   mysql:
-    image: mysql:8.0
+    build:
+      context: .
+      dockerfile: Dockerfile_mysql
+    image: gym-mysql
     container_name: intgym
     environment:
       MYSQL_ROOT_PASSWORD: 1234
@@ -17,7 +21,7 @@ services:
       MYSQL_USER: intgym
       MYSQL_PASSWORD: 1234
     ports:
-      - 3368:3306
+      - "3368:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 
