@@ -1,3 +1,6 @@
+<?php
+    include 'header.php';
+    ?>
 <h1>Mis publicaciones</h1>
 
 <?php if (isset($_SESSION['publicaciones']) && !empty($_SESSION['publicaciones'])): ?>
@@ -21,3 +24,6 @@
     </a>
     <button onclick="history.back()">Volver</button>
 </p>
+<?php
+include 'footer.php';
+?>

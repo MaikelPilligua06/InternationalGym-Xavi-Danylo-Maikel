@@ -66,4 +66,15 @@ WHERE usuario_sesion.id_usuario = :id;
         $stmt = $db->prepare("DELETE FROM Usuario_Sesion WHERE id_sesion = :id");
         $stmt->execute([':id' => $id]);
     }
+    public function misPub($usuario){
+        $db = conectar();
+        $stmt = $db->prepare("SELECT * FROM SesionesDeClases where id_entrenador = :id");
+        $stmt->execute([':id' => $usuario]);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $sesiones = [];
+        foreach ($resultado as $fila) {
+            $sesiones[] = new SesionesDeClases($fila);
+        }
+        return $sesiones;
+    }
 }

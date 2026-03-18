@@ -75,6 +75,9 @@ class SesionesController
         exit;
     }
     public function misPublicaciones() {
+        $model = new SesionesModel();
+        $usuario = $_SESSION['id'];
+        $sesiones = $model->misPub($usuario);
         require "views/publicaciones_listado.php";
     }
     public function eliminarSesion(){
