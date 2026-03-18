@@ -35,16 +35,19 @@ CREATE TABLE Usuarios (
 CREATE TABLE Alimentacion (
                               id INT AUTO_INCREMENT PRIMARY KEY,
                               objetivo ENUM('perder peso','ganar fuerza','estabilidad'),
-                              id_usuario INT,
                               calorias FLOAT,
                               nombrePlato VARCHAR(100),
                               descripcion VARCHAR(100),
                               proteinas INT,
                               carbohidratos INT,
                               grasas INT,
-                              FOREIGN KEY (id_usuario) REFERENCES Usuarios(id)
 );
-
+CREATE TABLE Usuario_Alimentacion (
+                                   id_usuario INT,
+                                   id_alimentacion INT,
+                                   FOREIGN KEY (id_usuario) REFERENCES Usuarios(id),
+                                   FOREIGN KEY (id_alimentacion) REFERENCES Ejercicios(id)
+);
 CREATE TABLE Ejercicios (
                             id INT AUTO_INCREMENT PRIMARY KEY,
                             nombre VARCHAR(100),

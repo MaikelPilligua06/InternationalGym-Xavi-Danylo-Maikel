@@ -15,10 +15,12 @@
       </span>
         </a>
         <nav class="tn-nav" aria-label="Navegación principal">
-            <a href="#programas">Programas</a>
-            <a href="#horarios">Horarios</a>
-            <a href="#tarifas">Tarifas</a>
-            <a href="#contacto">Contacto</a>
+            <a href="index.php?controller=Resumen&action=verResumen">Resumen</a>
+            <a href="index.php?controller=Rutinas&action=redirectRutinas">Rutinas</a>
+            <a href="index.php?controller=Ejercicios&action=listadoEjercicios">Entreno</a>
+            <a href="index.php?controller=Sesiones&action=index">Sesiones</a>
+            <a href="index.php?controller=Entrenadores&action=getEntrenador">Entrenadores</a>
+            <a href="index.php?controller=Alimentacion&action=index">Alimentación</a>
         </nav>
 
         <div class="tn-actions">
