@@ -19,7 +19,11 @@ class ResumenModel{
         $db = conectar();
         $stmt = $db->prepare("SELECT * FROM ResumenDiario where id_usuario = :id");
         $stmt->execute([":id" => $id]);
-        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new ResumenDiario($fila);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $resumen = [];
+        foreach ($resultado as $fila){
+            $resumen[] = new ResumenDiario($fila);
+        }
+        return $resumen;
     }
 }

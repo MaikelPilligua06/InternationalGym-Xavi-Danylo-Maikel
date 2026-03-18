@@ -5,7 +5,7 @@
 
 <?php if (isset($sesiones) && !empty($sesiones)): ?>
     <?php foreach ($sesiones as $publicacion): ?>
-        <a href="">
+        <a href="index.php?controller=Sesiones&action=getId">
             <h1><?= $sesiones->nombre ?></h1>
         </a>
     <?php endforeach; ?>
@@ -19,6 +19,4 @@
     </a>
     <button onclick="history.back()">Volver</button>
 </p>
-<?php
-include 'footer.php';
-?>
+d

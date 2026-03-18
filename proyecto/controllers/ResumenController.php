@@ -8,8 +8,8 @@ class ResumenController{
         require "views/main_page.php";
     }
     public function verResumen() {
-        $usuario = $_SESSION['id'];
         $model = new ResumenModel();
+        $usuario = $_SESSION['id'];
         $resumen = $model->getResumen($usuario);
         require "views/resumen_ver.php";
     }
