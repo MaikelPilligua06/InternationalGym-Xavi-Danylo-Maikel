@@ -4,13 +4,10 @@ require_once "Alimentacion.php";
 class AlimentacionModel{
     public function getAll ($objetivo){
         $db = conectar();
-        $stmt = db->query("SELECT * FROM Alimentacion where objetivo = :objetivo");
-        $resultado = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $alimentacion = [];
-        foreach ($resultado as $fila) {
-            $alimentacion [] = new Alimentacion($fila);
-        }
-        return $alimentacion;
+        $stmt = $db->prepare("SELECT * FROM Alimentacion where objetivo = :objetivo");
+        $stmt->execute([":objetivo" => $objetivo]);
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Alimentacion($fila);
     }
     public function alimentacionUsuario ($usuario){
         $db = conectar();

@@ -7,7 +7,7 @@ class AuthModel {
         // Login para usuario
         $db = conectar();
         $stmt = $db->prepare("
-SELECT id, correoElectronico, contrasenia
+SELECT id, correoElectronico, contrasenia, objetivo
 FROM Usuarios
 WHERE correoElectronico = :correo
 ");
