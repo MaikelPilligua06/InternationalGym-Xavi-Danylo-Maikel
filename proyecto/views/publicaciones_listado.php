@@ -3,16 +3,11 @@
     ?>
 <h1>Mis publicaciones</h1>
 
-<?php if (isset($_SESSION['publicaciones']) && !empty($_SESSION['publicaciones'])): ?>
-    <?php foreach ($_SESSION['publicaciones'] as $publicacion): ?>
-        <div style="border: 1px solid #ccc; margin: 10px; padding: 15px;">
-            <?php if ($publicacion['foto']): ?>
-                <img src="gymFotos/<?= htmlspecialchars($publicacion['foto']) ?>"
-                     alt="Publicación" style="max-width: 200px;">
-            <?php endif; ?>
-            <p><?= htmlspecialchars($publicacion['texto']) ?></p>
-            <small><?= $publicacion['fecha'] ?></small>
-        </div>
+<?php if (isset($sesiones) && !empty($sesiones)): ?>
+    <?php foreach ($sesiones as $publicacion): ?>
+        <a href="">
+            <h1><?= $sesiones->nombre ?></h1>
+        </a>
     <?php endforeach; ?>
 <?php else: ?>
     <p>No tienes publicaciones aún.</p>
