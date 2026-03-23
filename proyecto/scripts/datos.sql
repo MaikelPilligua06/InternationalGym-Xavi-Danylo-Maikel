@@ -6,5 +6,5 @@ INSERT INTO Contiene (id_rutina, id_ejercicio) VALUES (1, 1);
 INSERT INTO Chat (id_usuario, id_entrenador, mensaje, fechaHora) VALUES (1, 1, 'Como ejecutar correctamente el press inclinado con mancuernas', '2026-03-04 12:04:00');
 INSERT INTO Pago (id_usuario, metodoPago, tipoPlan, precio, fechaPago, estado) VALUES (1, 'Tarjeta', 'Premium', 40, '2026-01-22', 'Aceptado');
 INSERT INTO ResumenDiario (id_usuario, fecha, entrenamientosRealizados, caloriasConsumidas, notas) VALUES (1, '2026-03-04', 1, 2600, 'Hoy hice Press inclinado con mancuernas: 3x8, 20kg. Buen trabajo en pecho superior');
-INSERT INTO SesionesDeClases (nombre, tipoDeClases, fechaClases, duracion, id_entrenador, descripcion) VALUES ('Tren Superir', 'trenSuperior', '2026-03-04', '01:00:00', 1, 'Clase enfocada al entreno del tren superior');
+INSERT INTO SesionesDeClases (nombre, tipoDeClases, fechaClases, duracion, id_entrenador, descripcion) VALUES ('Tren Superior', 'trenSuperior', '2026-03-04', '01:00:00', 1, 'Clase enfocada al entreno del tren superior');
 INSERT INTO Usuario_Sesion (id_usuario, id_sesion) VALUES (1, 1);

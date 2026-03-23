@@ -7,11 +7,11 @@ services:
     container_name: gymproyecto
     ports:
       - "8088:80"
-      - "443:443"
+      - "8443:443"
     volumes:
       - ./proyecto:/var/www/html
-      - ./certs/cert.pem:/etc/ssl/certs/cert.pem
-      - ./certs/privkey.pem:/etc/ssl/private/privkey.pem
+      - ./certs/cert.pem:/etc/ssl/certs/cert.pem:/etc/ssl/certs/cert.pem
+      - ./certs/privkey.pem:/etc/ssl/private/privkey.pem:/etc/ssl/private/privkey.pem
     depends_on:
       - mysql
   mysql:
