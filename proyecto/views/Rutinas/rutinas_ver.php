@@ -6,7 +6,7 @@
 </head>
 <body>
 <?php
-    include 'header.php';
+    include 'views/header.php';
 ?>
     <div id="RutinaUsuario">
         <h2>Rutinas del Usuario</h2>    
@@ -27,7 +27,7 @@
      </a>
     </div>
 <?php
-    include 'footer.php';
+    include 'views/footer.php';
 ?>
 </body>
 </html>

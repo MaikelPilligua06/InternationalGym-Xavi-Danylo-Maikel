@@ -4,11 +4,14 @@
 	<meta name="author" content="InternationalGYM">
 	<title>International GYM- Entrenos</title>
 </head>
-<body>	
+<?
+    include 'views/header.php';
+?>
+<body>
 
-	
-<footer>
-	<p>Crear footer solo para páginas web...
-</footer>
+
+<?php
+    include 'views/header.php';
+?>
 </body>
 </html>

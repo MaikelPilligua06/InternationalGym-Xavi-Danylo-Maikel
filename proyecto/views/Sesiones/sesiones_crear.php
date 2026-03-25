@@ -6,7 +6,7 @@
     </head>
     <body>
     <?php
-    include 'header.php';
+    include 'views/header.php';
     ?>
 
         <h1>Crear nueva sesión de clases</h1>
@@ -21,7 +21,7 @@
             Duración: <input type="time" name="duracion" placeholder="Introduzca la duración de la clase"/>
         </form>
     <?php
-    include 'footer.php';
+    include 'views/footer.php';
     ?>
     </body>
     </html>

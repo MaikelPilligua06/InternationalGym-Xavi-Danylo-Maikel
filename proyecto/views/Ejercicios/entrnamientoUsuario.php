@@ -6,7 +6,7 @@
 </head>
 <body>
 <?php
-include 'header.php';
+include 'views/header.php';
 ?>
 <h2>Ejercicios</h2>
 <hr>
@@ -42,7 +42,7 @@ include 'header.php';
     <?php endforeach; ?>
 </div>
 <?php
-include 'footer.php';
+include 'views/footer.php';
 ?>
 </body>
 </html>

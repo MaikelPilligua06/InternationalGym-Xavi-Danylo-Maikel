@@ -1,5 +1,5 @@
 <?php
-    include 'header.php';
+    include 'views/header.php';
     ?>
 
     <h1>Detalles de la Sesion - <?= $sesion->nombre?></h1>
@@ -15,7 +15,7 @@
 
 
 <?php
-    include 'footer.php';
+    include 'views/footer.php';
     ?>
 
 

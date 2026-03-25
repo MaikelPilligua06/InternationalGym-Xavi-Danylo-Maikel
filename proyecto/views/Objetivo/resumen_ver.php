@@ -1,5 +1,5 @@
 <?php
-    include 'header.php';
+    include 'views/header.php';
     ?>
 
 <h2>Perdida Calorica de este mes</h2>
@@ -16,5 +16,5 @@
     <p>Clica aqui para hacerlo!!</p>
 </div>
 <?php
-    include 'footer.php';
+    include 'views/footer.php';
 ?>

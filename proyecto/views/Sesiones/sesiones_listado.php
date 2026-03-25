@@ -4,7 +4,7 @@
     <title>Listado Sesiones</title>
 </head>
 <body>
-<?php include 'header.php'; ?>
+<?php include 'views/header.php'; ?>
 <div class="Publicaciones">
     <h2>Lista de Publicaciones</h2>
     <a href="index.php?controller=Sesiones&action=ver">
@@ -42,7 +42,7 @@
 
 <?php endforeach; ?>
 
-<?php include 'footer.php'; ?>
+<?php include 'views/footer.php'; ?>
 </body>
 </html>
 

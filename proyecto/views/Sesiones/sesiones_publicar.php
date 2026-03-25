@@ -1,5 +1,5 @@
 <?php
-include 'header.php'
+include 'views/header.php'
 ?>
 <h1>Crear nueva publicación</h1>
 
@@ -32,6 +32,6 @@ include 'header.php'
     </p>
 </form>
 <?php
-    include 'footer.php';
+    include 'views/footer.php';
     ?>
 

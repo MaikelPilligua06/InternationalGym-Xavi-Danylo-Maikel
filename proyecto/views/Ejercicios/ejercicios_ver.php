@@ -1,5 +1,5 @@
 <?php
-    include 'header.php';
+    include 'views/header.php';
     ?>
 <h2>Informacion del ejericio: <?=$ejercicios->nombre?></h2>
 
@@ -14,5 +14,5 @@
     <button>Añadir ejercicio a mi entrenamiento</button>
 </form>
 <?php
-    include 'footer.php';
+    include 'views/footer.php';
 ?>

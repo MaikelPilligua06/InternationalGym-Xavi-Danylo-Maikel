@@ -1,5 +1,5 @@
 <?php
-    include 'header.php<';
+    include 'views/header.php<';
     ?>
 <h2>Lista de Alimentación</h2>
 <p>Total de calorias obtenidas atraves de su lista de comida: <?php ?></p>
@@ -36,5 +36,5 @@
     </ul>
 </div>
     <?php
-    include 'footer.php';
+    include 'views/footer.php';
     ?>

@@ -1,5 +1,5 @@
 <?php
-    include 'header.php';
+    include 'views/header.php';
     ?>
 <h1>Mis publicaciones</h1>
 
@@ -19,4 +19,6 @@
     </a>
     <button onclick="history.back()">Volver</button>
 </p>
-d
+<?php
+include 'views/footer.php';
+?>
