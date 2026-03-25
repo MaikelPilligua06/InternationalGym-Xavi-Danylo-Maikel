@@ -40,6 +40,25 @@
 </ul>
 
 
+!!
+<div class="carrusel">
+        <button class="btn-izq"><-</button>
+
+        <div class="pista">
+            <?php foreach ($sesiones as $sesion): ?>
+             <div class="tarjeta">
+                 <h4><?= $sesion->tipoClases ?></h4>
+                 <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
+                 <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
+                 <p><strong>Entrenador:</strong> <?= $sesion->id_entrenador ?></p>
+                 <button onclick="apuntarse(<?= $sesion->id ?>)">Apuntate</button>
+             </div>
+            <?php endforeach; ?>
+        </div>
+
+        <button class="btn-der">-></button>
+    </div>
+!!
 <?php endforeach; ?>
 
 <?php include 'views/footer.php'; ?>
