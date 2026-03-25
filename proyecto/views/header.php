@@ -7,7 +7,7 @@
 <body>
 <header class="tn-header">
     <div class="tn-container tn-header__inner">
-        <a class="tn-brand" href="#">
+        <a class="tn-brand" href="index.php?controller=Resumen&action=index">
             <span class="tn-brand__mark" aria-hidden="true">TN</span>
             <span class="tn-brand__text">
         <strong>InternationalGym</strong>

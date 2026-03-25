@@ -299,3 +299,23 @@ a:focus, button:focus, input:focus{ outline: 2px solid var(--tn-yellow); outline
     white-space:nowrap;
     border:0;
 }
+.carrusel-movil {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+
+}
+
+.tarjeta-movil {
+    flex: 1 1 280px;
+    max-width: 300px;
+    background: linear-gradient(50deg, black, yellow);
+    color: white;
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,.2);
+}

@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <title>Listado Sesiones</title>
+    <link rel="stylesheet" href="views/styles.css">
 </head>
 <body>
 <?php include 'views/header.php'; ?>
@@ -30,37 +31,23 @@
 <h1>Sesiones Disponibles</h1>
 
 
-<?php foreach($sesiones as $sesion): ?>
-<ul>
-    <li>
-        <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
-            <?= $sesion->nombre ?> - <?= $sesion->tipoDeClases ?> - <?= $sesion->fechaClases ?>
-        </a>
-    </li>
-</ul>
-
-
-!!
-<div class="carrusel">
-        <button class="btn-izq"><-</button>
+<div class="carrusel-movil">
 
         <div class="pista">
             <?php foreach ($sesiones as $sesion): ?>
-             <div class="tarjeta">
-                 <h4><?= $sesion->tipoClases ?></h4>
+             <div class="tarjeta-movil">
+                 <h4><?= $sesion->tipoDeClases ?></h4>
                  <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
                  <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
                  <p><strong>Entrenador:</strong> <?= $sesion->id_entrenador ?></p>
-                 <button onclick="apuntarse(<?= $sesion->id ?>)">Apuntate</button>
+                 <a href="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>">
+                 <button>Apuntate</button>
+                 </a>
              </div>
             <?php endforeach; ?>
         </div>
 
-        <button class="btn-der">-></button>
     </div>
-!!
-<?php endforeach; ?>
-
 <?php include 'views/footer.php'; ?>
 </body>
 </html>
