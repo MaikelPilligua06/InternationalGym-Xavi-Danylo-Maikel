@@ -1,5 +1,5 @@
 <?php
-    include 'header.php'
+include 'header.php'
 ?>
 <h1>Crear nueva publicación</h1>
 

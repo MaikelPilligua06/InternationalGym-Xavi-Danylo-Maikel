@@ -46,4 +46,13 @@ class AlimentacionModel{
             ':id_alimentacion' => $id
         ]);
     }
+    public function getCalorias($usuarioId){
+        $db = conectar();
+        $stmt = $db->prepare("SELECT * FROM Usuario_Alimentacion");
+        $stmt->execute();
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($resultado as $fila) {
+
+        }
+    }
 }

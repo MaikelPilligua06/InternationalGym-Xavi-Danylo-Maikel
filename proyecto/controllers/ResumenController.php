@@ -11,11 +11,17 @@ class ResumenController{
         $model = new ResumenModel();
         $usuario = $_SESSION['id'];
         $resumen = $model->getResumen($usuario);
-        require "views/resumen_ver.php";
+        require "views/Objetivo/resumen_ver.php";
     }
     public function masMenos(){
         $usuario = $_SESSION['id'];
         $model = new ResumenModel();
         $resumen = $model->getResumen($usuario);
+    }
+    public function resumenUsuario(){
+        $usuario = $_SESSION['id'];
+        $model = new ResumenModel();
+        $resumen = $model->getUsuarioResumen($usuario);
+        require "views/Objetivo/objetivoUsuario.php";
     }
 }

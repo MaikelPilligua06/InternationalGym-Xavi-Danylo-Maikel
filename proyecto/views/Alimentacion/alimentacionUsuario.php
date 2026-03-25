@@ -29,6 +29,9 @@
             <a href="index.php?controller=Alimentacion&action=addPlato<?= $plato->id_Alimentacion ?>">
                 <button>Añadir</button>
             </a>
+            <a href="index.php?controller=Alimentacion&action=editar<?= $plato->id_Alimentacion ?>">
+                <button>Editar</button>
+            </a>
         <?php endforeach; ?>
     </ul>
 </div>

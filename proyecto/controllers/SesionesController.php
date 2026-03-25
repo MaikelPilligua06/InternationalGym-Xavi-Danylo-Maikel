@@ -10,12 +10,12 @@ class SesionesController
         $usuario = $_SESSION['id'];
         $sesiones = $model->getAll();
         $lista = ($usuario) ? $model->sesionUsuario($usuario) : [];
-        require "views/sesiones_listado.php";
+        require "views/Sesiones/sesiones_listado.php";
     }
 
     public function crear_form()
     {
-        require "views/sesiones_crear.php";
+        require "views/Sesiones/sesiones_crear.php";
     }
 
     public function crear()
@@ -47,12 +47,12 @@ class SesionesController
     public function ver() {
         $sesiones = new SesionesDeClases();
 
-        require "views/sesiones_publicar.php";
+        require "views/Sesiones/sesiones_publicar.php";
     }
     public function getId(){
         $model = new SesionesModel();
         $sesion = $model->ver($_GET["id"]);
-        require "views/sesiones_ver.php";
+        require "views/Sesiones/sesiones_ver.php";
     }
 
 
@@ -78,7 +78,7 @@ class SesionesController
         $model = new SesionesModel();
         $usuario = $_SESSION['id'];
         $sesiones = $model->misPub($usuario);
-        require "views/publicaciones_listado.php";
+        require "views/Sesiones/publicaciones_listado.php";
     }
     public function eliminarSesion(){
         $model = new SesionesModel();
