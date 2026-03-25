@@ -45,7 +45,7 @@
 	</div>
     <div class="Alimentacion">
         <h2>Lista de Alimentacion</h2>
-        <a href="index.php?controller=Alimentacion=redirectAlimentacion"
+        <a href="index.php?controller=Alimentacion=index"
             <h1>Prueba</h1>
         </a>
     </div>
