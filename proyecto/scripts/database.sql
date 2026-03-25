@@ -46,7 +46,7 @@ CREATE TABLE Usuario_Alimentacion (
                                    id_usuario INT,
                                    id_alimentacion INT,
                                    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id),
-                                   FOREIGN KEY (id_alimentacion) REFERENCES Ejercicios(id)
+                                   FOREIGN KEY (id_alimentacion) REFERENCES Alimentacion(id)
 );
 CREATE TABLE Ejercicios (
                             id INT AUTO_INCREMENT PRIMARY KEY,

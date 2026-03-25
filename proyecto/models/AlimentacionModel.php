@@ -2,16 +2,20 @@
 require_once "db.php";
 require_once "Alimentacion.php";
 class AlimentacionModel{
-    public function getAll ($objetivo){
+    public function getAll ($usuarioId){
         $db = conectar();
-        $stmt = $db->query("SELECT * FROM Alimentacion");
-        $stmt->execute([":objetivo" => $objetivo]);
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $alimentacion = [];
-        foreach ($resultado as $fila) {
-            $alimentacion[] = new SesionesDeClases($fila);
-        }
-        return $alimentacion;
+        $stmt = $db->prepare(
+            "
+                    SELECT a.nombrePlato, a.calorias, a.proteinas, a.descripcion, usuario_alimentacion.id_usuario u.usuario
+                    FROM Alimentacion a
+                    JOIN Usuarios u 
+                    JOIN Usuario_Alimentacion usuario_alimentacion 
+                    ON usuario_alimentacion.id_usuario = a.id_usuario
+                    WHERE alimentacion_usuario.id_usuario = :usuarioId 
+                "
+        );
+        $stmt->execute([":objetivo" => $usuarioId]);
+
     }
     //
     //public function alimentacionUsuario ($usuario){
