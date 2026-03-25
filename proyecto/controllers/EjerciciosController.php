@@ -8,7 +8,7 @@ class EjerciciosController{
         $usuarioId = $_SESSION['id'];
         $ejercicio = $model->getAll();
         $lista = ($usuarioId) ? $model->informacionUsuario($usuarioId) : [];
-        require "views/entrnamientoUsuario.php";
+        require "views/Ejercicios/entrnamientoUsuario.php";
     }
 
     public function addEjercicio(){
@@ -22,7 +22,7 @@ class EjerciciosController{
     public function infoEjercicio(){
         $model = new EjerciciosModel();
         $ejercicios = $model->getById($_GET["id"]);
-        require "views/ejercicios_ver.php";
+        require "views/Ejercicios/ejercicios_ver.php";
     }
     public function eliminarEjercicio(){
         $model = new EjerciciosModel();

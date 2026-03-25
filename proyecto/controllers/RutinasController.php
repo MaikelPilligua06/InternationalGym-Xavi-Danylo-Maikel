@@ -6,22 +6,22 @@ class RutinasController{
         $id = $_SESSION['id'];
         $rutinas = new RutinasModel();
         $ver = $rutinas->verRutinas($id);
-        require "views/rutinas_ver.php";
+        require "views/Rutinas/rutinas_ver.php";
     }
     // funciones simplemente para redirigir a otras páginas
     public function redirectEntrenamiento(){
         $rutinas = new RutinasModel();
         $entrenamiento = $rutinas->verEntrenamiento($_SESSION['id']);
-        require "views/entrnamientoUsuario.php";
+        require "views/Ejercicios/entrnamientoUsuario.php";
     }
     public function rediretAlimentacion(){
         $alimentacion = new RutinasModel();
         $rutinaAlimentacion = $alimentacion->verAlimentacion($_SESSION['id']);
-        require "views/alimentacionUsuario.php";
+        require "views/Alimentacion/alimentacionUsuario.php";
     }
     public function redirectObjetivo(){
         $verObjetivos = new RutinasModel();
         $objetivo = $verObjetivos->verObjetivo($_SESSION['id']);
-        require "views/objetivoUsuario.php";
+        require "views/Objetivo/objetivoUsuario.php";
     }
 }
