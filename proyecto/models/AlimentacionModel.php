@@ -6,16 +6,20 @@ class AlimentacionModel{
         $db = conectar();
         $stmt = $db->prepare(
             "
-                    SELECT a.nombrePlato, a.calorias, a.proteinas, a.descripcion, usuario_alimentacion.id_usuario u.usuario
-                    FROM Alimentacion a
-                    JOIN Usuarios u 
-                    JOIN Usuario_Alimentacion usuario_alimentacion 
-                    ON usuario_alimentacion.id_usuario = a.id_usuario
-                    WHERE alimentacion_usuario.id_usuario = :usuarioId 
+                SELECT a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.id
+                FROM Alimentacion a
+                JOIN Usuario_Alimentacion ua ON a.id = ua.id_alimentacion
+                JOIN Usuarios u ON u.id = ua.id_usuario
+                WHERE ua.id_usuario = :usuarioId
                 "
         );
-        $stmt->execute([":objetivo" => $usuarioId]);
-
+        $stmt->execute([":usuarioId" => $usuarioId]);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $alimentacion = [];
+        foreach ($resultado as $fila) {
+            $alimentacion = new Alimentacion($fila);
+        }
+        return $alimentacion;
     }
     //
     //public function alimentacionUsuario ($usuario){
@@ -27,12 +31,16 @@ class AlimentacionModel{
         //$stmt->execute(['id' => $usuario]);
         //return $stmt->fetch(PDO::FETCH_ASSOC);
     //}
-    public function getPlato($id){
+    public function getTodosLosPlatos($objetivo){
         $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Alimentacion WHERE id = :id");
-        $stmt->execute(['id' => $id]);
-        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Alimentacion($fila);
+        $stmt = $db->prepare("SELECT * FROM Alimentacion WHERE objetivo = :objetivo");
+        $stmt->execute([':objetivo' => $objetivo]);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $todosLosPlatos = [];
+        foreach ($resultado as $fila) {
+            $todosLosPlatos[] = new Alimentacion($fila);
+        }
+        return $todosLosPlatos;
     }
     public function agregarPlato($id, $usuarioId){
         $db = conectar();

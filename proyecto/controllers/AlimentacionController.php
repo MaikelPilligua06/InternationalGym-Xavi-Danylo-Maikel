@@ -4,7 +4,9 @@ class AlimentacionController{
     public function index(){
         $model = new AlimentacionModel();
         $usuarioId = $_SESSION['id'];
+        $objetivo = $_SESSION['objetivo'];
         $alimentacion = $model->getAll($usuarioId);
+        $todosLosPlatos = $model->getTodosLosPlatos($objetivo);
         require "views/Alimentacion/alimentacionUsuario.php";
     }
     public function verPlato(){
