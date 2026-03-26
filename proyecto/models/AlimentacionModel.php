@@ -31,12 +31,12 @@ class AlimentacionModel{
         //$stmt->execute(['id' => $usuario]);
         //return $stmt->fetch(PDO::FETCH_ASSOC);
     //}
-    public function getPlato($id){
+    public function getPlato($objetivo){
         $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Alimentacion WHERE id = :id");
-        $stmt->execute(['id' => $id]);
-        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Alimentacion($fila);
+        $stmt = $db->prepare("SELECT * FROM Alimentacion WHERE objetivo = :objetivo");
+        $stmt->execute([':objetivo' => $objetivo]);
+        $todoslosPlatos = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Alimentacion($todoslosPlatos);
     }
     public function agregarPlato($id, $usuarioId){
         $db = conectar();
