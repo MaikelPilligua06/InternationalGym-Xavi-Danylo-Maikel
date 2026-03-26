@@ -1,22 +1,21 @@
 <?php
 class Alimentacion{
-    public $id_Alimentacion;
+    public $id;
     public $objetivo;
-    public $id_usuario;
     public $calorias;
     public $nombrePlato;
     public $proteinas;
     public $carbohidratos;
+    public $descripcion;
     public $grasas;
     public function __construct($datos = []) {
-        $this->id_Alimentacion      = $datos["id_Alimentacion"];
-        $this->objetivo             = $datos["objetivo"];
-        $this->id_usuario           = $datos["id_usuario"];
-        $this->calorias             = $datos["calorias"];
-        $this->nombrePlato          = $datos["nombrePlato"];
-        $this->proteinas            = $datos["proteinas"];
-        $this->carbohidratos        = $datos["carbohidratos"];
-        $this->grasas               = $datos["grasas"];
-
+        $this->id                   = $datos["$id"];
+        $this->objetivo             = $datos["$objetivo"];
+        $this->calorias             = $datos["$calorias"];
+        $this->nombrePlato          = $datos["$nombrePlato"];
+        $this->proteinas            = $datos["$proteinas"];
+        $this->carbohidratos        = $datos["$carbohidratos"];
+        $this->descripcion          = $datos["$descripcion"];
+        $this->grasas               = $datos["$grasas"];
     }
 }

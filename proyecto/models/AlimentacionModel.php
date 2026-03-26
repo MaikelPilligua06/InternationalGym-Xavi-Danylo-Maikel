@@ -6,7 +6,7 @@ class AlimentacionModel{
         $db = conectar();
         $stmt = $db->prepare(
             "
-                SELECT a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.usuario
+                SELECT a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.id
                 FROM Alimentacion a
                 JOIN Usuario_Alimentacion ua ON a.id = ua.id_alimentacion
                 JOIN Usuarios u ON u.id = ua.id_usuario
@@ -31,12 +31,16 @@ class AlimentacionModel{
         //$stmt->execute(['id' => $usuario]);
         //return $stmt->fetch(PDO::FETCH_ASSOC);
     //}
-    public function getPlato($objetivo){
+    public function getTodosLosPlatos($objetivo){
         $db = conectar();
         $stmt = $db->prepare("SELECT * FROM Alimentacion WHERE objetivo = :objetivo");
         $stmt->execute([':objetivo' => $objetivo]);
-        $todoslosPlatos = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Alimentacion($todoslosPlatos);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $todosLosPlatos = [];
+        foreach ($resultado as $fila) {
+            $todosLosPlatos[] = new Alimentacion($fila);
+        }
+        return $todosLosPlatos;
     }
     public function agregarPlato($id, $usuarioId){
         $db = conectar();
