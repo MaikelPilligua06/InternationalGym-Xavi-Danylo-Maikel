@@ -5,7 +5,7 @@ class AlimentacionController{
         $model = new AlimentacionModel();
         $usuarioId = $_SESSION['id'];
         $objetivo = $_SESSION['objetivo'];
-        $alimentacion = $model->getAll($usuarioId);
+        $alimentacion = $model->getPlatosUsuario($usuarioId);
         $todosLosPlatos = $model->getTodosLosPlatos($objetivo);
         require "views/Alimentacion/alimentacionUsuario.php";
     }
@@ -14,7 +14,20 @@ class AlimentacionController{
         $alimentacion = $model->getPlato($_GET["id"]);
         require "views/Alimentacion/verPlato.php";
     }
-    public function addPlato(){
+    public function crear_plato_form(){
+        require "views/Alimentacion/crearPlato.php";
+    }
+    public function crear(){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $datos = [
+                'tipoDeClases' => $_POST['tipoDeClases'],
+                'fechaClases' => $_POST['fechaClases'],
+                'duracion' => $_POST['duracion'],
+                'id_entrenador' => $_SESSION['id']
+            ];
+        }
+    }
+    public function addPlatoUsuario(){
         $model = new AlimentacionModel();
         $usuarioId = $_SESSION['id'];
         $alimentacion = $model->agregarPlato($_GET["id"], $usuarioId);
