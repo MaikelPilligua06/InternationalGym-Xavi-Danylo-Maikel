@@ -6,11 +6,11 @@ class AlimentacionModel{
         $db = conectar();
         $stmt = $db->prepare(
             "
-                SELECT a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.usuario 
+                SELECT a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.usuario
                 FROM Alimentacion a
-                JOIN Usuario_Alimentacion ua ON a.id_usuario = ua.id_usuario
-                JOIN Usuarios u ON u.id = ua.id_usuario 
-                WHERE ua.id_usuario = :usuarioId;   
+                JOIN Usuario_Alimentacion ua ON a.id = ua.id_alimentacion
+                JOIN Usuarios u ON u.id = ua.id_usuario
+                WHERE ua.id_usuario = :usuarioId
                 "
         );
         $stmt->execute([":usuarioId" => $usuarioId]);
