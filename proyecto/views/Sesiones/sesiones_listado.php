@@ -33,7 +33,8 @@
 
 <div class="carrusel-movil">
 
-        <div class="pista">
+
+
             <?php foreach ($sesiones as $sesion): ?>
              <div class="tarjeta-movil">
                  <h4><?= $sesion->tipoDeClases ?></h4>
@@ -45,7 +46,7 @@
                  </a>
              </div>
             <?php endforeach; ?>
-        </div>
+
 
     </div>
 <?php include 'views/footer.php'; ?>

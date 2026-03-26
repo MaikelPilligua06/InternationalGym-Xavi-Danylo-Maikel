@@ -21,6 +21,7 @@
             <a href="index.php?controller=Sesiones&action=index">Sesiones</a>
             <a href="index.php?controller=Entrenadores&action=getEntrenador">Entrenadores</a>
             <a href="index.php?controller=Alimentacion&action=index">Alimentación</a>
+            <a href="index.php?controller=Usuario&action=index">Mi Perfil</a>
         </nav>
 
         <div class="tn-actions">
