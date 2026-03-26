@@ -6,16 +6,20 @@ class AlimentacionModel{
         $db = conectar();
         $stmt = $db->prepare(
             "
-                    SELECT a.nombrePlato, a.calorias, a.proteinas, a.descripcion, usuario_alimentacion.id_usuario u.usuario
-                    FROM Alimentacion a
-                    JOIN Usuarios u 
-                    JOIN Usuario_Alimentacion usuario_alimentacion 
-                    ON usuario_alimentacion.id_usuario = a.id_usuario
-                    WHERE alimentacion_usuario.id_usuario = :usuarioId 
+                SELECT a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.usuario 
+                FROM Alimentacion a
+                JOIN Usuario_Alimentacion ua ON a.id_usuario = ua.id_usuario
+                JOIN Usuarios u ON u.id = ua.id_usuario 
+                WHERE ua.id_usuario = :usuarioId;   
                 "
         );
-        $stmt->execute([":objetivo" => $usuarioId]);
-
+        $stmt->execute([":usuarioId" => $usuarioId]);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $alimentacion = [];
+        foreach ($resultado as $fila) {
+            $alimentacion = new Alimentacion($fila);
+        }
+        return $alimentacion;
     }
     //
     //public function alimentacionUsuario ($usuario){
