@@ -41,7 +41,7 @@ CREATE TABLE Alimentacion (
                               proteinas INT,
                               carbohidratos INT,
                               grasas INT,
-);
+);ñññññññññññññññ
 CREATE TABLE Usuario_Alimentacion (
                                    id_usuario INT,
                                    id_alimentacion INT,

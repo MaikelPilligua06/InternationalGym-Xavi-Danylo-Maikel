@@ -18,14 +18,22 @@ class AlimentacionController{
         require "views/Alimentacion/crearPlato.php";
     }
     public function crear(){
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (!empty($_POST)) {
             $datos = [
-                'tipoDeClases' => $_POST['tipoDeClases'],
-                'fechaClases' => $_POST['fechaClases'],
-                'duracion' => $_POST['duracion'],
-                'id_entrenador' => $_SESSION['id']
+                'nombrePlato'   => $_POST['nombrePlato'],
+                'objetivo'      => $_POST['objetivo'],
+                'descripcion'   => $_POST['descripcion'],
+                'calorias'      => $_POST['calorias'],
+                'proteinas'     => $_POST['proteinas'],
+                'carbohidratos' => $_POST['carbohidratos'],
+                'grasas'        => $_POST['grasas']
             ];
         }
+        $model = new AlimentacionModel();
+        $plato = new Alimentacion($datos);
+        $model->guardar($plato);
+        header("Location: index.php?controller=Alimentacion&action=index");
+        exit;
     }
     public function addPlatoUsuario(){
         $model = new AlimentacionModel();

@@ -58,4 +58,22 @@ class AlimentacionModel{
 
         }
     }
+    public function guardar($plato){
+        $db = conectar();
+        $stmt = $db->prepare("
+            INSERT INTO Alimentacion 
+            (objetivo, calorias, nombrePlato, descripcion, proteinas, carbohidratos, grasas) 
+            VALUES 
+            (:objetivo, :calorias, :nombrePlato, :descripcion, :proteinas, :carbohidratos, :grasas)
+        ");
+        $stmt->execute([
+           ':objetivo' => $plato->objetivo,
+           ':calorias' => $plato->calorias,
+           ':nombrePlato' => $plato->nombrePlato,
+           ':descripcion' => $plato->descripcion,
+           ':proteinas' => $plato->proteinas,
+           ':carbohidratos' => $plato->carbohidratos,
+           ':grasas' => $plato->grasas
+        ]);
+    }
 }
