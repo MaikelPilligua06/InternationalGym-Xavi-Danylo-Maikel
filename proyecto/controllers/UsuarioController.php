@@ -9,6 +9,7 @@ class UsuarioController{
         require "views/perfilUsuario.php";
     }
 
+
     public function actualizar(){
         if (isset($_POST['actualizar'])) {
             $numeroTelefono = $_POST['numeroTelefono'];

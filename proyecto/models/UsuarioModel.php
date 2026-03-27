@@ -6,12 +6,14 @@ class UsuarioModel {
     public function getAll($usuarioId){
         $db = conectar();
         $stmt = $db->prepare("SELECT * FROM Usuarios WHERE id = :usuarioId ");
-        $stmt->execute(['usuarioid' => $usuarioId]);
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->execute([':usuarioId' => $usuarioId]);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $usuario = [];
-        foreach ($resultado as $fila){
+
+        foreach ($resultado as $fila) {
             $usuario = new Usuario($fila);
         }
+
         return $usuario;
     }
 }
