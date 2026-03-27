@@ -35,9 +35,9 @@ class AlimentacionModel{
     }
     public function agregarPlato($id, $usuarioId){
         $db = conectar();
-        $stmt = $db->prepare("INSERT INTO Usuario_Alimentacion (id_usuario, id_alimentacion) VALUES (:id, :id_alimentacion)");
+        $stmt = $db->prepare("INSERT INTO Usuario_Alimentacion (id_usuario, id_alimentacion) VALUES (:id_usuario, :id_alimentacion)");
         $stmt->execute([
-            ':id' => $usuarioId,
+            ':id_usuario' => $usuarioId,
             ':id_alimentacion' => $id
         ]);
     }

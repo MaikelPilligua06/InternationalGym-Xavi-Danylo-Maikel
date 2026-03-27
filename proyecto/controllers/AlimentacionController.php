@@ -38,7 +38,7 @@ class AlimentacionController{
     public function addPlatoUsuario(){
         $model = new AlimentacionModel();
         $usuarioId = $_SESSION['id'];
-        $alimentacion = $model->agregarPlato($_GET["id"], $usuarioId);
+        $alimentacion = $model->agregarPlato($_GET['id'], $usuarioId);
         header("Location: index.php?controller=Alimentacion&action=index");
         exit;
     }

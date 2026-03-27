@@ -16,9 +16,10 @@
     <ul>
         <?php foreach ($alimentacion as $plato): ?>
             <li>
-                <a href="index.php?controller=Alimentacion&action=verPlato&id<?= $plato->id_Alimentacion ?>">
-                    <p><?= $plato->nombre?> </p>
+                <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $plato->id_Alimentacion ?>">
+                    <p><?= $plato->nombre ?> </p>
                 </a>
+
                 <a href="index.php?controller=Alimentacion&action=eliminarPlato&id<?= $plato->id_Alimentacion ?>">
                     <button>Eliminar</button>
                 </a>
@@ -34,10 +35,10 @@
             <a href="index.php?controller=Alimentacion&action=verPlato&id<?= $plato->id ?>">
                 <p><?= $plato->nombrePlato?></p>
             </a>
-            <a href="index.php?controller=Alimentacion&action=addPlato<?= $plato->id_Alimentacion ?>">
+            <a href="index.php?controller=Alimentacion&action=addPlatoUsuario&id=<?= $plato->id ?>">
                 <button>Añadir</button>
             </a>
-            <a href="index.php?controller=Alimentacion&action=editar<?= $plato->id_Alimentacion ?>">
+            <a href="index.php?controller=Alimentacion&action=editar<?= $plato->id ?>">
                 <button>Editar</button>
             </a>
         <?php endforeach; ?>
