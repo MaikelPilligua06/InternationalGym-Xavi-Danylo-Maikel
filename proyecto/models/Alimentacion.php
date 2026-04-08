@@ -10,12 +10,12 @@ class Alimentacion{
     public $grasas;
     public function __construct($datos = []) {
         $this->id                   = $datos["id"] ?? null;
-        $this->objetivo             = $datos["objetivo"];
-        $this->calorias             = $datos["calorias"];
-        $this->nombrePlato          = $datos["nombrePlato"];
-        $this->proteinas            = $datos["proteinas"];
-        $this->carbohidratos        = $datos["carbohidratos"];
-        $this->descripcion          = $datos["descripcion"];
-        $this->grasas               = $datos["grasas"];
+        $this->objetivo             = $datos["objetivo"] ?? null;
+        $this->calorias             = $datos["calorias"] ?? null;
+        $this->nombrePlato          = $datos["nombrePlato"] ?? null;
+        $this->proteinas            = $datos["proteinas"] ?? null;
+        $this->carbohidratos        = $datos["carbohidratos"] ?? null;
+        $this->descripcion          = $datos["descripcion"] ?? null;
+        $this->grasas               = $datos["grasas"] ?? null;
     }
 }

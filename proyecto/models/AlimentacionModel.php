@@ -17,12 +17,12 @@ class AlimentacionModel{
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $alimentacion = [];
         foreach ($resultado as $fila) {
-            $alimentacion = new Alimentacion($fila);
+            $alimentacion[] = new Alimentacion($fila);
         }
         return $alimentacion;
     }
 
-    public function getTodosLosPlatos($objetivo){
+    public function getTodosLosPlatosPorObjetivo($objetivo){
         $db = conectar();
         $stmt = $db->prepare("SELECT * FROM Alimentacion WHERE objetivo = :objetivo");
         $stmt->execute([':objetivo' => $objetivo]);
@@ -75,5 +75,32 @@ class AlimentacionModel{
            ':carbohidratos' => $plato->carbohidratos,
            ':grasas' => $plato->grasas
         ]);
+    }
+    //* Función para ver la información de un plato/
+    public function getPlato($id){
+        $db = conectar();
+        $stmt = $db->prepare("SELECT * FROM Alimentacion WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Alimentacion($fila);
+    }
+    // Funcion para ver todos los platos para borrar
+    public function getTodosLosPlatosAdmin(){
+        $db = conectar();
+        $stmt = $db->prepare("SELECT * FROM Alimentacion");
+        $stmt->execute();
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $todosLosPlatos = [];
+        foreach ($resultado as $fila) {
+            $todosLosPlatos[] = new Alimentacion($fila);
+        }
+        return $todosLosPlatos;
+    }
+    public function deletePlato($id){
+        $db = conectar();
+        $stmt = $db->prepare("DELETE FROM Usuario_Alimentacion WHERE id_alimentacion = :id");
+        $stmt->execute([':id' => $id]);
+        $stmt = $db->prepare("DELETE FROM Alimentacion WHERE id = :id");
+        $stmt->execute([':id' => $id]);
     }
 }

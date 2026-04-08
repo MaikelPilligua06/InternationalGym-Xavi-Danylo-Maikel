@@ -5,7 +5,7 @@
     <a href="index.php?controller=Alimentacion&action=crear_plato_form">
         <p>Crear nuevos platos</p>
     </a>
-    <a href="">
+    <a href="index.php?controller=Alimentacion&action=getTodosLosPlatos">
         <p>Borrar platos</p>
     </a>
 <div>
@@ -15,15 +15,14 @@
     <h3>Listado de tus platos: </h3>
     <ul>
         <?php foreach ($alimentacion as $plato): ?>
-            <li>
-                <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $plato->id_Alimentacion ?>">
-                    <p><?= $plato->nombre ?> </p>
-                </a>
-
-                <a href="index.php?controller=Alimentacion&action=eliminarPlato&id<?= $plato->id_Alimentacion ?>">
-                    <button>Eliminar</button>
-                </a>
-            </li>
+        <li>
+            <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $plato->id ?>">
+                <p><?php echo $plato->nombrePlato ;?></p>
+            </a>
+            <a href="index.php?controller=Alimentacion&action=eliminarPlato&id<?= $plato->id ?>">
+                <button>Eliminar</button>
+            </a>
+        </li>
         <?php endforeach; ?>
     </ul>
 </div>
@@ -37,9 +36,6 @@
             </a>
             <a href="index.php?controller=Alimentacion&action=addPlatoUsuario&id=<?= $plato->id ?>">
                 <button>Añadir</button>
-            </a>
-            <a href="index.php?controller=Alimentacion&action=editar<?= $plato->id ?>">
-                <button>Editar</button>
             </a>
         <?php endforeach; ?>
     </ul>
