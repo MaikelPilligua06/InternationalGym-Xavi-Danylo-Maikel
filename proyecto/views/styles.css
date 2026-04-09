@@ -1,3 +1,4 @@
+
 :root{
     --tn-bg: #0b0c10;           /* negro */
     --tn-bg-2:#101218;          /* negro suave */
@@ -288,29 +289,16 @@ a:focus, button:focus, input:focus{ outline: 2px solid var(--tn-yellow); outline
 }
 
 
-.sr-only{
-    position:absolute;
-    width:1px;
-    height:1px;
-    padding:0;
-    margin:-1px;
-    overflow:hidden;
-    clip:rect(0,0,0,0);
-    white-space:nowrap;
-    border:0;
-}
+
 
 
 .carrusel-movil {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;               /* quita centrados posibles */
-    padding: 10px 0;
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    text-align: left;        /* por si el padre tiene text-align:center */
+    padding-bottom: 8px;
 }
+
 .pista {
     display: flex;
     flex-wrap: nowrap;
@@ -323,7 +311,27 @@ a:focus, button:focus, input:focus{ outline: 2px solid var(--tn-yellow); outline
     width: 360px;
     padding: 10px;
     border-radius: 8px;
-    background: white;
+    background: yellow;
+    color: black;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .carrusel-movil {
+        overflow-x: hidden;
+        overflow-y: visible;
+    }
+
+    .pista {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tarjeta-movil {
+        width: 90%;
+    }
+}
+
+;
 }

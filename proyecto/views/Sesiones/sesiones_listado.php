@@ -33,10 +33,10 @@
 
 <div class="carrusel-movil">
 
-
+        <div class="pista">
 
             <?php foreach ($sesiones as $sesion): ?>
-             <div class="tarjeta-movil">
+            <div class="tarjeta-movil">
                  <h4><?= $sesion->tipoDeClases ?></h4>
                  <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
                  <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
@@ -44,11 +44,11 @@
                  <a href="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>">
                  <button>Apuntate</button>
                  </a>
-             </div>
+            </div>
             <?php endforeach; ?>
+        </div>
+</div>
 
-
-    </div>
 <?php include 'views/footer.php'; ?>
 </body>
 </html>
