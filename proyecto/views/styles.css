@@ -333,5 +333,72 @@ a:focus, button:focus, input:focus{ outline: 2px solid var(--tn-yellow); outline
     }
 }
 
-;
+
+
+.perfil {
+    max-width: 350px;
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgb(245, 200, 39);
+    border: 1px black;
+    border-radius: 10px;
+
+}
+
+.perfil h2 {
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.perfil h3 {
+    text-transform: uppercase;
+    margin-top: 15px;
+    margin-bottom: 3px;
+    color: black;
+}
+
+.perfil p {
+    color: black;
+}
+
+.perfil label {
+    display: block;
+    font-size: 14px;
+    color: black;
+    margin-bottom: 3px;
+}
+
+.perfil input,
+.perfil select {
+    width: 100%;
+    padding: 6px 8px;
+    margin-bottom: 12px;
+    border: 1px solid dimgray;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+
+}
+
+.button {
+    margin-top: 15px;
+    padding: 8px;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+
+}
+.button button {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+}
+
+.button button:hover {
+    background-color: black;
 }
