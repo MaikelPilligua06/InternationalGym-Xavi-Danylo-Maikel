@@ -4,9 +4,9 @@ require_once '../models/db.php';
 $db = conectar();
 $passwordAdmin = password_hash("entrenador", PASSWORD_DEFAULT);
 
-$sql = "INSERT INTO Entrenadores (nombre, apellido, numeroTelefono, tipoDocumento, numeroDocumento, correoElectronico, contrasenia, disponibilidadHoraria) 
+$sql = "INSERT INTO Entrenadores (nombre, apellido, numeroTelefono, tipoDocumento, numeroDocumento, correoElectronico, contrasenia, descripcion, disponibilidadHoraria) 
 
-VALUES ('manuel', 'molina', '+34631772378', 'DNI', '52566487A', 'mmolina@institutmvm.cat', '$passwordAdmin', 'vespertino')";
+VALUES ('manuel', 'molina', '+34631772378', 'DNI', '52566487A', 'mmolina@institutmvm.cat', '$passwordAdmin', 'Hola soy un entrenador!', 'vespertino')";
 
 $db->exec($sql);
 echo "Usuario insertado correctamente.";

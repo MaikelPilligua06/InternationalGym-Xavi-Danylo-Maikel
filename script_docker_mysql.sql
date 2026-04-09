@@ -10,6 +10,7 @@ CREATE TABLE Entrenadores (
   numeroDocumento VARCHAR(50),
   correoElectronico VARCHAR(80),
   contrasenia VARCHAR(255),
+  descripcion TEXT,
   disponibilidadHoraria ENUM('diurno','vespertino','nocturno')
 );
 
