@@ -1,6 +1,14 @@
 <?php
 include 'views/header.php'
 ?>
+
+<head>
+    <link rel="stylesheet" href="views/styles.css">
+</head>
+
+<div class="crear-publicacion">
+
+
 <h1>Crear nueva publicación</h1>
 
 <form action="index.php?controller=Sesiones&action=publicar" method="POST" >
@@ -26,10 +34,13 @@ include 'views/header.php'
                   placeholder="" required></textarea>
     </p>
 
+    <div class="button">
     <p>
         <button type="button" onclick="history.back()">← Volver atrás</button>
         <button type="submit">Publicar</button>
     </p>
+    </div>
+</div>
 </form>
 <?php
     include 'views/footer.php';

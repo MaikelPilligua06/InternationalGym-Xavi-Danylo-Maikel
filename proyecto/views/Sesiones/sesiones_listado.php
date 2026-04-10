@@ -18,6 +18,8 @@
 <h2>Mis sesiones</h2>
 
 <div class="carrusel-movil">
+
+    <div class="pista">
     <?php foreach($lista as $fila): ?>
         <div class="sg">
             <a href="index.php?controller=Sesiones&action=getId&id=<?= $fila->id ?>">
