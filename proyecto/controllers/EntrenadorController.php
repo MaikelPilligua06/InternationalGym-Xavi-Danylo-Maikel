@@ -8,10 +8,9 @@ class EntrenadorController{
         $lista = ($usuario) ? $model->getUsuarioEntrenador($usuario) : [];
         require "views/Entrenadores/todosLosEntrenadores.php";
     }
-    public function getEntrenadorUsuario(){
-
-    }
-    public function getSesionesEntrenador(){
-
+    public function getEntrenador(){
+        $model = new EntrenadorModel();
+        $entrenador = $model->verEntrenador($_GET['id']);
+        require "views/Entrenadores/entrenadorDatos.php";
     }
 }

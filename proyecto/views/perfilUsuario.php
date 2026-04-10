@@ -55,14 +55,20 @@
     </div>
 
 </div>
-        <h3>Entrenador: </h3>
-        <p>Tu entrenador es :</p>
-        <p>Quieres cambiar?</p>
-        <a>
+<div>
+        <h3>Tu entrenador es :</h3>
+        <?php foreach($entrenadores as $entrenador): ?>
+            <p><?php echo $entrenador->nombre, ' ' ,$entrenador->apellido;?></p>
+            <p>Correo Electronico: <?php echo $entrenador->correoElectronico;?></p>
+            <p><?php echo $entrenador->descripcion;?></p>
+        <?php endforeach; ?>
+
+        <h3>Quieres cambiar?</h3>
+        <a href="index.php?controller=Entrenador&action=getAllEntrenadores">
             <p>Todos los entrenadores</p>
             <img/>
         </a>
-
+</div>
 <?php
     include 'views/footer.php';
 ?>

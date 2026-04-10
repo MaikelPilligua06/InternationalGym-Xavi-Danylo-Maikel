@@ -6,6 +6,7 @@ class UsuarioController{
         $model = new UsuarioModel();
         $usuarioId = $_SESSION['id'];
         $usuario = $model->getAll($usuarioId);
+        $entrenadores = ($usuarioId) ? $model->getEntrenadorUsuario($usuarioId) : [];
         require "views/perfilUsuario.php";
     }
 
