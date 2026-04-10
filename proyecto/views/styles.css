@@ -316,7 +316,16 @@ a:focus, button:focus, input:focus{ outline: 2px solid var(--tn-yellow); outline
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     font-size: 14px;
 }
-
+.sg {
+    flex: 0 0 auto;
+    width: 360px;
+    padding: 10px;
+    border-radius: 8px;
+    background: pink;
+    color: black;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 14px;
+}
 @media (max-width: 768px) {
     .carrusel-movil {
         overflow-x: hidden;
@@ -329,6 +338,9 @@ a:focus, button:focus, input:focus{ outline: 2px solid var(--tn-yellow); outline
     }
 
     .tarjeta-movil {
+        width: 90%;
+    }
+    .sg {
         width: 90%;
     }
 }
@@ -402,3 +414,4 @@ a:focus, button:focus, input:focus{ outline: 2px solid var(--tn-yellow); outline
 .button button:hover {
     background-color: black;
 }
+

@@ -16,18 +16,20 @@
     </a>
 </div>
 <h2>Mis sesiones</h2>
-<ul>
+
+<div class="carrusel-movil">
     <?php foreach($lista as $fila): ?>
-        <li>
+        <div class="sg">
             <a href="index.php?controller=Sesiones&action=getId&id=<?= $fila->id ?>">
                 <p><?= $fila->nombre ?></p>
             </a>
             <a href="index.php?controller=Sesiones&action=eliminarSesion&id=<?= $fila->id ?>">
                 <button>Eliminar</button>
             </a>
-        </li>
+</div>
+</div>
     <?php endforeach; ?>
-</ul>
+</div>
 <h1>Sesiones Disponibles</h1>
 
 
