@@ -2,9 +2,12 @@
     include 'views/header.php';
     ?>
 
-
+<div>
+    <h1><?php echo $entrenador->nombre; ?></h1>
+</div>
 <form>
-    <h2></h2>
+    <button>Cambiar de entrenador</button>
+    <button>Volver</button>
 </form>
 <?php
     include 'views/footer.php';

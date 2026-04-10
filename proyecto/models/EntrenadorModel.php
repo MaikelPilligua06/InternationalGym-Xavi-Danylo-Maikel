@@ -8,7 +8,7 @@ class EntrenadorModel{
     public function getUsuarioEntrenador($userId){
         $db = conectar();
         $stmt = $db->prepare("
-            SELECT e.nombre, e.apellido, e.correoElectronico, e.descripcion
+            SELECT e.id, e.nombre, e.apellido, e.correoElectronico, e.descripcion
             FROM Entrenadores e
             JOIN Usuarios u ON e.id = u.id_entrenador
             WHERE u.id = :usuarioId;
@@ -18,12 +18,23 @@ class EntrenadorModel{
     }
     public function getAll(){
         $db = conectar();
-        $stmt = $db->query("SELECT nombre, apellido, correoElectronico, descripcion FROM Entrenadores");
+        $stmt = $db->query("SELECT id, nombre, apellido, correoElectronico, descripcion FROM Entrenadores");
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $entrenadores = [];
         foreach($resultado as $entrenador){
             $entrenadores[] = new Entrenador($entrenador);
         }
         return $entrenadores;
+    }
+    public function verEntrenador($id){
+        $db = conectar();
+        $stmt = $db->prepare("SELECT * FROM Entrenadores where id = :id");
+        $stmt->execute([":id" => $id]);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $entrenador = [];
+        foreach($resultado as $entrenadores){
+            $entrenador[] = new Entrenador($entrenadores);
+        }
+        return $entrenador;
     }
 }

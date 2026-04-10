@@ -14,8 +14,10 @@
     <div>
         <h2>Todos los entrenadores</h2>
         <?php foreach ($entrenadores as $entrenador): ?>
-                <h3><?php echo $entrenador->nombre, ' ', $entrenador->apellido;?></h3>
+        <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenador->id;?>">
+            <h3><?php echo $entrenador->nombre, ' ', $entrenador->apellido;?></h3>
             <p><?php echo $entrenador->descripcion;?></p>
+        </a>
         <?php endforeach; ?>
     </div>
 </div>
