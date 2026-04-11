@@ -56,12 +56,14 @@
 
 </div>
 <div>
-        <h3>Tu entrenador es :</h3>
-        <?php foreach($entrenadores as $entrenador): ?>
-            <p><?php echo $entrenador->nombre, ' ' ,$entrenador->apellido;?></p>
-            <p>Correo Electronico: <?php echo $entrenador->correoElectronico;?></p>
-            <p><?php echo $entrenador->descripcion;?></p>
-        <?php endforeach; ?>
+    <h3>Tu entrenador es :</h3>
+    <?php foreach($entrenadores as $entrenador): ?>
+        <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenador->id;?>">
+            <p><?= $entrenador->nombre . ' ' . $entrenador->apellido; ?></p>
+            <p>Correo Electronico: <?= $entrenador->correoElectronico; ?></p>
+            <p><?= $entrenador->descripcion; ?></p>
+        </a>
+    <?php endforeach; ?>
 
         <h3>Quieres cambiar?</h3>
         <a href="index.php?controller=Entrenador&action=getAllEntrenadores">

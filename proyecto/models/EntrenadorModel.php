@@ -31,9 +31,8 @@ class EntrenadorModel{
         $stmt = $db->prepare("SELECT * FROM Entrenadores where id = :id");
         $stmt->execute([":id" => $id]);
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $entrenador = [];
         foreach($resultado as $entrenadores){
-            $entrenador[] = new Entrenador($entrenadores);
+            $entrenador = new Entrenador($entrenadores);
         }
         return $entrenador;
     }
