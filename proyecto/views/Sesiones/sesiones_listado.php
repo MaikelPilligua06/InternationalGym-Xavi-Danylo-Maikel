@@ -23,7 +23,11 @@
     <?php foreach($lista as $fila): ?>
         <div class="sg">
             <a href="index.php?controller=Sesiones&action=getId&id=<?= $fila->id ?>">
-                <p><?= $fila->nombre ?></p>
+                <p>Nombre de la clase: <?= $fila->nombre ?></p>
+                <p>Tipo de la clase: <?= $fila->tipoDeClases ?></p>
+                <p><?= $fila->duracion ?></p>
+                <p><?= $fila->fechaClases ?></p>
+
             </a>
             <a href="index.php?controller=Sesiones&action=eliminarSesion&id=<?= $fila->id ?>">
                 <button>Eliminar</button>
@@ -41,12 +45,15 @@
 
             <?php foreach ($sesiones as $sesion): ?>
             <div class="tarjeta-movil">
-                 <h4><?= $sesion->tipoDeClases ?></h4>
-                 <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
+                <a href="index.php?controller=Sesiones&action=getId&id=<?= $fila->id ?>">
+                <h4>Nombre de la clase: <?= $sesion->nombre ?></h4>
+                <h4>TIpo de clases: <?= $sesion->tipoDeClases ?></h4>
+                <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
                  <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
                  <p><strong>Entrenador:</strong> <?= $sesion->id_entrenador ?></p>
+                </a>
                  <a href="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>">
-                 <button>Apuntate</button>
+                    <button>Apuntate</button>
                  </a>
             </div>
             <?php endforeach; ?>

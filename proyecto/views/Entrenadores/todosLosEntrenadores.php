@@ -7,7 +7,7 @@
         <h1>Tu entrenador es</h1>
         <?php foreach($lista as $entrenadorUsuario): ?>
             <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenadorUsuario->id;?>">
-        <h3><?php echo $entrenadorUsuario->nombre, '', $entrenadorUsuario->apellido;?></h3>
+            <h3><?php echo $entrenadorUsuario->nombre, '', $entrenadorUsuario->apellido;?></h3>
             <h2><?php echo $entrenadorUsuario->correoElectronico;?></h2>
             <h2><?php echo $entrenadorUsuario->descripcion;?></h2>
         </a>
