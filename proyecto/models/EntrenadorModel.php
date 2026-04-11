@@ -36,4 +36,20 @@ class EntrenadorModel{
         }
         return $entrenador;
     }
+    public function verSesiones($id){
+        $db = conectar();
+        $stmt = $db->prepare("
+            SELECT s.id ,s.nombre, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion
+            FROM SesionesDeClases s
+            INNER JOIN Entrenadores e 
+            ON s.id_entrenador = e.id
+            WHERE e.id = :id"
+        );
+        $stmt->execute([":id" => $id]);
+        $sesiones = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach($resultado as $sesion){
+            $sesiones = new Entrenador($sesion);
+        }
+        return $sesiones;
+    }
 }

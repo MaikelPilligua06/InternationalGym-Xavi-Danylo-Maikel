@@ -11,6 +11,7 @@ class EntrenadorController{
     public function getEntrenador(){
         $model = new EntrenadorModel();
         $entrenador = $model->verEntrenador($_GET['id']);
+        $sesiones = $model->verSesiones($_GET['id']);
         require "views/Entrenadores/entrenadorDatos.php";
     }
 }

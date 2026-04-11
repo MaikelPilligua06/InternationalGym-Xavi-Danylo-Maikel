@@ -8,6 +8,12 @@
         <p>Dispobilidad horaria: <?php echo $entrenador->disponibilidadHoraria;?></p>
     <p><?php echo $entrenador->descripcion;?></p>
 </div>
+<div>
+    <h2>Sesiones del entrenador</h2>
+    <?php foreach ($sesiones as $sesion): ?>
+        <p><?php $sesion->nombre?></p>
+    <?php endforeach ?>
+</div>
 <form>
     <button>Cambiar de entrenador</button>
     <button>Volver</button>
