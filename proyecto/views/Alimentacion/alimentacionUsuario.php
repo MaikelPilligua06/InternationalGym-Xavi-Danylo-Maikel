@@ -10,16 +10,16 @@
     </a>
 <div>
 <h2>Lista de Alimentación</h2>
-<p>Total de calorias obtenidas atraves de su lista de comida: <?php ?></p>
+<p>Total de calorias obtenidas atraves de su lista de comida:</p>
 <div>
     <h3>Listado de tus platos: </h3>
     <ul>
-        <?php foreach ($alimentacion as $plato): ?>
+        <?php foreach ($alimentacion as $platoUsuario): ?>
         <li>
-            <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $plato->id ?>">
-                <p><?php echo $plato->nombrePlato ;?></p>
+            <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $platoUsuario->id ?>">
+                <p><?php echo $platoUsuario->nombrePlato ;?></p>
             </a>
-            <a href="index.php?controller=Alimentacion&action=eliminarPlato&id<?= $plato->id ?>">
+            <a href="index.php?controller=Alimentacion&action=eliminarPlato&id=<?= $platoUsuario->id; ?>">
                 <button>Eliminar</button>
             </a>
         </li>
@@ -28,10 +28,9 @@
 </div>
 <div>
     <h3>Lista de platos en general: </h3>
-
     <ul>
         <?php foreach ($todosLosPlatos as $plato): ?>
-            <a href="index.php?controller=Alimentacion&action=verPlato&id<?= $plato->id ?>">
+            <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $plato->id ?>">
                 <p><?= $plato->nombrePlato?></p>
             </a>
             <a href="index.php?controller=Alimentacion&action=addPlatoUsuario&id=<?= $plato->id ?>">

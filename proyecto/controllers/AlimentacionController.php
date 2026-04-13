@@ -2,17 +2,24 @@
 require_once "models/AlimentacionModel.php";
 class AlimentacionController{
     public function index(){
-        $model = new AlimentacionModel();
-        $usuarioId = $_SESSION['id'];
-        $objetivo = $_SESSION['objetivo'];
-        $alimentacion = $model->getPlatosUsuario($usuarioId);
-        $todosLosPlatos = $model->getTodosLosPlatosPorObjetivo($objetivo);
-        require "views/Alimentacion/alimentacionUsuario.php";
+        try{
+            $model = new AlimentacionModel();
+            $usuarioId = $_SESSION['id'];
+            $objetivo = $_SESSION['objetivo'];
+            $alimentacion = $model->getPlatosUsuario($usuarioId);
+            $_SESSION['mensaje'] = "Platos del usuario obtenidos correctamente";
+            $todosLosPlatos = $model->getTodosLosPlatosPorObjetivo($objetivo);
+            $_SESSION['mensaje'] = "Platos obtenidos por preferencia";
+            require "views/Alimentacion/alimentacionUsuario.php";
+        } catch (Exception $e) {
+            $_SESSION['error_fatal'] = $e->getMessage();
+            require "views/error_fatal.php";
+        }
     }
     public function verPlato(){
-        $model = new AlimentacionModel();
-        $alimentacion = $model->getPlato($_GET["id"]);
-        require "views/Alimentacion/verPlato.php";
+            $model = new AlimentacionModel();
+            $alimentacion = $model->getPlato($_GET['id']);
+            require "views/Alimentacion/verPlato.php";
     }
     public function crear_plato_form(){
         require "views/Alimentacion/crearPlato.php";

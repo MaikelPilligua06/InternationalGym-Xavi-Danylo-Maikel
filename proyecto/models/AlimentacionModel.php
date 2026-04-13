@@ -3,23 +3,27 @@ require_once "db.php";
 require_once "Alimentacion.php";
 class AlimentacionModel{
     public function getPlatosUsuario ($usuarioId){
-        $db = conectar();
-        $stmt = $db->prepare(
-            "
-                SELECT a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.id
+        try {
+            $db = conectar();
+            $stmt = $db->prepare(
+                "
+                SELECT a.id, a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.id
                 FROM Alimentacion a
                 JOIN Usuario_Alimentacion ua ON a.id = ua.id_alimentacion
                 JOIN Usuarios u ON u.id = ua.id_usuario
                 WHERE ua.id_usuario = :usuarioId
                 "
-        );
-        $stmt->execute([":usuarioId" => $usuarioId]);
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $alimentacion = [];
-        foreach ($resultado as $fila) {
-            $alimentacion[] = new Alimentacion($fila);
+            );
+            $stmt->execute([":usuarioId" => $usuarioId]);
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $alimentacion = [];
+            foreach ($resultado as $fila) {
+                $alimentacion[] = new Alimentacion($fila);
+            }
+            return $alimentacion;
+        } catch (PDOException $e) {
+            throw new Exception("Error al obtener los platos del usuario");
         }
-        return $alimentacion;
     }
 
     public function getTodosLosPlatosPorObjetivo($objetivo){
@@ -81,8 +85,11 @@ class AlimentacionModel{
         $db = conectar();
         $stmt = $db->prepare("SELECT * FROM Alimentacion WHERE id = :id");
         $stmt->execute([':id' => $id]);
-        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Alimentacion($fila);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach($resultado as $plato){
+            $alimentacion = new Alimentacion($plato);
+        }
+        return $alimentacion;
     }
     // Funcion para ver todos los platos para borrar
     public function getTodosLosPlatosAdmin(){
