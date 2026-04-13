@@ -68,12 +68,17 @@ WHERE usuario_sesion.id_usuario = :id;
     }
     public function misPub($usuario){
         $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM SesionesDeClases where id_entrenador = :id");
+        $stmt = $db->prepare("
+            SELECT s.id, s.nombre, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion
+            FROM SesionesDeClases s
+            INNER JOIN Entrenadores e ON s.id_entrenador = e.id
+            WHERE e.id = :id
+            ");
         $stmt->execute([':id' => $usuario]);
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $sesiones = [];
-        foreach ($resultado as $fila) {
-            $sesiones[] = new SesionesDeClases($fila);
+        foreach ($resultado as $sesion) {
+            $sesiones[] = new SesionesDeClases($sesion);
         }
         return $sesiones;
     }
