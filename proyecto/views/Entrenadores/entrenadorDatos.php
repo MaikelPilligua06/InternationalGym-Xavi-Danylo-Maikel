@@ -12,7 +12,7 @@
     <h2>Sesiones del entrenador</h2>
     <?php foreach ($sesiones as $sesion): ?>
         <p><?php $sesion->nombre?></p>
-    <?php endforeach ?>
+    <?php endforeach; ?>
 </div>
 <form>
     <button>Cambiar de entrenador</button>
