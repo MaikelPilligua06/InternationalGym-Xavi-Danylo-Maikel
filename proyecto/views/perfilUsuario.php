@@ -55,21 +55,22 @@
     </div>
 
 </div>
-<div>
+<div class="entrenador-info">
+
     <h3>Tu entrenador es :</h3>
     <?php foreach($entrenadores as $entrenador): ?>
         <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenador->id;?>">
             <p><?= $entrenador->nombre . ' ' . $entrenador->apellido; ?></p>
-            <p>Correo Electronico: <?= $entrenador->correoElectronico; ?></p>
+            <h3>Correo Electronico:</h3> <p><?= $entrenador->correoElectronico; ?></p>
             <p><?= $entrenador->descripcion; ?></p>
         </a>
     <?php endforeach; ?>
 
         <h3>Quieres cambiar?</h3>
         <a href="index.php?controller=Entrenador&action=getAllEntrenadores">
-            <p>Todos los entrenadores</p>
-            <img/>
+            <img src="views/gymFotos/entrenador.png"/>
         </a>
+
 </div>
 <?php
     include 'views/footer.php';
