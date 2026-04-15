@@ -8,6 +8,7 @@ class Alimentacion{
     public $carbohidratos;
     public $descripcion;
     public $grasas;
+    public $foto;
     public function __construct($datos = []) {
         $this->id                   = $datos["id"] ?? null;
         $this->objetivo             = $datos["objetivo"] ?? null;
@@ -17,5 +18,6 @@ class Alimentacion{
         $this->carbohidratos        = $datos["carbohidratos"] ?? null;
         $this->descripcion          = $datos["descripcion"] ?? null;
         $this->grasas               = $datos["grasas"] ?? null;
+        $this->foto                 = $datos["foto"] ?? null;
     }
 }

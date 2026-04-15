@@ -41,7 +41,8 @@ CREATE TABLE Alimentacion (
   descripcion VARCHAR(100),
   proteinas INT,
   carbohidratos INT,
-  grasas INT
+  grasas INT,
+  foto VARCHAR(255)
 );
 
 CREATE TABLE Usuario_Alimentacion (

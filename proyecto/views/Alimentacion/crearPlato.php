@@ -4,7 +4,7 @@
 <div>
     <h2>Crea un plato</h2>
     <div>
-        <form action="index.php?controller=Alimentacion&action=crear" method="POST">
+        <form action="index.php?controller=Alimentacion&action=crear" method="POST" enctype="multipart/form-data">
             <label>Nombre del plato</label>
             <input type="input" name="nombrePlato" placeholder="Introduzca el nombre del plato"/>
             <label>Objetivo del plato</label>
@@ -23,6 +23,7 @@
             <input type="number" name="carbohidratos" placeholder="Introduzca las calorias"/>
             <label>Grasas</label>
             <input type="number" name="grasas" placeholder="Introduzca las calorias"/>
+            <input type="file" name="foto" accept="image/*"/>
             <button type="button" onclick="history.back()">← Volver atrás</button>
             <button type="submit">Publicar</button>
         </form>

@@ -5,10 +5,9 @@ class AlimentacionController{
         try{
             $model = new AlimentacionModel();
             $usuarioId = $_SESSION['id'];
-            $objetivo = $_SESSION['objetivo'];
             $alimentacion = $model->getPlatosUsuario($usuarioId);
             $_SESSION['mensaje'] = "Platos del usuario obtenidos correctamente";
-            $todosLosPlatos = $model->getTodosLosPlatosPorObjetivo($objetivo);
+            $todosLosPlatos = $model->getTodosLosPlatos();
             $_SESSION['mensaje'] = "Platos obtenidos por preferencia";
             require "views/Alimentacion/alimentacionUsuario.php";
         } catch (Exception $e) {
@@ -27,13 +26,14 @@ class AlimentacionController{
     public function crear(){
         if (!empty($_POST)) {
             $datos = [
-                'nombrePlato'   => $_POST['nombrePlato'],
-                'objetivo'      => $_POST['objetivo'],
-                'descripcion'   => $_POST['descripcion'],
-                'calorias'      => $_POST['calorias'],
-                'proteinas'     => $_POST['proteinas'],
+                'nombrePlato' => $_POST['nombrePlato'],
+                'objetivo' => $_POST['objetivo'],
+                'descripcion' => $_POST['descripcion'],
+                'calorias' => $_POST['calorias'],
+                'proteinas' => $_POST['proteinas'],
                 'carbohidratos' => $_POST['carbohidratos'],
-                'grasas'        => $_POST['grasas']
+                'grasas' => $_POST['grasas'],
+                'foto' => $_FILES['foto']
             ];
         }
         $model = new AlimentacionModel();

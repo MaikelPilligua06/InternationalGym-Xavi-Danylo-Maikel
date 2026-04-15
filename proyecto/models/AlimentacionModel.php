@@ -26,10 +26,10 @@ class AlimentacionModel{
         }
     }
 
-    public function getTodosLosPlatosPorObjetivo($objetivo){
+    public function getTodosLosPlatos(){
         $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Alimentacion WHERE objetivo = :objetivo");
-        $stmt->execute([':objetivo' => $objetivo]);
+        $stmt = $db->prepare("SELECT * FROM Alimentacion");
+        $stmt->execute();
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $todosLosPlatos = [];
         foreach ($resultado as $fila) {
@@ -47,9 +47,9 @@ class AlimentacionModel{
     }
     public function eliminarPlatoUsuario($id, $usuarioId){
         $db = conectar();
-        $stmt = $db->prepare("DELETE FROM Usuario_Alimentacion WHERE id_alimentacion = :id AND id_usuario = :id_usuario");
+        $stmt = $db->prepare("DELETE FROM Usuario_Alimentacion WHERE id_alimentacion = :id_alimentacion AND id_usuario = :id_usuario");
         $stmt->execute([
-            ':id' => $usuarioId,
+            ':id_usuario' => $usuarioId,
             ':id_alimentacion' => $id
         ]);
     }
@@ -63,22 +63,38 @@ class AlimentacionModel{
         }
     }
     public function guardar($plato){
+        $base_dir = "/var/www/html";
         $db = conectar();
         $stmt = $db->prepare("
-            INSERT INTO Alimentacion 
-            (objetivo, calorias, nombrePlato, descripcion, proteinas, carbohidratos, grasas) 
-            VALUES 
-            (:objetivo, :calorias, :nombrePlato, :descripcion, :proteinas, :carbohidratos, :grasas)
-        ");
-        $stmt->execute([
-           ':objetivo' => $plato->objetivo,
-           ':calorias' => $plato->calorias,
-           ':nombrePlato' => $plato->nombrePlato,
-           ':descripcion' => $plato->descripcion,
-           ':proteinas' => $plato->proteinas,
-           ':carbohidratos' => $plato->carbohidratos,
-           ':grasas' => $plato->grasas
-        ]);
+            INSERT INTO Alimentacion (objetivo, calorias, nombrePlato, descripcion, proteinas, carbohidratos, grasas, foto) 
+            VALUES (:objetivo, :calorias, :nombrePlato, :descripcion, :proteinas, :carbohidratos, :grasas, :foto)");
+        $extensiones = array(0=>'image/jpg',1=>'image/jpeg',2=>'image/png');
+        $max_tamanyo = 1024 * 1024 * 8;
+
+        $ruta_indexphp = dirname(realpath(__FILE__));
+        $ruta_fichero_origen = $_FILES['foto']['tmp_name'];
+       // $ruta_nuevo_destino = $ruta_indexphp . "/../views/gymFotos/" . $_FILES['foto']['name'];
+        $ruta_nuevo_destino = $base_dir . "/views/gymFotos/" . $_FILES['foto']['name'];
+        if (in_array($_FILES['foto']['type'], $extensiones)) {
+            if ($_FILES['foto']['size'] < $max_tamanyo) {
+                if (move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
+                    $plato->foto = $_FILES['foto']['name'];
+                    $stmt->execute([
+                        ':objetivo' => $plato->objetivo,
+                        ':calorias' => $plato->calorias,
+                        ':nombrePlato' => $plato->nombrePlato,
+                        ':descripcion' => $plato->descripcion,
+                        ':proteinas' => $plato->proteinas,
+                        ':carbohidratos' => $plato->carbohidratos,
+                        ':grasas' => $plato->grasas,
+                        ':foto' => $plato->foto
+                    ]);
+                    echo "Plato y foto guardados correctamente.";
+                }
+            } else {
+                echo "El archivo es demasiado grande.";
+            }
+        }
     }
     //* Función para ver la información de un plato/
     public function getPlato($id){
