@@ -74,7 +74,7 @@ class AlimentacionModel{
         $ruta_indexphp = dirname(realpath(__FILE__));
         $ruta_fichero_origen = $_FILES['foto']['tmp_name'];
        // $ruta_nuevo_destino = $ruta_indexphp . "/../views/gymFotos/" . $_FILES['foto']['name'];
-        $ruta_nuevo_destino = $base_dir . "/views/gymFotos/" . $_FILES['foto']['name'];
+        $ruta_nuevo_destino = $base_dir . "/views/gymFotos/alimentacion/" . $_FILES['foto']['name'];
         if (in_array($_FILES['foto']['type'], $extensiones)) {
             if ($_FILES['foto']['size'] < $max_tamanyo) {
                 if (move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
@@ -89,10 +89,10 @@ class AlimentacionModel{
                         ':grasas' => $plato->grasas,
                         ':foto' => $plato->foto
                     ]);
-                    echo "Plato y foto guardados correctamente.";
+                    return "Plato creado correctamente";
                 }
             } else {
-                echo "El archivo es demasiado grande.";
+                return "Error: el archivo es demasiado grande.";
             }
         }
     }

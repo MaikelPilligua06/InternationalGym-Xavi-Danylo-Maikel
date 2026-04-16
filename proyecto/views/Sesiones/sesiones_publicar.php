@@ -11,10 +11,9 @@ include 'views/header.php'
 
 <h1>Crear nueva publicación</h1>
 
-<form action="index.php?controller=Sesiones&action=publicar" method="POST" >
-
+<form action="index.php?controller=Sesiones&action=publicar" method="POST" enctype="multipart/form-data" >
     <label>Nombre de la Sesión</label>
-        <input type="text" name="nombre"/></br>
+        <input type="text" name="nombreClase"/><br/>
     <label>Tipo de la Sesión</label>
     <select name="tipoDeClases">
         <option value="Cardio">Cardio</option>
@@ -24,16 +23,17 @@ include 'views/header.php'
     </select>
     <label>Fecha de la Sesión</label>
         <input type="date" name="fechaClases"/>
-</br>
+
     <label>Duración de la clase</label>
         <input type="time" name="duracion"/>
     <p>
-    </br>
         <label>Descripción de tu sesión:</label><br>
         <textarea name="descripcion" rows="4" cols="50"
                   placeholder="" required></textarea>
     </p>
-
+    <br/>
+    <label>Imagen de la sesión</label>
+    <input type="file" name="foto" accept="image/*"/>
     <div class="button">
     <p>
         <button type="button" onclick="history.back()">← Volver atrás</button>

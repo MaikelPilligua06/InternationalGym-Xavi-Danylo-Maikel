@@ -41,19 +41,36 @@ WHERE usuario_sesion.id_usuario = :id;
         $db = conectar();
         $stmt = $db->prepare("
         INSERT INTO SesionesDeClases
-        (nombre, tipoDeClases, fechaClases, duracion, descripcion, id_entrenador)
+        (nombre, tipoDeClases, fechaClases, duracion, descripcion, id_entrenador, foto)
         VALUES
-        (:nombre, :tipoDeClases, :fechaClases, :duracion, :descripcion, :id_entrenador)
+        (:nombre, :tipoDeClases, :fechaClases, :duracion, :descripcion, :id_entrenador, :foto)
     ");
-        $stmt->execute([
-            ':nombre' => $sesion->nombre,
-            ':tipoDeClases' => $sesion->tipoDeClases,
-            ':fechaClases' => $sesion->fechaClases,
-            ':duracion' => $sesion->duracion,
-            ':descripcion' => $sesion->descripcion,
-            ':id_entrenador' => $id_entrenador
-        ]);
+        $base_dir = "/var/www/html";
+        $extensiones = array(0=>'image/jpg',1=>'image/jpeg',2=>'image/png');
+        $max_tamanyo = 1024 * 1024 * 8;
+        $ruta_indexphp = dirname(realpath(__FILE__));
+        $ruta_fichero_origen = $_FILES['foto']['tmp_name'];
+        $ruta_nuevo_destino = $base_dir . "/views/gymFotos/sesiones/" . $_FILES['foto']['name'];
+        if (in_array($_FILES['foto']['type'], $extensiones)) {
+            if ($_FILES['foto']['size'] < $max_tamanyo) {
+                if (move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
+                    $sesion->foto = $_FILES['foto']['name'];
+                    $stmt->execute([
+                        ':nombre' => $sesion->nombreClase,
+                        ':tipoDeClases' => $sesion->tipoDeClases,
+                        ':fechaClases' => $sesion->fechaClases,
+                        ':duracion' => $sesion->duracion,
+                        ':descripcion' => $sesion->descripcion,
+                        ':foto' => $sesion->foto,
+                        ':id_entrenador' => $id_entrenador
+                    ]);
+                } return "Plato creado correctamente";
+            } else{
+                return "Error la imagen es demasiado grande";
+            }
+        }
     }
+
     public function ver($id){
         $db = conectar();
         $stmt = $db->prepare("SELECT * FROM SesionesDeClases where id = :id");

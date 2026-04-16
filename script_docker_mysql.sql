@@ -124,6 +124,7 @@ CREATE TABLE SesionesDeClases (
   duracion TIME,
   id_entrenador INT,
   descripcion VARCHAR(8000),
+  foto VARCHAR(255),
   FOREIGN KEY (id_entrenador) REFERENCES Entrenadores(id)
 );
 

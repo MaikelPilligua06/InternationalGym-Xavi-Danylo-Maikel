@@ -9,7 +9,7 @@
     ?>
 
 <div>
-    <h1><?php echo $entrenador->nombre, ' ',  $entrenador->apellido;?></h1>
+    <h1><?php echo $entrenador->nombreEntrenador, ' ',  $entrenador->apellido;?></h1>
     <h2>Correo Electronico: <?php echo $entrenador->correoElectronico;?></h2
         <p>Dispobilidad horaria: <?php echo $entrenador->disponibilidadHoraria;?></p>
     <p><?php echo $entrenador->descripcion;?></p>

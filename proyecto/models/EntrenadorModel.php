@@ -9,7 +9,7 @@ class EntrenadorModel{
     public function getUsuarioEntrenador($userId){
         $db = conectar();
         $stmt = $db->prepare("
-            SELECT e.id, e.nombre, e.apellido, e.correoElectronico, e.descripcion
+            SELECT e.id, e.nombreEntrenador, e.apellido, e.correoElectronico, e.descripcion
             FROM Entrenadores e
             JOIN Usuarios u ON e.id = u.id_entrenador
             WHERE u.id = :usuarioId;
@@ -19,7 +19,7 @@ class EntrenadorModel{
     }
     public function getAll(){
         $db = conectar();
-        $stmt = $db->query("SELECT id, nombre, apellido, correoElectronico, descripcion FROM Entrenadores");
+        $stmt = $db->query("SELECT id, nombreEntrenador, apellido, correoElectronico, descripcion FROM Entrenadores");
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $entrenadores = [];
         foreach($resultado as $entrenador){
@@ -40,7 +40,7 @@ class EntrenadorModel{
     public function verSesiones($id){
         $db = conectar();
         $stmt = $db->prepare("
-            SELECT s.id, s.nombre, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion
+            SELECT s.id, s.nombreClase, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion
             FROM SesionesDeClases s
             INNER JOIN Entrenadores e ON s.id_entrenador = e.id
             WHERE e.id = :id
