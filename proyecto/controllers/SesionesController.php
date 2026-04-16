@@ -25,7 +25,8 @@ class SesionesController
                 'tipoDeClases' => $_POST['tipoDeClases'],
                 'fechaClases' => $_POST['fechaClases'],
                 'duracion' => $_POST['duracion'],
-                'id_entrenador' => $_SESSION['id']
+                'id_entrenador' => $_SESSION['id'],
+                'foto' => $_FILES['foto']
             ];
         }
         $model = new SesionesModel();
@@ -60,11 +61,12 @@ class SesionesController
     public function publicar() {
         if(!empty($_POST)) {
             $datos = [
-                'nombre'  => $_POST['nombre'],
+                'nombreClase'  => $_POST['nombreClase'],
                 'tipoDeClases' => $_POST['tipoDeClases'],
                 'fechaClases' => $_POST['fechaClases'],
                 'duracion' => $_POST['duracion'],
-                'descripcion' => $_POST['descripcion']
+                'descripcion' => $_POST['descripcion'],
+                'foto' => $_FILES['foto']
             ];
         }
         $id_entrenador = $_SESSION['id'];

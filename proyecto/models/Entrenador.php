@@ -11,7 +11,7 @@ class Entrenador{
 
     public function __construct($datos = []) {
         $this->id                       = $datos["id"] ?? null;
-        $this->nombreEntrenador         = $datos["nombre"] ?? null;
+        $this->nombreEntrenador         = $datos["nombreEntrenador"] ?? null;
         $this->apellido                 = $datos["apellido"] ?? null;
         $this->numeroTelefono           = $datos["numeroTelefono"] ?? null;
         $this->correoElectronico        = $datos["correoElectronico"] ?? null;
