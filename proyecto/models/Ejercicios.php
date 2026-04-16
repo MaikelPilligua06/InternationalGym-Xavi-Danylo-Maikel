@@ -1,7 +1,7 @@
 <?php
 class Ejercicios{
     public $id;
-    public $nombre;
+    public $nombreEjercicio;
     public $series;
     public $repeticiones;
     public $peso;
@@ -10,7 +10,7 @@ class Ejercicios{
 
     public function __construct($datos = []) {
         $this->id               = $datos["id"];
-        $this->nombre           = $datos["nombre"];
+        $this->nombreEjercicio  = $datos["nombre"];
         $this->descripcion      = $datos["descripcion"];
         $this->series           = $datos["series"];
         $this->repeticiones     = $datos["repeticiones"];
