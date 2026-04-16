@@ -9,7 +9,7 @@ class EntrenadorModel{
     public function getUsuarioEntrenador($userId){
         $db = conectar();
         $stmt = $db->prepare("
-            SELECT e.id, e.nombre, e.apellido, e.correoElectronico, e.descripcion
+            SELECT e.id, e.nombreEntrenador, e.apellido, e.correoElectronico, e.descripcion
             FROM Entrenadores e
             JOIN Usuarios u ON e.id = u.id_entrenador
             WHERE u.id = :usuarioId;

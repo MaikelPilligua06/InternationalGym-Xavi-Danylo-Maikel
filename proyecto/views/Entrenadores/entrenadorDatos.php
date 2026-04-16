@@ -9,7 +9,7 @@
     ?>
 
 <div>
-    <h1><?php echo $entrenador->nombre, ' ',  $entrenador->apellido;?></h1>
+    <h1><?php echo $entrenador->nombreEntrenador, ' ',  $entrenador->apellido;?></h1>
     <h2>Correo Electronico: <?php echo $entrenador->correoElectronico;?></h2
         <p>Dispobilidad horaria: <?php echo $entrenador->disponibilidadHoraria;?></p>
     <p><?php echo $entrenador->descripcion;?></p>
@@ -22,7 +22,7 @@
         <?php foreach ($sesiones as $sesion): ?>
             <div class="tarjeta-movil">
                 <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
-                    <h4>Nombre de la clase: <?= $sesion->nombre ?></h4>
+                    <h4>Nombre de la clase: <?= $sesion->nombreClase ?></h4>
                     <h4>TIpo de clases: <?= $sesion->tipoDeClases ?></h4>
                     <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
                     <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>

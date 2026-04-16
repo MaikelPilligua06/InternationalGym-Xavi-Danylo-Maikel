@@ -9,7 +9,7 @@
 <div class="Publicaciones">
     <h2>Lista de Publicaciones</h2>
     <a href="index.php?controller=Sesiones&action=ver">
-        <img src="" alt="Crear Publicacion"/>
+        <img src="/views/gymFotos/GYM-sesion.jpg"/>
     </a>
     <a href="index.php?controller=Sesiones&action=misPublicaciones">
         <p>Ver mis publicaciones</p>
@@ -46,11 +46,11 @@
             <?php foreach ($sesiones as $sesion): ?>
             <div class="tarjeta-movil">
                 <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
-                <h4>Nombre de la clase: <?= $sesion->nombre ?></h4>
+                <h4>Nombre de la clase: <?= $sesion->nombreClase ?></h4>
                 <h4>TIpo de clases: <?= $sesion->tipoDeClases ?></h4>
                 <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
                  <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
-                 <p><strong>Entrenador:</strong> <?= $sesion->id_entrenador ?></p>
+                 <p><strong>Entrenador:</strong> <?= $sesion->nombreEntrenador ?></p>
                 </a>
                  <a href="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>">
                     <button>Apuntate</button>

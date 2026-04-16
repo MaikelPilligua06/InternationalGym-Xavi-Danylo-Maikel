@@ -1,7 +1,7 @@
 <?php
 class Entrenador{
     public $id;
-    public $nombre;
+    public $nombreEntrenador;
     public $apellido;
     public $numeroTelefono;
     public $correoElectronico;
@@ -11,7 +11,7 @@ class Entrenador{
 
     public function __construct($datos = []) {
         $this->id                       = $datos["id"] ?? null;
-        $this->nombre                   = $datos["nombre"] ?? null;
+        $this->nombreEntrenador         = $datos["nombre"] ?? null;
         $this->apellido                 = $datos["apellido"] ?? null;
         $this->numeroTelefono           = $datos["numeroTelefono"] ?? null;
         $this->correoElectronico        = $datos["correoElectronico"] ?? null;

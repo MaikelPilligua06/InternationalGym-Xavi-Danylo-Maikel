@@ -17,7 +17,7 @@ include 'views/header.php';
             <?php foreach($lista as $fila): ?>
                 <li>
                     <a href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $fila->id ?>">
-                        <p><?= $fila->nombre ?></p>
+                        <p><?= $fila->nombreEjercicio ?></p>
                     </a>
                     <a href="index.php?controller=Ejercicios&action=eliminarEjercicio&id=<?= $fila->id ?>">
                         <button>Eliminar</button>
@@ -32,7 +32,7 @@ include 'views/header.php';
         <ul>
             <li>
                 <a href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $sesion->id ?>">
-                    <p><?= $sesion->nombre ?></p>
+                    <p><?= $sesion->nombreClase ?></p>
                 </a>
                 <a href="index.php?controller=Ejercicios&action=addEjercicio&id=<?= $sesion->id ?>">
                     <button>Añadir ejercicio</button>

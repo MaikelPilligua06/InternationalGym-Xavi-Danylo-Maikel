@@ -3,7 +3,7 @@ class Usuario
 {
     public $id;
 
-    public $nombre;
+    public $nombreUsuario;
     public $apellido;
     public $numeroTelefono;
     public $correoElectronico;

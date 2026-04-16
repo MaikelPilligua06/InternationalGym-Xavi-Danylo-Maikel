@@ -2,7 +2,7 @@
     include 'views/header.php';
     ?>
 
-    <h1>Detalles de la Sesion - <?= $sesion->nombre?></h1>
+    <h1>Detalles de la Sesion - <?= $sesion->nombreClase?></h1>
     <h3>Tipo de clase: <?= $sesion->tipoDeClases?></h3>
     <h3>Fecha de la clase: <?= $sesion->fechaClases?></h3>
     <h3>Duración: <?= $sesion->duracion?></h3>

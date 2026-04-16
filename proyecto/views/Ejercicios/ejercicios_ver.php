@@ -1,7 +1,7 @@
 <?php
     include 'views/header.php';
     ?>
-<h2>Informacion del ejericio: <?=$ejercicios->nombre?></h2>
+<h2>Informacion del ejericio: <?=$ejercicios->nombreEjercicio?></h2>
 
 
 <h3>Número de series: <?= $ejercicios->series?></h3>

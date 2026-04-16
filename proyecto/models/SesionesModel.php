@@ -2,6 +2,7 @@
 
 require_once "db.php";
 require_once "SesionesDeClases.php";
+require_once "Entrenador.php";
 class SesionesModel{
     public function getAll(){
         $db = conectar();
@@ -10,6 +11,7 @@ class SesionesModel{
         $sesiones = [];
         foreach ($resultado as $fila) {
             $sesiones[] = new SesionesDeClases($fila);
+            $sesiones[] = new Entrenador($fila);
         }
         return $sesiones;
     }
@@ -41,9 +43,9 @@ WHERE usuario_sesion.id_usuario = :id;
         $db = conectar();
         $stmt = $db->prepare("
         INSERT INTO SesionesDeClases
-        (nombre, tipoDeClases, fechaClases, duracion, descripcion, id_entrenador)
+        (nombreClase, tipoDeClases, fechaClases, duracion, descripcion, id_entrenador)
         VALUES
-        (:nombre, :tipoDeClases, :fechaClases, :duracion, :descripcion, :id_entrenador)
+        (:nombreClase, :tipoDeClases, :fechaClases, :duracion, :descripcion, :id_entrenador)
     ");
         $stmt->execute([
             ':nombre' => $sesion->nombre,
@@ -69,7 +71,7 @@ WHERE usuario_sesion.id_usuario = :id;
     public function misPub($usuario){
         $db = conectar();
         $stmt = $db->prepare("
-            SELECT s.id, s.nombre, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion
+            SELECT s.id, s.nombreUsuario, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion
             FROM SesionesDeClases s
             INNER JOIN Entrenadores e ON s.id_entrenador = e.id
             WHERE e.id = :id
