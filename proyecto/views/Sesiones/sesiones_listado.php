@@ -23,7 +23,7 @@
     <?php foreach($lista as $fila): ?>
         <div class="sg">
             <a href="index.php?controller=Sesiones&action=getId&id=<?= $fila->id ?>">
-                <p>Nombre de la clase: <?= $fila->nombre ?></p>
+                <p>Nombre de la clase: <?= $fila->nombreClase ?></p>
                 <p>Tipo de la clase: <?= $fila->tipoDeClases ?></p>
                 <p><?= $fila->duracion ?></p>
                 <p><?= $fila->fechaClases ?></p>

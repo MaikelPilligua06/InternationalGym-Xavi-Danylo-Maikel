@@ -3,7 +3,7 @@ USE InternationalGym;
 
 CREATE TABLE Entrenadores (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  nombre VARCHAR(80),
+  nombreEntrenador VARCHAR(80),
   apellido VARCHAR(80),
   numeroTelefono VARCHAR(20),
   tipoDocumento ENUM('Pasaporte','DNI','NIE'),
@@ -16,7 +16,7 @@ CREATE TABLE Entrenadores (
 
 CREATE TABLE Usuarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  nombre VARCHAR(80),
+  nombreUsuario VARCHAR(80),
   apellido VARCHAR(80),
   numeroTelefono VARCHAR(20),
   tipoDocumento ENUM('Pasaporte','DNI','NIE'),
@@ -54,7 +54,7 @@ CREATE TABLE Usuario_Alimentacion (
 
 CREATE TABLE Ejercicios (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  nombre VARCHAR(100),
+  nombreEjercicio VARCHAR(100),
   descripcion VARCHAR(255),
   series INT,
   repeticiones INT,
@@ -118,7 +118,7 @@ CREATE TABLE ResumenDiario (
 
 CREATE TABLE SesionesDeClases (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  nombre VARCHAR(255),
+  nombreClase VARCHAR(255),
   tipoDeClases ENUM('Cardio','Cycling','trenSuperior','trenInferior'),
   fechaClases DATE,
   duracion TIME,
@@ -138,3 +138,4 @@ CREATE TABLE Usuario_Sesion (
 CREATE USER IF NOT EXISTS 'intgym'@'localhost' IDENTIFIED BY '1234';
 GRANT ALL PRIVILEGES ON InternationalGym.* TO 'intgym'@'localhost';
 FLUSH PRIVILEGES;
+
