@@ -107,5 +107,9 @@ WHERE usuario_sesion.id_usuario = :id;
             ':id_entrenador' => $id_entrenador,
             'id' => $id
         ]);
+        $stmt = $db->prepare("DELETE FROM Usuario_Sesion WHERE id_sesion = :id_sesion");
+        $stmt->execute([
+            'id_sesion' => $id
+        ]);
     }
 }

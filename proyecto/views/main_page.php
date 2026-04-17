@@ -18,39 +18,28 @@
 			echo "Haz perdido un total de x Calorias";
 		?>
 	</div>
-	<div class="rutinas">
-		<h2>Lista Rutinas</h2>
-		<a href="index.php?controller=Rutinas&action=redirectRutinas">
-			<img src="" alt="Lista de Rutinas"/>
-		</a>
-	</div>
-	<div clas="entrenamiento">
-		<h2>Lista Entrenamiento</h2>
-		<a href="index.php?controller=Ejercicios&action=listadoEjercicios">
-			<img src="" alt="Lista de Entrenamientos">
-		</a>
-	</div>
-    <div class="Sesiones">
-        <h2>Lista de Sesiones</h2>
-        <a href="index.php?controller=Sesiones&action=index">
-            <p>Ver las clases disponibles</p>
-            <img src="" alit="Lista de Sesiones"/>
-        </a>
+    <div class="Ejercicios">
+        <h2>Ejercicios</h2>
     </div>
-	<div class="Entrenadores">
-		<h2>Lista de Entrenadores</h2>
-		<a href="index.php?controller=Rutinas&action=redirectObjetivo">
-			<img src="" alt="Lista de Entrenadores"/>
-		</a>
-	</div>
     <div class="Alimentacion">
-        <h2>Lista de Alimentacion</h2>
-        <a href="index.php?controller=Alimentacion&action=index"
-            <h1>Prueba</h1>
-        </a>
+        <h2>Alimentacion</h2>
+        <h3>Seguimiento de tu alimentación</h3>
+        <div class="Alimentacion-datos">
+            <ul>
+                <li>Tu Objetivo: </li>
+                <li>Calorias:</li>
+                <li>Proteinas:</li>
+                <li>Grasas: </li>
+                <li>Carbohidratos: </li>
+                <li>Protenias: </li>
+            </ul>
+        </div>
     </div>
-
-
+    <div class="Entrenador">
+        <h2>Entrenador</h2>
+        <h3>Tu entrenador tiene las siguientes sesiones activas</h3>
+        <h4>Ver más entrenadores</h4>
+    </div>
 <?php
  include 'footer.php';
 ?>
