@@ -86,7 +86,7 @@ WHERE usuario_sesion.id_usuario = :id;
     public function misPub($usuario){
         $db = conectar();
         $stmt = $db->prepare("
-            SELECT s.id, s.nombre, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion
+            SELECT s.id, s.nombreClase, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion
             FROM SesionesDeClases s
             INNER JOIN Entrenadores e ON s.id_entrenador = e.id
             WHERE e.id = :id

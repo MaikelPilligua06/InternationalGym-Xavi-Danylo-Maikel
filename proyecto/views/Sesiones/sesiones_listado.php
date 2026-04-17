@@ -7,7 +7,7 @@
 <body>
 <?php include 'views/header.php'; ?>
 <div class="Publicaciones">
-    <h2>Lista de Publicaciones</h2>
+    <h1>Lista de Publicaciones</h1>
     <a href="index.php?controller=Sesiones&action=ver">
         <img src="/views/gymFotos/GYM-sesion.jpg"/>
     </a>
@@ -15,7 +15,7 @@
         <p>Ver mis publicaciones</p>
     </a>
 </div>
-<h2>Mis sesiones</h2>
+<h1>Mis sesiones</h1>
 
 <div class="carrusel-movil">
 
