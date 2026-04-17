@@ -99,4 +99,13 @@ WHERE usuario_sesion.id_usuario = :id;
         }
         return $sesiones;
     }
+
+    public function deleteEntrenador($id_entrenador, $id){
+        $db = conectar();
+        $stmt = $db->prepare("DELETE FROM SesionesDeClases WHERE id_entrenador = :id_entrenador AND id = :id");
+        $stmt->execute([
+            ':id_entrenador' => $id_entrenador,
+            'id' => $id
+        ]);
+    }
 }

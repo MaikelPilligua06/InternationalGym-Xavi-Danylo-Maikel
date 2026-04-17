@@ -22,6 +22,9 @@
                 <p><?php echo $publicacion->fechaClases;?></p>
                 <p><?php echo $publicacion->duracion;?></p>
                 <p><?php echo $publicacion->descripcion;?></p>
+                <a href="index.php?controller=Sesiones&action=eliminarEntrenador&id=<?= $publicacion->id; ?>">
+                    <button>Eliminar Sesion</button>
+                </a>
             </div>
         </div>
         </div>
