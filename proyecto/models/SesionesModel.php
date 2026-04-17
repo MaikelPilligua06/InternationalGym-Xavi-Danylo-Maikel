@@ -5,15 +5,15 @@ require_once "SesionesDeClases.php";
 class SesionesModel{
     public function getAll(){
         $db = conectar();
-        $stmt = $db->query("SELECT * FROM SesionesDeClases Order by fechaClases DESC");
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $sesiones = [];
-        foreach ($resultado as $fila) {
-            $sesiones[] = new SesionesDeClases($fila);
-        }
-        return $sesiones;
-    }
+        $stmt = $db->query("
+                SELECT s.*, e.id, e.nombreEntrenador 
+                FROM SesionesDeClases s 
+                JOIN Entrenadores e ON s.id = e.id
+                Order by fechaClases DESC");
 
+        $stmt->execute([]);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
     public function asignarSesion($id, $usuario){
         $db = conectar();
         $stmt = $db->prepare("INSERT INTO Usuario_Sesion (id_usuario, id_sesion) VALUES (:id_usuario, :id_sesion)");

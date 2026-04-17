@@ -9,6 +9,8 @@
     ?>
 <h1>Mis publicaciones</h1>
 
+
+
 <?php if (isset($sesiones) && !empty($sesiones)): ?>
     <?php foreach ($sesiones as $publicacion): ?>
         <div class="carrusel-movil">
