@@ -4,7 +4,6 @@ services:
       context: .
       dockerfile: Dockerfile
     image: gym-php
-    command: 'chgrp www-data /var/www/html'
     container_name: gymproyecto
     ports:
       - "8088:80"
