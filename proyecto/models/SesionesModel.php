@@ -41,9 +41,9 @@ WHERE usuario_sesion.id_usuario = :id;
         $db = conectar();
         $stmt = $db->prepare("
         INSERT INTO SesionesDeClases
-        (nombre, tipoDeClases, fechaClases, duracion, descripcion, id_entrenador, foto)
+        (nombreClase, tipoDeClases, fechaClases, duracion, descripcion, id_entrenador, foto)
         VALUES
-        (:nombre, :tipoDeClases, :fechaClases, :duracion, :descripcion, :id_entrenador, :foto)
+        (:nombreClase, :tipoDeClases, :fechaClases, :duracion, :descripcion, :id_entrenador, :foto)
     ");
         $base_dir = "/var/www/html";
         $extensiones = array(0=>'image/jpg',1=>'image/jpeg',2=>'image/png');
@@ -56,7 +56,7 @@ WHERE usuario_sesion.id_usuario = :id;
                 if (move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
                     $sesion->foto = $_FILES['foto']['name'];
                     $stmt->execute([
-                        ':nombre' => $sesion->nombreClase,
+                        ':nombreClase' => $sesion->nombreClase,
                         ':tipoDeClases' => $sesion->tipoDeClases,
                         ':fechaClases' => $sesion->fechaClases,
                         ':duracion' => $sesion->duracion,

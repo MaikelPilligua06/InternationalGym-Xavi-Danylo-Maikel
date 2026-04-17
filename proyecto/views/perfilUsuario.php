@@ -13,7 +13,7 @@
 
     <form>
         <h3>Nombre: </h3>
-        <p><?php echo $usuario->nombre ;?></p>
+        <p><?php echo $usuario->nombreUsuario ;?></p>
 
         <h3>Apellido: </h3>
         <p><?php echo $usuario->apellido ;?></p>

@@ -19,7 +19,7 @@ class Usuario
     {
 
         $this->id = $datos["id"] ?? null;
-        $this->nombre = $datos["nombre"] ?? null;
+        $this->nombreUsuario = $datos["nombre"] ?? null;
         $this->apellido = $datos["apellido"] ?? null;
         $this->peso = $datos["peso"] ?? null;
         $this->numeroTelefono = $datos["numeroTelefono"] ?? null;
