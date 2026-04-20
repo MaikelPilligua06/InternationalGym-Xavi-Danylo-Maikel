@@ -46,10 +46,10 @@ CREATE TABLE Alimentacion (
 );
 
 CREATE TABLE Usuario_Alimentacion (
-                                   id_usuario INT,
-                                   id_alimentacion INT,
-                                   FOREIGN KEY (id_usuario) REFERENCES Usuarios(id),
-                                   FOREIGN KEY (id_alimentacion) REFERENCES Alimentacion(id)
+ id_usuario INT,
+ id_alimentacion INT,
+ FOREIGN KEY (id_usuario) REFERENCES Usuarios(id),
+ FOREIGN KEY (id_alimentacion) REFERENCES Alimentacion(id)
 );
 
 CREATE TABLE Ejercicios (
@@ -58,7 +58,9 @@ CREATE TABLE Ejercicios (
   descripcion VARCHAR(255),
   series INT,
   repeticiones INT,
-  peso INT
+  peso INT,
+  calorias INT,
+  foto VARCHAR(255)
 );
 
 CREATE TABLE Usuario_Ejercicio (

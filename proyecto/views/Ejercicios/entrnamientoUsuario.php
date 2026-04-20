@@ -8,8 +8,18 @@
 <?php
 include 'views/header.php';
 ?>
+<div>
 <h2>Ejercicios</h2>
-<hr>
+    <ul>
+        <a href="index.php?controller=Ejercicios&action=agregarEjercicio">
+            <li>Crear</li>
+        </a>
+        <a href="index.php?controller=Ejercicios&action=borrar">
+            <li>Borrar</li>
+        </a>
+    </ul>
+</div>
+    <hr>
 
 <div>
     <h2>Tu Playlist</h2>

@@ -13,10 +13,6 @@ class SesionesController
         require "views/Sesiones/sesiones_listado.php";
     }
 
-    public function crear_form()
-    {
-        require "views/Sesiones/sesiones_crear.php";
-    }
 
     public function crear()
     {
@@ -47,7 +43,6 @@ class SesionesController
 
     public function ver() {
         $sesiones = new SesionesDeClases();
-
         require "views/Sesiones/sesiones_publicar.php";
     }
     public function getId(){

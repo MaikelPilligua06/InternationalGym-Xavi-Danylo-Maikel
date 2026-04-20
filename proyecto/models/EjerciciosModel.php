@@ -15,6 +15,7 @@ class EjerciciosModel{
         }
         return $ejercicio;
     }
+    //Funcion para guardar un ejercicio en el perfil del usuario
     public function guardar($id, $usuario){
         $db = conectar();
         $stmt = $db->prepare("INSERT INTO Usuario_Ejercicio (id_usuario, id_ejercicio) VALUES (:usuario, :id)");
@@ -23,6 +24,7 @@ class EjerciciosModel{
             ':id' => $id
         ]);
     }
+    //Función para ver la información de un ejercicio
     public function getById($id){
         $db = conectar();
         $stmt = $db->prepare("SELECT * FROM Ejercicios WHERE id = :id");
@@ -30,6 +32,7 @@ class EjerciciosModel{
         $fila = $stmt->fetch(PDO::FETCH_ASSOC);
         return new Ejercicios($fila);
     }
+    //
     public function informacionUsuario($usuario){
         $db = conectar();
         $stmt = $db->prepare("

@@ -11,7 +11,7 @@ class SesionesModel{
                 JOIN Entrenadores e ON s.id = e.id
                 Order by fechaClases DESC");
 
-        $stmt->execute([]);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
     public function asignarSesion($id, $usuario){
@@ -64,9 +64,9 @@ WHERE usuario_sesion.id_usuario = :id;
                         ':foto' => $sesion->foto,
                         ':id_entrenador' => $id_entrenador
                     ]);
-                } return "Plato creado correctamente";
+                }
             } else{
-                return "Error la imagen es demasiado grande";
+
             }
         }
     }

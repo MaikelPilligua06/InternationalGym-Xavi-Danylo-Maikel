@@ -11,7 +11,7 @@ class ResumenModel{
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $resumen = [];
         foreach ($resultado as $fila){
-            $resumen[] = new ResumenDiario($fila);
+            $resumen = new ResumenDiario($fila);
         }
         return $resumen;
     }
