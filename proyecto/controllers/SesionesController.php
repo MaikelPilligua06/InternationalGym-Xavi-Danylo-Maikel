@@ -87,7 +87,7 @@ class SesionesController
         $model = new SesionesModel();
         $id_entrenador = $_SESSION['id'];
         $model->deleteEntrenador($id_entrenador, $_GET['id']);
-        header("Location: index.php?controller=Sesiones&action=MisPublicaciones");
+        header("Location: index.php?controller=Sesiones&action=misPublicaciones");
         exit;
         }
 
