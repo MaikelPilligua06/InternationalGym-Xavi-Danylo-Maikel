@@ -73,6 +73,8 @@ CREATE TABLE Rutina (
   id_usuario INT,
   nombre_rutina VARCHAR(255),
   objetivo ENUM('perder peso','ganar fuerza','estabilidad'),
+  fecha_inicio DATE,
+  fechaTiempo TIME,
   FOREIGN KEY (id_usuario) REFERENCES Usuarios(id)
 );
 
