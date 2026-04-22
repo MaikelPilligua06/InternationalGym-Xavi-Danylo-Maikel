@@ -56,9 +56,6 @@ CREATE TABLE Ejercicios (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombreEjercicio VARCHAR(100),
   descripcion VARCHAR(255),
-  series INT,
-  repeticiones INT,
-  peso INT,
   calorias INT,
   foto VARCHAR(255)
 );
@@ -82,6 +79,9 @@ CREATE TABLE Rutina (
 CREATE TABLE Contiene (
   id_rutina INT,
   id_ejercicio INT,
+  series INT,
+  repeticiones INT,
+  peso INT,
   PRIMARY KEY (id_rutina, id_ejercicio),
   FOREIGN KEY (id_rutina) REFERENCES Rutina(id_rutina),
   FOREIGN KEY (id_ejercicio) REFERENCES Ejercicios(id)
