@@ -2,19 +2,17 @@
 class Ejercicios{
     public $id;
     public $nombreEjercicio;
-    public $series;
-    public $repeticiones;
-    public $peso;
+    public $foto;
     public $descripcion;
+    public $calorias;
 
 
     public function __construct($datos = []) {
         $this->id               = $datos["id"];
-        $this->nombreEjercicio  = $datos["nombre"];
+        $this->nombreEjercicio  = $datos["nombreEjercicio"];
         $this->descripcion      = $datos["descripcion"];
-        $this->series           = $datos["series"];
-        $this->repeticiones     = $datos["repeticiones"];
-        $this->peso             = $datos["peso"];
+        $this->foto             = $datos["foto"];
+        $this->calorias          = $datos["calorias"];
     }
 }
 ?>

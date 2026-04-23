@@ -51,4 +51,11 @@ class EjerciciosModel{
         $stmt = $db->prepare("DELETE FROM Usuario_Ejercicio WHERE id_ejercicio = :id");
         $stmt->execute([':id' => $id]);
     }
+    public function borrarEjercicio($id){
+        $db = conectar();
+        $stmt = $db->prepare("DELETE FROM Usuario_Ejercicio WHERE id_ejercicio = :id");
+        $stmt->execute([':id' => $id]);
+        $stmt = $db->prepare("DELETE FROM Ejercicios WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+    }
 }

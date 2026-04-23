@@ -1,44 +1,71 @@
 <?php
 require_once "db.php";
-// Para poder ver las rutinas y ejercicios
 require_once "Rutinas.php";
 require_once "Ejercicios.php";
-// Para poder ver la alimetación
 require_once "Alimentacion.php";
-// Para poder ver los objetivos cáloricos
-require_once "ResumenDiario.php";
+
 class RutinasModel{
     // Funcion para ver los ejercicios del usuario(rutina)
     public function verRutinas($id){
         $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Rutina where id = :id");
+        $stmt = $db->prepare("SELECT * FROM Rutina where id_usuario = :id");
         $stmt->execute([":id" => $id]);
-        $rutinas = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Rutinas($rutinas);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
-    public function verEntrenamiento(){
+    public function getUsuariosEjercicios($id){
         $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Rutina");
+        $stmt = $db->prepare("
+                SELECT ejercicio.*, usuario_ejercicio.id_usuario
+        FROM Ejercicios ejercicio
+        JOIN Usuario_Ejercicio usuario_ejercicio 
+        ON ejercicio.id = usuario_ejercicio.id_ejercicio
+        WHERE usuario_ejercicio.id_usuario = :id
+        ");
+        $stmt->execute([":id" => $id]);
+        $resultado = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $usuarioEjercicios = [];
+        foreach($resultado as $fila){
+            $usuarioEjercicios[] = new Ejercicios($fila);
+        }
+        return $usuarioEjercicios;
+    }
+    public function getTodosLosEjercicios(){
+        $db = conectar();
+        $stmt = $db->prepare("SELECT * FROM Ejercicios");
         $stmt->execute();
-        $entrenamientos = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Rutinas($entrenamientos);
+        $resultado = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $todoslosEjercicios = [];
+        foreach($resultado as $fila){
+            $todoslosEjercicios[] = new Ejercicios($fila);
+        }
+        return $todoslosEjercicios;
     }
-    // Funcion para ver la alimentacion de un usuario
-    public function verAlimentacion($id){
+    public function getUsuarioAlimentacion($id){
         $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Alimentacion where id_usuario = :id ");
-        $stmt->execute([":id" => $id]);
-        $alimentacion = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Alimentacion($alimentacion);;
+        $stmt = $db->prepare("
+                      SELECT a.id, a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.id
+                FROM Alimentacion a
+                JOIN Usuario_Alimentacion ua ON a.id = ua.id_alimentacion
+                JOIN Usuarios u ON u.id = ua.id_usuario
+                WHERE ua.id_usuario = :usuarioId
+                ");
+        $stmt->execute([":usuarioId" => $id]);
+        $resultado = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $usuarioAlimentacion = [];
+        foreach($resultado as $fila){
+            $usuarioAlimentacion[] = new Alimentacion($fila);
+        }
+        return $usuarioAlimentacion;
     }
-    // Funcion para ver la alimentacion de un usuari
-    public function verObjetivo($id){
+    public function getTodosLosPlatos(){
         $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM ResumenDiario where id_usuario = :id ");
-        $stmt->execute([":id" => $id]);
-        $objetivo = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new ($objetivo);
-
+        $stmt = $db->prepare("SELECT * FROM Alimentacion");
+        $stmt->execute();
+        $resultado = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $todoslosPlatos = [];
+        foreach($resultado as $fila){
+            $todosLosPlatos[] = new Alimentacion($fila);
+        }
+        return $todoslosPlatos;
     }
-
 }

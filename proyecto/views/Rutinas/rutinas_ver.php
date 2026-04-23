@@ -8,24 +8,27 @@
 <?php
     include 'views/header.php';
 ?>
-    <div id="RutinaUsuario">
-        <h2>Rutinas del Usuario</h2>    
-        <a href="index.php?controller=Permisos&action=rutinaUsuario">
-            <img src="" alt="Rutinas Del Usuario"/>
-        </a>
-    </div>
-    <div id="RutinasRecomendadas">
-        <h2>Rutinas Recomendadas</h2>
-        <a href="index.php?controller=Permisos&action=rutinasRecomendadas">
-            <img src="" alt="Rutinas Recomendadas"/>
-        </a>
-    </div>
-    <div id="CrearRutina">
-        <h2>Crea una Rutina</h2>
-    <a href="index.php?controller=Permisos&action=crearRutina">
-        <img src="" alt="Crea una Rutina"/>
-     </a>
-    </div>
+<div>
+    <h3>Selecciona una Rutina</h3>
+    <p>Aqui seleccionaras tu rutina que haras el dia de hoy</p>
+</div>
+<div>
+    <h3>Tu rutina de hoy</h3>
+    <p>Total de calorias consumidas (alimentación): </p>
+    <p>Total de calorias quemadas (entrenos): </p>
+    <p>Total de proteinas</p>
+    <p>Total de carbohidrados</p>
+    <p>Duración: </p>
+    <p>Listado de Ejercicios: </p>
+    <p>Listado de Comida: </p>
+</div>
+
+<div>
+    <h3>Crea una Rutina</h3>
+    <a href="index.php?controller=Rutinas&action=crearRutina">
+        <button>Crear una rutina</button>
+    </a>
+</div>
 <?php
     include 'views/footer.php';
 ?>

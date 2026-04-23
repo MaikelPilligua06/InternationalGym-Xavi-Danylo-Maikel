@@ -14,7 +14,7 @@ include 'views/header.php';
         <a href="index.php?controller=Ejercicios&action=agregarEjercicio">
             <li>Crear</li>
         </a>
-        <a href="index.php?controller=Ejercicios&action=borrar">
+        <a href="index.php?controller=Ejercicios&action=appEliminarEjercicio">
             <li>Borrar</li>
         </a>
     </ul>
@@ -42,7 +42,7 @@ include 'views/header.php';
         <ul>
             <li>
                 <a href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $sesion->id ?>">
-                    <p><?= $sesion->nombreClase ?></p>
+                    <p><?= $sesion->nombreEjercicio ?></p>
                 </a>
                 <a href="index.php?controller=Ejercicios&action=addEjercicio&id=<?= $sesion->id ?>">
                     <button>Añadir ejercicio</button>

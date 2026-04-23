@@ -10,10 +10,12 @@
         <div class="tn-footer__col">
             <div class="tn-footer__brand">
                 <span class="tn-brand__mark" aria-hidden="true">TN</span>
+                <a class="tn-brand" href="index.php?controller=Resumen&action=index">
                 <div>
                     <strong>InternationalGym</strong>
                     <p>Entrena con método, tecnología y constancia.</p>
                 </div>
+                </a>
             </div>
 
             <ul class="tn-footer__meta">

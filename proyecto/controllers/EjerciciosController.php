@@ -39,4 +39,14 @@ class EjerciciosController{
         $model = new EjerciciosModel();
         require "views/Ejercicios/ejercicios_agregar.php";
     }
+    public function appEliminarEjercicio(){
+        $model = new EjerciciosModel();
+        $ejercicio = $model->getAll();
+        require "views/Ejercicios/ejercicios_eliminar.php";
+    }
+    public function borrarEjercicioApp(){
+        $model = new EjerciciosModel();
+        $model->borrarEjercicio($_GET["id"]);
+        header("Location: index.php?controller=Ejercicios&action=appEliminarEjercicio");
+    }
 }

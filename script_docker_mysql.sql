@@ -11,7 +11,8 @@ CREATE TABLE Entrenadores (
   correoElectronico VARCHAR(80),
   contrasenia VARCHAR(255),
   descripcion TEXT,
-  disponibilidadHoraria ENUM('diurno','vespertino','nocturno')
+  foto VARCHAR(255),
+  disponibilidadHoraria ENUM('dia','tarde','noche')
 );
 
 CREATE TABLE Usuarios (
@@ -29,6 +30,7 @@ CREATE TABLE Usuarios (
   altura FLOAT,
   objetivo ENUM('perder peso','ganar fuerza','estabilidad'),
   fechaDeAlta DATE,
+  foto VARCHAR(255),
   id_entrenador INT,
   FOREIGN KEY (id_entrenador) REFERENCES Entrenadores(id)
 );
