@@ -22,7 +22,7 @@ class RutinasModel{
         WHERE usuario_ejercicio.id_usuario = :id
         ");
         $stmt->execute([":id" => $id]);
-        $resultado = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $usuarioEjercicios = [];
         foreach($resultado as $fila){
             $usuarioEjercicios[] = new Ejercicios($fila);
@@ -33,7 +33,7 @@ class RutinasModel{
         $db = conectar();
         $stmt = $db->prepare("SELECT * FROM Ejercicios");
         $stmt->execute();
-        $resultado = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $todoslosEjercicios = [];
         foreach($resultado as $fila){
             $todoslosEjercicios[] = new Ejercicios($fila);
@@ -50,7 +50,7 @@ class RutinasModel{
                 WHERE ua.id_usuario = :usuarioId
                 ");
         $stmt->execute([":usuarioId" => $id]);
-        $resultado = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $usuarioAlimentacion = [];
         foreach($resultado as $fila){
             $usuarioAlimentacion[] = new Alimentacion($fila);
@@ -61,11 +61,11 @@ class RutinasModel{
         $db = conectar();
         $stmt = $db->prepare("SELECT * FROM Alimentacion");
         $stmt->execute();
-        $resultado = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $todoslosPlatos = [];
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $todosLosPlatos = [];
         foreach($resultado as $fila){
             $todosLosPlatos[] = new Alimentacion($fila);
         }
-        return $todoslosPlatos;
+        return $todosLosPlatos;
     }
 }

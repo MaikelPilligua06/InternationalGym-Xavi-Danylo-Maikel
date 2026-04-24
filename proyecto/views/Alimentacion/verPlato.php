@@ -15,9 +15,7 @@ include 'views/header.php';
         <a href="index.php?controller=Alimentacion&action=addPlatoUsuario&id=<?= $alimentacion->id ?>">
             <button>Agregar plato</button>
         </a>
-        <a href="index.php?controller=Alimentacion&action=index">
-            <button>Volver</button>
-        </a>
+        <button onclick="history.back()">Volver</button>
     </div>
 </div>
 <?php

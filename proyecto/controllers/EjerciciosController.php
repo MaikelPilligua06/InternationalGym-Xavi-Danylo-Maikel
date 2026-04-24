@@ -49,4 +49,20 @@ class EjerciciosController{
         $model->borrarEjercicio($_GET["id"]);
         header("Location: index.php?controller=Ejercicios&action=appEliminarEjercicio");
     }
+    // Función para crear un ejercicio
+    public function publicar(){
+        if(!empty($_POST)){
+            $datos = [
+                'nombreEjercicio' => $_POST["nombreEjercicio"],
+                'descripcion' => $_POST["descripcion"],
+                'calorias' => $_POST["calorias"],
+                'foto' => $_FILES["foto"]
+            ];
+        }
+        $model = new EjerciciosModel();
+        $ejercicio = new Ejercicios($datos);
+        $model->publicarEjercicio($ejercicio);
+        header("Location: index.php?controller=Ejercicios&action=listadoEjercicios");
+        exit;
+    }
 }
