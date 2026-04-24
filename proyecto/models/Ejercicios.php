@@ -12,7 +12,7 @@ class Ejercicios{
         $this->nombreEjercicio  = $datos["nombreEjercicio"];
         $this->descripcion      = $datos["descripcion"];
         $this->foto             = $datos["foto"];
-        $this->calorias          = $datos["calorias"];
+        $this->calorias         = $datos["calorias"];
     }
 }
 ?>
