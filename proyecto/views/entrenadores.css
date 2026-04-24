@@ -1,0 +1,55 @@
+.contenido-oscuro {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 40px 60px;
+    background: lightgrey;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.contenido-oscuro a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+
+}
+
+.contenido-oscuro h3 {
+    font-size: 44px;
+    margin: 0 0 20px;
+    text-align: left
+    font-weight: bold;
+
+}
+
+
+
+.contenido-oscuro img {
+    width: 420px;
+    height: 290px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+    position: relative;
+
+}
+
+.contenido-oscuro a::after {
+    position: absolute;
+    width: 380px;
+    height: 18px;
+    background: orange;
+    border-radius: 10px;
+    bottom: -10px;
+    right: 40px;
+
+}
+
+

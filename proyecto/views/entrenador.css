@@ -1,15 +1,15 @@
 
-
 .contenido {
     max-width: 1200px;
     margin: 80px auto;
     padding: 40px 60px;
-    background: lightgrey;
+    background:lightgrey;
     color: black;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 
 .contenido a {
     display: flex;
@@ -88,5 +88,8 @@
         left: 14px;
         bottom: -10px;
     }
+
 }
+
+
 
