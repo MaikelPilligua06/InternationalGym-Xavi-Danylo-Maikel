@@ -5,7 +5,9 @@
     padding: 40px 60px;
     background:lightgrey;
     color: black;
-    display: flex;
+    display: block;
+    flex-direction: column;
+    gap: 20px;
     justify-content: center;
     align-items: center;
 }
@@ -13,14 +15,15 @@
 
 .contenido a {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 80px;
     text-decoration: none;
     color: inherit;
+    margin-bottom: 20px;
     width: 100%;
 }
-
 .contenido h1 {
     font-size: 44px;
     margin: 0 0 20px;

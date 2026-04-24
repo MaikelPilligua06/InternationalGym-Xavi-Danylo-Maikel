@@ -27,22 +27,24 @@
         <?php endforeach; ?>
 </div>
     <hr/>
-<div class="contenido-oscuro">
-        <?php foreach ($entrenadores as $entrenador): ?>
-        <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenador->id;?>">
+    <?php foreach ($entrenadores as $entrenador): ?>
 
-            <div class="texto"
-            <h3>Todos los entrenadores</h3>
-            <h3><?php echo $entrenador->nombreEntrenador, ' ', $entrenador->apellido;?></h3>
-            <h3><?php echo $entrenador->descripcion;?></h3>
-        </div>
-            <div class="imagen">
-            <img src="views/gymFotos/entrenador.png" alt="Entrenador"">
-            </div>
-        </a>
-        <?php endforeach; ?>
-</div>
-<?php
+    <div class="contenido-oscuro">
+        <h3>Todos los entrenadores</h3>
+
+            <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenador->id; ?>">
+                <div class="texto">
+                    <h3><?= $entrenador->nombreEntrenador . ' ' . $entrenador->apellido; ?></h3>
+                    <p><?= $entrenador->descripcion; ?></p>
+                </div>
+                <div class="imagen">
+                    <img src="views/gymFotos/entrenador.png" alt="Entrenador">
+                </div>
+            </a>
+    </div>
+<?php endforeach; ?>
+
+    <?php
     include 'views/footer.php';
 ?>
 </body>
