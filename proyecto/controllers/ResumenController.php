@@ -5,7 +5,7 @@ class ResumenController{
     public function index(){
         $model = new ResumenModel();
         $resumen = $model->getAll();
-        require "views/main_page.php";
+        require "views/mainpage/main_page.php";
     }
     public function verResumen() {
         $model = new ResumenModel();

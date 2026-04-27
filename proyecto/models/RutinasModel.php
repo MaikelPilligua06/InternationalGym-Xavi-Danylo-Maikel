@@ -68,4 +68,33 @@ class RutinasModel{
         }
         return $todosLosPlatos;
     }
+
+    public function guardarEjercicio(){
+        foreach ($_SESSION['rutina_ejercicios'] as $ejercicio) {
+            if ($ejercicio['id'] == $id) {
+                return false;
+            }
+        }
+        $_SESSION['rutina_ejercicios'][] = [
+            'id'       => $id,
+            'nombreEjercicio'   => $nombreEjercicio,
+            'descripcion' => $descripcion,
+            'foto' => $foto,
+            'calorias' => $calorias
+        ];
+        return true;
+    }
+    public function eliminarEjercicio(){
+        if (isset($_SESSION['rutina_ejercicios'][$index])) {
+            unset($_SESSION['rutina_ejercicios'][$index]);
+            $temporal = [];
+            foreach ($_SESSION['rutina_ejercicios'] as $ejercicio) {
+                $temporal[] = $ejercicio;
+            }
+            $_SESSION['rutina_ejercicios'] = $temporal;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
