@@ -27,6 +27,14 @@ class AuthController {
         $error = "Usuario o contraseña incorrectos";
         require "views/login.php";
     }
+
+    public function registro() {
+        require_once "views/registro.php";
+    }
+
+    public function registroProcess() {
+
+    }
     public function logout() {
         session_destroy();
         header("Location: index.php");

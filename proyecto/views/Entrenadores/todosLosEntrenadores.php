@@ -27,10 +27,11 @@
         <?php endforeach; ?>
 </div>
     <hr/>
-    <?php foreach ($entrenadores as $entrenador): ?>
 
+        <h3 class="logo">Todos los entrenadores</h3>
+
+    <?php foreach ($entrenadores as $entrenador): ?>
     <div class="contenido-oscuro">
-        <h3>Todos los entrenadores</h3>
 
             <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenador->id; ?>">
                 <div class="texto">

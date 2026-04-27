@@ -12,6 +12,12 @@ include 'header.php';
         <input type="password" name="password" placeholder="Contraseña">
         <button type="submit">Entrar</button>
     </form>
+
+
+
+
 <?php
+
+
 include 'footer.php';
 ?>

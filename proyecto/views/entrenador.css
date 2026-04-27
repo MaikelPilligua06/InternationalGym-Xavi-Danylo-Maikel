@@ -3,7 +3,7 @@
     max-width: 1200px;
     margin: 80px auto;
     padding: 40px 60px;
-    background:lightgrey;
+    background: royalblue;
     color: black;
     display: block;
     flex-direction: column;
@@ -51,11 +51,21 @@
     position: absolute;
     width: 380px;
     height: 18px;
-    background: #ff6a00;
+    background:royalblue;
     border-radius: 10px;
     bottom: -10px;
     right: 40px;
 
+}
+.logo {
+
+    text-align: center;
+    font-size: 50px;
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 40px 60px;
+    background:lightgrey;
+    color: black;
 }
 
 @media (max-width: 900px) {
@@ -91,6 +101,8 @@
         left: 14px;
         bottom: -10px;
     }
+
+
 
 }
 
