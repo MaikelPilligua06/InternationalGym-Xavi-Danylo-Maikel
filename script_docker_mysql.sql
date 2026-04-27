@@ -29,7 +29,7 @@ CREATE TABLE Usuarios (
   peso FLOAT,
   altura FLOAT,
   objetivo ENUM('perder peso','ganar fuerza','estabilidad'),
-  fechaDeAlta DATE,
+  fechaDeAlta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   foto VARCHAR(255),
   id_entrenador INT,
   FOREIGN KEY (id_entrenador) REFERENCES Entrenadores(id)
