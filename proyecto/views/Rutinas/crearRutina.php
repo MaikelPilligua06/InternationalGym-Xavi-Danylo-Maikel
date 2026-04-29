@@ -2,7 +2,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="InternationalGYM">
-    <title>International GYM- Rutinas</title>
+    <title>Crear Rutina</title>
+    <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <?php

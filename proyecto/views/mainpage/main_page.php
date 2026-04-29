@@ -2,8 +2,10 @@
 <head>
     <link rel="stylesheet" href="main_page.css">
     <meta charset="UTF-8">
-	<meta name="author" content="InternationalGYM">
-	<title>International GYM</title>
+    <meta name="author" content="InternationalGYM">
+    <title>Página de inicio</title>
+    <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <?php

@@ -1,10 +1,3 @@
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="author" content="InternationalGym">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
 <header class="tn-header">
     <div class="tn-container tn-header__inner">
         <a class="tn-brand" href="index.php?controller=Resumen&action=index">
@@ -34,4 +27,3 @@
         </div>
     </div>
 </header>
-</body>

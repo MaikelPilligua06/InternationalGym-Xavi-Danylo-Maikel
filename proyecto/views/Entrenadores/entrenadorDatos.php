@@ -1,9 +1,14 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Entrenador - Sesiones</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="InternationalGYM">
+    <title><?php echo $entrenador->nombreEntrenador;?></title>
+    <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="views/styles.css">
+
 </head>
+<body>
 <?php
     include 'views/header.php';
     ?>
@@ -26,7 +31,7 @@
                         <h4>TIpo de clases: <?= $sesion->tipoDeClases ?></h4>
                         <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
                         <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
-    `                </a>
+                    </a>
                     <a href="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>">
                         <button>Apuntate</button>
                     </a>
@@ -44,3 +49,5 @@
 <?php
     include 'views/footer.php';
 ?>
+</body>
+</html>

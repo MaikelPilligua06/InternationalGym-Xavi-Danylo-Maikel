@@ -15,6 +15,7 @@ class AuthController {
             $_SESSION['id'] = $user['id'];
             $_SESSION['objetivo'] = $user['objetivo'];
             $_SESSION['correo'] = $user['correoElectronico'];
+            $_SESSION['nombre'] = $user['nombreUsuario'];
             header("Location: index.php?controller=Resumen&action=index");
             exit;
         } else if($entrenador) {

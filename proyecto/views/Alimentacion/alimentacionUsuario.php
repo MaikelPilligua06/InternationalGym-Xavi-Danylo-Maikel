@@ -1,3 +1,12 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="InternationalGYM">
+    <title>Alimentacion</title>
+    <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 <?php
     include 'views/header.php';
     ?>
@@ -18,7 +27,9 @@
             <?php foreach ($alimentacion as $platoUsuario): ?>
             <li>
                 <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $platoUsuario->id ?>">
-                    <p><?php echo $platoUsuario->nombrePlato ;?></p>
+                    <p>Nombre del plato: <?php echo $platoUsuario->nombrePlato ;?></p>
+                    <p>Proteinas: <?php echo $platoUsuario->proteinas;?></p>
+                    <p>Calorias: <?php echo $platoUsuario->calorias;?> kcal</p>
                 </a>
                 <a href="index.php?controller=Alimentacion&action=eliminarPlato&id=<?= $platoUsuario->id; ?>">
                     <button>Eliminar</button>
@@ -35,7 +46,9 @@
     <ul>
         <?php foreach ($todosLosPlatos as $plato): ?>
             <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $plato->id ?>">
-                <p><?= $plato->nombrePlato?></p>
+                <p>Nombre del plato: <?= $plato->nombrePlato?></p>
+                <p>Proteinas:: <?= $plato->proteinas?></p>
+                <p>Calorias: <?= $plato->calorias?> kcal</p>
             </a>
             <a href="index.php?controller=Alimentacion&action=addPlatoUsuario&id=<?= $plato->id ?>">
                 <button>Añadir</button>
@@ -46,3 +59,5 @@
     <?php
     include 'views/footer.php';
     ?>
+</body>
+</html>

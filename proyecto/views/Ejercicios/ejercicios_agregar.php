@@ -1,7 +1,10 @@
-<!DOCTYPE HTML>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="views/styles.css">
+    <meta charset="UTF-8">
+    <meta name="author" content="InternationalGYM">
+    <title>Ejercicio Agregar</title>
+    <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <?php

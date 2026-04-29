@@ -1,10 +1,3 @@
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="author" content="InternationalGym">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
 <footer class="tn-footer" id="contacto">
     <div class="tn-container tn-footer__grid">
         <div class="tn-footer__col">
@@ -62,9 +55,6 @@
         <a class="tn-top" href="#" aria-label="Volver arriba">↑</a>
     </div>
 </footer>
-
 <script>
     document.getElementById("tn-year").textContent = new Date().getFullYear();
 </script>
-</body>
-</html>

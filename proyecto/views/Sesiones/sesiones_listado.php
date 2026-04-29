@@ -1,8 +1,12 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Listado Sesiones</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="InternationalGYM">
+    <title>Listado de sesiones</title>
+    <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="views/styles.css">
+
 </head>
 <body>
 <?php include 'views/header.php'; ?>

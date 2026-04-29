@@ -1,6 +1,10 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="InternationalGYM">
+    <title>Perfil</title>
+    <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="views/styles.css">
 </head>
 <body>
@@ -75,3 +79,5 @@
 <?php
     include 'views/footer.php';
 ?>
+</body>
+</html>

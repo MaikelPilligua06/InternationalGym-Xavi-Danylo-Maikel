@@ -1,9 +1,12 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Publicaciones Entrenador</title>
-    <link rel="stylesheet" href="views/styles.css">
+    <meta charset="UTF-8">
+    <meta name="author" content="InternationalGYM">
+    <title>Publicaciones del entrenador</title>
+    <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
 </head>
+<body>
 <?php
     include 'views/header.php';
     ?>
@@ -42,3 +45,5 @@
 <?php
 include 'views/footer.php';
 ?>
+</body>
+</html>
