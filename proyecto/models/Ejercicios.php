@@ -8,7 +8,7 @@ class Ejercicios{
 
 
     public function __construct($datos = []) {
-        $this->id               = $datos["id"];
+        $this->id               = $datos["id"] ?? null;
         $this->nombreEjercicio  = $datos["nombreEjercicio"];
         $this->descripcion      = $datos["descripcion"];
         $this->foto             = $datos["foto"];

@@ -3,7 +3,7 @@ require_once "models/AuthModel.php";
 
 class AuthController {
     public function login() {
-        require "views/login.php";
+        require "views/login/login.php";
     }
     public function loginProcess() {
         $model = new AuthModel();
@@ -25,7 +25,7 @@ class AuthController {
         }
         return false;
         $error = "Usuario o contraseña incorrectos";
-        require "views/login.php";
+        require "views/login/login.php";
     }
 
     public function registro() {

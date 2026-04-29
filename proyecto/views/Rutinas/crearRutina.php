@@ -17,7 +17,14 @@ include "views/header.php";
                 <a href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $usuario->id ?>">
                     <li><?='Nombre del ejercicio: ', $usuario->nombreEjercicio, ', calorias: ', $usuario->calorias?></li>
                 </a>
-                <button>Agregar a la Rutina</button>
+                <form method="POST" action="index.php?controller=Rutinas&action=agregarPlato">
+                    <input type="hidden" name="id"       value="<?= $usuario->id ?>">
+                    <input type="hidden" name="nombre"   value="<?= $usuario->nombreEjercicio ?>">
+                    <input type="hidden" name="nombre"   value="<?= $usuario->descripcion ?>">
+                    <input type="hidden" name="nombre"   value="<?= $usuario->calorias ?>">
+                    <input type="hidden" name="nombre"   value="<?= $usuario->foto ?>">
+                    <button type="submit">Agregar a la Rutina</button>
+                </form>
                 <button>Eliminar</button>
             </ul>
         <?php endforeach;?>
@@ -27,18 +34,33 @@ include "views/header.php";
                 <a href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $ejercicio->id ?>">
                     <li><?= 'Nombre del ejercicio', $ejercicio->nombreEjercicio, ', calorias: ', $ejercicio->calorias?></li>
                 </a>
-                <button>Agregar a la Rutina</button>
+                <form method="POST" action="index.php?controller=Rutinas&action=agregarPlato">
+                    <input type="hidden" name="id"       value="<?= $ejercicio->id ?>">
+                    <input type="hidden" name="nombre"   value="<?= $ejercicio->nombreEjercicio ?>">
+                    <input type="hidden" name="nombre"   value="<?= $ejercicio->descripcion ?>">
+                    <input type="hidden" name="nombre"   value="<?= $ejercicio->calorias ?>">
+                    <input type="hidden" name="nombre"   value="<?= $ejercicio->foto ?>">
+                    <button type="submit">Agregar a la Rutina</button>
+                </form>
                 <button>Agregar a tus platos preferidos</button>
             </ul>
         <?php endforeach;?>
     </div>
 </div>
 <div class="listadoFinal">
-        <h3>Tu listado final: </h3>
-        <p>Total de calorias (comida): 1234</p>
-        <p>Total de calorias (ejercicios): 1234</p>
-    <p>Tu objetivo: </p>
-    </div>
+    <h3>Tu listado final de comida:</h3>
+    <ul>
+        <?php if (!empty($_SESSION['rutina_platos'])) : ?>
+            <?php foreach ($_SESSION['rutina_platos'] as $i => $p) : ?>
+                <li>
+                    <?= $p['nombre'] ?> — <?= $p['calorias'] ?> kcal
+                    <a href="index.php?controller=Rutinas&action=quitarPlato&index=<?= $i ?>">✕ Quitar</a>
+                </li>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <li>No hay platos añadidos aún.</li>
+        <?php endif; ?>
+    </ul>
 </div>
 <div>
     <div>

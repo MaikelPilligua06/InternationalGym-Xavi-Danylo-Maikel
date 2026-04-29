@@ -25,7 +25,7 @@ class RutinasController{
         $todosLosPlatos = $rutinas->getTodosLosPlatos();
         require "views/Rutinas/crearRutina.php";
     }
-    public function agregarEjercicio(){
+    public function agregarPlato(){
         if (isset($_POST['id'])) {
             $id       = $_POST['id'];
             $nombreEjercicio   = $_POST['nombreEjercicio'];

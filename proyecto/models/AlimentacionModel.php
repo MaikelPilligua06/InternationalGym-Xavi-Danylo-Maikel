@@ -27,103 +27,134 @@ class AlimentacionModel{
     }
 
     public function getTodosLosPlatos(){
-        $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Alimentacion");
-        $stmt->execute();
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $todosLosPlatos = [];
-        foreach ($resultado as $fila) {
-            $todosLosPlatos[] = new Alimentacion($fila);
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("SELECT * FROM Alimentacion");
+            $stmt->execute();
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $todosLosPlatos = [];
+            foreach ($resultado as $fila) {
+                $todosLosPlatos[] = new Alimentacion($fila);
+            }
+            return $todosLosPlatos;
+        } catch (PDOException $e) {
+            throw new Exception("Error al obtener los platos");
         }
-        return $todosLosPlatos;
     }
     public function agregarPlato($id, $usuarioId){
-        $db = conectar();
-        $stmt = $db->prepare("INSERT INTO Usuario_Alimentacion (id_usuario, id_alimentacion) VALUES (:id_usuario, :id_alimentacion)");
-        $stmt->execute([
-            ':id_usuario' => $usuarioId,
-            ':id_alimentacion' => $id
-        ]);
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("INSERT INTO Usuario_Alimentacion (id_usuario, id_alimentacion) VALUES (:id_usuario, :id_alimentacion)");
+            $stmt->execute([
+                ':id_usuario' => $usuarioId,
+                ':id_alimentacion' => $id
+            ]);
+        } catch (PDOException $e) {
+            throw new Exception("Error al agregar los platos");
+        }
     }
     public function eliminarPlatoUsuario($id, $usuarioId){
-        $db = conectar();
-        $stmt = $db->prepare("DELETE FROM Usuario_Alimentacion WHERE id_alimentacion = :id_alimentacion AND id_usuario = :id_usuario");
-        $stmt->execute([
-            ':id_usuario' => $usuarioId,
-            ':id_alimentacion' => $id
-        ]);
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("DELETE FROM Usuario_Alimentacion WHERE id_alimentacion = :id_alimentacion AND id_usuario = :id_usuario");
+            $stmt->execute([
+                ':id_usuario' => $usuarioId,
+                ':id_alimentacion' => $id
+            ]);
+        } catch (PDOException $e) {
+            throw new Exception("Error al eliminar los platos");
+        }
     }
     public function getCalorias($usuarioId){
-        $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Usuario_Alimentacion");
-        $stmt->execute();
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($resultado as $fila) {
-
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("SELECT * FROM Usuario_Alimentacion");
+            $stmt->execute();
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($resultado as $fila) {
+            }
+        } catch (PDOException $e) {
+            throw new Exception("Error al obtener calorias");
         }
     }
     public function guardar($plato){
-        $base_dir = "/var/www/html";
-        $db = conectar();
-        $stmt = $db->prepare("
-            INSERT INTO Alimentacion (objetivo, calorias, nombrePlato, descripcion, proteinas, carbohidratos, grasas, foto) 
-            VALUES (:objetivo, :calorias, :nombrePlato, :descripcion, :proteinas, :carbohidratos, :grasas, :foto)");
-        $extensiones = array(0=>'image/jpg',1=>'image/jpeg',2=>'image/png');
-        $max_tamanyo = 1024 * 1024 * 8;
+        try {
+            $base_dir = "/var/www/html";
+            $db = conectar();
+            $stmt = $db->prepare("
+                INSERT INTO Alimentacion (objetivo, calorias, nombrePlato, descripcion, proteinas, carbohidratos, grasas, foto) 
+                VALUES (:objetivo, :calorias, :nombrePlato, :descripcion, :proteinas, :carbohidratos, :grasas, :foto)");
+            $extensiones = array(0 => 'image/jpg', 1 => 'image/jpeg', 2 => 'image/png');
+            $max_tamanyo = 1024 * 1024 * 8;
 
-        $ruta_indexphp = dirname(realpath(__FILE__));
-        $ruta_fichero_origen = $_FILES['foto']['tmp_name'];
-       // $ruta_nuevo_destino = $ruta_indexphp . "/../views/gymFotos/" . $_FILES['foto']['name'];
-        $ruta_nuevo_destino = $base_dir . "/views/gymFotos/alimentacion/" . $_FILES['foto']['name'];
-        if (in_array($_FILES['foto']['type'], $extensiones)) {
-            if ($_FILES['foto']['size'] < $max_tamanyo) {
-                if (move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
-                    $plato->foto = $_FILES['foto']['name'];
-                    $stmt->execute([
-                        ':objetivo' => $plato->objetivo,
-                        ':calorias' => $plato->calorias,
-                        ':nombrePlato' => $plato->nombrePlato,
-                        ':descripcion' => $plato->descripcion,
-                        ':proteinas' => $plato->proteinas,
-                        ':carbohidratos' => $plato->carbohidratos,
-                        ':grasas' => $plato->grasas,
-                        ':foto' => $plato->foto
-                    ]);
-                    return "Plato creado correctamente";
+            $ruta_indexphp = dirname(realpath(__FILE__));
+            $ruta_fichero_origen = $_FILES['foto']['tmp_name'];
+            // $ruta_nuevo_destino = $ruta_indexphp . "/../views/gymFotos/" . $_FILES['foto']['name'];
+            $ruta_nuevo_destino = $base_dir . "/views/gymFotos/alimentacion/" . $_FILES['foto']['name'];
+            if (in_array($_FILES['foto']['type'], $extensiones)) {
+                if ($_FILES['foto']['size'] < $max_tamanyo) {
+                    if (move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
+                        $plato->foto = $_FILES['foto']['name'];
+                        $stmt->execute([
+                            ':objetivo' => $plato->objetivo,
+                            ':calorias' => $plato->calorias,
+                            ':nombrePlato' => $plato->nombrePlato,
+                            ':descripcion' => $plato->descripcion,
+                            ':proteinas' => $plato->proteinas,
+                            ':carbohidratos' => $plato->carbohidratos,
+                            ':grasas' => $plato->grasas,
+                            ':foto' => $plato->foto
+                        ]);
+                        return "Plato creado correctamente";
+                    }
+                } else {
+                    return "Error: el archivo es demasiado grande.";
                 }
-            } else {
-                return "Error: el archivo es demasiado grande.";
             }
+        } catch (PDOException $e) {
+            throw new Exception("Error al crear el plato");
         }
     }
     //* Función para ver la información de un plato/
     public function getPlato($id){
-        $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Alimentacion WHERE id = :id");
-        $stmt->execute([':id' => $id]);
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach($resultado as $plato){
-            $alimentacion = new Alimentacion($plato);
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("SELECT * FROM Alimentacion WHERE id = :id");
+            $stmt->execute([':id' => $id]);
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($resultado as $plato) {
+                $alimentacion = new Alimentacion($plato);
+            }
+            return $alimentacion;
+        } catch (PDOException $e) {
+            throw new Exception("Error al obtener los platos");
         }
-        return $alimentacion;
     }
     // Funcion para ver todos los platos para borrar
     public function getTodosLosPlatosAdmin(){
-        $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Alimentacion");
-        $stmt->execute();
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $todosLosPlatos = [];
-        foreach ($resultado as $fila) {
-            $todosLosPlatos[] = new Alimentacion($fila);
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("SELECT * FROM Alimentacion");
+            $stmt->execute();
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $todosLosPlatos = [];
+            foreach ($resultado as $fila) {
+                $todosLosPlatos[] = new Alimentacion($fila);
+            }
+            return $todosLosPlatos;
+        } catch (PDOException $e) {
+            throw new Exception("Error al obtener los platos admin");
         }
-        return $todosLosPlatos;
     }
     public function deletePlato($id){
-        $db = conectar();
-        $stmt = $db->prepare("DELETE FROM Usuario_Alimentacion WHERE id_alimentacion = :id");
-        $stmt->execute([':id' => $id]);
-        $stmt = $db->prepare("DELETE FROM Alimentacion WHERE id = :id");
-        $stmt->execute([':id' => $id]);
+        try{
+            $db = conectar();
+            $stmt = $db->prepare("DELETE FROM Usuario_Alimentacion WHERE id_alimentacion = :id");
+            $stmt->execute([':id' => $id]);
+            $stmt = $db->prepare("DELETE FROM Alimentacion WHERE id = :id");
+            $stmt->execute([':id' => $id]);
+        } catch (PDOException $e) {
+            throw new Exception("Error al eliminar el plato");
+        }
     }
 }

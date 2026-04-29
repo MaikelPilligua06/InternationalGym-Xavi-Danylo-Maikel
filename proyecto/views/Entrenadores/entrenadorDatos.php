@@ -18,20 +18,23 @@
 <div class="carrusel-movil">
     <h2>Sesiones del entrenador</h2>
     <div class="pista">
-
-        <?php foreach ($sesiones as $sesion): ?>
-            <div class="tarjeta-movil">
-                <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
-                    <h4>Nombre de la clase: <?= $sesion->nombreClase ?></h4>
-                    <h4>TIpo de clases: <?= $sesion->tipoDeClases ?></h4>
-                    <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
-                    <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
-`                </a>
-                <a href="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>">
-                    <button>Apuntate</button>
-                </a>
-            </div>
-        <?php endforeach; ?>
+        <?php if(!empty($sesiones)) :?>
+            <?php foreach ($sesiones as $sesion): ?>
+                <div class="tarjeta-movil">
+                    <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
+                        <h4>Nombre de la clase: <?= $sesion->nombreClase ?></h4>
+                        <h4>TIpo de clases: <?= $sesion->tipoDeClases ?></h4>
+                        <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
+                        <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
+    `                </a>
+                    <a href="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>">
+                        <button>Apuntate</button>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <h1>No tiene sesiones actualmente</h1>
+        <?php endif; ?>
     </div>
 </div>
 <form>

@@ -1,5 +1,5 @@
 <?php
-include 'header.php';
+include 'views/header.php';
 ?>
 <h1>Login</h1>
 
@@ -19,5 +19,5 @@ include 'header.php';
 <?php
 
 
-include 'footer.php';
+include 'views/footer.php';
 ?>
