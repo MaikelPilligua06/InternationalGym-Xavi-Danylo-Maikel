@@ -21,46 +21,48 @@ include "views/header.php";
                 </a>
                 <form method="POST" action="index.php?controller=Rutinas&action=agregarPlato">
                     <input type="hidden" name="id"       value="<?= $usuario->id ?>">
-                    <input type="hidden" name="nombre"   value="<?= $usuario->nombreEjercicio ?>">
-                    <input type="hidden" name="nombre"   value="<?= $usuario->descripcion ?>">
-                    <input type="hidden" name="nombre"   value="<?= $usuario->calorias ?>">
-                    <input type="hidden" name="nombre"   value="<?= $usuario->foto ?>">
+                    <input type="hidden" name="nombreEjercicio"   value="<?= $usuario->nombreEjercicio ?>">
+                    <input type="hidden" name="descripcion"   value="<?= $usuario->descripcion ?>">
+                    <input type="hidden" name="calorias"   value="<?= $usuario->calorias ?>">
+                    <input type="hidden" name="foto"   value="<?= $usuario->foto ?>">
                     <button type="submit">Agregar a la Rutina</button>
                 </form>
                 <button>Eliminar</button>
             </ul>
         <?php endforeach;?>
+    </div>
+    <div class="contenedorTodoslosEjercicios">
     <h4>Ejercicios que te podrian interesar: </h4>
         <?php foreach ($todoslosEjercicios as $ejercicio) :?>
             <ul>
                 <a href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $ejercicio->id ?>">
-                    <li><?= 'Nombre del ejercicio', $ejercicio->nombreEjercicio, ', calorias: ', $ejercicio->calorias?></li>
+                    <li><?= 'Nombre del ejercicio: ', $ejercicio->nombreEjercicio, ', calorias: ', $ejercicio->calorias?></li>
                 </a>
-                <form method="POST" action="index.php?controller=Rutinas&action=agregarPlato">
+                <form method="POST" action="index.php?controller=Rutinas&action=agregarEjercicio">
                     <input type="hidden" name="id"       value="<?= $ejercicio->id ?>">
-                    <input type="hidden" name="nombre"   value="<?= $ejercicio->nombreEjercicio ?>">
-                    <input type="hidden" name="nombre"   value="<?= $ejercicio->descripcion ?>">
-                    <input type="hidden" name="nombre"   value="<?= $ejercicio->calorias ?>">
-                    <input type="hidden" name="nombre"   value="<?= $ejercicio->foto ?>">
+                    <input type="hidden" name="nombreEjercicio"   value="<?= $ejercicio->nombreEjercicio ?>">
+                    <input type="hidden" name="descripcion"   value="<?= $ejercicio->descripcion ?>">
+                    <input type="hidden" name="calorias"   value="<?= $ejercicio->calorias ?>">
+                    <input type="hidden" name="foto"   value="<?= $ejercicio->foto ?>">
                     <button type="submit">Agregar a la Rutina</button>
+                    <button>Agregar a tus platos preferidos</button>
                 </form>
-                <button>Agregar a tus platos preferidos</button>
             </ul>
         <?php endforeach;?>
     </div>
 </div>
-<div class="listadoFinal">
-    <h3>Tu listado final de comida:</h3>
+<div class="listadoFinalEjercicios">
+    <h3>Tu listado final de ejercicios:</h3>
     <ul>
-        <?php if (!empty($_SESSION['rutina_platos'])) : ?>
-            <?php foreach ($_SESSION['rutina_platos'] as $i => $p) : ?>
+        <?php if (!empty($_SESSION['rutina_ejercicios'])) : ?>
+            <?php foreach ($_SESSION['rutina_ejercicios'] as $i => $p) : ?>
                 <li>
-                    <?= $p['nombre'] ?> — <?= $p['calorias'] ?> kcal
-                    <a href="index.php?controller=Rutinas&action=quitarPlato&index=<?= $i ?>">✕ Quitar</a>
+                    <?= $p['nombreEjercicio'] ?> — <?= $p['calorias'] ?> kcal
+                    <a href="index.php?controller=Rutinas&action=quitarEjercicio&index=<?= $i ?>">Quitar</a>
                 </li>
             <?php endforeach; ?>
         <?php else : ?>
-            <li>No hay platos añadidos aún.</li>
+            <li>No hay ejercicios añadidos aún.</li>
         <?php endif; ?>
     </ul>
 </div>
@@ -79,7 +81,6 @@ include "views/header.php";
     </div>
     <div>
         <h4>Demas comida</h4>
-        <h1>ne</h1>
         <?php foreach($todosLosPlatos as $platos) :?>
             <ul>
                 <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $platos->id ?>">

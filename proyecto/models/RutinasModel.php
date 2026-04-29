@@ -69,7 +69,7 @@ class RutinasModel{
         return $todosLosPlatos;
     }
 
-    public function guardarEjercicio(){
+    public function guardarEjercicio($id, $nombreEjercicio, $descripcion, $foto, $calorias){
         foreach ($_SESSION['rutina_ejercicios'] as $ejercicio) {
             if ($ejercicio['id'] == $id) {
                 return false;
@@ -84,7 +84,7 @@ class RutinasModel{
         ];
         return true;
     }
-    public function eliminarEjercicio(){
+    public function eliminarEjercicio($index){
         if (isset($_SESSION['rutina_ejercicios'][$index])) {
             unset($_SESSION['rutina_ejercicios'][$index]);
             $temporal = [];

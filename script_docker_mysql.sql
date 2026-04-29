@@ -71,7 +71,7 @@ CREATE TABLE Usuario_Ejercicio (
 );
 
 CREATE TABLE Rutina (
-  id_rutina INT AUTO_INCREMENT PRIMARY KEY,
+  id_rutina INT PRIMARY KEY,
   id_usuario INT,
   nombre_rutina VARCHAR(255),
   objetivo ENUM('perder peso','ganar fuerza','estabilidad'),
@@ -83,12 +83,14 @@ CREATE TABLE Rutina (
 CREATE TABLE Contiene (
   id_rutina INT,
   id_ejercicio INT,
+  id_alimentacion INT,
   series INT,
   repeticiones INT,
   peso INT,
-  PRIMARY KEY (id_rutina, id_ejercicio),
+  PRIMARY KEY (id_rutina, id_ejercicio, id_alimentacion),
   FOREIGN KEY (id_rutina) REFERENCES Rutina(id_rutina),
-  FOREIGN KEY (id_ejercicio) REFERENCES Ejercicios(id)
+  FOREIGN KEY (id_ejercicio) REFERENCES Ejercicios(id),
+  FOREIGN KEY (id_alimentacion) REFERENCES Alimentacion(id)
 );
 
 CREATE TABLE Chat (
