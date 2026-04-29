@@ -10,7 +10,7 @@ include 'views/header.php';
     <h3>Carbohidratos: <?= $alimentacion->carbohidratos ?> </h3>
     <h3>Grasas: <?= $alimentacion->grasas ?> </h3>
     <h3>Descripción: <?= $alimentacion->descripcion ?> </h3>
-    <img src="views/gymFotos/<?= $alimentacion->foto?>"/>
+    <img src="views/gymFotos/alimentacion/<?= $alimentacion->foto?>"/>
     <div>
         <a href="index.php?controller=Alimentacion&action=addPlatoUsuario&id=<?= $alimentacion->id ?>">
             <button>Agregar plato</button>

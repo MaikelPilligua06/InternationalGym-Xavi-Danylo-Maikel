@@ -13,18 +13,22 @@
 <p>Total de calorias obtenidas atraves de su lista de comida:</p>
 <div>
     <h3>Listado de tus platos: </h3>
-    <ul>
-        <?php foreach ($alimentacion as $platoUsuario): ?>
-        <li>
-            <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $platoUsuario->id ?>">
-                <p><?php echo $platoUsuario->nombrePlato ;?></p>
-            </a>
-            <a href="index.php?controller=Alimentacion&action=eliminarPlato&id=<?= $platoUsuario->id; ?>">
-                <button>Eliminar</button>
-            </a>
-        </li>
-        <?php endforeach; ?>
-    </ul>
+    <?php if (!empty($alimentacion)) : ?>
+        <ul>
+            <?php foreach ($alimentacion as $platoUsuario): ?>
+            <li>
+                <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $platoUsuario->id ?>">
+                    <p><?php echo $platoUsuario->nombrePlato ;?></p>
+                </a>
+                <a href="index.php?controller=Alimentacion&action=eliminarPlato&id=<?= $platoUsuario->id; ?>">
+                    <button>Eliminar</button>
+                </a>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else : ?>
+        <p>No tienes ni un plato agregado.</p>
+    <?php endif; ?>
 </div>
 <div>
     <h3>Lista de platos en general: </h3>
