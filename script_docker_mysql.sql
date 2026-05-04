@@ -133,6 +133,7 @@ CREATE TABLE SesionesDeClases (
   id_entrenador INT,
   descripcion VARCHAR(8000),
   foto VARCHAR(255),
+  calorias INT,
   FOREIGN KEY (id_entrenador) REFERENCES Entrenadores(id)
 );
 

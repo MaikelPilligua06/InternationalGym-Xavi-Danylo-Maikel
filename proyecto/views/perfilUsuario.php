@@ -17,7 +17,7 @@
 
     <form>
         <h3>Nombre: </h3>
-        <p><?php echo $usuario->nombreUsuario ;?></p>
+        <p><?= $usuario->nombreUsuario ?></p>
 
         <h3>Apellido: </h3>
         <p><?php echo $usuario->apellido ;?></p>
