@@ -19,7 +19,7 @@ include "views/header.php";
                 <a href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $usuario->id ?>">
                     <li><?='Nombre del ejercicio: ', $usuario->nombreEjercicio, ', calorias: ', $usuario->calorias?></li>
                 </a>
-                <form method="POST" action="index.php?controller=Rutinas&action=agregarPlato">
+                <form method="POST" action="index.php?controller=Rutinas&action=agregarEjercicio">
                     <input type="hidden" name="id"       value="<?= $usuario->id ?>">
                     <input type="hidden" name="nombreEjercicio"   value="<?= $usuario->nombreEjercicio ?>">
                     <input type="hidden" name="descripcion"   value="<?= $usuario->descripcion ?>">
