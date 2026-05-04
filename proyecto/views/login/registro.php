@@ -36,11 +36,14 @@ include 'views/header.php';
         <option value="estabilidad">Estabilidad</option>
     </select>
     <input type="file" name="foto" placeholder="Foto">
-    <input type="number" name="edad" placeholder="Edad">
 
-    <button type="submit">Entrar</button>
+
+    <button type="submit">Crear</button>
 </form>
-<h1><?= $entrenadores->nombreEntrenador?></h1>
+<?php foreach($entrenadores as $entrenador): ?>
+    <p><?=  $entrenador->nombreEntrenador?></p>
+<?php endforeach; ?>
+
 <?php
 include 'views/footer.php';
 ?>
