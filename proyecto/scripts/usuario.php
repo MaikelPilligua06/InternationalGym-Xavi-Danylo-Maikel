@@ -1,5 +1,6 @@
 <?php
-require_once "../models/db.php";
+require_once __DIR__ . '/../models/db.php'; 
+
 
 $db = conectar();
 $passwordAdmin = password_hash("mvp", PASSWORD_DEFAULT);
