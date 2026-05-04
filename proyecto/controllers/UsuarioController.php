@@ -24,4 +24,37 @@ class UsuarioController{
             exit();
         }
     }
+    public function crear(){
+        if(!empty($_POST)){
+            $datos = [
+                'nombreUsuario' => $_POST['nombreUsuario'],
+                'apellido' => $_POST['apellido'],
+                'numeroTelefono' => $_POST['numeroTelefono'],
+                'tipoDocumento' => $_POST['tipoDocumento'],
+                'numeroDocumento' => $_POST['numeroDocumento'],
+                'correoElectronico' => $_POST['correoElectronico'],
+                'contrasenia' => $_POST['contrasenia'],
+                'edad' => $_POST['edad'],
+                'genero' => $_POST['genero'],
+                'peso' => $_POST['peso'],
+                'altura' => $_POST['altura'],
+                'objetivo' => $_POST['objetivo'],
+                'fechaDeAlta' => $_POST['fechaDeAlta'],
+                'foto' => $_POST['foto'],
+                'id_entrenador' => $_POST['id_entrenador']
+
+            ];
+        }
+
+        $model = new UsuarioModel();
+        $usuario = new Usuario($datos);
+        $model->save($usuario);
+        header("Location: index.php");
+        exit;
+    }
+    public function registro(){
+        $model = new UsuarioModel();
+        $entrenadores = $model->getEntrenadores();
+        require "views/login/registro.php";
+    }
 }

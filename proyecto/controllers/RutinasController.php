@@ -46,9 +46,35 @@ class RutinasController{
             $quitarEjercicio = new RutinasModel();
             $quitarEjercicio->eliminarEjercicio($index);
         }
+    }
+    public function agregarPlato(){
+        if (isset($_POST['id'])) {
+            $id       = $_POST['id'];
+            $objetivo = $_POST['objetivo'];
+            $calorias = $_POST['calorias'];
+            $nombrePlato = $_POST['nombrePlato'];
+            $descripcion = $_POST['descripcion'];
+            $proteinas = $_POST['proteinas'];
+            $carbohidratos = $_POST['carbohidratos'];
+            $grasas = $_POST['grasas'];
+            $foto = $_POST['foto'];
+
+            $rutinaPlato = new RutinasModel();
+            $rutinaPlato->guardarPlato($id, $objetivo, $calorias, $nombrePlato, $descripcion, $proteinas, $carbohidratos, $grasas, $foto);
+        }
         header('Location: index.php?controller=Rutinas&action=crearRutina');
         exit;
     }
+    public function quitarPlato(){
+        if(isset($_GET['index'])){
+            $index = $_GET['index'];
+            $quitarPlato = new RutinasModel();
+            $quitarPlato->eliminarPlato($index);
+        }
+        header('Location: index.php?controller=Rutinas&action=crearRutina');
+        exit;
+    }
+
     public function guardar() {
         $nombreRutina = $_POST['nombre_rutina'];
         $ejercicios   = $_SESSION['rutina_ejercicios'] ?? [];

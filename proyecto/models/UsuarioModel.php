@@ -1,6 +1,7 @@
 <?php
 require_once 'Usuario.php';
 require_once 'db.php';
+require_once 'Entrenador.php';
 
 class UsuarioModel {
     public function getAll($usuarioId){
@@ -26,5 +27,20 @@ class UsuarioModel {
         ");
         $stmt->execute([":usuarioId" => $usuarioId]);
         return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+    public function save($usuario){
+        $db = conectar();
+        $stmt = $db->prepare("INSERT INTO Usuarios (nombreUsuario, apellido, numeroTelefono, tipoDocumento, numeroDocumento, correoElectronico, contrasenia, edad, genero, peso, altura, objetivo, fechaDeAlta, foto, id_entrenador)");
+        $stmt->execute();
+    }
+    public function getEntrenadores(){
+        $db = conectar();
+        $stmt = $db->query("SELECT id, nombreEntrenador, apellido, correoElectronico, descripcion FROM Entrenadores");
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $entrenadores = [];
+        foreach($resultado as $entrenador){
+            $entrenadores[] = new Entrenador($entrenador);
+        }
+        return $entrenadores;
     }
 }

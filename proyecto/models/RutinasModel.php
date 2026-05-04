@@ -97,4 +97,36 @@ class RutinasModel{
             return false;
         }
     }
+    public function guardarPlato($id, $objetivo, $calorias, $nombrePlato, $descripcion, $proteinas, $carbohidratos, $grasas, $foto){
+        foreach($_SESSION['rutina_platos'] as $plato){
+            if($plato['id'] == $id){
+                return false;
+            }
+        }
+        $_SESSION['rutina_platos'][] = [
+            'id'       => $id,
+            'objetivo'   => $objetivo,
+            'calorias' => $calorias,
+            'nombrePlato'   => $nombrePlato,
+            'descripcion' => $descripcion,
+            'proteinas' => $proteinas,
+            'carbohidratos' => $carbohidratos,
+            'grasas' => $grasas,
+            'foto' => $foto
+        ];
+        return true;
+    }
+    public function eliminarPlato($index){
+        if (isset($_SESSION['rutina_platos'][$index])) {
+            unset($_SESSION['rutina_platos'][$index]);
+            $temporal = [];
+            foreach ($_SESSION['rutina_platos'] as $plato) {
+                $temporal[] = $plato;
+            }
+            $_SESSION['rutina_platos'] = $temporal;
+            return true;
+        } else{
+            return false;
+        }
+    }
 }

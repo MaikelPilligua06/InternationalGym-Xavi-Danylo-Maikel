@@ -31,7 +31,7 @@
                         <h4>TIpo de clases: <?= $sesion->tipoDeClases ?></h4>
                         <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
                         <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
-                    </a>
+                    < /a>
                     <a href="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>">
                         <button>Apuntate</button>
                     </a>

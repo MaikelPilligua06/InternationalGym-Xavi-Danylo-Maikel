@@ -15,16 +15,16 @@ include 'views/header.php';
 <?php if (!empty($error)): ?>
     <p class="error"><?= $error ?></p>
 <?php endif; ?>
-
+<div>
     <form method="POST" action="index.php?controller=Auth&action=loginProcess">
         <input type="text" name="correo" placeholder="Correo electrónico">
         <input type="password" name="password" placeholder="Contraseña">
         <button type="submit">Entrar</button>
     </form>
-
-
-
-
+    <a href="index.php?controller=Usuario&action=registro">
+        <button>Crear Usuario</button>
+    </a>
+</div>
 <?php
 
 

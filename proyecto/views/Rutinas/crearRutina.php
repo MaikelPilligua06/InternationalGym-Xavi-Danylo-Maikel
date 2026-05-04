@@ -74,7 +74,6 @@ include "views/header.php";
                 <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $usuarioAlimentacion->id ?>">
                     <li><?= 'Nombre del Plato: ',$usuarioAlimentacion->nombrePlato, ', calorias: ', $usuarioAlimentacion->calorias, ', proteinas: ', $usuarioAlimentacion->proteinas?></li>
                 </a>
-                <button>Agregar a tu Rutina</button>
                 <button>Eliminar de tus preferencias</button>
             </ul>
         <?php endforeach;?>
@@ -86,14 +85,40 @@ include "views/header.php";
                 <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $platos->id ?>">
                     <li><?= 'Nombre del Plato: ', $platos->nombrePlato, ', calorias: ', $platos->calorias, ', proteinas: ', $platos->proteinas?></li>
                 </a>
-                <button>Agregar a la Rutina</button>
+
+                <form method="POST" action="index.php?controller=Rutinas&action=agregarPlato">
+                    <input type="hidden" name="id"       value="<?= $platos->id ?>">
+                    <input type="hidden" name="objetivo" value="<?= $platos->objetivo ?>">
+                    <input type="hidden" name="calorias" value="<?= $platos->calorias ?>">
+                    <input type="hidden" name="nombrePlato" value="<?= $platos->nombrePlato ?>">
+                    <input type="hidden" name="descripcion" value="<?= $platos->descripcion ?>">
+                    <input type="hidden" name="proteinas" value="<?= $platos->proteinas ?>">
+                    <input type="hidden" name="carbohidratos" value="<?= $platos->carbohidratos ?>">
+                    <input type="hidden" name="grasas" value="<?= $platos->grasas ?>">
+                    <input type="hidden" name="foto" value="<?= $platos->foto ?>">
+                    <button type="submit">Agregar a la Rutina</button>
+                </form>
                 <button>Agregar a tus preferencias </button>
             </ul>
         <?php endforeach;?>
     </div>
-    <h3>Tu listado final: </h3>
-    <p>Total de calorias: sga</p>
-    <p>Tu objetivo: </p>
+        <div>
+            <h3>Listado Final</h3>
+            <?php if (!empty($_SESSION['rutina_platos'])): ?>
+
+            <ul>
+                <?php foreach ($_SESSION['rutina_platos'] as $i => $platos): ?>
+                    <li>
+                        <p>Nombre del Plato: <?= $platos['nombrePlato'] ?> </p>
+                        <p>Calorias: <?= $platos['calorias'] ?></p>
+                        <a href="index.php?controller=Rutinas&action=quitarPlato&index=<?= $i ?>">
+                            <button>Quitar</button>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <?php endif; ?>
+        </div>
 </div>
     <a href="index.php?controller=Rutinas&action=redirectRutinas">
 <button>Volver</button>

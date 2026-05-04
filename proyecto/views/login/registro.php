@@ -11,7 +11,7 @@
 include 'views/header.php';
 ?>
 
-<form method="POST" action="index.php?controller=Usuarios&action=crearUsuario">
+<form method="POST" action="index.php?controller=Usuario&action=crear">
     <input type="text" name="nombreUsuario" placeholder="Nombre">
     <input type="text" name="apellido" placeholder="Apellido">
     <input type="tel" name="numeroTelefono" placeholder="Numero de telefono">
@@ -40,6 +40,7 @@ include 'views/header.php';
 
     <button type="submit">Entrar</button>
 </form>
+<h1><?= $entrenadores->nombreEntrenador?></h1>
 <?php
 include 'views/footer.php';
 ?>
