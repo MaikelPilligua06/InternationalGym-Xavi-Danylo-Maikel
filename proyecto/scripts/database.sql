@@ -34,6 +34,8 @@ CREATE TABLE Usuarios (
 
 CREATE TABLE Alimentacion (
                               id INT AUTO_INCREMENT PRIMARY KEY,
+                              id_usuario INT NULL,
+                              fecha DATE NULL,
                               objetivo ENUM('perder peso','ganar fuerza','estabilidad'),
                               calorias FLOAT,
                               nombrePlato VARCHAR(100),
@@ -41,7 +43,8 @@ CREATE TABLE Alimentacion (
                               proteinas INT,
                               carbohidratos INT,
                               grasas INT,
-);ñññññññññññññññ
+                              foto VARCHAR(255)
+);
 CREATE TABLE Usuario_Alimentacion (
                                    id_usuario INT,
                                    id_alimentacion INT,
@@ -84,6 +87,7 @@ CREATE TABLE Chat (
                       id_entrenador INT,
                       mensaje VARCHAR(255),
                       fechaHora DATETIME,
+                      enviado_por ENUM('usuario', 'entrenador') NOT NULL DEFAULT 'usuario,
                       FOREIGN KEY (id_usuario) REFERENCES Usuarios(id),
                       FOREIGN KEY (id_entrenador) REFERENCES Entrenadores(id)
 );
