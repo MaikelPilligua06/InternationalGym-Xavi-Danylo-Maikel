@@ -1,9 +1,0 @@
-service:
-  web:
-    build: ../
-    container_name: intgym
-    ports:
-      - "8088-80"
-      - "3368:3306"
-    volumes:
-      

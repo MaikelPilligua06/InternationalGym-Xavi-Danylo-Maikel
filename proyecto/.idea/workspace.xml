@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b5c3ac09-f2b9-40b8-9959-e1648aa050ee" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/controllers/ChatController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/ChatModel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/chat_update.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/Chat/chat.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/Chat/chat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dockerfile_mysql" beforeDir="false" afterPath="$PROJECT_DIR$/../Dockerfile_mysql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InternationalGym.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../InternationalGym.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ResumenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ResumenController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/AuthModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/AuthModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/ResumenModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/ResumenModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/db.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/db.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/database.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/Objetivo/resumen_ver.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/Objetivo/resumen_ver.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/login/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/login/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../script_docker_mysql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../script_docker_mysql.sql" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="PHP File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/bin/php" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="3A5736DxJeJwjxD2tjfIYq4roWF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "PHP Script.index.php.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "Merging main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/home/Alumne/laravel/helloworld",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views/Rutinas" />
+      <recent name="$PROJECT_DIR$/views/Objetivo" />
+      <recent name="$PROJECT_DIR$/views/Sesiones" />
+      <recent name="$PROJECT_DIR$/views/Ejercicios" />
+      <recent name="$PROJECT_DIR$/views/Alimentacion" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-PS-261.23567.149" />
+        <option value="bundled-php-predefined-a98d8de5180a-022fa7b8ab75-com.jetbrains.php.sharedIndexes-PS-261.23567.149" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b5c3ac09-f2b9-40b8-9959-e1648aa050ee" name="Changes" comment="" />
+      <created>1771870375240</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1771870375240</updated>
+      <workItem from="1771870376258" duration="3032000" />
+      <workItem from="1772031745271" duration="3148000" />
+      <workItem from="1772036806371" duration="3362000" />
+      <workItem from="1772116938779" duration="142000" />
+      <workItem from="1772205395805" duration="3139000" />
+      <workItem from="1772473026744" duration="6183000" />
+      <workItem from="1772636728223" duration="9600000" />
+      <workItem from="1772648812516" duration="19000" />
+      <workItem from="1772648865754" duration="14000" />
+      <workItem from="1772648891553" duration="3000" />
+      <workItem from="1772720163877" duration="3000" />
+      <workItem from="1772726803239" duration="1738000" />
+      <workItem from="1773081013829" duration="3145000" />
+      <workItem from="1773419737022" duration="718000" />
+      <workItem from="1774287624270" duration="5240000" />
+      <workItem from="1774452352611" duration="6404000" />
+      <workItem from="1774547066901" duration="4143000" />
+      <workItem from="1775666528292" duration="689000" />
+      <workItem from="1776188733463" duration="29000" />
+      <workItem from="1777914026957" duration="4899000" />
+      <workItem from="1778077190632" duration="2803000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/models/Rutinas.php</url>
+          <line>8</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

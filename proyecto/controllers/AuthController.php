@@ -1,28 +1,30 @@
 <?php
-require_once "models/AuthModel.php";
 
 class AuthController {
-    public function login() {
+    public function login()
+    {
         require "views/login/login.php";
     }
-    public function loginProcess() {
+
+    public function loginProcess()
+    {
+        $correo = trim($_POST['correoElectronico'] ?? '');
+        $password = trim($_POST['contrasenia'] ?? '');
+
         $model = new AuthModel();
-        $correo = $_POST['correo'] ?? null;
-        $password = $_POST['password'] ?? null;
         $user = $model->login($correo, $password);
+
         if ($user) {
             $_SESSION['usuario'] = $user;
             $_SESSION['id'] = $user['id'];
             $_SESSION['objetivo'] = $user['objetivo'];
             $_SESSION['correo'] = $user['correoElectronico'];
             $_SESSION['nombre'] = $user['nombreUsuario'];
+            $_SESSION['usuario'] = $user['id'];
+            $_SESSION['tipo'] = $user['tipo'];
+            $_SESSION['nombre'] = $user['nombre'] ?? '';
             header("Location: index.php?controller=Resumen&action=index");
             exit;
-        } else if($entrenador) {
-            $_SESSION['usuario'] = $entrenador;
-            $_SESSION['id'] = $entrenador['id'];
-            $_SESSION['correo'] = $entrenador['correoElectronico'];
-            header("Location: index.php?controller=Resumen&action=index");
         }
         return false;
         $error = "Usuario o contraseña incorrectos";
@@ -35,13 +37,16 @@ class AuthController {
 
     public function registroProcess() {
 
+
+        header("Location: index.php?controller=Auth&action=login&error=1");
+        exit;
     }
-    public function logout() {
+
+    public function logout()
+    {
+        session_unset();
         session_destroy();
-        header("Location: index.php");
+        header("Location: index.php?controller=Auth&action=login");
         exit;
     }
 }
-
-
-

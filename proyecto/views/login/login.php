@@ -17,8 +17,8 @@ include 'views/header.php';
 <?php endif; ?>
 
     <form method="POST" action="index.php?controller=Auth&action=loginProcess">
-        <input type="text" name="correo" placeholder="Correo electrónico">
-        <input type="password" name="password" placeholder="Contraseña">
+        <input type="email" name="correoElectronico" placeholder="Correo electrónico">
+        <input type="password" name="contrasenia" placeholder="Contraseña">
         <button type="submit">Entrar</button>
     </form>
 
@@ -26,9 +26,14 @@ include 'views/header.php';
 
 
 <?php
+<<<<<<< HEAD:proyecto/views/login/login.php
 
 
 include 'views/footer.php';
 ?>
 </body>
 </html>
+=======
+include 'footer.php';
+?>
+>>>>>>> 40479de8991d3be5a55e23802afbbcef13dac02b:proyecto/views/login.php
