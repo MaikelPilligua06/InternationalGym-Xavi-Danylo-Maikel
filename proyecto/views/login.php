@@ -8,8 +8,8 @@ include 'header.php';
 <?php endif; ?>
 
     <form method="POST" action="index.php?controller=Auth&action=loginProcess">
-        <input type="text" name="correo" placeholder="Correo electrónico">
-        <input type="password" name="password" placeholder="Contraseña">
+        <input type="email" name="correoElectronico" placeholder="Correo electrónico">
+        <input type="password" name="contrasenia" placeholder="Contraseña">
         <button type="submit">Entrar</button>
     </form>
 <?php

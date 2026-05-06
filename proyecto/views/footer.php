@@ -6,6 +6,7 @@
 </head>
 <body>
 <footer class="tn-footer" id="contacto">
+
     <div class="tn-container tn-footer__grid">
         <div class="tn-footer__col">
             <div class="tn-footer__brand">
@@ -51,6 +52,11 @@
                 <a href="#" aria-label="Instagram">IG</a>
                 <a href="#" aria-label="TikTok">TT</a>
                 <a href="#" aria-label="YouTube">YT</a>
+                <link rel="stylesheet" href="views/Chat/chat.css">
+		<a class="trainer-chat-button" href="index.php?controller=Chat&action=index" aria-label="Abrir chat con entrenador">
+    			<span class="trainer-chat-button__dot"></span>
+    			<span>Hablar con entrenador</span>
+		</a>
             </div>
         </div>
     </div>
