@@ -35,7 +35,7 @@ CREATE TABLE Usuarios (
 CREATE TABLE Alimentacion (
                               id INT AUTO_INCREMENT PRIMARY KEY,
                               id_usuario INT NULL,
-                              fecha DATE NULL,
+                              fecha_registro DATE NULL,
                               objetivo ENUM('perder peso','ganar fuerza','estabilidad'),
                               calorias FLOAT,
                               nombrePlato VARCHAR(100),

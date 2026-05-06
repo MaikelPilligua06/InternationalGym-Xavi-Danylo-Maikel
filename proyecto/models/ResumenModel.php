@@ -17,7 +17,7 @@ class ResumenModel
             SELECT COALESCE(SUM(calorias), 0) AS totalCalorias
             FROM Alimentacion
             WHERE id_usuario = ?
-            AND fecha BETWEEN ? AND ?
+            AND fecha_registro BETWEEN ? AND ?
         ");
 
         $stmt->execute([
