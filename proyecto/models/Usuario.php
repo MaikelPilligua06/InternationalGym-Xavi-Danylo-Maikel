@@ -15,7 +15,7 @@ class Usuario
     public $contrasenia;
     public $edad;
     public $genero;
-    public $fechaDeAlta;
+
     public $foto;
 
     public $altura;
@@ -37,7 +37,6 @@ class Usuario
         $this->contrasenia = $datos["contrasenia"] ?? null;
         $this->edad = $datos["edad"] ?? null;
         $this->genero = $datos["genero"] ?? null;
-        $this->fechaDeAlta = $datos["fechaDeAlta"] ?? null;
         $this->foto = $datos["foto"] ?? null;
         $this->objetivo = $datos["objetivo"] ?? null;
         $this->altura = $datos["altura"] ?? null;

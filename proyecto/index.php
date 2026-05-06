@@ -3,7 +3,7 @@ session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$publicActions = ['login', 'loginProcess', 'registro'];
+$publicActions = ['login', 'loginProcess', 'registro', 'crear'];
 $action = $_GET['action'] ?? 'index';
 $controller = $_GET['controller'] ?? 'Resumen';
 $controllerName = $controller . "Controller";

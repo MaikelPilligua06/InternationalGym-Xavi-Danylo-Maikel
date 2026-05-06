@@ -38,16 +38,15 @@ class UsuarioController{
                 $peso = $_POST['peso'];
                 $altura = $_POST['altura'];
                 $objetivo = $_POST['objetivo'];
-                $fechaDeAlta = $_POST['fechaDeAlta'];
                 $foto = $_FILES['foto']['name'];
                 $id_entrenador = $_POST['entrenador_id'];
 
                 $model = new UsuarioModel();
-                $model->save($nombreUsuario, $apellido, $numeroTelefono, $tipoDocumento, $numeroDocumento, $correoElectronico, $contrasenia, $edad, $genero, $peso, $altura, $objetivo, $fechaDeAlta, $foto, $id_entrenador);
+                $model->save($nombreUsuario, $apellido, $numeroTelefono, $tipoDocumento, $numeroDocumento, $correoElectronico, $contrasenia, $edad, $genero, $peso, $altura, $objetivo,  $foto, $id_entrenador);
 
         }
         header("Location: index.php");
-        exit;
+        exit();
     }
     public function registro(){
         $model = new UsuarioModel();

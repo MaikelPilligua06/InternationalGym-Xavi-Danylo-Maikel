@@ -28,47 +28,45 @@ class UsuarioModel {
         $stmt->execute([":usuarioId" => $usuarioId]);
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
-    public function save($nombreUsuario, $apellido, $numeroTelefono, $tipoDocumento, $numeroDocumento, $correoElectronico, $contrasenia, $edad, $genero, $peso, $altura, $objetivo, $fechaDeAlta, $foto, $id_entrenador){
+    public function save($nombreUsuario, $apellido, $numeroTelefono, $tipoDocumento, $numeroDocumento, $correoElectronico, $contrasenia, $edad, $genero, $peso, $altura, $objetivo,  $foto, $id_entrenador){
         $db = conectar();
         $hash = password_hash($contrasenia, PASSWORD_DEFAULT);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+            $base_dir = "/var/www/html/views/gymFotos/usuarios/";
+            $ruta_nuevo_destino = $base_dir . basename($_FILES['foto']['name']);
+
+            if (move_uploaded_file($_FILES['foto']['tmp_name'], $ruta_nuevo_destino)) {
+                $fotoNombre = $_FILES['foto']['name'];
+            }
+        }
 
         $stmt = $db->prepare("
-            INSERT INTO Usuarios 
-            (nombreUsuario, apellido, numeroTelefono, tipoDocumento, numeroDocumento, correoElectronico, contrasenia, edad, genero, peso, altura, 
-            objetivo, fechaDeAlta, foto, id_entrenador) VALUES (:nombreUsuario, :apellido, :numeroTelefono, :tipoDocumento, :numeroDocumento, :correoElectronico, :contrasenia, :edad, :genero, :peso, :altura, :objetivo, :fechaDeAlta, :foto, :id_entrenador)");
+    INSERT INTO Usuarios 
+    (nombreUsuario, apellido, numeroTelefono, tipoDocumento, numeroDocumento, correoElectronico, contrasenia, edad, genero, peso, altura, objetivo, foto, id_entrenador)
+    VALUES
+    (:nombreUsuario, :apellido, :numeroTelefono, :tipoDocumento, :numeroDocumento, :correoElectronico, :contrasenia, :edad, :genero, :peso, :altura, :objetivo, :foto, :id_entrenador)
+");
 
-        $base_dir = "/var/www/html";
-        $extensiones = array(0=>'image/jpg',1=>'image/jpeg',2=>'image/png');
-        $max_tamanyo = 1024 * 1024 * 8;
-        $ruta_indexphp = dirname(realpath(__FILE__));
-        $ruta_fichero_origen = $_FILES['foto']['tmp_name'];
-        $ruta_nuevo_destino = $base_dir . "/views/gymFotos/usuario/" . $_FILES['foto']['name'];
-        if (in_array($_FILES['foto']['type'], $extensiones)) {
-            if ($_FILES['foto']['size'] < $max_tamanyo) {
-                if (move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
-                    $foto = $_FILES['foto']['name'];
-                    $stmt->execute([
-                        ':nombreUsuario' => $nombreUsuario,
-                        ':apellido' => $apellido,
-                        ':numeroTelefono' => $numeroTelefono,
-                        ':tipoDocumento' => $tipoDocumento,
-                        ':numeroDocumento' => $numeroDocumento,
-                        ':correoElectronico' => $correoElectronico,
-                        ':contrasenia' => $hash,
-                        ':edad' => $edad,
-                        ':genero' => $genero,
-                        ':peso' => $peso,
-                        ':altura' => $altura,
-                        ':objetivo' => $objetivo,
-                        ':fechaDeAlta' => $fechaDeAlta,
-                        ':foto' => $foto,
-                        ':id_entrenador' => $id_entrenador
-
-        ]);
-                }
-            } else{
-
-            }
+        try {
+            $stmt->execute([
+                ':nombreUsuario' => $nombreUsuario,
+                ':apellido' => $apellido,
+                ':numeroTelefono' => $numeroTelefono,
+                ':tipoDocumento' => $tipoDocumento,
+                ':numeroDocumento' => $numeroDocumento,
+                ':correoElectronico' => $correoElectronico,
+                ':contrasenia' => $hash,
+                ':edad' => $edad,
+                ':genero' => $genero,
+                ':peso' => $peso,
+                ':altura' => $altura,
+                ':objetivo' => $objetivo,
+                ':foto' => $foto,
+                ':id_entrenador' => $id_entrenador
+            ]);
+        } catch (PDOException $e) {
+            die("Error al insertar usuario: " . $e->getMessage());
         }
     }
     public function getEntrenadores(){
