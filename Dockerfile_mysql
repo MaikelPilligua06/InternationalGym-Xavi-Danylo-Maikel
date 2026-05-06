@@ -1,2 +1,0 @@
-FROM mysql:latest
-COPY InternationalGym.sql /docker-entrypoint-initdb.d/InternationalGym.sql
