@@ -26,29 +26,26 @@ class UsuarioController{
     }
     public function crear(){
         if(!empty($_POST)){
-            $datos = [
-                'nombreUsuario' => $_POST['nombreUsuario'],
-                'apellido' => $_POST['apellido'],
-                'numeroTelefono' => $_POST['numeroTelefono'],
-                'tipoDocumento' => $_POST['tipoDocumento'],
-                'numeroDocumento' => $_POST['numeroDocumento'],
-                'correoElectronico' => $_POST['correoElectronico'],
-                'contrasenia' => $_POST['contrasenia'],
-                'edad' => $_POST['edad'],
-                'genero' => $_POST['genero'],
-                'peso' => $_POST['peso'],
-                'altura' => $_POST['altura'],
-                'objetivo' => $_POST['objetivo'],
-                'fechaDeAlta' => $_POST['fechaDeAlta'],
-                'foto' => $_POST['foto'],
-                'id_entrenador' => $_POST['id_entrenador']
+                $nombreUsuario = $_POST['nombreUsuario'];
+                $apellido = $_POST['apellido'];
+                $numeroTelefono = $_POST['numeroTelefono'];
+                $tipoDocumento = $_POST['tipoDocumento'];
+                $numeroDocumento = $_POST['numeroDocumento'];
+                $correoElectronico = $_POST['correoElectronico'];
+                $contrasenia = $_POST['contrasenia'];
+                $edad = $_POST['edad'];
+                $genero = $_POST['genero'];
+                $peso = $_POST['peso'];
+                $altura = $_POST['altura'];
+                $objetivo = $_POST['objetivo'];
+                $fechaDeAlta = $_POST['fechaDeAlta'];
+                $foto = $_FILES['foto']['name'];
+                $id_entrenador = $_POST['entrenador_id'];
 
-            ];
+                $model = new UsuarioModel();
+                $model->save($nombreUsuario, $apellido, $numeroTelefono, $tipoDocumento, $numeroDocumento, $correoElectronico, $contrasenia, $edad, $genero, $peso, $altura, $objetivo, $fechaDeAlta, $foto, $id_entrenador);
+
         }
-
-        $model = new UsuarioModel();
-        $usuario = new Usuario($datos);
-        $model->save($usuario);
         header("Location: index.php");
         exit;
     }

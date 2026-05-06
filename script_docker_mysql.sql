@@ -40,7 +40,7 @@ CREATE TABLE Alimentacion (
   objetivo ENUM('perder peso','ganar fuerza','estabilidad'),
   calorias FLOAT,
   nombrePlato VARCHAR(100),
-  descripcion VARCHAR(100),
+  descripcion TEXT,
   proteinas INT,
   carbohidratos INT,
   grasas INT,
