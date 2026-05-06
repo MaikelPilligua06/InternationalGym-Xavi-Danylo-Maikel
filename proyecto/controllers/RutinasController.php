@@ -16,6 +16,9 @@ class RutinasController{
         if (!isset($_SESSION['rutina_platos'])) {
             $_SESSION['rutina_platos'] = [];
         }
+        if (!isset($_SESSION['rutina_sesiones'])) {
+            $_SESSION['rutina_sesiones'] = [];
+        }
 
         $id = $_SESSION['id'];
         $rutinas = new RutinasModel();

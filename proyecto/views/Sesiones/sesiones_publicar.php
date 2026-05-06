@@ -37,6 +37,9 @@ include 'views/header.php'
         <textarea name="descripcion" rows="4" cols="50"
                   placeholder="" required></textarea>
     </p>
+    <label>Calorias: </label>
+    <input type="number" name="calorias"/>
+
     <br/>
     <label>Imagen de la sesión</label>
     <input type="file" name="foto" accept="image/*"/>

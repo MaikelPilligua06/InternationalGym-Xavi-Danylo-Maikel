@@ -41,9 +41,9 @@ WHERE usuario_sesion.id_usuario = :id;
         $db = conectar();
         $stmt = $db->prepare("
         INSERT INTO SesionesDeClases
-        (nombreClase, tipoDeClases, fechaClases, duracion, descripcion, id_entrenador, foto)
+        (nombreClase, tipoDeClases, fechaClases, duracion, descripcion, id_entrenador, foto, calorias)
         VALUES
-        (:nombreClase, :tipoDeClases, :fechaClases, :duracion, :descripcion, :id_entrenador, :foto)
+        (:nombreClase, :tipoDeClases, :fechaClases, :duracion, :descripcion, :id_entrenador, :foto, :calorias)
     ");
         $base_dir = "/var/www/html";
         $extensiones = array(0=>'image/jpg',1=>'image/jpeg',2=>'image/png');
@@ -62,6 +62,7 @@ WHERE usuario_sesion.id_usuario = :id;
                         ':duracion' => $sesion->duracion,
                         ':descripcion' => $sesion->descripcion,
                         ':foto' => $sesion->foto,
+                        ':calorias' => $sesion->calorias,
                         ':id_entrenador' => $id_entrenador
                     ]);
                 }
@@ -86,7 +87,7 @@ WHERE usuario_sesion.id_usuario = :id;
     public function misPub($usuario){
         $db = conectar();
         $stmt = $db->prepare("
-            SELECT s.id, s.nombreClase, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion
+            SELECT s.id, s.nombreClase, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion, s.foto, s.calorias
             FROM SesionesDeClases s
             INNER JOIN Entrenadores e ON s.id_entrenador = e.id
             WHERE e.id = :id

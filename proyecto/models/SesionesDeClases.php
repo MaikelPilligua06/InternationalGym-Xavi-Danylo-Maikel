@@ -9,6 +9,7 @@ class SesionesDeClases
     public $id_entrenador;
     public $descripcion;
     public $foto;
+    public $calorias;
 
     public function __construct($datos = [])
     {
@@ -21,5 +22,7 @@ class SesionesDeClases
         $this->id_entrenador = $datos["id_entrenador"] ?? null;
         $this->descripcion = $datos["descripcion"] ?? null;
         $this->foto = $datos["foto"] ?? null;
+        $this->calorias = $datos["calorias"] ?? null;
+
     }
 }

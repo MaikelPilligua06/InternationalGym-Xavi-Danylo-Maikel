@@ -120,6 +120,56 @@ include "views/header.php";
             <?php endif; ?>
         </div>
 </div>
+<div class="sesioens">
+    <div>
+        <h4>Tus sesiones Apuntadas</h4>
+        <?php foreach($todosLosPlatos as $platos) :?>
+            <ul>
+                <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $platos->id ?>">
+                    <li><?= 'Nombre del Plato: ', $platos->nombrePlato, ', calorias: ', $platos->calorias, ', proteinas: ', $platos->proteinas?></li>
+                </a>
+
+                <form method="POST" action="index.php?controller=Rutinas&action=agregarPlato">
+                    <input type="hidden" name="id"       value="<?= $platos->id ?>">
+                    <button type="submit">Agregar a la Rutina</button>
+                </form>
+                <button>Agregar a tus preferencias </button>
+            </ul>
+        <?php endforeach;?>
+    </div>
+    <div>
+        <h4>Demas Sesiones</h4>
+        <?php foreach($todosLosPlatos as $platos) :?>
+            <ul>
+                <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $platos->id ?>">
+                    <li><?= 'Nombre del Plato: ', $platos->nombrePlato, ', calorias: ', $platos->calorias, ', proteinas: ', $platos->proteinas?></li>
+                </a>
+                <form method="POST" action="index.php?controller=Rutinas&action=agregarPlato">
+                    <input type="hidden" name="id"       value="<?= $platos->id ?>">
+                    <button type="submit">Agregar a la Rutina</button>
+                </form>
+                <button>Agregar a tus preferencias </button>
+            </ul>
+        <?php endforeach;?>
+    </div>
+    <div>
+        <h3>Listado Final - Sesiones</h3>
+        <?php if (!empty($_SESSION['rutina_sesiones'])): ?>
+
+            <ul>
+                <?php foreach ($_SESSION['rutina_sesiones'] as $i => $platos): ?>
+                    <li>
+                        <p>Nombre del Plato: <?= $platos['nombrePlato'] ?> </p>
+                        <p>Calorias: <?= $platos['calorias'] ?></p>
+                        <a href="index.php?controller=Rutinas&action=quitarPlato&index=<?= $i ?>">
+                            <button>Quitar</button>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+    </div>
+</div>
     <a href="index.php?controller=Rutinas&action=redirectRutinas">
 <button>Volver</button>
         <button>Crear Rutina</button>

@@ -50,11 +50,12 @@
             <?php foreach ($sesiones as $sesion): ?>
             <div class="tarjeta-movil">
                 <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
-                <h4>Nombre de la clase: <?= $sesion->nombreClase ?></h4>
-                <h4>TIpo de clases: <?= $sesion->tipoDeClases ?></h4>
-                <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
-                 <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
-                 <p><strong>Entrenador:</strong> <?= $sesion->nombreEntrenador ?></p>
+                    <h4>Nombre de la clase: <?= $sesion->nombreClase ?></h4>
+                    <h4>TIpo de clases: <?= $sesion->tipoDeClases ?></h4>
+                        <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
+                         p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
+                        <p><strong>Entrenador:</strong> <?= $sesion->nombreEntrenador ?></p>
+                        <p><strong>Calorias: </strong> <?= $sesion->calorias?></p>
                 </a>
                  <a href="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>">
                     <button>Apuntate</button>

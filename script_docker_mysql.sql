@@ -70,6 +70,20 @@ CREATE TABLE Usuario_Ejercicio (
   FOREIGN KEY (id_ejercicio) REFERENCES Ejercicios(id)
 );
 
+CREATE TABLE SesionesDeClases (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombreClase VARCHAR(255),
+  tipoDeClases ENUM('Cardio','Cycling','trenSuperior','trenInferior'),
+  fechaClases DATE,
+  duracion TIME,
+  id_entrenador INT,
+  descripcion VARCHAR(8000),
+  foto VARCHAR(255),
+  calorias INT,
+  FOREIGN KEY (id_entrenador) REFERENCES Entrenadores(id)
+);
+
+
 CREATE TABLE Rutina (
   id_rutina INT PRIMARY KEY,
   id_usuario INT,
@@ -84,12 +98,14 @@ CREATE TABLE Contiene (
   id_rutina INT,
   id_ejercicio INT,
   id_alimentacion INT,
+  id_sesion INT,
   series INT,
   repeticiones INT,
   peso INT,
   PRIMARY KEY (id_rutina, id_ejercicio, id_alimentacion),
   FOREIGN KEY (id_rutina) REFERENCES Rutina(id_rutina),
   FOREIGN KEY (id_ejercicio) REFERENCES Ejercicios(id),
+  FOREIGN KEY (id_sesion) REFERENCES SesionesDeClases(id),
   FOREIGN KEY (id_alimentacion) REFERENCES Alimentacion(id)
 );
 
@@ -122,19 +138,6 @@ CREATE TABLE ResumenDiario (
   caloriasConsumidas FLOAT,
   notas TEXT,
   FOREIGN KEY (id_usuario) REFERENCES Usuarios(id)
-);
-
-CREATE TABLE SesionesDeClases (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  nombreClase VARCHAR(255),
-  tipoDeClases ENUM('Cardio','Cycling','trenSuperior','trenInferior'),
-  fechaClases DATE,
-  duracion TIME,
-  id_entrenador INT,
-  descripcion VARCHAR(8000),
-  foto VARCHAR(255),
-  calorias INT,
-  FOREIGN KEY (id_entrenador) REFERENCES Entrenadores(id)
 );
 
 CREATE TABLE Usuario_Sesion (
