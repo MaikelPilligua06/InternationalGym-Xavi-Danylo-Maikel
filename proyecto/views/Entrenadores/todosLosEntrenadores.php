@@ -9,47 +9,49 @@
 
 </head>
 <?php
-    include 'views/header.php';
+include 'views/header.php';
 ?>
 
 <div class="contenido">
 
     <h1>Tu Entrenador es</h1>
-        <?php foreach($lista as $entrenadorUsuario): ?>
-            <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenadorUsuario->id;?>">
-                <div class="texto">
-                    <h2><?php echo $entrenadorUsuario->nombreEntrenador, '', $entrenadorUsuario->apellido;?></h2>
-                    <h2><?php echo $entrenadorUsuario->correoElectronico;?></h2>
-                    <h2><?php echo $entrenadorUsuario->descripcion;?></h2>
-                </div>
+    <?php foreach($lista as $entrenadorUsuario): ?>
+        <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenadorUsuario->id;?>">
+            <div class="texto">
+                <h2><?php echo $entrenadorUsuario->nombreEntrenador, '', $entrenadorUsuario->apellido;?></h2>
+                <h2><?php echo $entrenadorUsuario->correoElectronico;?></h2>
+                <h2><?php echo $entrenadorUsuario->descripcion;?></h2>
+            </div>
 
-                <div class="imagen">
+            <div class="imagen">
                 <img src="views/gymFotos/entrenadaor1.jpg" alt="Entrenador">
-                </div>
+            </div>
         </a>
-        <?php endforeach; ?>
+    <?php endforeach; ?>
 </div>
-    <hr/>
+<hr/>
 
-        <h3 class="logo">Todos los entrenadores</h3>
+<h3 class="logo">Todos los entrenadores</h3>
 
-    <?php foreach ($entrenadores as $entrenador): ?>
+<?php foreach ($entrenadores as $entrenador): ?>
     <div class="contenido-oscuro">
 
-            <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenador->id; ?>">
-                <div class="texto">
-                    <h3><?= $entrenador->nombreEntrenador . ' ' . $entrenador->apellido; ?></h3>
-                    <p><?= $entrenador->descripcion; ?></p>
-                </div>
-                <div class="imagen">
-                    <img src="views/gymFotos/entrenador.png" alt="Entrenador">
-                </div>
-            </a>
+        <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenador->id; ?>">
+            <div class="texto">
+                <h3><?= $entrenador->nombreEntrenador . ' ' . $entrenador->apellido; ?></h3>
+                <p><?= $entrenador->descripcion; ?></p>
+            </div>
+            <div class="imagen">
+                <img src="views/gymFotos/entrenador.png" alt="Entrenador">
+            </div>
+        </a>
     </div>
 <?php endforeach; ?>
 
-    <?php
-    include 'views/footer.php';
+<?php
+include 'views/footer.php';
 ?>
 </body>
 </html>
+
+

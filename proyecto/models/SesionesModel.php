@@ -112,4 +112,22 @@ WHERE usuario_sesion.id_usuario = :id;
             'id_sesion' => $id
         ]);
     }
+    public function sesionesUsuarioEntrenador($usuario){
+        $db = conectar();
+        $stmt = $db->prepare("
+        SELECT s.id, s.nombreClase, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion, s.id_entrenador
+        FROM SesionesDeClases s
+        INNER JOIN Usuarios u ON s.id_entrenador = u.id
+        WHERE u.id = :id
+    ");
+        $stmt->execute([':id' => $usuario]);
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $entrenadorSesiones = [];
+        foreach ($resultado as $fila) {
+            $entrenadorSesiones[] = new SesionesDeClases($fila);
+        }
+        return $entrenadorSesiones;
+    }
+
 }

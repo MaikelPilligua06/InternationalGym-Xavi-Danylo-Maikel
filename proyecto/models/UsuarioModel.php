@@ -28,6 +28,7 @@ class UsuarioModel {
         $stmt->execute([":usuarioId" => $usuarioId]);
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+
     public function save($nombreUsuario, $apellido, $numeroTelefono, $tipoDocumento, $numeroDocumento, $correoElectronico, $contrasenia, $edad, $genero, $peso, $altura, $objetivo,  $foto, $id_entrenador){
         $db = conectar();
         $hash = password_hash($contrasenia, PASSWORD_DEFAULT);

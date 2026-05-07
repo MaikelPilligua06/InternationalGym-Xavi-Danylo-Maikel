@@ -1,31 +1,38 @@
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="author" content="InternationalGYM">
-    <title>Resumen diario</title>
-    <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<?php
-    include 'views/header.php';
-    ?>
+<?php include 'views/header.php'; ?>
 
-<h2>Perdida Calorica de este mes</h2>
-<hr>
+    <section class="resumen-page">
+        <h1>Pérdida Calórica</h1>
 
-<div>
-    <h2>Crear mes</h2>
-</div>
-<div>
+        <form method="GET" action="index.php">
+            <input type="hidden" name="controller" value="Resumen">
+            <input type="hidden" name="action" value="index">
 
-    <h3>Este dia has perdido un total de <?= $resumen->caloriasConsumidas?>kCAL</h3>
-    <h3>Estas a x CAL de alcanzar tu objetivo!!</h3>
-    <h3>¿Quieres ajustar tu objetivo calórico?</h3>
-    <p>Clica aqui para hacerlo!!</p>
-</div>
-<?php
-    include 'views/footer.php';
-?>
-</body>
-</html>
+            <label>Fecha inicio:</label>
+            <input type="date" name="fecha_inicio" value="<?= htmlspecialchars($fechaInicio) ?>">
+
+            <label>Fecha fin:</label>
+            <input type="date" name="fecha_fin" value="<?= htmlspecialchars($fechaFin) ?>">
+
+            <button type="submit">Consultar</button>
+        </form>
+
+        <hr>
+
+        <h2>Calorías consumidas</h2>
+
+        <p>
+            Entre el <strong><?= htmlspecialchars($fechaInicio) ?></strong>
+            y el <strong><?= htmlspecialchars($fechaFin) ?></strong>
+            has consumido:
+        </p>
+
+        <h2>
+            <?= htmlspecialchars($resumen['totalCalorias'] ?? 0) ?> KCAL
+        </h2>
+    </section>
+
+<?php include  'views/footer.php'; ?>
