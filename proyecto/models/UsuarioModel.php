@@ -27,4 +27,20 @@ class UsuarioModel {
         $stmt->execute([":usuarioId" => $usuarioId]);
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function save($usuario){
+        $db = conectar();
+        $stmt = $db->prepare("INSERT INTO Usuarios (nombreUsuario, apellido, numeroTelefono, tipoDocumento, numeroDocumento, correoElectronico, contrasenia, edad, genero, peso, altura, objetivo, fechaDeAlta, foto, id_entrenador)");
+        $stmt->execute();
+    }
+    public function getEntrenadores(){
+        $db = conectar();
+        $stmt = $db->query("SELECT id, nombreEntrenador, apellido, correoElectronico, descripcion FROM Entrenadores");
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $entrenadores = [];
+        foreach($resultado as $entrenador){
+            $entrenadores[] = new Entrenador($entrenador);
+        }
+        return $entrenadores;
+    }
 }

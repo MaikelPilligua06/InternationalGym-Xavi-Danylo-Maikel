@@ -11,7 +11,7 @@
 include 'views/header.php';
 ?>
 
-<form method="POST" action="index.php?controller=Usuarios&action=crearUsuario">
+<form method="POST" action="index.php?controller=Usuario&action=crear">
     <input type="text" name="nombreUsuario" placeholder="Nombre">
     <input type="text" name="apellido" placeholder="Apellido">
     <input type="tel" name="numeroTelefono" placeholder="Numero de telefono">
@@ -36,12 +36,18 @@ include 'views/header.php';
         <option value="estabilidad">Estabilidad</option>
     </select>
     <input type="file" name="foto" placeholder="Foto">
-    <input type="number" name="edad" placeholder="Edad">
 
-    <button type="submit">Entrar</button>
+
+    <button type="submit">Crear</button>
 </form>
+<?php foreach($entrenadores as $entrenador): ?>
+    <p><?=  $entrenador->nombreEntrenador?></p>
+<?php endforeach; ?>
+
 <?php
 include 'views/footer.php';
 ?>
 </body>
 </html>
+
+

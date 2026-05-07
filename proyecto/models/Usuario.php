@@ -21,7 +21,7 @@ class Usuario
     public $altura;
     public $peso;
 
-    public $entrenador;
+    public $id_entrenador;
 
     public function __construct($datos = [])
     {
@@ -41,7 +41,9 @@ class Usuario
         $this->foto = $datos["foto"] ?? null;
         $this->objetivo = $datos["objetivo"] ?? null;
         $this->altura = $datos["altura"] ?? null;
-        $this->entrenador = $datos["entrenador"] ?? null;
+        $this->id_entrenador = $datos["id_entrenador"] ?? null;
 
     }
 }
+
+

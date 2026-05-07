@@ -1,21 +1,247 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    line-height: 24px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+
+
+.pagina-principal {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+
+
+.perdidaCal {
+    background-color: black;
+    border: 1px solid gray;
+    border-radius: 12px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.perdidaCal h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: yellow;
+    margin-bottom: 10px;
+}
+
+.perdidaCal a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.perdidaCal p {
+    margin-top: 12px;
+    color: gray;
+    font-size: 14px;
+}
+
+
+
+.Ejercicios h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid yellow;
+    display: inline-block;
+}
+
 .imgEntrenos {
-    position: relative !important;
-    display: inline-block !important;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: black;
+    border: 1px solid gray;
+}
+
+.imgEntrenos a {
+    display: block;
 }
 
 .imgEntrenos img {
-    display: block !important;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    opacity: 0.60;
 }
 
 .textoIMG {
-    position: absolute !important;
-    bottom: 10px !important;
-    left: 10px !important;
-    color: yellow !important;
-    background-color: rgba(0, 0, 0, 0.5) !important;
-    padding: 5px !important;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: yellow;
 }
 
-.textoIMG h1 {
-    margin: 0 !important;
+
+
+.Alimentacion {
+    background-color: black;
+    border: 1px solid gray;
+    border-radius: 12px;
+    padding: 28px 32px;
+}
+
+.Alimentacion h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 18px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 10px;
+}
+
+.Alimentacion > div {
+    margin-bottom: 22px;
+}
+
+.Alimentacion > div a {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 12px 16px;
+    background-color: black;
+    color: white;
+}
+
+.Alimentacion > div img {
+    width: 54px;
+    height: 54px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.Alimentacion > div h1 {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+.Alimentacion h3 {
+    font-size: 15px;
+    font-weight: bold;
+    color: lightgray;
+    margin-bottom: 14px;
+}
+
+.Alimentacion-datos ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.Alimentacion-datos li {
+    background-color: black;
+    border: 1px solid gray;
+    border-left: 3px solid yellow;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    color: lightgray;
+}
+
+
+
+.Entrenador {
+    background-color: black;
+    border: 1px solid gray;
+    border-radius: 12px;
+    padding: 28px 32px;
+}
+
+.Entrenador h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: yellow;
+    margin-bottom: 8px;
+}
+
+.Entrenador h3 {
+    font-size: 15px;
+    font-weight: bold;
+    color: lightgray;
+    margin-bottom: 20px;
+}
+
+.Entrenador h4 {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    color: yellow;
+    border: 1px solid yellow;
+    border-radius: 8px;
+    padding: 9px 16px;
+    cursor: pointer;
+}
+
+
+
+@media (max-width: 768px) {
+    .perdidaCal {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .perdidaCal a {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .Alimentacion-datos ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .Alimentacion-datos ul {
+        grid-template-columns: 1fr;
+    }
 }

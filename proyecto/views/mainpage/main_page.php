@@ -1,20 +1,21 @@
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="main_page.css">
     <meta charset="UTF-8">
     <meta name="author" content="InternationalGYM">
     <title>Página de inicio</title>
+    <meta charset="UTF-8">
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="views/mainpage/main_page.css">
 </head>
 <body>
 <?php
     include 'views/header.php';
 ?>
+<main>
+<div class="pagina-principal">
 	<div class="perdidaCal">
-		<h2>Pérdida de Calorías</h2>
 		<a href="index.php?controller=Resumen&action=verResumen">
-			<p>Revisar mis calorias</p>
 			<img src="" alt ="Perdida de Calorias" img="kCAL"/>
 		</a>
 		<?php
@@ -55,6 +56,8 @@
         <h3>Tu entrenador tiene las siguientes sesiones activas</h3>
         <h4>Ver más entrenadores</h4>
     </div>
+</div>
+</main>
 <?php
  include 'views/footer.php';
 ?>
