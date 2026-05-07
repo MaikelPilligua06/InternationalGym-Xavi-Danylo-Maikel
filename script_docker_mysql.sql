@@ -65,32 +65,47 @@ CREATE TABLE Ejercicios (
 CREATE TABLE Usuario_Ejercicio (
   id_usuario INT,
   id_ejercicio INT,
+  series INT,
+  repeticiones INT,
+  peso INT,
   PRIMARY KEY (id_usuario, id_ejercicio),
   FOREIGN KEY (id_usuario) REFERENCES Usuarios(id),
   FOREIGN KEY (id_ejercicio) REFERENCES Ejercicios(id)
 );
 
 CREATE TABLE Rutina (
-  id_rutina INT PRIMARY KEY,
+  id_rutina INT AUTO_INCREMENT PRIMARY KEY, 
   id_usuario INT,
   nombre_rutina VARCHAR(255),
   objetivo ENUM('perder peso','ganar fuerza','estabilidad'),
-  fecha_inicio DATE,
+  fecha_inicio DATE DEFAULT (CURRENT_DATE()),
   fechaTiempo TIME,
   FOREIGN KEY (id_usuario) REFERENCES Usuarios(id)
 );
 
+CREATE TABLE SesionesDeClases (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombreClase VARCHAR(255),
+  tipoDeClases ENUM('Cardio','Cycling','trenSuperior','trenInferior'),
+  fechaClases DATE,
+  duracion TIME,
+  id_entrenador INT,
+  descripcion VARCHAR(8000),
+  foto VARCHAR(255),
+  calorias INT,
+  FOREIGN KEY (id_entrenador) REFERENCES Entrenadores(id)
+);
+
 CREATE TABLE Contiene (
-  id_rutina INT,
-  id_ejercicio INT,
-  id_alimentacion INT,
-  series INT,
-  repeticiones INT,
-  peso INT,
-  PRIMARY KEY (id_rutina, id_ejercicio, id_alimentacion),
-  FOREIGN KEY (id_rutina) REFERENCES Rutina(id_rutina),
-  FOREIGN KEY (id_ejercicio) REFERENCES Ejercicios(id),
-  FOREIGN KEY (id_alimentacion) REFERENCES Alimentacion(id)
+  id             INT AUTO_INCREMENT PRIMARY KEY,
+  id_rutina      INT NOT NULL,
+  id_ejercicio   INT NULL,
+  id_alimentacion INT NULL,
+  id_sesion      INT NULL,
+  FOREIGN KEY (id_rutina)         REFERENCES Rutina(id_rutina),
+  FOREIGN KEY (id_ejercicio)      REFERENCES Ejercicios(id),
+  FOREIGN KEY (id_alimentacion)   REFERENCES Alimentacion(id),
+  FOREIGN KEY (id_sesion)         REFERENCES SesionesDeClases(id)
 );
 
 CREATE TABLE Chat (
@@ -122,19 +137,6 @@ CREATE TABLE ResumenDiario (
   caloriasConsumidas FLOAT,
   notas TEXT,
   FOREIGN KEY (id_usuario) REFERENCES Usuarios(id)
-);
-
-CREATE TABLE SesionesDeClases (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  nombreClase VARCHAR(255),
-  tipoDeClases ENUM('Cardio','Cycling','trenSuperior','trenInferior'),
-  fechaClases DATE,
-  duracion TIME,
-  id_entrenador INT,
-  descripcion VARCHAR(8000),
-  foto VARCHAR(255),
-  calorias INT,
-  FOREIGN KEY (id_entrenador) REFERENCES Entrenadores(id)
 );
 
 CREATE TABLE Usuario_Sesion (

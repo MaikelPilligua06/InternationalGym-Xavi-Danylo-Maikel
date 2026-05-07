@@ -51,7 +51,7 @@
             <div class="tarjeta-movil">
                 <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
                 <h4>Nombre de la clase: <?= $sesion->nombreClase ?></h4>
-                <h4>TIpo de clases: <?= $sesion->tipoDeClases ?></h4>
+                <h4>Tipo de clases: <?= $sesion->tipoDeClases ?></h4>
                 <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
                  <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
                  <p><strong>Entrenador:</strong> <?= $sesion->nombreEntrenador ?></p>
