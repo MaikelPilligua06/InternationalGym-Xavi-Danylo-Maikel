@@ -26,7 +26,6 @@ class UsuarioController{
     }
     public function crear(){
         if(!empty($_POST)){
-<<<<<<< HEAD
             $datos = [
                 'nombreUsuario' => $_POST['nombreUsuario'],
                 'apellido' => $_POST['apellido'],
@@ -52,7 +51,6 @@ class UsuarioController{
         $model->save($usuario);
         header("Location: index.php");
         exit;
-=======
                 $nombreUsuario = $_POST['nombreUsuario'];
                 $apellido = $_POST['apellido'];
                 $numeroTelefono = $_POST['numeroTelefono'];
@@ -71,21 +69,14 @@ class UsuarioController{
                 $model = new UsuarioModel();
                 $model->save($nombreUsuario, $apellido, $numeroTelefono, $tipoDocumento, $numeroDocumento, $correoElectronico, $contrasenia, $edad, $genero, $peso, $altura, $objetivo,  $foto, $id_entrenador);
 
-        }
+
         header("Location: index.php");
         exit();
->>>>>>> 5d2af1755716ccc4a82ebf2380e7034cb6bbe477
     }
     public function registro(){
         $model = new UsuarioModel();
         $entrenadores = $model->getEntrenadores();
         require "views/login/registro.php";
     }
-<<<<<<< HEAD
 
-
-
-
-=======
->>>>>>> 5d2af1755716ccc4a82ebf2380e7034cb6bbe477
 }

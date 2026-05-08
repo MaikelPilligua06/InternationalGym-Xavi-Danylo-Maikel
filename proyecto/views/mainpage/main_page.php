@@ -82,20 +82,23 @@
                         <p><?= $fila->duracion ?></p>
                         <p><?= $fila->fechaClases ?></p>
                     </a>
+                    <div class="button">
                     <a href="index.php?controller=Sesiones&action=eliminarSesion&id=<?= $fila->id ?>">
                         <button>Eliminar</button>
                     </a>
+                </div>
                 </div>
 
         <?php endforeach; ?>
         <?php else : ?>
         <h4>Tu entrenador no tiene sesiones activas</h4>
         <?php endif; ?>
+
+        </div>
         <a href="index.php?controller=Entrenador&action=getAllEntrenadores">
 
-        <h4>Ver más entrenadores</h4>
+            <h4>Ver más entrenadores</h4>
         </a>
-        </div>
     </div>
 </div>
 </main>
