@@ -8,6 +8,10 @@ class RutinasController{
         $ver = $rutinas->verRutinas($id);
         require "views/Rutinas/rutinas_ver.php";
     }
+
+    public function rutinaDiaria(){
+//
+    }
     // Función para crear una rutina Usuario
     public function crearRutina(){
         if (!isset($_SESSION['rutina_ejercicios'])) {
