@@ -19,6 +19,7 @@ class AuthController
 
         if ($user) {
             $_SESSION['usuario'] = $user['id'];
+            $_SESSION['id'] = $user['id'];
             $_SESSION['tipo'] = $user['tipo'];
             $_SESSION['nombre'] = $user['nombre'] ?? '';
 
