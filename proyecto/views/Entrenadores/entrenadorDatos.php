@@ -29,9 +29,10 @@
                     <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
                         <h4>Nombre de la clase: <?= $sesion->nombreClase ?></h4>
                         <h4>TIpo de clases: <?= $sesion->tipoDeClases ?></h4>
+                        <p><strong>Calorias:</strong> <?= $sesion->calorias ?></p>
                         <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
                         <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
-                    < /a>
+                    </a>
                     <a href="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>">
                         <button>Apuntate</button>
                     </a>
