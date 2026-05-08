@@ -11,8 +11,8 @@ class AuthController
 
     public function loginProcess()
     {
-        $correo = trim($_POST['correoElectronico'] ?? '');
-        $password = trim($_POST['contrasenia'] ?? '');
+        $correo = trim($_POST['correo'] ?? '');
+        $password = trim($_POST['password'] ?? '');
 
         $model = new AuthModel();
         $user = $model->login($correo, $password);
@@ -25,7 +25,6 @@ class AuthController
             header("Location: index.php?controller=Resumen&action=index");
             exit;
         }
-
         header("Location: index.php?controller=Auth&action=login&error=1");
         exit;
     }
