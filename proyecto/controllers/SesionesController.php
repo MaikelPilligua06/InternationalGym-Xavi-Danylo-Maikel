@@ -19,6 +19,7 @@ class SesionesController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $datos = [
                 'tipoDeClases' => $_POST['tipoDeClases'],
+                'calorias' => $_POST['calorias'],
                 'fechaClases' => $_POST['fechaClases'],
                 'duracion' => $_POST['duracion'],
                 'id_entrenador' => $_SESSION['id'],
@@ -57,6 +58,7 @@ class SesionesController
         if(!empty($_POST)) {
             $datos = [
                 'nombreClase'  => $_POST['nombreClase'],
+                'calorias' => $_POST ['calorias'],
                 'tipoDeClases' => $_POST['tipoDeClases'],
                 'fechaClases' => $_POST['fechaClases'],
                 'duracion' => $_POST['duracion'],

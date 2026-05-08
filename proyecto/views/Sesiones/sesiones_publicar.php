@@ -20,6 +20,8 @@ include 'views/header.php'
 <form action="index.php?controller=Sesiones&action=publicar" method="POST" enctype="multipart/form-data" >
     <label>Nombre de la Sesión</label>
         <input type="text" name="nombreClase"/><br/>
+    <label>Calorias de la Sesión</label>
+    <input type="number" name="calorias" placeholder="Introduzca las calorias"/>
     <label>Tipo de la Sesión</label>
     <select name="tipoDeClases">
         <option value="Cardio">Cardio</option>

@@ -85,6 +85,7 @@ CREATE TABLE Rutina (
 
 CREATE TABLE SesionesDeClases (
   id INT AUTO_INCREMENT PRIMARY KEY,
+  calorias INT,
   nombreClase VARCHAR(255),
   tipoDeClases ENUM('Cardio','Cycling','trenSuperior','trenInferior'),
   fechaClases DATE,
@@ -92,7 +93,6 @@ CREATE TABLE SesionesDeClases (
   id_entrenador INT,
   descripcion VARCHAR(8000),
   foto VARCHAR(255),
-  calorias INT,
   FOREIGN KEY (id_entrenador) REFERENCES Entrenadores(id)
 );
 

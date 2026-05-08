@@ -42,9 +42,9 @@ WHERE usuario_sesion.id_usuario = :id;
         $db = conectar();
         $stmt = $db->prepare("
         INSERT INTO SesionesDeClases
-        (nombreClase, tipoDeClases, fechaClases, duracion, descripcion, id_entrenador, foto)
+        (nombreClase, calorias, tipoDeClases, fechaClases, duracion, descripcion, id_entrenador, foto)
         VALUES
-        (:nombreClase, :tipoDeClases, :fechaClases, :duracion, :descripcion, :id_entrenador, :foto)
+        (:nombreClase, :calorias, :tipoDeClases, :fechaClases, :duracion, :descripcion, :id_entrenador, :foto)
     ");
         $base_dir = "/var/www/html";
         $extensiones = array(0=>'image/jpg',1=>'image/jpeg',2=>'image/png');
@@ -58,6 +58,7 @@ WHERE usuario_sesion.id_usuario = :id;
                     $sesion->foto = $_FILES['foto']['name'];
                     $stmt->execute([
                         ':nombreClase' => $sesion->nombreClase,
+                        ':calorias' => $session->calorias,
                         ':tipoDeClases' => $sesion->tipoDeClases,
                         ':fechaClases' => $sesion->fechaClases,
                         ':duracion' => $sesion->duracion,
@@ -87,7 +88,7 @@ WHERE usuario_sesion.id_usuario = :id;
     public function misPub($usuario){
         $db = conectar();
         $stmt = $db->prepare("
-            SELECT s.id, s.nombreClase, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion
+            SELECT s.id, s.nombreClase, s.calorias, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion
             FROM SesionesDeClases s
             INNER JOIN Entrenadores e ON s.id_entrenador = e.id
             WHERE e.id = :id
@@ -116,7 +117,7 @@ WHERE usuario_sesion.id_usuario = :id;
     public function sesionesUsuarioEntrenador($usuario){
         $db = conectar();
         $stmt = $db->prepare("
-        SELECT s.id, s.nombreClase, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion, s.id_entrenador
+        SELECT s.id, s.nombreClase, s.calorias, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion, s.id_entrenador
         FROM SesionesDeClases s
         INNER JOIN Usuarios u ON s.id_entrenador = u.id
         WHERE u.id = :id

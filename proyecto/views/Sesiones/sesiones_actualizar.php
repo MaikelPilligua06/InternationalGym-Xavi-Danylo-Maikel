@@ -13,13 +13,14 @@
 <?php
     include 'views/header.php';
 ?>
-<form action="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>" method="POST">
-    <button onclick="history.back()">Volver</button>
-    <button>Actualizar</button>
-</form>
-<form action="index.php?controller=Sesiones&action=actulizarSesion" method="POST" enctype="multipart/form-data" >
+<main>
+<button onclick="history.back()">Volver</button>
+<form action="index.php?controller=Sesiones&action=actulizarSesion&id=<?= $sesion->id;?>" method="POST" enctype="multipart/form-data" >
+    <button type="submit">Actualizar</button>
     <label>Detalles de la Sesion</label>
     <input type="text" name="nombreClase" value="<?= $sesion->nombreClase?>">
+    <label>Calorias de la Sesion</label>
+    <input type="text" name="nombreClase" value="<?= $sesion->calorias?>">
     <label> Tipo de Clases</label>
     <select name="tipoDeClases">
         <option value="Cardio" <?= $sesion->tipoDeClases == 'Cardio' ? 'selected' : '' ?>>Cardio</option>
@@ -39,6 +40,7 @@
     <label>Actualizarla: </label>
     <input type="file" name="foto" accept="image/*"/>
 </form>
+</main>
 <?php
     include 'views/footer.php';
 ?>

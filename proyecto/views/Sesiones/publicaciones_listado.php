@@ -20,6 +20,7 @@
             <div class="tarjeta-movil">
 
             <h2><?php echo $publicacion->nombreClase;?></h2>
+                <p><?php echo $publicacion->calorias;?></p>
                 <p><?php echo $publicacion->tipoDeClases;?></p>
                 <p><?php echo $publicacion->fechaClases;?></p>
                 <p><?php echo $publicacion->duracion;?></p>

@@ -28,6 +28,7 @@
         <div class="sg">
             <a href="index.php?controller=Sesiones&action=getId&id=<?= $fila->id ?>">
                 <p>Nombre de la clase: <?= $fila->nombreClase ?></p>
+                <p>Calorias: <?= $fila->calorias ?></p>
                 <p>Tipo de la clase: <?= $fila->tipoDeClases ?></p>
                 <p><?= $fila->duracion ?></p>
                 <p><?= $fila->fechaClases ?></p>
@@ -52,9 +53,10 @@
                 <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
                 <h4>Nombre de la clase: <?= $sesion->nombreClase ?></h4>
                 <h4>Tipo de clases: <?= $sesion->tipoDeClases ?></h4>
-                <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
-                 <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
-                 <p><strong>Entrenador:</strong> <?= $sesion->nombreEntrenador ?></p>
+                    <p><strong>Fecha:</strong> <?= $sesion->calorias ?></p>
+                    <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
+                    <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
+                    <p><strong>Entrenador:</strong> <?= $sesion->nombreEntrenador ?></p>
                 </a>
                  <a href="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>">
                     <button>Apuntate</button>
