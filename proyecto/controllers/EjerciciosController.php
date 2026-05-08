@@ -39,15 +39,15 @@ class EjerciciosController{
         $model = new EjerciciosModel();
         require "views/Ejercicios/ejercicios_agregar.php";
     }
-    public function appEliminarEjercicio(){
+    public function verEjercicios(){
         $model = new EjerciciosModel();
         $ejercicio = $model->getAll();
-        require "views/Ejercicios/ejercicios_eliminar.php";
+        require "views/Ejercicios/getTodosLosEjercicios.php";
     }
     public function borrarEjercicioApp(){
         $model = new EjerciciosModel();
         $model->borrarEjercicio($_GET["id"]);
-        header("Location: index.php?controller=Ejercicios&action=appEliminarEjercicio");
+        header("Location: index.php?controller=Ejercicios&action=verEjercicios");
     }
     // Función para crear un ejercicio
     public function publicar(){
@@ -64,5 +64,22 @@ class EjerciciosController{
         $model->publicarEjercicio($ejercicio);
         header("Location: index.php?controller=Ejercicios&action=listadoEjercicios");
         exit;
+    }
+    public function getEjerciciosActualizar()
+    {
+        $model = new EjerciciosModel();
+        $ejercicios = $model->getById($_GET["id"]);
+        require 'views/Ejercicios/ejerciciosUpdate.php';
+    }
+    public function actualizarEjercicio(){
+        if (!empty($_POST)) {
+            $ejercicio = new Ejercicios($_POST);
+            $model = new EjerciciosModel();
+            $ejercicio->foto = $_POST['foto_actual'];
+            $model->update($_GET['id'], $ejercicio);
+
+            header("Location: index.php?controller=Sesiones&action=misPublicaciones");
+            exit;
+        }
     }
 }

@@ -16,8 +16,8 @@ include 'views/header.php';
         <a href="index.php?controller=Ejercicios&action=agregarEjercicio">
             <li>Crear</li>
         </a>
-        <a href="index.php?controller=Ejercicios&action=appEliminarEjercicio">
-            <li>Borrar</li>
+        <a href="index.php?controller=Ejercicios&action=verEjercicios">
+            <li>Ver todos los Ejercicios, borrar o actualizar</li>
         </a>
     </ul>
 </div>

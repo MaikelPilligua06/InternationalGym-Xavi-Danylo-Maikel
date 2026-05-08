@@ -1,0 +1,125 @@
+/* Volver */
+.boton-volver {
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--tn-border);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+}
+
+/* CSS Todos los ejercicios */
+.pagina-listado {
+    width: min(600px, calc(100% - 32px));
+    margin: 2rem auto;
+}
+
+.tarjeta-listado {
+    background: var(--tn-bg-2);
+    border: 1px solid var(--tn-border);
+    border-radius: var(--tn-radius);
+    overflow: hidden;
+}
+
+.fila-ejercicio {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--tn-border);
+}
+.fila-ejercicio:last-child { border-bottom: none; }
+
+.nombre-ejercicio { flex: 1; color: var(--tn-text); font-weight: 600; }
+.nombre-ejercicio p { margin: 0; line-height: 1.5; font-size: .9rem; }
+.nombre-ejercicio strong { color: var(--tn-muted); }
+
+.foto-ejercicio {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--tn-border);
+    flex-shrink: 0;
+}
+
+.acciones-ejercicio { display: flex; gap: 8px; align-self: flex-start; }
+
+.boton-actualizar {
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--tn-border);
+    color: var(--tn-text);
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.boton-borrar {
+    background: rgba(255,92,58,.08);
+    border: 1px solid rgba(255,92,58,.25);
+    color: #ff5c3a;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.estado-vacio { padding: 40px 20px; text-align: center; }
+.estado-vacio h3 { color: var(--tn-muted); }
+.enlace-crear { color: var(--tn-yellow); font-weight: 700; }
+
+/* CSS Actualizar */
+.pagina-editar {
+    width: min(500px, calc(100% - 32px));
+    margin: 2rem auto;
+}
+
+.tarjeta-formulario {
+    background: var(--tn-bg-2);
+    border: 1px solid var(--tn-border);
+    border-radius: var(--tn-radius);
+    padding: 24px;
+}
+
+.formulario-editar { display: flex; flex-direction: column; gap: 14px; }
+
+.etiqueta {
+    font-size: .8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--tn-muted);
+}
+
+.campo-texto, .campo-numero, .campo-textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--tn-border);
+    border-radius: 10px;
+    color: var(--tn-text);
+    font-family: var(--tn-font);
+    resize: vertical;
+}
+
+.imagen-actual {
+    width: 100%;
+    max-height: 380px;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid var(--tn-border);
+}
+
+.campo-archivo { color: var(--tn-muted); cursor: pointer; }
+
+.boton-guardar {
+    background: linear-gradient(180deg, var(--tn-yellow-2), var(--tn-yellow));
+    color: #111;
+    font-weight: 800;
+    padding: 11px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
