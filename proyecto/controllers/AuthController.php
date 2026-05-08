@@ -1,12 +1,12 @@
 <?php
 
-require_once __DIR__ . "/../models/AuthModel.php";
+require_once "models/AuthModel.php";
 
 class AuthController
 {
     public function login()
     {
-        require_once __DIR__ . "/../views/login.php";
+        require "views/login/login.php";
     }
 
     public function loginProcess()

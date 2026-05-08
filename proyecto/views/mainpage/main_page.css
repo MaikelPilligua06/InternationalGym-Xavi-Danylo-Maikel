@@ -195,11 +195,20 @@ img {
     border: 1px solid gray;
     border-radius: 12px;
     padding: 28px 32px;
-
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 8px;
+}
+
+.Entrenador h4 {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    color: yellow;
+    border: 1px solid yellow;
+    border-radius: 8px;
+    padding: 9px 16px;
+    cursor: pointer;
 }
 .seSion {
     display: flex;
@@ -218,6 +227,25 @@ img {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     font-size: 14px;
 }
+.button {
+    margin-top: 5px;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+
+
+}
+
+.button button {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: medium;
+
+}
+
 
 
 @media (max-width: 768px) {
