@@ -187,7 +187,7 @@
         </div>
 
         <?php if (!empty($_SESSION['rutina_platos'])) : ?>
-            <div class="resumen-card" style="margin-top: 12px;">
+            <div class="resumen-card">
                 <div class="resumen-card-title">Seleccionados</div>
                 <div class="resumen-list">
                     <?php foreach ($_SESSION['rutina_platos'] as $i => $p) : ?>
@@ -204,7 +204,7 @@
     </section>
 
     <section class="section" id="seccion-sesiones">
-        <div class="section-label">Sesiones</div>
+        <h3>Sesiones</h3>
         <div class="dividir">
             <div class="panel">
                 <div class="panel-title">Tus sesiones</div>

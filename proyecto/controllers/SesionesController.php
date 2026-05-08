@@ -91,4 +91,15 @@ class SesionesController
         exit;
         }
 
+    public function getSesionActualizar()
+    {
+        $model = new SesionesModel();
+        $sesion = $model->ver($_GET["id"]);
+        require 'views/Sesiones/sesiones_actualizar.php';
+    }
+    public function actulizarSesion($id){
+        $model = new SesionesModel();
+        $sesion = $model->getUpdateSesion($id);
+        header("Location: index.php?controller=Sesiones&action=misPublicaciones");
+        exit;    }
 }
