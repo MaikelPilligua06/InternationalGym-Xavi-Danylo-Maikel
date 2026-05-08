@@ -20,7 +20,7 @@
     <label>Detalles de la Sesion</label>
     <input type="text" name="nombreClase" value="<?= $sesion->nombreClase?>">
     <label>Calorias de la Sesion</label>
-    <input type="text" name="nombreClase" value="<?= $sesion->calorias?>">
+    <input type="text" name="calorias" value="<?= $sesion->calorias?>">
     <label> Tipo de Clases</label>
     <select name="tipoDeClases">
         <option value="Cardio" <?= $sesion->tipoDeClases == 'Cardio' ? 'selected' : '' ?>>Cardio</option>
@@ -38,7 +38,10 @@
     <label>Foto actual</label>
     <img src="views/gymFotos/sesiones/<?= $sesion->foto?>"/>
     <label>Actualizarla: </label>
-    <input type="file" name="foto" accept="image/*"/>
+    <input type="file" name="foto" value="<?= $sesion->foto?> "accept="image/*"/>
+
+
+    <input type="hidden" name="foto_actual" value="<?= $sesion->foto ?>"/>
 </form>
 </main>
 <?php

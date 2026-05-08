@@ -34,7 +34,8 @@ class SesionesController
     }
 
     // 2. Que un usuario se pueda apuntar a la session
-    public function apuntarme(){
+    public function apuntarme()
+    {
         $usuario = $_SESSION['id'];
         $model = new SesionesModel();
         $sesion = $model->asignarSesion($_GET['id'], $usuario);
@@ -42,22 +43,25 @@ class SesionesController
         exit;
     }
 
-    public function ver() {
+    public function ver()
+    {
         $sesiones = new SesionesDeClases();
         require "views/Sesiones/sesiones_publicar.php";
     }
-    public function getId(){
+
+    public function getId()
+    {
         $model = new SesionesModel();
         $sesion = $model->ver($_GET["id"]);
         require "views/Sesiones/sesiones_ver.php";
     }
 
 
-
-    public function publicar() {
-        if(!empty($_POST)) {
+    public function publicar()
+    {
+        if (!empty($_POST)) {
             $datos = [
-                'nombreClase'  => $_POST['nombreClase'],
+                'nombreClase' => $_POST['nombreClase'],
                 'calorias' => $_POST ['calorias'],
                 'tipoDeClases' => $_POST['tipoDeClases'],
                 'fechaClases' => $_POST['fechaClases'],
@@ -73,25 +77,31 @@ class SesionesController
         header("Location: index.php?controller=Sesiones&action=index");
         exit;
     }
-    public function misPublicaciones() {
+
+    public function misPublicaciones()
+    {
         $model = new SesionesModel();
         $usuario = $_SESSION['id'];
         $sesiones = $model->misPub($usuario);
         require "views/Sesiones/publicaciones_listado.php";
     }
-    public function eliminarSesion(){
+
+    public function eliminarSesion()
+    {
         $model = new SesionesModel();
         $model->delete($_GET["id"]);
         header("Location: index.php?controller=Sesiones&action=index");
         exit;
     }
-        public function eliminarEntrenador(){
+
+    public function eliminarEntrenador()
+    {
         $model = new SesionesModel();
         $id_entrenador = $_SESSION['id'];
         $model->deleteEntrenador($id_entrenador, $_GET['id']);
         header("Location: index.php?controller=Sesiones&action=misPublicaciones");
         exit;
-        }
+    }
 
     public function getSesionActualizar()
     {
@@ -99,9 +109,17 @@ class SesionesController
         $sesion = $model->ver($_GET["id"]);
         require 'views/Sesiones/sesiones_actualizar.php';
     }
-    public function actulizarSesion($id){
-        $model = new SesionesModel();
-        $sesion = $model->getUpdateSesion($id);
-        header("Location: index.php?controller=Sesiones&action=misPublicaciones");
-        exit;    }
+
+    public function actulizarSesion()
+    {
+        if (!empty($_POST)) {
+            $sesiones = new SesionesDeClases($_POST);
+            $model = new SesionesModel();
+            $sesiones->foto = $_POST['foto_actual'];
+            $model->update($_GET['id'], $sesiones);
+
+            header("Location: index.php?controller=Sesiones&action=misPublicaciones");
+            exit;
+        }
+    }
 }

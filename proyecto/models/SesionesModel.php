@@ -131,8 +131,34 @@ WHERE usuario_sesion.id_usuario = :id;
         }
         return $entrenadorSesiones;
     }
-    public function getUpdateSesion($id){
+    public function update($id, $sesiones){
+        $db = conectar();
+        $stmt = $db->prepare("
+            UPDATE SesionesDeClases SET nombreClase = :nombreClase, calorias = :calorias, tipoDeClases = :tipoDeClases, 
+            fechaClases = :fechaClases, duracion = :duracion, descripcion = :descripcion, foto = :foto WHERE id = :id
+            ");
+        if (!empty($_FILES['foto']['name'])) {
+            $extensiones = ['image/jpg', 'image/jpeg', 'image/png'];
+            $max_tamanyo = 1024 * 1024 * 8;
+            $base_dir = "/var/www/html";
+            $ruta_fichero_origen = $_FILES['foto']['tmp_name'];
+            $ruta_nuevo_destino = $base_dir . "/views/gymFotos/sesiones/" . $_FILES['foto']['name'];
 
+            if (in_array($_FILES['foto']['type'], $extensiones) && $_FILES['foto']['size'] < $max_tamanyo) {
+                if (move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
+                    $sesiones->foto = $_FILES['foto']['name'];
+                }
+            }
+        }
+        $stmt->execute([
+            ':id' => $id,
+            ':nombreClase' => $sesiones->nombreClase,
+            ':calorias' => $sesiones->calorias,
+            ':tipoDeClases' => $sesiones->tipoDeClases,
+            ':fechaClases' => $sesiones->fechaClases,
+            ':duracion' => $sesiones->duracion,
+            ':descripcion' => $sesiones->descripcion,
+            ':foto' => $sesiones->foto
+        ]);
     }
-
 }

@@ -16,6 +16,7 @@ class SesionesDeClases
 
         $this->id = $datos["id"] ?? null;
         $this->nombreClase = $datos["nombreClase"] ?? null;
+        $this->calorias = $datos["calorias"] ?? null;
         $this->tipoDeClases = $datos["tipoDeClases"] ?? null;
         $this->fechaClases = $datos["fechaClases"] ?? null;
         $this->duracion = $datos["duracion"] ?? null;
