@@ -17,21 +17,27 @@
     <button onclick="history.back()">Volver</button>
     <button>Actualizar</button>
 </form>
-<form>
+<form action="index.php?controller=Sesiones&action=actulizarSesion" method="POST" enctype="multipart/form-data" >
     <label>Detalles de la Sesion</label>
     <input type="text" name="nombreClase" value="<?= $sesion->nombreClase?>">
     <label> Tipo de Clases</label>
-    <select name="tipoDeClases" value="<?= $sesion->tipoDeClases?>">
-        <option value="Cardio">Cardio</option>
-        <option value="Cycling">Cycling</option>
-        <option value="trenSuperior">Tren Superior</option>
-        <option value="trenInferior">Tren inferior</option>
+    <select name="tipoDeClases">
+        <option value="Cardio" <?= $sesion->tipoDeClases == 'Cardio' ? 'selected' : '' ?>>Cardio</option>
+        <option value="Cycling" <?= $sesion->tipoDeClases == 'Cycling' ? 'selected' : '' ?>>Cycling</option>
+        <option value="trenSuperior" <?= $sesion->tipoDeClases == 'trenSuperior' ? 'selected' : '' ?>>Tren Superior</option>
+        <option value="trenInferior" <?= $sesion->tipoDeClases == 'trenInferior' ? 'selected' : '' ?>>Tren inferior</option>
     </select>
-    <h3>Tipo de clase: <?= $sesion->tipoDeClases?></h3>
-    <h3>Fecha de la clase: <?= $sesion->fechaClases?></h3>
-    <h3>Duración: <?= $sesion->duracion?></h3>
-    <h3>Descripción: <?= $sesion->descripcion?></h3>
+    <label>Fecha de la clase</label>
+    <input type="date" name="fechaClases" value="<?= $sesion->fechaClases?>">
+    <label>Duración: </label>
+    <input type="time" name="duracion" value="<?= $sesion->duracion?>">
+    <label>Descripcion</label>
+    <textarea name="descripcion" rows="4" cols="50" placeholder="Descripción de tu sesión" required><?= htmlspecialchars($sesion->descripcion) ?>
+    </textarea>
+    <label>Foto actual</label>
     <img src="views/gymFotos/sesiones/<?= $sesion->foto?>"/>
+    <label>Actualizarla: </label>
+    <input type="file" name="foto" accept="image/*"/>
 </form>
 <?php
     include 'views/footer.php';
