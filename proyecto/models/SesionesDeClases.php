@@ -8,6 +8,7 @@ class SesionesDeClases
     public $duracion;
     public $id_entrenador;
     public $descripcion;
+    public $calorias;
     public $foto;
 
     public function __construct($datos = [])
