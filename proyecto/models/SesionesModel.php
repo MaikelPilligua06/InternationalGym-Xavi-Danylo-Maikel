@@ -6,10 +6,11 @@ class SesionesModel{
     public function getAll(){
         $db = conectar();
         $stmt = $db->query("
-                SELECT s.*, e.id, e.nombreEntrenador 
-                FROM SesionesDeClases s 
-                JOIN Entrenadores e ON s.id = e.id
-                Order by fechaClases DESC");
+        SELECT s.*, e.nombreEntrenador 
+        FROM SesionesDeClases s 
+        JOIN Entrenadores e ON s.id_entrenador = e.id
+        ORDER BY fechaClases DESC
+    ");
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -128,6 +129,9 @@ WHERE usuario_sesion.id_usuario = :id;
             $entrenadorSesiones[] = new SesionesDeClases($fila);
         }
         return $entrenadorSesiones;
+    }
+    public function getUpdateSesion($id){
+
     }
 
 }

@@ -13,7 +13,6 @@
 <h1>Mis publicaciones</h1>
 
 
-
 <?php if (isset($sesiones) && !empty($sesiones)): ?>
     <?php foreach ($sesiones as $publicacion): ?>
         <div class="carrusel-movil">
@@ -27,6 +26,9 @@
                 <p><?php echo $publicacion->descripcion;?></p>
                 <a href="index.php?controller=Sesiones&action=eliminarEntrenador&id=<?= $publicacion->id; ?>">
                     <button>Eliminar Sesion</button>
+                </a>
+                <a href="index.php?controller=Sesiones&action=getSesionActualizar&id=<?= $publicacion->id; ?>">
+                    <button>Actualizas Sesion</button>
                 </a>
             </div>
         </div>
