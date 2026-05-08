@@ -11,7 +11,7 @@
 include 'views/header.php';
 ?>
 
-<form method="POST" action="index.php?controller=Usuario&action=crear">
+<form method="POST" action="index.php?controller=Usuario&action=crear" enctype="multipart/form-data">
     <input type="text" name="nombreUsuario" placeholder="Nombre">
     <input type="text" name="apellido" placeholder="Apellido">
     <input type="tel" name="numeroTelefono" placeholder="Numero de telefono">
@@ -35,15 +35,19 @@ include 'views/header.php';
         <option value="ganar fuerza">Ganar Fuerza</option>
         <option value="estabilidad">Estabilidad</option>
     </select>
+    <label>Selecciona un entrenador:</label>
+    <select name="entrenador_id">
+        <?php foreach($entrenadores as $entrenador): ?>
+            <option value="<?= $entrenador->id ?>">
+                <?= $entrenador->nombreEntrenador ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
     <input type="file" name="foto" placeholder="Foto">
 
 
     <button type="submit">Crear</button>
 </form>
-<?php foreach($entrenadores as $entrenador): ?>
-    <p><?=  $entrenador->nombreEntrenador?></p>
-<?php endforeach; ?>
-
 <?php
 include 'views/footer.php';
 ?>
