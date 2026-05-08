@@ -1,0 +1,107 @@
+.pagina {
+    width: min(var(--tn-max), calc(100% - 32px));
+    margin-inline: auto;
+    padding: 2rem 0 5rem;
+}
+
+.pagina-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--tn-border);
+}
+
+.pagina-header h1 {
+    font-size: 1.55rem;
+    font-weight: 800;
+    letter-spacing: .2px;
+    color: var(--tn-text);
+}
+
+.pagina-actions { display: flex; gap: 10px; }
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: .92rem;
+    border: 1px solid transparent;
+    transition: .18s ease;
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(180deg, var(--tn-yellow-2), var(--tn-yellow));
+    color: #111;
+    box-shadow: 0 10px 18px rgba(255,212,0,.14);
+}
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 22px rgba(255,212,0,.18);
+}
+
+.btn-ghost {
+    background: rgba(255,255,255,.04);
+    border-color: var(--tn-border);
+    color: var(--tn-text);
+}
+.btn-ghost:hover { background: rgba(255,255,255,.08); }
+
+
+.btn-add:hover { background: rgba(255,212,0,.18); }
+
+.dividir {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+@media (max-width: 640px) { .dividir { grid-template-columns: 1fr; } }
+
+.panel {
+    background: var(--tn-bg-2);
+    border: 1px solid var(--tn-border);
+    border-radius: var(--tn-radius);
+    padding: 16px 18px;
+    box-shadow: var(--tn-shadow);
+}
+
+.panel-title {
+    font-size: .72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--tn-muted);
+    margin-bottom: 12px;
+}
+
+.item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--tn-border);
+}
+.item-name {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color .18s ease;
+}
+
+.item-meta {
+    font-size: 12px;
+    color: var(--tn-muted);
+    margin-top: 1px;
+}
