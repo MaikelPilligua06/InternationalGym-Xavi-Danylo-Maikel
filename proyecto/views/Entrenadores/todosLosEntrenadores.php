@@ -6,6 +6,8 @@
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="views/entrenador.css">
+    <link rel="stylesheet" href="views/entrenadores.css">
+
 
 </head>
 <?php

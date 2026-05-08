@@ -3,7 +3,7 @@
     max-width: 1200px;
     margin: 80px auto;
     padding: 40px 60px;
-    background: royalblue;
+    background: darkgray;
     color: black;
     display: block;
     flex-direction: column;
@@ -64,7 +64,7 @@
     max-width: 1200px;
     margin: 80px auto;
     padding: 40px 60px;
-    background:lightgrey;
+    background:whitesmoke;
     color: black;
 }
 
