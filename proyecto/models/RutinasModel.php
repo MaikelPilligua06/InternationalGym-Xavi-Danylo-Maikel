@@ -89,11 +89,11 @@ class RutinasModel{
     public function getTodasLasSesiones(){
         $db = conectar();
         $stmt = $db->query("
-                SELECT s.*, e.id, e.nombreEntrenador 
-                FROM SesionesDeClases s 
-                JOIN Entrenadores e ON s.id = e.id
-                Order by fechaClases DESC
-                ");
+            SELECT s.*, u.nombreUsuario AS nombreEntrenador
+            FROM SesionesDeClases s
+            JOIN Usuarios u ON s.id_entrenador = u.id
+            ORDER BY fechaClases DESC
+        ");
         $stmt->execute();
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $todasLasSesiones = [];
