@@ -57,10 +57,9 @@ class SesionesController
     {
         $model = new SesionesModel();
         $sesion = $model->ver($_GET["id"]);
+        $apuntado = $model->estaApuntado($_GET["id"], $_SESSION['id']);
         require "views/Sesiones/sesiones_ver.php";
     }
-
-
     public function publicar()
     {
         if ($_SESSION['rol'] !== 'entrenador') {
@@ -100,10 +99,6 @@ class SesionesController
 
     public function eliminarSesion()
     {
-        if ($_SESSION['rol'] !== 'entrenador') {
-            header("Location: index.php?controller=Sesiones&action=index");
-            exit;
-        }
         $model = new SesionesModel();
         $model->delete($_GET["id"]);
         header("Location: index.php?controller=Sesiones&action=index");

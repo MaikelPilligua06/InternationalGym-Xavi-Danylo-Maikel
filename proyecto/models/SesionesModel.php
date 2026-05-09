@@ -160,4 +160,21 @@ WHERE usuario_sesion.id_usuario = :id;
             ':foto' => $sesiones->foto
         ]);
     }
+    public function estaApuntado($id_sesion, $id_usuario) {
+        $db = conectar();
+        $stmt = $db->prepare("
+        SELECT * FROM Usuario_Sesion 
+        WHERE id_sesion = :id_sesion AND id_usuario = :id_usuario
+    ");
+        $stmt->execute([
+            ':id_sesion'  => $id_sesion,
+            ':id_usuario' => $id_usuario
+        ]);
+        $resultado = $stmt->fetch(PDO::FETCH_OBJ);
+        if ($resultado) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
