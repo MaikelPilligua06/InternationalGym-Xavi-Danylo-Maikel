@@ -22,13 +22,13 @@ class UsuarioModel
 
     public function getEntrenadorUsuario($usuarioId)
     {
-        $db = conectar();
-        $stmt = $db->prepare("
-            SELECT e. id, e.nombreEntrenador, e.apellido, e.correoElectronico, e.descripcion
-            FROM Entrenadores e
-            JOIN Usuarios u ON e.id = u.id_entrenador
-            WHERE u.id = :usuarioId;
-        ");
+            $db = conectar();
+            $stmt = $db->prepare("
+            SELECT e.id, e.nombreUsuario, e.apellido, e.correoElectronico, e.descripcion
+            FROM Usuarios e
+            JOIN UsuarioEntrenador ue ON e.id = ue.id_entrenador
+            WHERE ue.id_usuario = :usuarioId
+    ");
         $stmt->execute([":usuarioId" => $usuarioId]);
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }

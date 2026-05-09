@@ -12,5 +12,5 @@ chmod -R 775 /var/www/html/views/gymFotos
 
 php /var/www/html/scripts/entrenador.php
 php /var/www/html/scripts/usuario.php
-
+php /var/www/html/scripts/entrenadorUsuario.php
 exec "$@"

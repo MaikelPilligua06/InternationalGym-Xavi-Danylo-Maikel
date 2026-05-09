@@ -64,7 +64,7 @@
     <h3>Tu entrenador es :</h3>
     <?php foreach($entrenadores as $entrenador): ?>
         <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenador->id;?>">
-            <p><?= $entrenador->nombreEntrenador . ' ' . $entrenador->apellido; ?></p>
+            <p><?= $entrenador->nombreUsuario . ' ' . $entrenador->apellido; ?></p>
             <h3>Correo Electronico:</h3> <p><?= $entrenador->correoElectronico; ?></p>
             <p><?= $entrenador->descripcion; ?></p>
         </a>

@@ -28,18 +28,6 @@ class AuthModel
             return $user;
         }
 
-        $stmt = $this->db->prepare("
-            SELECT *, 'entrenador' AS tipo
-            FROM Entrenadores
-            WHERE TRIM(correoElectronico) = ?
-        ");
-        $stmt->execute([$correo]);
-        $trainer = $stmt->fetch();
-
-        if ($trainer && password_verify($password, $trainer['contrasenia'])) {
-            return $trainer;
-        }
-
         return false;
     }
 }
