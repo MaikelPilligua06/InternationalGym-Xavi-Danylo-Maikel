@@ -3,75 +3,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="InternationalGYM">
-    <meta charset="UTF-8">
     <title>Crear Rutina — InternationalGYM</title>
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="views/Rutinas/rutinas.css">
-
 </head>
 <body>
 
 <?php include "views/header.php"; ?>
 
 <main class="pagina">
-    <div class="pagina-header">
+    <div class="pagina-cabecera">
         <h1>Crear rutina</h1>
-        <div class="pagina-header-actions">
-            <a href="index.php?controller=Rutinas&action=redirectRutinas" class="btn btn-ghost">Volver</a>
+        <div class="pagina-acciones">
+            <a href="index.php?controller=Rutinas&action=redirectRutinas" class="boton boton-volver">Volver</a>
         </div>
     </div>
 
-
-    <section class="section">
+    <section>
         <h3>Crear Rutina</h3>
         <div class="dividir">
-        <form action="index.php?controller=Rutinas&action=guardar" method="POST" enctype="multipart/form-data">
-            <div class="panel">
-                <div class="panel-title">Tus ejercicios</div>
-                <label>Nombre de la Rutina</label>
-                    <input type="text" name="nombreRutina" placeholder="Introduce el nombre">
-                <label>Objetivo</label>
-                <select name="objetivo">
-                    <option value="perder peso">Perder peso</option>
-                    <option value="ganar fuerza">Ganar fuerza</option>
-                    <option value="estabilidad">Estabilidad</option>
-                </select>
-                <label>Tiempo estimado en completar tu Rutina</label>
-                <input type="time" name="fechaTiempo">
+            <form action="index.php?controller=Rutinas&action=guardar" method="POST" enctype="multipart/form-data">
+                <div class="panel">
+                    <div class="panel-titulo">Tus ejercicios</div>
+                    <label>Nombre de la Rutina</label>
+                    <input class="resumen-elemento-campos" type="text" name="nombreRutina" placeholder="Introduce el nombre">
+                    <label>Objetivo</label>
+                    <select class="resumen-elemento-campos" name="objetivo">
+                        <option value="perder peso">Perder peso</option>
+                        <option value="ganar fuerza">Ganar fuerza</option>
+                        <option value="estabilidad">Estabilidad</option>
+                    </select>
+                    <label>Tiempo estimado en completar tu Rutina</label>
+                    <input class="resumen-elemento-campos" type="time" name="fechaTiempo">
 
-                <?php foreach ($_SESSION['rutina_ejercicios'] as $i => $e) : ?>
-                    <input type="hidden" name="id_ejercicio[]" value="<?= htmlspecialchars($e['id']) ?>">
-                <?php endforeach; ?>
+                    <?php foreach ($_SESSION['rutina_ejercicios'] as $i => $e) : ?>
+                        <input type="hidden" name="id_ejercicio[]" value="<?= htmlspecialchars($e['id']) ?>">
+                    <?php endforeach; ?>
+                    <?php foreach ($_SESSION['rutina_platos'] as $i => $e) : ?>
+                        <input type="hidden" name="id_plato[]" value="<?= htmlspecialchars($e['id']) ?>">
+                    <?php endforeach; ?>
+                    <?php foreach ($_SESSION['rutina_sesiones'] as $i => $e) : ?>
+                        <input type="hidden" name="id_sesion[]" value="<?= htmlspecialchars($e['id']) ?>">
+                    <?php endforeach; ?>
 
-                <?php foreach ($_SESSION['rutina_platos'] as $i => $e) : ?>
-                    <input type="hidden" name="id_plato[]" value="<?= htmlspecialchars($e['id']) ?>">
-                <?php endforeach; ?>
-
-                <?php foreach ($_SESSION['rutina_sesiones'] as $i => $e) : ?>
-                    <input type="hidden" name="id_sesion[]" value="<?= htmlspecialchars($e['id']) ?>">
-                <?php endforeach; ?>
-
-                <button class="btn btn-primary">Crear rutina</button>
-            </div>
+                    <button class="boton boton-principal">Crear rutina</button>
+                </div>
             </form>
+
+            <!-- Ejercicios seleccionados -->
+            <?php foreach ($_SESSION['rutina_ejercicios'] as $i => $e) : ?>
+                <div class="resumen-elemento">
+                    <div class="resumen-elemento-cabecera">
+                        <h3>Ejercicios Seleccionados</h3>
+                        <span><?= htmlspecialchars($e['nombreEjercicio']) ?></span>
+                        <span class="elemento-calorias"><?= $e['calorias'] ?> kcal</span>
+                        <a href="index.php?controller=Rutinas&action=quitarEjercicio&index=<?= $i ?>" class="boton-quitar">Quitar</a>
+                    </div>
+                    <div class="resumen-elemento-campos">
+                        <input type="number" name="series" placeholder="Series"/>
+                        <input type="number" name="repeticiones" placeholder="Reps"/>
+                        <input type="number" name="peso" placeholder="Kg"/>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+
+            <!-- Sesiones seleccionadas -->
+            <?php if (!empty($_SESSION['rutina_sesiones'])) : ?>
+                <?php foreach ($_SESSION['rutina_sesiones'] as $i => $s) : ?>
+                    <div class="resumen-elemento">
+                        <span><?= htmlspecialchars($s['nombreClase']) ?></span>
+                        <span class="elemento-calorias"><?= $s['calorias'] ?> kcal</span>
+                        <a href="index.php?controller=Rutinas&action=quitarSesion&index=<?= $i ?>" class="boton-quitar">Quitar</a>
+                    </div>
+                <?php endforeach; ?>
+
+                <!-- Platos seleccionados -->
+                <?php if (!empty($_SESSION['rutina_platos'])) : ?>
+                    <?php foreach ($_SESSION['rutina_platos'] as $i => $p) : ?>
+                        <div class="resumen-elemento">
+                            <span><?= htmlspecialchars($p['nombrePlato']) ?></span>
+                            <span class="elemento-calorias"><?= $p['calorias'] ?> kcal</span>
+                            <a href="index.php?controller=Rutinas&action=quitarPlato&index=<?= $i ?>" class="boton-quitar">Quitar</a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            <?php endif; ?>
         </div>
     </section>
 
-    <br/>
-    <section class="section">
+    <hr/><br/>
 
+    <section>
         <h3>Ejercicios</h3>
         <div class="dividir">
             <div class="panel">
-                <div class="panel-title">Tus ejercicios</div>
+                <div class="panel-titulo">Tus ejercicios</div>
                 <?php if (!empty($usuarioEjercicios)) : ?>
                     <?php foreach ($usuarioEjercicios as $ejercicio) : ?>
-                        <div class="item-row">
-                            <div class="item-info">
-                                <a href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $ejercicio->id ?>" class="item-link">
-                                    <div class="item-name"><?= htmlspecialchars($ejercicio->nombreEjercicio) ?></div>
-                                    <div class="item-meta"><?= $ejercicio->calorias ?> kcal</div>
+                        <div class="fila-elemento">
+                            <div>
+                                <a href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $ejercicio->id ?>">
+                                    <div class="elemento-nombre"><?= htmlspecialchars($ejercicio->nombreEjercicio) ?></div>
+                                    <div class="elemento-meta"><?= $ejercicio->calorias ?> kcal</div>
                                 </a>
                             </div>
                             <form method="POST" action="index.php?controller=Rutinas&action=agregarEjercicio">
@@ -80,24 +114,24 @@
                                 <input type="hidden" name="descripcion"     value="<?= htmlspecialchars($ejercicio->descripcion) ?>">
                                 <input type="hidden" name="calorias"        value="<?= htmlspecialchars($ejercicio->calorias) ?>">
                                 <input type="hidden" name="foto"            value="<?= htmlspecialchars($ejercicio->foto) ?>">
-                                <button type="submit" class="btn-add">+ Añadir</button>
+                                <button type="submit" class="boton boton-principal">Añadir</button>
                             </form>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
-                    <div class="empty-state">No tienes ejercicios guardados.</div>
+                    <p>No tienes ejercicios guardados.</p>
                 <?php endif; ?>
             </div>
 
             <div class="panel">
-                <div class="panel-title">Explorar ejercicios</div>
+                <div class="panel-titulo">Explorar ejercicios</div>
                 <?php if (!empty($todoslosEjercicios)) : ?>
                     <?php foreach ($todoslosEjercicios as $ejercicio) : ?>
-                        <div class="item-row">
-                            <div class="item-info">
-                                <a href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $ejercicio->id ?>" class="item-link">
-                                    <div class="item-name"><?= htmlspecialchars($ejercicio->nombreEjercicio) ?></div>
-                                    <div class="item-meta"><?= $ejercicio->calorias ?> kcal</div>
+                        <div class="fila-elemento">
+                            <div>
+                                <a href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $ejercicio->id ?>">
+                                    <div class="elemento-nombre"><?= htmlspecialchars($ejercicio->nombreEjercicio) ?></div>
+                                    <div class="elemento-meta"><?= $ejercicio->calorias ?> kcal</div>
                                 </a>
                             </div>
                             <form method="POST" action="index.php?controller=Rutinas&action=agregarEjercicio">
@@ -106,63 +140,47 @@
                                 <input type="hidden" name="descripcion"     value="<?= htmlspecialchars($ejercicio->descripcion) ?>">
                                 <input type="hidden" name="calorias"        value="<?= $ejercicio->calorias ?>">
                                 <input type="hidden" name="foto"            value="<?= htmlspecialchars($ejercicio->foto) ?>">
-                                <button type="submit" class="btn-add">+ Añadir</button>
+                                <button type="submit" class="boton boton-principal">Añadir</button>
                             </form>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
-                    <div class="empty-state">No hay ejercicios disponibles.</div>
+                    <p>No hay ejercicios disponibles.</p>
                 <?php endif; ?>
             </div>
         </div>
-        <?php if (!empty($_SESSION['rutina_ejercicios'])) : ?>
-                <div class="resumen-card-title">Seleccionados</div>
-                <div class="resumen-list">
-                    <?php foreach ($_SESSION['rutina_ejercicios'] as $i => $e) : ?>
-                        <div class="resumen-item">
-                            <span><?= htmlspecialchars($e['nombreEjercicio']) ?></span>
-                            <span class="item-kcal"><?= $e['calorias'] ?> kcal</span>
-                            <a href="index.php?controller=Rutinas&action=quitarEjercicio&index=<?= $i ?>" class="btn-remove">Quitar</a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        <?php endif; ?>
-
     </section>
 
-    <section class="section" id="seccion-alimentacion">
-
+    <section id="seccion-alimentacion">
         <h3>Alimentación</h3>
-
         <div class="dividir">
-
             <div class="panel">
-                <div class="panel-title">Tus platos</div>
+                <div class="panel-titulo">Tus platos</div>
                 <?php if (!empty($usuarioAlimentacion)) : ?>
                     <?php foreach ($usuarioAlimentacion as $plato) : ?>
-                        <div class="item-row">
-                            <div class="item-info">
-                                <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $plato->id ?>" class="item-link">
-                                    <div class="item-name"><?= htmlspecialchars($plato->nombrePlato) ?></div>
-                                    <div class="item-meta"><?= $plato->calorias ?> kcal · <?= $plato->proteinas ?>g prot.</div>
+                        <div class="fila-elemento">
+                            <div>
+                                <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $plato->id ?>">
+                                    <div class="elemento-nombre"><?= htmlspecialchars($plato->nombrePlato) ?></div>
+                                    <div class="elemento-meta"><?= $plato->calorias ?> kcal · <?= $plato->proteinas ?>g prot.</div>
                                 </a>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
-                    <div class="empty-state">No tienes platos guardados.</div>
+                    <p>No tienes platos guardados.</p>
                 <?php endif; ?>
             </div>
+
             <div class="panel">
-                <div class="panel-title">Explorar platos</div>
+                <div class="panel-titulo">Explorar platos</div>
                 <?php if (!empty($todosLosPlatos)) : ?>
                     <?php foreach ($todosLosPlatos as $plato) : ?>
-                        <div class="item-row">
-                            <div class="item-info">
-                                <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $plato->id ?>" class="item-link">
-                                    <div class="item-name"><?= htmlspecialchars($plato->nombrePlato) ?></div>
-                                    <div class="item-meta"><?= $plato->calorias ?> kcal · <?= $plato->proteinas ?>g prot.</div>
+                        <div class="fila-elemento">
+                            <div>
+                                <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $plato->id ?>">
+                                    <div class="elemento-nombre"><?= htmlspecialchars($plato->nombrePlato) ?></div>
+                                    <div class="elemento-meta"><?= $plato->calorias ?> kcal · <?= $plato->proteinas ?>g prot.</div>
                                 </a>
                             </div>
                             <form method="POST" action="index.php?controller=Rutinas&action=agregarPlato">
@@ -175,46 +193,29 @@
                                 <input type="hidden" name="carbohidratos" value="<?= $plato->carbohidratos ?>">
                                 <input type="hidden" name="grasas"        value="<?= $plato->grasas ?>">
                                 <input type="hidden" name="foto"          value="<?= htmlspecialchars($plato->foto) ?>">
-                                <button type="submit" class="btn-add">+ Añadir</button>
+                                <button type="submit" class="boton boton-principal">Añadir</button>
                             </form>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
-                    <div class="empty-state">No hay platos disponibles.</div>
+                    <p>No hay platos disponibles.</p>
                 <?php endif; ?>
             </div>
-
         </div>
-
-        <?php if (!empty($_SESSION['rutina_platos'])) : ?>
-            <div class="resumen-card">
-                <div class="resumen-card-title">Seleccionados</div>
-                <div class="resumen-list">
-                    <?php foreach ($_SESSION['rutina_platos'] as $i => $p) : ?>
-                        <div class="resumen-item">
-                            <span><?= htmlspecialchars($p['nombrePlato']) ?></span>
-                            <span class="item-kcal"><?= $p['calorias'] ?> kcal</span>
-                            <a href="index.php?controller=Rutinas&action=quitarPlato&index=<?= $i ?>" class="btn-remove">Quitar</a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        <?php endif; ?>
-
     </section>
 
-    <section class="section" id="seccion-sesiones">
+    <section id="seccion-sesiones">
         <h3>Sesiones</h3>
         <div class="dividir">
             <div class="panel">
-                <div class="panel-title">Tus sesiones</div>
+                <div class="panel-titulo">Tus sesiones</div>
                 <?php if (!empty($usuarioSesiones)) : ?>
                     <?php foreach ($usuarioSesiones as $sesion) : ?>
-                        <div class="item-row">
-                            <div class="item-info">
-                                <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>" class="item-link">
-                                    <div class="item-name"><?= htmlspecialchars($sesion->nombreClase) ?></div>
-                                    <div class="item-meta"><?= $sesion->duracion ?> min · <?= $sesion->calorias ?> kcal</div>
+                        <div class="fila-elemento">
+                            <div>
+                                <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
+                                    <div class="elemento-nombre"><?= htmlspecialchars($sesion->nombreClase) ?></div>
+                                    <div class="elemento-meta"><?= $sesion->duracion ?> min · <?= $sesion->calorias ?> kcal</div>
                                 </a>
                             </div>
                             <form method="POST" action="index.php?controller=Rutinas&action=agregarSesion">
@@ -227,25 +228,24 @@
                                 <input type="hidden" name="descripcion"   value="<?= htmlspecialchars($sesion->descripcion) ?>">
                                 <input type="hidden" name="calorias"      value="<?= $sesion->calorias ?>">
                                 <input type="hidden" name="foto"          value="<?= htmlspecialchars($sesion->foto) ?>">
-                                <button type="submit" class="btn-add">Añadir a tu Rutina</button>
+                                <button type="submit" class="boton boton-principal">Añadir a tu Rutina</button>
                             </form>
-                            <button type="submit" class="btn-add">Eliminar</button>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
-                    <div class="empty-state">No tienes sesiones guardadas.</div>
+                    <p>No tienes sesiones guardadas.</p>
                 <?php endif; ?>
             </div>
 
             <div class="panel">
-                <div class="panel-title">Explorar sesiones</div>
+                <div class="panel-titulo">Explorar sesiones</div>
                 <?php if (!empty($todasLasSesiones)) : ?>
                     <?php foreach ($todasLasSesiones as $sesion) : ?>
-                        <div class="item-row">
-                            <div class="item-info">
-                                <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>" class="item-link">
-                                    <div class="item-name"><?= htmlspecialchars($sesion->nombreClase) ?></div>
-                                    <div class="item-meta"><?= $sesion->duracion ?> min · <?= $sesion->calorias ?> kcal</div>
+                        <div class="fila-elemento">
+                            <div>
+                                <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
+                                    <div class="elemento-nombre"><?= htmlspecialchars($sesion->nombreClase) ?></div>
+                                    <div class="elemento-meta"><?= $sesion->duracion ?> min · <?= $sesion->calorias ?> kcal</div>
                                 </a>
                             </div>
                             <form method="POST" action="index.php?controller=Rutinas&action=agregarSesion">
@@ -258,37 +258,18 @@
                                 <input type="hidden" name="descripcion"   value="<?= htmlspecialchars($sesion->descripcion) ?>">
                                 <input type="hidden" name="calorias"      value="<?= $sesion->calorias ?>">
                                 <input type="hidden" name="foto"          value="<?= htmlspecialchars($sesion->foto) ?>">
-                                <button type="submit" class="btn-add">Añadir a tu Rutina</button>
+                                <button type="submit" class="boton boton-principal">Añadir a tu Rutina</button>
                             </form>
-                            <a>
-                                <button type="submit" class="btn-add">Añadir a tus preferencias</button>
-                            </a>
+                            <button type="submit" class="boton boton-principal">Añadir a tus preferencias</button>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
-                    <div class="empty-state">No hay sesiones disponibles.</div>
+                    <p>No hay sesiones disponibles.</p>
                 <?php endif; ?>
             </div>
-
         </div>
-
-        <?php if (!empty($_SESSION['rutina_sesiones'])) : ?>
-             <div class="resumen-card-title">Seleccionadas</div>
-                <div class="resumen-list">
-                    <?php foreach ($_SESSION['rutina_sesiones'] as $i => $s) : ?>
-                        <div class="resumen-item">
-                            <span><?= htmlspecialchars($s['nombreClase']) ?></span>
-                            <span class="item-kcal"><?= $s['calorias'] ?> kcal</span>
-                            <a href="index.php?controller=Rutinas&action=quitarSesion&index=<?= $i ?>" class="btn-remove">Quitar</a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        <?php endif; ?>
     </section>
 </main>
-
 <?php include "views/footer.php"; ?>
-
 </body>
 </html>

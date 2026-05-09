@@ -3,8 +3,7 @@
     margin-inline: auto;
     padding: 2rem 0 5rem;
 }
-
-.pagina-header {
+.pagina-cabecera {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -13,17 +12,14 @@
     padding-bottom: 1.25rem;
     border-bottom: 1px solid var(--tn-border);
 }
-
-.pagina-header h1 {
+.pagina-cabecera h1 {
     font-size: 1.55rem;
     font-weight: 800;
     letter-spacing: .2px;
     color: var(--tn-text);
 }
-
-.pagina-actions { display: flex; gap: 10px; }
-
-.btn {
+.pagina-acciones { display: flex; gap: 10px; }
+.boton {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -38,27 +34,22 @@
     cursor: pointer;
     text-decoration: none;
 }
-
-.btn-primary {
+.boton-principal {
     background: linear-gradient(180deg, var(--tn-yellow-2), var(--tn-yellow));
     color: #111;
     box-shadow: 0 10px 18px rgba(255,212,0,.14);
 }
-
-
-.btn-ghost {
+.boton-volver {
     background: rgba(255,255,255,.04);
     border-color: var(--tn-border);
     color: var(--tn-text);
 }
-
 .dividir {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
 }
 @media (max-width: 640px) { .dividir { grid-template-columns: 1fr; } }
-
 .panel {
     background: var(--tn-bg-2);
     border: 1px solid var(--tn-border);
@@ -66,8 +57,7 @@
     padding: 16px 18px;
     box-shadow: var(--tn-shadow);
 }
-
-.panel-title {
+.panel-titulo {
     font-size: .72rem;
     font-weight: 800;
     text-transform: uppercase;
@@ -75,8 +65,7 @@
     color: var(--tn-muted);
     margin-bottom: 12px;
 }
-
-.item-row {
+.fila-elemento {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -84,7 +73,7 @@
     padding: 9px 0;
     border-bottom: 1px solid var(--tn-border);
 }
-.item-name {
+.elemento-nombre {
     font-size: 14px;
     font-weight: 600;
     white-space: nowrap;
@@ -92,9 +81,55 @@
     text-overflow: ellipsis;
     transition: color .18s ease;
 }
-
-.item-meta {
+.elemento-meta {
     font-size: 12px;
     color: var(--tn-muted);
     margin-top: 1px;
+}
+.resumen-elemento {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--tn-bg-2);
+    border: 1px solid var(--tn-border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: .9rem;
+    font-weight: 600;
+}
+.resumen-elemento-cabecera {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+.resumen-elemento-cabecera span:first-child {
+    font-weight: 600;
+    color: var(--tn-text);
+}
+.elemento-calorias {
+    font-size: .82rem;
+    color: var(--tn-muted);
+    font-weight: 400;
+}
+.resumen-elemento-campos {
+    display: flex;
+    gap: 8px;
+}
+.resumen-elemento input[type="number"] {
+    width: 65px;
+    padding: 5px 8px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--tn-border);
+    border-radius: 8px;
+    color: var(--tn-text);
+    font-family: var(--tn-font);
+    font-size: .85rem;
+}
+.boton-quitar {
+    font-size: .8rem;
+    font-weight: 700;
+    color: #ff5c3a;
+    white-space: nowrap;
 }
