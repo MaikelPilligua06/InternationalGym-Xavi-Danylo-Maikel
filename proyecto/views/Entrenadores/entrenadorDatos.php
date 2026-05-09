@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="InternationalGYM">
-    <title><?php echo $entrenador->nombreEntrenador;?></title>
+    <title><?php echo $entrenador->nombreUsuario;?></title>
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="views/styles.css">
@@ -14,10 +14,10 @@
     ?>
 
 <div>
-    <h1><?php echo $entrenador->nombreEntrenador, ' ',  $entrenador->apellido;?></h1>
+    <h1><?php echo $entrenador->nombreUsuario, ' ',  $entrenador->apellido;?></h1>
     <h2>Correo Electronico: <?php echo $entrenador->correoElectronico;?></h2
-        <p>Dispobilidad horaria: <?php echo $entrenador->disponibilidadHoraria;?></p>
     <p><?php echo $entrenador->descripcion;?></p>
+    <img src="views/usuarios/<?= $entrenador->foto;?> ?>"
 </div>
 
 <div class="carrusel-movil">

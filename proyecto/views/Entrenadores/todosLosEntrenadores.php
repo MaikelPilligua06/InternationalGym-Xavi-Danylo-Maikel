@@ -20,7 +20,7 @@ include 'views/header.php';
     <?php foreach($lista as $entrenadorUsuario): ?>
         <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenadorUsuario->id;?>">
             <div class="texto">
-                <h2><?php echo $entrenadorUsuario->nombreEntrenador, '', $entrenadorUsuario->apellido;?></h2>
+                <h2><?php echo $entrenadorUsuario->nombreUsuario, '', $entrenadorUsuario->apellido;?></h2>
                 <h2><?php echo $entrenadorUsuario->correoElectronico;?></h2>
                 <h2><?php echo $entrenadorUsuario->descripcion;?></h2>
             </div>
@@ -40,7 +40,7 @@ include 'views/header.php';
 
         <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenador->id; ?>">
             <div class="texto">
-                <h3><?= $entrenador->nombreEntrenador . ' ' . $entrenador->apellido; ?></h3>
+                <h3><?= $entrenador->nombreUsuario . ' ' . $entrenador->apellido; ?></h3>
                 <p><?= $entrenador->descripcion; ?></p>
             </div>
             <div class="imagen">

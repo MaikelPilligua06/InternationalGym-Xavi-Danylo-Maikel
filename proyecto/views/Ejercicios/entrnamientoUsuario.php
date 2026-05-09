@@ -12,8 +12,8 @@
     include 'views/header.php';
     ?>
 <main class="pagina-ejercicios">
-    <?php if ($_SESSION['rol'] === 'entrenador'): ?>
-    <div>
+    <?php if ($_SESSION['rol'] === 'entrenador' || $_SESSION['rol'] === 'admin'): ?>
+        <div>
         <h2 class="titulo-seccion">Ejercicios</h2>
         <ul class="lista-enlaces">
             <a class="enlace-accion" href="index.php?controller=Ejercicios&action=agregarEjercicio">

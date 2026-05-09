@@ -10,8 +10,8 @@
 </head>
 <body>
 <?php include 'views/header.php'; ?>
-<?php if ($_SESSION['rol'] === 'entrenador'): ?>
-<div class="Publicaciones">
+<?php if ($_SESSION['rol'] === 'entrenador' || $_SESSION['rol'] === 'admin'): ?>
+    <div class="Publicaciones">
     <h1>Lista de Publicaciones</h1>
     <a href="index.php?controller=Sesiones&action=ver">
         <img src="/views/gymFotos/GYM-sesion.jpg"/>
@@ -26,7 +26,8 @@
 <div class="carrusel-movil">
 
     <div class="pista">
-    <?php foreach($lista as $fila): ?>
+        <?php if (!empty($lista)) : ?>
+        <?php foreach($lista as $fila): ?>
         <div class="sg">
             <a href="index.php?controller=Sesiones&action=getId&id=<?= $fila->id ?>">
                 <p>Nombre de la clase: <?= $fila->nombreClase ?></p>
@@ -39,9 +40,16 @@
             <a href="index.php?controller=Sesiones&action=eliminarSesion&id=<?= $fila->id ?>">
                 <button>Eliminar</button>
             </a>
-</div>
-</div>
-    <?php endforeach; ?>
+            <?php endforeach; ?>
+            </div>
+            <?php else : ?>
+                <div class="tarjeta-listado">
+                    <div class="estado-vacio">
+                        <h3>No tienes ninguna sesión añadida. ¡Comienza agregando uno!</h3>
+                    </div>
+                </div>
+            <?php endif; ?>
+    </div>
 </div>
 <h1>Sesiones Disponibles</h1>
 
@@ -49,7 +57,7 @@
 <div class="carrusel-movil">
 
         <div class="pista">
-
+            <?php if (!empty($sesiones)) : ?>
             <?php foreach ($sesiones as $sesion): ?>
             <div class="tarjeta-movil">
                 <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
@@ -63,8 +71,16 @@
                  <a href="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>">
                     <button>Apuntate</button>
                  </a>
-            </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+
+                </div>
+            <?php else : ?>
+                <div class="tarjeta-listado">
+                    <div class="estado-vacio">
+                        <h3>No hay ninguna sesión disponible.</h3>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
 </div>
 

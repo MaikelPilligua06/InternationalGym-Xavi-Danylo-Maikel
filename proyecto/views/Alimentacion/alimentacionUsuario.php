@@ -10,15 +10,17 @@
 <?php
     include 'views/header.php';
     ?>
-<div>
-    <a href="index.php?controller=Alimentacion&action=crear_plato_form">
-        <p>Crear nuevos platos</p>
-    </a>
-    <a href="index.php?controller=Alimentacion&action=getTodosLosPlatos">
-        <p>Borrar platos</p>
-    </a>
-<div>
-<h2>Lista de Alimentación</h2>
+<?php if ($_SESSION['rol'] === 'admin'): ?>
+    <div>
+        <a href="index.php?controller=Alimentacion&action=crear_plato_form">
+            <p>Crear nuevos platos</p>
+        </a>
+        <a href="index.php?controller=Alimentacion&action=getTodosLosPlatos">
+            <p>Borrar platos</p>
+        </a>
+    <div>
+        <?php endif; ?>
+        <h2>Lista de Alimentación</h2>
 <p>Total de calorias obtenidas atraves de su lista de comida:</p>
 <div>
     <h3>Listado de tus platos: </h3>

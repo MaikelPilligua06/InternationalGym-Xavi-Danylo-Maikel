@@ -27,6 +27,10 @@ class AlimentacionController{
     }
     public function crear_plato_form(){
         try{
+            if ($_SESSION['rol'] !== 'admin') {
+                header("Location: index.php?controller=Sesiones&action=index");
+                exit;
+            }
         require "views/Alimentacion/crearPlato.php";
 
         } catch (Exception $e) {
@@ -36,6 +40,10 @@ class AlimentacionController{
     }
     public function crear(){
         try {
+            if ($_SESSION['rol'] !== 'admin') {
+                header("Location: index.php?controller=Sesiones&action=index");
+                exit;
+            }
             if (!empty($_POST)) {
                 $datos = [
                     'nombrePlato' => $_POST['nombrePlato'],
@@ -86,6 +94,10 @@ class AlimentacionController{
     // funciones a futuro de editar, contar calorias entre todos los platos, SOLO ADMIN
     public function editPlato(){
         try {
+            if ($_SESSION['rol'] !== 'admin') {
+                header("Location: index.php?controller=Sesiones&action=index");
+                exit;
+            }
             $model = new AlimentacionModel();
         } catch (Exception $e) {
             $_SESSION['error_fatal'] = $e->getMessage();
@@ -95,6 +107,10 @@ class AlimentacionController{
     // funcion para eliminar platos, SOLO ADMIN
     public function getTodosLosPlatos(){
         try {
+            if ($_SESSION['rol'] !== 'admin') {
+                header("Location: index.php?controller=Sesiones&action=index");
+                exit;
+            }
             $model = new AlimentacionModel();
             $todoslosPlatos = $model->getTodosLosPlatosAdmin();
             require "views/Alimentacion/platosEliminar.php";
@@ -105,6 +121,10 @@ class AlimentacionController{
     }
     public function borrarPlato(){
         try {
+            if ($_SESSION['rol'] !== 'admin') {
+                header("Location: index.php?controller=Sesiones&action=index");
+                exit;
+            }
             $model = new AlimentacionModel();
             $plato = $model->deletePlato($_GET["id"]);
             header("Location: index.php?controller=Alimentacion&action=getTodosLosPlatos");

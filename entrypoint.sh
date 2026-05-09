@@ -10,6 +10,7 @@ echo "MySQL listo."
 chown -R www-data:www-data /var/www/html/views/gymFotos
 chmod -R 775 /var/www/html/views/gymFotos
 
+php /var/www/html/scripts/admin.php
 php /var/www/html/scripts/entrenador.php
 php /var/www/html/scripts/usuario.php
 php /var/www/html/scripts/entrenadorUsuario.php
