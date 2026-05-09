@@ -100,5 +100,32 @@ class EjerciciosModel
             return "Error: Formato de archivo no permitido.";
         }
     }
+    public function update($id, $ejercicio){
+        $db = conectar();
+        $stmt = $db->prepare("
+            UPDATE Ejercicios SET nombreEjercicio = :nombreEjercicio, descripcion = :descripcion,
+            calorias = :calorias, foto = :foto WHERE id = :id
+            ");
+        if (!empty($_FILES['foto']['name'])) {
+            $extensiones = ['image/jpg', 'image/jpeg', 'image/png'];
+            $max_tamanyo = 1024 * 1024 * 8;
+            $base_dir = "/var/www/html";
+            $ruta_fichero_origen = $_FILES['foto']['tmp_name'];
+            $ruta_nuevo_destino = $base_dir . "/views/gymFotos/ejercicios/" . $_FILES['foto']['name'];
+
+            if (in_array($_FILES['foto']['type'], $extensiones) && $_FILES['foto']['size'] < $max_tamanyo) {
+                if (move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
+                    $ejercicio->foto = $_FILES['foto']['name'];
+                }
+            }
+        }
+        $stmt->execute([
+            ':id' => $id,
+            ':nombreEjercicio' => $ejercicio->nombreEjercicio,
+            ':descripcion' => $ejercicio->descripcion,
+            ':calorias' => $ejercicio->calorias,
+            ':foto' => $ejercicio->foto
+        ]);
+    }
 
 }

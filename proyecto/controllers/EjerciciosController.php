@@ -77,8 +77,7 @@ class EjerciciosController{
             $model = new EjerciciosModel();
             $ejercicio->foto = $_POST['foto_actual'];
             $model->update($_GET['id'], $ejercicio);
-
-            header("Location: index.php?controller=Sesiones&action=misPublicaciones");
+            header("Location: index.php?controller=Ejercicios&action=verEjercicios");
             exit;
         }
     }

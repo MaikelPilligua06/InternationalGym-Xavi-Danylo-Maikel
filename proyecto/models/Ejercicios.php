@@ -9,10 +9,10 @@ class Ejercicios{
 
     public function __construct($datos = []) {
         $this->id               = $datos["id"] ?? null;
-        $this->nombreEjercicio  = $datos["nombreEjercicio"];
-        $this->descripcion      = $datos["descripcion"];
-        $this->foto             = $datos["foto"];
-        $this->calorias         = $datos["calorias"];
+        $this->nombreEjercicio  = $datos["nombreEjercicio"] ?? null;
+        $this->descripcion      = $datos["descripcion"] ?? null;
+        $this->foto             = $datos["foto"] ?? null;
+        $this->calorias         = $datos["calorias"] ?? null;
     }
 }
 ?>
