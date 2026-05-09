@@ -6,10 +6,10 @@ class SesionesModel{
     public function getAll(){
         $db = conectar();
         $stmt = $db->query("
-        SELECT s.*, e.nombreEntrenador 
-        FROM SesionesDeClases s 
-        JOIN Entrenadores e ON s.id_entrenador = e.id
-        ORDER BY fechaClases DESC
+            SELECT s.*, u.nombreUsuario AS nombreEntrenador
+            FROM SesionesDeClases s
+            JOIN Usuarios u ON s.id_entrenador = u.id
+            ORDER BY fechaClases DESC
     ");
 
         $stmt->execute();
@@ -58,7 +58,7 @@ WHERE usuario_sesion.id_usuario = :id;
                     $sesion->foto = $_FILES['foto']['name'];
                     $stmt->execute([
                         ':nombreClase' => $sesion->nombreClase,
-                        ':calorias' => $session->calorias,
+                        ':calorias' => $sesion->calorias,
                         ':tipoDeClases' => $sesion->tipoDeClases,
                         ':fechaClases' => $sesion->fechaClases,
                         ':duracion' => $sesion->duracion,
@@ -90,8 +90,7 @@ WHERE usuario_sesion.id_usuario = :id;
         $stmt = $db->prepare("
             SELECT s.id, s.nombreClase, s.calorias, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion
             FROM SesionesDeClases s
-            INNER JOIN Entrenadores e ON s.id_entrenador = e.id
-            WHERE e.id = :id
+            WHERE s.id_entrenador = :id
             ");
         $stmt->execute([':id' => $usuario]);
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);

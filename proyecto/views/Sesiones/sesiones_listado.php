@@ -10,6 +10,7 @@
 </head>
 <body>
 <?php include 'views/header.php'; ?>
+<?php if ($_SESSION['rol'] === 'entrenador'): ?>
 <div class="Publicaciones">
     <h1>Lista de Publicaciones</h1>
     <a href="index.php?controller=Sesiones&action=ver">
@@ -19,6 +20,7 @@
         <p>Ver mis publicaciones</p>
     </a>
 </div>
+<?php endif; ?>
 <h1>Mis sesiones</h1>
 
 <div class="carrusel-movil">

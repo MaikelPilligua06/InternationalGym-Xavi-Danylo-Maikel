@@ -16,6 +16,10 @@ class SesionesController
 
     public function crear()
     {
+        if ($_SESSION['rol'] !== 'entrenador') {
+            header("Location: index.php?controller=Sesiones&action=index");
+            exit;
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $datos = [
                 'tipoDeClases' => $_POST['tipoDeClases'],
@@ -59,6 +63,10 @@ class SesionesController
 
     public function publicar()
     {
+        if ($_SESSION['rol'] !== 'entrenador') {
+            header("Location: index.php?controller=Sesiones&action=index");
+            exit;
+        }
         if (!empty($_POST)) {
             $datos = [
                 'nombreClase' => $_POST['nombreClase'],
@@ -80,6 +88,10 @@ class SesionesController
 
     public function misPublicaciones()
     {
+        if ($_SESSION['rol'] !== 'entrenador') {
+            header("Location: index.php?controller=Sesiones&action=index");
+            exit;
+        }
         $model = new SesionesModel();
         $usuario = $_SESSION['id'];
         $sesiones = $model->misPub($usuario);
@@ -88,6 +100,10 @@ class SesionesController
 
     public function eliminarSesion()
     {
+        if ($_SESSION['rol'] !== 'entrenador') {
+            header("Location: index.php?controller=Sesiones&action=index");
+            exit;
+        }
         $model = new SesionesModel();
         $model->delete($_GET["id"]);
         header("Location: index.php?controller=Sesiones&action=index");
@@ -96,6 +112,10 @@ class SesionesController
 
     public function eliminarEntrenador()
     {
+        if ($_SESSION['rol'] !== 'entrenador') {
+            header("Location: index.php?controller=Sesiones&action=index");
+            exit;
+        }
         $model = new SesionesModel();
         $id_entrenador = $_SESSION['id'];
         $model->deleteEntrenador($id_entrenador, $_GET['id']);
@@ -105,6 +125,10 @@ class SesionesController
 
     public function getSesionActualizar()
     {
+        if ($_SESSION['rol'] !== 'entrenador') {
+            header("Location: index.php?controller=Sesiones&action=index");
+            exit;
+        }
         $model = new SesionesModel();
         $sesion = $model->ver($_GET["id"]);
         require 'views/Sesiones/sesiones_actualizar.php';
@@ -112,6 +136,10 @@ class SesionesController
 
     public function actulizarSesion()
     {
+        if ($_SESSION['rol'] !== 'entrenador') {
+            header("Location: index.php?controller=Sesiones&action=index");
+            exit;
+        }
         if (!empty($_POST)) {
             $sesiones = new SesionesDeClases($_POST);
             $model = new SesionesModel();

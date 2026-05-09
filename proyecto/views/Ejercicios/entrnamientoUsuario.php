@@ -12,6 +12,7 @@
     include 'views/header.php';
     ?>
 <main class="pagina-ejercicios">
+    <?php if ($_SESSION['rol'] === 'entrenador'): ?>
     <div>
         <h2 class="titulo-seccion">Ejercicios</h2>
         <ul class="lista-enlaces">
@@ -24,6 +25,7 @@
         </ul>
     </div>
     <hr class="separador">
+    <?php endif;?>
     <div>
         <h2 class="titulo-seccion">Tu Playlist</h2>
         <?php if (!empty($lista)) : ?>
