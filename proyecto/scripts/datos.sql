@@ -23,3 +23,8 @@ INSERT INTO Ejercicios(nombreEjercicio, descripcion, calorias, foto) VALUES ('Pr
 INSERT INTO Ejercicios(nombreEjercicio, descripcion, calorias, foto) VALUES ('Press militar', 'Empuje de barra o mancuernas por encima de la cabeza centrado en hombros y estabilidad.', 3);
 INSERT INTO Ejercicios(nombreEjercicio, descripcion, calorias, foto) VALUES ('Elevaciones laterales', 'Levantas mancuernas hacia los lados para aislar el hombro, especialmente la parte media.', 3);
 INSERT INTO Ejercicios(nombreEjercicio, descripcion, calorias, foto) VALUES ('Fondos en paralelas', 'Bajas y subes el cuerpo usando barras paralelalas, enfocando el trabajo en tríceps.', 5);
+INSERT INTO Ejercicios(nombreEjercicio, descripcion, calorias, foto) VALUES ('Extensiones de tríceps', 'Extensión de brazos con peso (mancuerna o polea) para aislar el tríceps', 3);
+INSERT INTO Ejercicios(nombreEjercicio, descripcion, calorias, foto) VALUES ('Curl con barra', 'Flexión de brazos levantando una varra, centrado en el bíceps.', 3);
+INSERT INTO Ejercicios(nombreEjercicio, descripcion, calorias, foto) VALUES ('Curl alterno con mancuernas', 'Variante donde trbajas cada brazo por separado, mejorando equilibrio y control.', 3);
+
+INSERT INTO SesionesDeClases()
