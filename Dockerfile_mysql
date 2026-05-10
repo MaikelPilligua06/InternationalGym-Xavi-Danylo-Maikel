@@ -1,2 +1,3 @@
 FROM mysql:latest
-COPY script_docker_mysql.sql /docker-entrypoint-initdb.d
+COPY script_docker_mysql.sql /docker-entrypoint-initdb.d/01_schema.sql
+COPY proyecto/scripts/datos.sql /docker-entrypoint-initdb.d/02_datos.sql
