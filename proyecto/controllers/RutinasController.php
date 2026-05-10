@@ -6,8 +6,7 @@ class RutinasController{
         $id = $_SESSION['id'];
         $rutinas = new RutinasModel();
         $ver = $rutinas->verRutinas($id);
-        $rutinaUsuario = $rutinas->getRutinaUsuario($id);
-        $rutinaDiaria = $rutinas->rutinaDiaria($id);
+        $rutinas = ($id) ? $rutinas->getRutinaUsuario($id) : [];
         require "views/Rutinas/rutinas_ver.php";
     }
     public function rutinasVer(){

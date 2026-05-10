@@ -15,6 +15,52 @@ class RutinasModel{
     }
     public function getRutinaUsuario($id){
         $db = conectar();
+        $stmt = $db->prepare("
+            SELECT id_rutina, id_usuario, nombre_rutina, objetivo, fechaTiempo
+            FROM Rutina
+            WHERE id_usuario = :id
+        ");
+        $stmt->execute([':id' => $id]);
+        $rutinas = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        foreach ($rutinas as $rutina) {
+            $stmt = $db->prepare("
+                SELECT c.series, c.repeticiones, c.peso,
+                (e.calorias * c.series * c.repeticiones) AS calorias
+                FROM Contiene c
+                JOIN Ejercicios e ON c.id_ejercicio = e.id
+                WHERE c.id_rutina = :id_rutina
+        ");
+            $stmt->execute([':id_rutina' => $rutina->id_rutina]);
+            $rutina->ejercicios = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+            $stmt = $db->prepare("
+                SELECT s.calorias
+                FROM Contiene c
+                JOIN SesionesDeClases s ON c.id_sesion = s.id
+                WHERE c.id_rutina = :id_rutina
+            ");
+            $stmt->execute([':id_rutina' => $rutina->id_rutina]);
+            $rutina->sesiones = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+            $stmt = $db->prepare("
+                SELECT a.calorias
+                FROM Contiene c
+                JOIN Alimentacion a ON c.id_alimentacion = a.id
+                WHERE c.id_rutina = :id_rutina
+            ");
+            $stmt->execute([':id_rutina' => $rutina->id_rutina]);
+
+            $rutina->platos = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $rutina->calorias_ejercicios = 0;
+            $rutina->calorias_sesiones   = 0;
+            $rutina->calorias_platos     = 0;
+            foreach ($rutina->ejercicios as $e) $rutina->calorias_ejercicios += $e->calorias;
+            foreach ($rutina->sesiones   as $s) $rutina->calorias_sesiones   += $s->calorias;
+            foreach ($rutina->platos     as $p) $rutina->calorias_platos     += $p->calorias;
+            $rutina->calorias_total = $rutina->calorias_ejercicios + $rutina->calorias_sesiones + $rutina->calorias_platos;
+        }
+        return $rutinas;
     }
     public function rutinaDiaria($id){
 
