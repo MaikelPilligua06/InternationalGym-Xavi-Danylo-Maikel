@@ -58,32 +58,38 @@
                         <button class="boton boton-principal">Crear rutina</button>
                     </div>
                 </div>
-                <!-- Ejercicios seleccionados -->
-                <?php foreach ($_SESSION['rutina_ejercicios'] as $i => $e) : ?>
-                    <div class="resumen-elemento">
-                        <input type="hidden" name="id_ejercicio[]" value="<?= htmlspecialchars($e['id']) ?>">
-                        <div class="resumen-elemento-cabecera">
-                            <span class="elemento-nombre"><?= htmlspecialchars($e['nombreEjercicio']) ?></span>
-                            <span class="elemento-calorias"><?= htmlspecialchars($e['calorias']) ?> kcal</span>
+                <?php if (!empty($_SESSION['rutina_ejercicios'])) : ?>
+                    <div class="panel">
+                        <div class="panel-titulo">Ejercicios Seleccionados</div>
+                        <div class="rutina-seleccionados">
+                            <?php foreach ($_SESSION['rutina_ejercicios'] as $i => $e) : ?>
+                                <div class="resumen-elemento">
+                                    <input type="hidden" name="id_ejercicio[]" value="<?= htmlspecialchars($e['id']) ?>">
+                                    <div class="resumen-elemento-cabecera">
+                                        <span class="elemento-nombre"><?= htmlspecialchars($e['nombreEjercicio']) ?></span>
+                                        <span class="elemento-calorias"><?= htmlspecialchars($e['calorias']) ?> kcal</span>
+                                    </div>
+                                    <div class="resumen-elemento-campos">
+                                        <div class="campo-input-grupo">
+                                            <input type="number" name="series[]" placeholder="0" min="1" max="100" required>
+                                            <label>Series</label>
+                                        </div>
+                                        <div class="campo-input-grupo">
+                                            <input type="number" name="repeticiones[]" placeholder="0" min="1" max="100" required>
+                                            <label>Reps</label>
+                                        </div>
+                                        <div class="campo-input-grupo">
+                                            <input type="number" name="peso[]" placeholder="0" min="0" max="500" required>
+                                            <label>Kg</label>
+                                        </div>
+                                    </div>
+                                    <a href="index.php?controller=Rutinas&action=quitarEjercicio&index=<?= $i ?>"
+                                       class="boton-quitar">Quitar</a>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                        <div class="resumen-elemento-campos">
-                            <div class="campo-input-grupo">
-                                <input type="number" name="series[]" placeholder="0" min="1" max="100" required>
-                                <label>Series</label>
-                            </div>
-                            <div class="campo-input-grupo">
-                                <input type="number" name="repeticiones[]" placeholder="0" min="1" max="100" required>
-                                <label>Reps</label>
-                            </div>
-                            <div class="campo-input-grupo">
-                                <input type="number" name="peso[]" placeholder="0" min="0" max="500" required>
-                                <label>Kg</label>
-                            </div>
-                        </div>
-                        <a href="index.php?controller=Rutinas&action=quitarEjercicio&index=<?= $i ?>"
-                           class="boton-quitar">Quitar</a>
                     </div>
-                <?php endforeach; ?>
+                <?php endif; ?>
             </form>
 
 
