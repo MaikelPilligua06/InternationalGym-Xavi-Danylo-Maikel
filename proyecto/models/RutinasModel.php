@@ -13,6 +13,15 @@ class RutinasModel{
         $stmt->execute([":id" => $id]);
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+    public function getRutinaUsuario($id){
+        $db = conectar();
+    }
+    public function rutinaDiaria($id){
+
+    }
+    public function rutinaVer($id){
+
+    }
     public function getUsuariosEjercicios($id){
         $db = conectar();
         $stmt = $db->prepare("
@@ -32,7 +41,7 @@ class RutinasModel{
     }
     public function getTodosLosEjercicios(){
         $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Ejercicios");
+        $stmt = $db->prepare("SELECT * FROM Ejercicios ORDER BY RAND() LIMIT 5");
         $stmt->execute();
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $todoslosEjercicios = [];
@@ -60,7 +69,7 @@ class RutinasModel{
     }
     public function getTodosLosPlatos(){
         $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Alimentacion");
+        $stmt = $db->prepare("SELECT * FROM Alimentacion ORDER BY RAND() LIMIT 5");
         $stmt->execute();
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $todosLosPlatos = [];
@@ -92,7 +101,9 @@ class RutinasModel{
             SELECT s.*, u.nombreUsuario AS nombreEntrenador
             FROM SesionesDeClases s
             JOIN Usuarios u ON s.id_entrenador = u.id
-            ORDER BY fechaClases DESC
+            WHERE DATE(s.fechaClases) = CURDATE()
+            ORDER BY RAND()
+            LIMIT 5;
         ");
         $stmt->execute();
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -195,7 +206,7 @@ class RutinasModel{
             return false;
         }
     }
-    public function guardarRutina($nombre_rutina, $ejercicios, $platos, $sesiones, $id, $fechaTiempo, $objetivo) {
+    public function guardarRutina($nombre_rutina, $ejercicios, $platos, $sesiones, $id, $fechaTiempo, $objetivo, $series, $repeticiones, $peso) {
         $db = conectar();
         $stmt = $db->prepare("INSERT INTO Rutina (id_usuario, nombre_rutina, objetivo, fechaTiempo) VALUES (:id_usuario, :nombre_rutina, :objetivo, :fechaTiempo) ");
         $stmt->execute([
@@ -209,10 +220,16 @@ class RutinasModel{
         $rutina = $stmt->fetch(PDO::FETCH_ASSOC);
         $id_rutina = $rutina['id_rutina'];
 
-        foreach ($ejercicios as $id_ejercicio) {
+        foreach ($ejercicios as $ejercicio => $id_ejercicio) {
             if ($id_ejercicio != '') {
-                $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_ejercicio) VALUES (:id_rutina, :id_ejercicio)");
-                $stmt->execute([':id_rutina' => $id_rutina, ':id_ejercicio' => $id_ejercicio]);
+                $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_ejercicio, series, repeticiones, peso) VALUES (:id_rutina, :id_ejercicio, :series, :repeticiones, :peso)");
+                $stmt->execute([
+                    ':id_rutina' => $id_rutina,
+                    ':id_ejercicio' => $id_ejercicio,
+                    ':series'       => $series[$ejercicio],
+                    ':repeticiones' => $repeticiones[$ejercicio],
+                    ':peso'         => $peso[$ejercicio]
+                ]);
             }
         }
         foreach ($platos as $id_plato) {

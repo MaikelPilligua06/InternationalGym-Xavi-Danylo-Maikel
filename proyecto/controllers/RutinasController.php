@@ -6,11 +6,12 @@ class RutinasController{
         $id = $_SESSION['id'];
         $rutinas = new RutinasModel();
         $ver = $rutinas->verRutinas($id);
+        $rutinaUsuario = $rutinas->getRutinaUsuario($id);
+        $rutinaDiaria = $rutinas->rutinaDiaria($id);
         require "views/Rutinas/rutinas_ver.php";
     }
+    public function rutinasVer(){
 
-    public function rutinaDiaria(){
-//
     }
     // Función para crear una rutina Usuario
     public function crearRutina(){
@@ -121,16 +122,24 @@ class RutinasController{
             $ejercicios    = $_POST['id_ejercicio'] ?? [];
             $platos        = $_POST['id_plato'] ?? [];
             $sesiones      = $_POST['id_sesion'] ?? [];
+            $peso          = $_POST['peso'] ?? [];
+            $series        = $_POST['series'] ?? [];
+            $repeticiones  = $_POST['repeticiones'] ?? [];
         }
         $id = $_SESSION['id'];
         $rutinas = new RutinasModel();
-        $rutinas->guardarRutina($nombre_rutina, $ejercicios, $platos, $sesiones, $id, $fechaTiempo, $objetivo);
-
+        $rutinas->guardarRutina($nombre_rutina, $ejercicios, $platos, $sesiones, $id, $fechaTiempo, $objetivo, $series, $repeticiones, $peso);
         unset($_SESSION['rutina_ejercicios']);
         unset($_SESSION['rutina_platos']);
-        unset($_SESSION['rutina_sesion']);
+        unset($_SESSION['rutina_sesiones']);
         header('Location: index.php?controller=Rutinas&action=redirectRutinas');
         exit;
     }
-
+    public function volver(){
+        unset($_SESSION['rutina_ejercicios']);
+        unset($_SESSION['rutina_platos']);
+        unset($_SESSION['rutina_sesiones']);
+        header('Location: index.php?controller=Rutinas&action=redirectRutinas');
+        exit;
+    }
 }
