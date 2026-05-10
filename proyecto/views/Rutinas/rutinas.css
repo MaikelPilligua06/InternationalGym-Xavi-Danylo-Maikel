@@ -1,56 +1,146 @@
-.rutina-form {
-    max-width: 700px;
+.pagina {
+    width: min(var(--tn-max), calc(100% - 32px));
     margin-inline: auto;
-    margin-bottom: 2rem;
+    padding: 2rem 0 5rem;
 }
-.rutina-campos {
+.pagina-cabecera {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--tn-border);
+}
+.pagina-cabecera h1 {
+    font-size: 1.55rem;
+    font-weight: 800;
+    letter-spacing: .2px;
+    color: var(--tn-text);
+}
+.pagina-acciones { display: flex; gap: 10px; }
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: .92rem;
+    border: 1px solid transparent;
+    transition: .18s ease;
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+}
+.boton-principal {
+    background: linear-gradient(180deg, var(--tn-yellow-2), var(--tn-yellow));
+    color: #111;
+    box-shadow: 0 10px 18px rgba(255,212,0,.14);
+}
+.boton-volver {
+    background: rgba(255,255,255,.04);
+    border-color: var(--tn-border);
+    color: var(--tn-text);
+}
+.dividir {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin-bottom: 1.25rem;
 }
-.campo-grupo {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+@media (max-width: 640px) { .dividir { grid-template-columns: 1fr; } }
+.panel {
+    background: var(--tn-bg-2);
+    border: 1px solid var(--tn-border);
+    border-radius: var(--tn-radius);
+    padding: 16px 18px;
+    box-shadow: var(--tn-shadow);
 }
-.campo-grupo label {
-    font-size: .75rem;
+.panel-titulo {
+    font-size: .72rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: .08em;
+    letter-spacing: .1em;
     color: var(--tn-muted);
+    margin-bottom: 12px;
 }
-.campo-grupo input,
-.campo-grupo select {
-    width: 100%;
-    padding: 10px 14px;
-    background: rgba(255,255,255,.04);
+.fila-elemento {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--tn-border);
+}
+.elemento-nombre {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color .18s ease;
+}
+.elemento-meta {
+    font-size: 12px;
+    color: var(--tn-muted);
+    margin-top: 1px;
+}
+.resumen-elemento {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--tn-bg-2);
     border: 1px solid var(--tn-border);
     border-radius: 10px;
+    padding: 10px 14px;
+    font-size: .9rem;
+    font-weight: 600;
+}
+.resumen-elemento-cabecera {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+.resumen-elemento-cabecera span:first-child {
+    font-weight: 600;
+    color: var(--tn-text);
+}
+.elemento-calorias {
+    font-size: .82rem;
+    color: var(--tn-muted);
+    font-weight: 400;
+}
+.resumen-elemento-campos {
+    display: flex;
+    gap: 8px;
+}
+.resumen-elemento input[type="number"] {
+    width: 65px;
+    padding: 5px 8px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--tn-border);
+    border-radius: 8px;
     color: var(--tn-text);
     font-family: var(--tn-font);
-    font-size: .93rem;
-    box-sizing: border-box;
-    transition: border-color .18s ease;
+    font-size: .85rem;
 }
-.campo-grupo input:focus,
-.campo-grupo select:focus {
-    outline: none;
-    border-color: var(--tn-yellow);
-    box-shadow: 0 0 0 3px rgba(255,212,0,.1);
+.boton-quitar {
+    font-size: .8rem;
+    font-weight: 700;
+    color: #ff5c3a;
+    white-space: nowrap;
 }
-.rutina-form-acciones {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 1rem;
-    border-top: 1px solid var(--tn-border);
-}
+
 .rutina-seleccionados {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-bottom: 1.5rem;
 }
+
 .resumen-elemento {
     display: flex;
     align-items: center;
@@ -60,6 +150,7 @@
     border-radius: 12px;
     padding: 14px 16px;
 }
+
 .resumen-elemento-cabecera {
     display: flex;
     flex-direction: column;
@@ -67,21 +158,26 @@
     flex: 1;
     min-width: 0;
 }
-.resumen-elemento-cabecera span:first-child {
+
+.resumen-elemento-cabecera .elemento-nombre {
     font-size: .95rem;
     font-weight: 700;
     color: var(--tn-text);
 }
-.elemento-calorias {
+
+.resumen-elemento-cabecera .elemento-calorias {
     font-size: .82rem;
     color: var(--tn-muted);
+    font-weight: 400;
 }
+
 .resumen-elemento-campos {
     display: flex;
     gap: 6px;
     align-items: center;
 }
-.resumen-elemento-campos{
+
+.resumen-elemento-campos input[type="number"] {
     width: 62px;
     padding: 6px 8px;
     background: rgba(255,255,255,.04);
@@ -92,22 +188,42 @@
     font-size: .83rem;
     text-align: center;
 }
-.resumen-elemento-campos  {
+
+.resumen-elemento-campos input[type="number"]:focus {
     outline: none;
     border-color: var(--tn-yellow);
 }
+
+.resumen-elemento-campos label {
+    font-size: .7rem;
+    color: var(--tn-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
 .campo-input-grupo {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2px;
 }
-.campo-input-grupo label {
-    font-size: .7rem;
-    color: var(--tn-muted);
-    font-weight: 700;
-    text-transform: uppercase;
+
+.boton-añadir {
+    padding: 8px 18px;
+    background: linear-gradient(180deg, var(--tn-yellow-2), var(--tn-yellow));
+    color: #111;
+    font-size: .85rem;
+    font-weight: 800;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity .18s ease;
+    flex-shrink: 0;
 }
+
+.boton-añadir:hover { opacity: .85; }
+
 .boton-quitar {
     font-size: .78rem;
     font-weight: 700;
@@ -119,6 +235,6 @@
     white-space: nowrap;
     transition: opacity .18s ease;
     flex-shrink: 0;
-    text-decoration: none;
 }
+
 .boton-quitar:hover { opacity: .7; }
