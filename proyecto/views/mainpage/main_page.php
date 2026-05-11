@@ -45,6 +45,7 @@
                         <li>Calorías: <?= $ejercicio->calorias ?></li>
                     </ul>
                 </div>
+    <hr/> <br/>
             <?php endforeach; ?>
         <?php endforeach; ?>
         <?php else : ?>
