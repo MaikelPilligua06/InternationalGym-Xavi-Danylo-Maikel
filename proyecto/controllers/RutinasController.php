@@ -160,4 +160,9 @@ class RutinasController{
         header('Location: index.php?controller=Rutinas&action=redirectRutinas');
         exit;
     }
+    public function verRutina(){
+        $modelo = new RutinasModel();
+        $rutinas = $modelo->getById($_GET['id']) ;
+        require "views/Rutinas/rutinasInfo.php";
+    }
 }
