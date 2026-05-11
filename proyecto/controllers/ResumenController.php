@@ -1,15 +1,19 @@
 <?php
 require_once __DIR__ . "/../models/ResumenModel.php";
 require_once "models/SesionesModel.php";
+require_once "models/RutinasModel.php";
 
 class ResumenController
 {
     public function index() {
         $usuario = $_SESSION['id'];
+        $id = $usuario;
         $model = new ResumenModel();
         $sesiones = new SesionesModel();
+        $rutina = new RutinasModel();
         $entrenadorSesiones = ($usuario) ? $sesiones->sesionesUsuarioEntrenador($usuario) : [];
         $resumen = $model->getAll();
+        $rutinas = ($id) ? $rutina->getRutinaUsuario($id) : [];
         require "views/mainpage/main_page.php";
 
     }

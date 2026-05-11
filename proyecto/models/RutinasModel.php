@@ -25,7 +25,7 @@ class RutinasModel{
 
         foreach ($rutinas as $rutina) {
             $stmt = $db->prepare("
-                SELECT c.series, c.repeticiones, c.peso,
+                SELECT  e.nombreEjercicio, e.calorias, e.foto, c.series, c.repeticiones, c.peso,
                 (e.calorias * c.series * c.repeticiones) AS calorias
                 FROM Contiene c
                 JOIN Ejercicios e ON c.id_ejercicio = e.id
@@ -44,7 +44,7 @@ class RutinasModel{
             $rutina->sesiones = $stmt->fetchAll(PDO::FETCH_OBJ);
 
             $stmt = $db->prepare("
-                SELECT a.calorias
+                SELECT a.calorias, a.nombrePlato, a.proteinas, a.foto
                 FROM Contiene c
                 JOIN Alimentacion a ON c.id_alimentacion = a.id
                 WHERE c.id_rutina = :id_rutina

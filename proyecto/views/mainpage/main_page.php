@@ -33,16 +33,38 @@
 </div>
     <div class="Alimentacion">
         <h3>Seguimiento de tus ejercicios</h3>
+        <?php if (!empty($rutinas)) : ?>
+        <?php foreach ($rutinas as $rutina): ?>
+            <?php foreach ($rutina->ejercicios as $ejercicio): ?>
+                <div class="Alimentacion-datos">
+                    <ul>
+                        <li>Nombre de ejercicio: <?= htmlspecialchars($ejercicio->nombreEjercicio) ?></li>
+                        <li>Series: <?= $ejercicio->series ?></li>
+                        <li>Repeticiones: <?= $ejercicio->repeticiones ?></li>
+                        <li>Peso: <?= $ejercicio->peso ?></li>
+                        <li>Calorías: <?= $ejercicio->calorias ?></li>
+                    </ul>
+                </div>
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+        <?php else : ?>
+        <div class="pagina-cabecera">
         <div class="Alimentacion-datos">
-            <ul>
-                <li>Tu Objetivo: </li>
-                <li>Calorias:</li>
-                <li>Nombre de ejercicio:</li>
-                <li>Series: </li>
-                <li>Repeticiones: </li>
-                <li>Peso: </li>
-            </ul>
+                <h3>No hemos encontrado ningún ejercicio en la rutina de hoy.</h3>
+                <h4>Actualiza tu Rutina Diaria!</h4>
+                <div class="pagina-acciones">
+                    <a href="index.php?controller=Rutinas&action=redirectRutinas">
+                        <button>Actualizar Rutina diaria</button>
+                    </a>
+                </div>
+                <div class="pagina-acciones">
+                    <a href="index.php?controller=Rutinas&action=crearRutina">
+                        <button>Crear una Rutina</button>
+                    </a>
+                </div>
+            </div>
         </div>
+        <?php endif; ?>
     </div>
     <div class="Ejercicios">
         <h2>Alimentacion</h2>
