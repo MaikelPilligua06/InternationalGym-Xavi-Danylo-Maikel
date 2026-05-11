@@ -11,7 +11,7 @@
 <?php
 include 'views/header.php';
 ?>
-<main>
+<main class="pagina">
     <div class="pagina-acciones">
         <a href="index.php?controller=Rutinas&action=volver" class="boton boton-volver">Volver</a>
     </div>

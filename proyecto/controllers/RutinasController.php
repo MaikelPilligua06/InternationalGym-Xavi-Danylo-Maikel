@@ -165,4 +165,13 @@ class RutinasController{
         $rutinas = $modelo->getById($_GET['id']) ;
         require "views/Rutinas/rutinasInfo.php";
     }
+    public function getRutinaActualizar()
+    {
+        $id = $_SESSION['id'];
+        $model = new RutinasModel();
+        require 'views/Rutinas/rutinasEditar.php';
+    }
+    public function actualizarRutiar(){
+
+    }
 }

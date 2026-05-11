@@ -11,7 +11,7 @@
 <?php
     include 'views/header.php';
 ?>
-<main>
+<main class="pagina">
         <?php if (!empty($rutinas)) : ?>
             <?php foreach ($rutinas as $rutina) : ?>
                 <div class="panel">
@@ -24,7 +24,7 @@
                         <p>Calorias consumidas por sesiones: <?= $rutina->calorias_sesiones ?></p>
                         <p>Calorias ingeridas por platos: <?= $rutina->calorias_platos ?></p>
                     </a>
-                    <a href="index.php?controller=Rutinas&action=actualizarRutina" class="boton boton-volver">Actualizar</a>
+                    <a href="index.php?controller=Rutinas&action=getRutinaActualizar&id=<?= $rutina->id_rutina?>" class="boton boton-volver">Actualizar</a>
                     <a href="index.php?controller=Rutinas&action=eliminarRutinaDef&id=<?= $rutina->id_rutina ?>"
                        class="boton boton-volver">Borrar
                     </a>
