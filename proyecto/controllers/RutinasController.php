@@ -4,13 +4,18 @@ require_once "models/RutinasModel.php";
 class RutinasController{
     public function redirectRutinas(){
         $id = $_SESSION['id'];
-        $rutinas = new RutinasModel();
-        $ver = $rutinas->verRutinas($id);
-        $rutinas = ($id) ? $rutinas->getRutinaUsuario($id) : [];
+        $modelo = new RutinasModel();
+        $ver = $modelo->verRutinas($id);
+        $rutinas   = ($id) ? $modelo->getRutinaUsuario($id) : [];
+        $diaRutina = ($id) ? $modelo->getRutinaDiaria($id)  : [];
         require "views/Rutinas/rutinas_ver.php";
     }
-    public function rutinasVer(){
-
+    public function crearRutinaDiaria(){
+        $usuarioId = $_SESSION['id'];
+        $model = new RutinasModel();
+        $rutinaDiaria = $model->rutinaDiaria($_GET['id'], $usuarioId);
+        header('Location: index.php?controller=Rutinas&action=redirectRutinas');
+        exit();
     }
     // Función para crear una rutina Usuario
     public function crearRutina(){
@@ -140,5 +145,33 @@ class RutinasController{
         unset($_SESSION['rutina_sesiones']);
         header('Location: index.php?controller=Rutinas&action=redirectRutinas');
         exit;
+    }
+    public function deleteRutinaDiaria(){
+        $usuarioId = $_SESSION['id'];
+        $model = new RutinasModel();
+        $rutinaDiaria = $model->eliminarRutinaDia($_GET['id'], $usuarioId);
+        header('Location: index.php?controller=Rutinas&action=redirectRutinas');
+        exit;
+    }
+    public function eliminarRutinaDef(){
+        $usuarioId = $_SESSION['id'];
+        $model = new RutinasModel();
+        $delete = $model->deleteRutina($_GET['id'], $usuarioId);
+        header('Location: index.php?controller=Rutinas&action=redirectRutinas');
+        exit;
+    }
+    public function verRutina(){
+        $modelo = new RutinasModel();
+        $rutinas = $modelo->getById($_GET['id']) ;
+        require "views/Rutinas/rutinasInfo.php";
+    }
+    public function getRutinaActualizar()
+    {
+        $id = $_SESSION['id'];
+        $model = new RutinasModel();
+        require 'views/Rutinas/rutinasEditar.php';
+    }
+    public function actualizarRutiar(){
+
     }
 }
