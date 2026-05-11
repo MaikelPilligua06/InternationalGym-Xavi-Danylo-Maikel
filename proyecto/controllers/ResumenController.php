@@ -13,7 +13,7 @@ class ResumenController
         $rutina = new RutinasModel();
         $entrenadorSesiones = ($usuario) ? $sesiones->sesionesUsuarioEntrenador($usuario) : [];
         $resumen = $model->getAll();
-        $rutinas = ($id) ? $rutina->getRutinaUsuario($id) : [];
+        $rutinas = ($id) ? $rutina->getRutinaDiaria($id) : [];
         require "views/mainpage/main_page.php";
 
     }
