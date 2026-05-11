@@ -356,7 +356,7 @@ a:focus, button:focus, input:focus{ outline: 2px solid var(--tn-yellow); outline
 
 /* El diseño para el perfil de usuario */
 .perfil {
-    max-width: 350px;
+    max-width: 500px;
     font-family: Arial, sans-serif;
     margin: 0 auto;
     padding: 20px;
@@ -428,7 +428,7 @@ a:focus, button:focus, input:focus{ outline: 2px solid var(--tn-yellow); outline
     border: 1px solid black;
     font-weight: bold;
     font-size: medium;
-    
+
 }
 
 .button button:hover {

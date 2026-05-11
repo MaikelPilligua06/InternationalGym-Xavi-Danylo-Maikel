@@ -15,7 +15,7 @@
 <div class="perfil">
     <h2>Mi Perfil</h2>
 
-    <form>
+    <form method="POST" action="index.php?controller=Usuario&action=actualizar">
         <h3>Nombre: </h3>
         <p><?= $usuario->nombreUsuario ?></p>
 
@@ -24,12 +24,10 @@
 
 
         <h3>Numero Telefono: </h3>
-        <p><input type="tel" name="numeroTel" value="<?php echo $usuario->numeroTelefono ;?>"></p>
-
+        <input type="tel"   name="numeroTelefono"    value="<?= $usuario->numeroTelefono ?>">
 
         <h3>Correo Electronico: </h3>
-        <p><input type="email" name="correoEle" value="<?php echo $usuario->correoElectronico ;?>"></p>
-
+        <input type="email" name="correoElectronico"  value="<?= $usuario->correoElectronico ?>">
 
         <h3>Peso: </h3>
         <p><input type="number" name="peso" value="<?php echo $usuario->peso ;?>"></p>
@@ -37,6 +35,22 @@
         <h3>Altura: </h3>
         <p><input type="number" name="altura" value="<?php echo $usuario->altura ;?>"></p>
 
+        <h3>Nivel de Actividad: </h3>
+        <select name="nivelActividad">
+            <option value="sedentario" <?= $usuario->nivelActividad === 'sedentario' ? 'selected' : '' ?>>Sedentario (0,8 g/kg)</option>
+            <option value="moderado"   <?= $usuario->nivelActividad === 'moderado'   ? 'selected' : '' ?>>Moderadamente activo (1,2 g/kg)</option>
+            <option value="activo"     <?= $usuario->nivelActividad === 'activo'     ? 'selected' : '' ?>>Activo / Deportista (1,5–2,2 g/kg)</option>
+        </select>
+
+        <h3>Proteína diaria recomendada: </h3>
+        <p>
+            <?php
+            $factores = ['sedentario' => 0.8, 'moderado' => 1.2, 'activo' => 1.85];
+            $factor = $factores[$usuario->nivelActividad] ?? null;
+            $proteina = ($factor && $usuario->peso) ? round($usuario->peso * $factor, 1) . ' g/día' : 'N/A';
+            echo $proteina;
+            ?>
+        </p>
 
         <h3>Objetivo: </h3>
         <select name="objetivo">
@@ -46,7 +60,7 @@
         </select>
 
     <div class="button">
-        <button type value="submit">Guardar</button>
+        <button type="submit" name="actualizar">Guardar</button>
     </div>
 
 
