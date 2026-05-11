@@ -35,7 +35,8 @@ CREATE TABLE Usuarios (
   rol ENUM('usuario', 'entrenador', 'admin'),
   descripcion TEXT,
   fechaDeAlta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  foto VARCHAR(255)
+  foto VARCHAR(255),
+  nivelActividad ENUM('sedentario', 'moderado', 'activo')
 );
 
 CREATE TABLE UsuarioEntrenador (
