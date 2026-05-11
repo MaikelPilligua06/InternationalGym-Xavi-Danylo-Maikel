@@ -90,11 +90,17 @@ CREATE TABLE Rutina (
   id_usuario   INT,
   nombre_rutina VARCHAR(255),
   objetivo     ENUM('perder peso','ganar fuerza','estabilidad'),
-  fecha_inicio DATE DEFAULT (CURRENT_DATE()),
   fechaTiempo  TIME,
   FOREIGN KEY (id_usuario) REFERENCES Usuarios(id)
 );
 
+CREATE TABLE FechaRutina (
+  id_rutina    INT,
+  id_usuario   INT,
+  fecha_inicio DATE DEFAULT (CURRENT_DATE()),
+  FOREIGN KEY (id_rutina) REFERENCES Rutina(id_rutina),
+  FOREIGN KEY (id_usuario) REFERENCES Usuarios(id)
+);
 CREATE TABLE SesionesDeClases (
   id           INT AUTO_INCREMENT PRIMARY KEY,
   calorias     INT,

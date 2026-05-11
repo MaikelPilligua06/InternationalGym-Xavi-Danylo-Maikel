@@ -24,7 +24,9 @@
 
                     <a href="index.php?controller=Rutinas&action=actualizarRutina" class="boton boton-volver">Actualizar</a>
                     <a href="index.php?controller=Rutinas&action=borrarRutina" class="boton boton-volver"
-                       onclick="return confirm('Al volver se borraran esta rutina que no has guardado')">Borrar</a>
+                       onclick="return confirm('Al volver se borraran esta rutina que no has guardado')">Borrar
+                    </a>
+                    <a href="index.php?controller=Rutinas&action=crearRutinaDiaria&id=<?= $rutina->id_rutina ?>" class="boton boton-volver">Rutina del día</a>
                 </div>
             <?php endforeach; ?>
         <?php else : ?>
@@ -34,6 +36,8 @@
             </a></h3></h1>
         <?php endif; ?>
 
+    <?php if (!empty($diaRutina)) : ?>
+    <?php foreach ($diaRutina as $rutina) : ?>
     <div>
         <h3>Tu rutina de hoy</h3>
         <p>Total de calorias consumidas (alimentación): </p>
@@ -50,7 +54,13 @@
             <button>Crear una rutina</button>
         </a>
     </div>
-
+        <?php endforeach; ?>
+    <?php else : ?>
+        <h3>No tienes una Rutina seleccionada para el dia de hoy, crea una o agrega una para hoy</h3>
+            <a href="index.php?controller=Rutinas&action=crearRutina">
+                <button>Crear una rutina</button>
+            </a>
+    <?php endif; ?>
 </main>
 <?php
     include 'views/footer.php';
