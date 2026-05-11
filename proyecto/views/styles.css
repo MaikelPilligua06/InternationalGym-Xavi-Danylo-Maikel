@@ -354,82 +354,6 @@ a:focus, button:focus, input:focus{ outline: 2px solid var(--tn-yellow); outline
 
 
 
-/* El diseño para el perfil de usuario */
-.perfil {
-    max-width: 500px;
-    font-family: Arial, sans-serif;
-    margin: 0 auto;
-    padding: 20px;
-    background: rgb(245, 200, 39);
-    border: 1px black;
-    border-radius: 10px;
-    margin-bottom: 24px;
-
-
-}
-
-/* Para el titulo del Perfil */
-.perfil h2 {
-    font-size: 30px;
-    font-weight: bold;
-    color: black;
-    margin-bottom: 20px;
-}
-
-
-.perfil h3 {
-    text-transform: uppercase;
-    margin-top: 15px;
-    margin-bottom: 3px;
-    color: black;
-}
-
-/* Par tener la letra de un color */
-.perfil p {
-    color: black;
-}
-
-.perfil label {
-    display: block;
-    font-size: 14px;
-    color: black;
-    margin-bottom: 3px;
-
-}
-
-/* Para los input y select, les hacemos diseño para que los cuadros dentro del perfil con infromación queden bonitos y iguales. */
-.perfil input,
-.perfil select {
-    width: 100%;
-    padding: 6px 8px;
-    margin-bottom: 12px;
-    border: 1px solid dimgray;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    font-size: 14px;
-
-}
-
-/* Diseño y orientación para los botones */
-.button {
-    margin-top: 15px;
-    padding: 8px;
-    color: black;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-
-
-}
-.button button {
-    background-color: black;
-    color: white;
-    border: 1px solid black;
-    font-weight: bold;
-    font-size: medium;
-
-}
 
 .button button:hover {
     background-color: black;
@@ -479,59 +403,8 @@ a:focus, button:focus, input:focus{ outline: 2px solid var(--tn-yellow); outline
     box-sizing: border-box;
 }
 
-/* El diseño para el perfil de usuario */
-.entrenador-info {
-    max-width: 350px;
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background: rgb(245, 200, 39);
-    border: 1px black;
-    border-radius: 10px;
-    margin: auto;
-    margin-top: 24px;
-}
 
 
-
-
-.entrenador-info h3 {
-    text-transform: uppercase;
-    margin-top: 15px;
-    margin-bottom: 3px;
-    color: black;
-
-
-}
-
-/* Par tener la letra de un color */
-.entrenador-info p {
-    color: black;
-    border-bottom: 1px solid dimgray;
-    padding-bottom: 12px;
-    margin-bottom: 16px;
-
-}
-
-.entrenador-info a {
-    color: black;
-}
-
-.entrenador-info label {
-    display: block;
-    font-size: 14px;
-    color: black;
-    margin-bottom: 3px;
-}
-
-.entrenador-info img {
-    max-width: 150px;
-    max-height: 150px;
-    width: auto;
-    height: auto;
-    border-radius: 12px;
-    display: block;
-    margin-right: auto;
-}
 
 .Publicaciones {
     max-width: 500px;

@@ -5,7 +5,7 @@
     <title>Perfil</title>
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="views/styles.css">
+    <link rel="stylesheet" href="views/perfil.css">
 </head>
 <body>
 <?php
@@ -27,7 +27,7 @@
         <input type="tel"   name="numeroTelefono"    value="<?= $usuario->numeroTelefono ?>">
 
         <h3>Correo Electronico: </h3>
-        <input type="email" name="correoElectronico"  value="<?= $usuario->correoElectronico ?>">
+        <p><input type="email" name="correoElectronico"  value="<?= $usuario->correoElectronico ?>"></p>
 
         <h3>Peso: </h3>
         <p><input type="number" name="peso" value="<?php echo $usuario->peso ;?>"></p>
@@ -75,15 +75,20 @@
 </div>
 <div class="entrenador-info">
 
-    <h3>Tu entrenador es :</h3>
+
+    <h3>Tu entrenador es :
+        <?php foreach($entrenadores as $entrenador): ?>
+            <span><?= $entrenador->nombreUsuario . ' ' . $entrenador->apellido; ?></span>
+        <?php endforeach; ?>
+    </h3>
+
     <?php foreach($entrenadores as $entrenador): ?>
         <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenador->id;?>">
-            <p><?= $entrenador->nombreUsuario . ' ' . $entrenador->apellido; ?></p>
-            <h3>Correo Electronico:</h3> <p><?= $entrenador->correoElectronico; ?></p>
+            <h3>Correo Electronico: <span><?= $entrenador->correoElectronico; ?></span></h3>
+            <hr>
             <p><?= $entrenador->descripcion; ?></p>
         </a>
     <?php endforeach; ?>
-
         <h3>Quieres cambiar?</h3>
         <a href="index.php?controller=Entrenador&action=getAllEntrenadores">
             <img src="views/gymFotos/entrenador.png"/>
