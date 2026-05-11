@@ -91,5 +91,32 @@ class UsuarioModel
             }
             return $entrenadores;
         }
+    public function actualizar($numeroTelefono, $correoElectronico, $objetivo, $nivelActividad)
+    {
+        $db = conectar();
+        $usuarioId = $_SESSION['id'];
+
+        $nivelesValidos = ['sedentario', 'moderado', 'activo'];
+        if (!in_array($nivelActividad, $nivelesValidos)) {
+            $nivelActividad = null;
+        }
+
+        $stmt = $db->prepare("
+        UPDATE Usuarios 
+        SET numeroTelefono = :numeroTelefono,
+            correoElectronico = :correoElectronico,
+            objetivo = :objetivo,
+            nivelActividad = :nivelActividad
+        WHERE id = :id
+    ");
+
+        $stmt->execute([
+            ':numeroTelefono'    => $numeroTelefono,
+            ':correoElectronico' => $correoElectronico,
+            ':objetivo'          => $objetivo,
+            ':nivelActividad'    => $nivelActividad,
+            ':id'                => $usuarioId
+        ]);
+    }
 
 }

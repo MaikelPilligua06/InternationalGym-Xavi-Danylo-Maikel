@@ -17,6 +17,7 @@ class Usuario
     public $peso;
     public $rol;
     public $descripcion;
+    public $nivelActividad;
 
     public function __construct($datos = [])
     {
@@ -36,5 +37,6 @@ class Usuario
         $this->altura = $datos["altura"] ?? null;
         $this->rol = $datos["rol"] ?? null;
         $this->descripcion = $datos["descripcion"] ?? null;
+        $this->nivelActividad = $datos["nivelActividad"] ?? null;
     }
 }

@@ -16,9 +16,10 @@ class UsuarioController{
             $numeroTelefono = $_POST['numeroTelefono'];
             $correoElectronico = $_POST['correoElectronico'];
             $objetivo = $_POST['objetivo'];
+            $nivelActividad = $_POST['nivelActividad'];
 
             $model = new UsuarioModel();
-            $model->actualizar($numeroTelefono, $correoElectronico, $objetivo);
+            $model->actualizar($numeroTelefono, $correoElectronico, $objetivo, $nivelActividad);
 
             header("Location: index.php?controller=Usuario&action=index");
             exit();
