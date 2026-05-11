@@ -58,7 +58,7 @@ class RutinasModel{
             foreach ($rutina->ejercicios as $e) $rutina->calorias_ejercicios += $e->calorias;
             foreach ($rutina->sesiones   as $s) $rutina->calorias_sesiones   += $s->calorias;
             foreach ($rutina->platos     as $p) $rutina->calorias_platos     += $p->calorias;
-            $rutina->calorias_total = $rutina->calorias_ejercicios + $rutina->calorias_sesiones + $rutina->calorias_platos;
+            $rutina->calorias_total = $rutina->calorias_ejercicios + $rutina->calorias_sesiones;
         }
         return $rutinas;
     }
@@ -121,7 +121,7 @@ class RutinasModel{
             foreach ($rutina->ejercicios as $e) $rutina->calorias_ejercicios += $e->calorias;
             foreach ($rutina->sesiones   as $s) $rutina->calorias_sesiones   += $s->calorias;
             foreach ($rutina->platos     as $p) $rutina->calorias_platos     += $p->calorias;
-            $rutina->calorias_total = $rutina->calorias_ejercicios + $rutina->calorias_sesiones + $rutina->calorias_platos;
+            $rutina->calorias_total = $rutina->calorias_ejercicios + $rutina->calorias_sesiones ;
         }
         return $diaRutina;
     }
@@ -351,5 +351,25 @@ class RutinasModel{
                 $stmt->execute([':id_rutina' => $id_rutina, ':id_sesion' => $id_sesion]);
             }
         }
+    }
+    public function eliminarRutinaDia($id, $usuarioId){
+        $db = conectar();
+        $stmt = $db->prepare("DELETE FROM FechaRutina WHERE id_rutina = :id_rutina AND id_usuario = :id_usuario");
+        $stmt->execute([
+            ':id_rutina'  => $id,
+            ':id_usuario' => $usuarioId
+        ]);
+    }
+    public function deleteRutina($id, $usuarioId){
+        $db = conectar();
+        $stmt = $db->prepare("DELETE FROM FechaRutina WHERE id_rutina = :id_rutina");
+        $stmt->execute([':id_rutina' => $id]);
+        $stmt = $db->prepare("DELETE FROM Contiene WHERE id_rutina = :id_rutina");
+        $stmt->execute([':id_rutina' => $id]);
+        $stmt = $db->prepare("DELETE FROM Rutina WHERE id_rutina = :id_rutina AND id_usuario = :id_usuario");
+        $stmt->execute([
+            ':id_rutina' => $id,
+            ':id_usuario' => $usuarioId
+        ]);
     }
 }

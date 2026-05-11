@@ -146,4 +146,18 @@ class RutinasController{
         header('Location: index.php?controller=Rutinas&action=redirectRutinas');
         exit;
     }
+    public function deleteRutinaDiaria(){
+        $usuarioId = $_SESSION['id'];
+        $model = new RutinasModel();
+        $rutinaDiaria = $model->eliminarRutinaDia($_GET['id'], $usuarioId);
+        header('Location: index.php?controller=Rutinas&action=redirectRutinas');
+        exit;
+    }
+    public function eliminarRutinaDef(){
+        $usuarioId = $_SESSION['id'];
+        $model = new RutinasModel();
+        $delete = $model->deleteRutina($_GET['id'], $usuarioId);
+        header('Location: index.php?controller=Rutinas&action=redirectRutinas');
+        exit;
+    }
 }
