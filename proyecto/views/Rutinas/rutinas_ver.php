@@ -12,6 +12,9 @@
     include 'views/header.php';
 ?>
 <main class="pagina">
+    <a href="index.php?controller=Rutinas&action=crearRutina">
+        <h2 class="boton boton-volver">Crear una rutina</h2>
+    </a>
         <?php if (!empty($rutinas)) : ?>
             <?php foreach ($rutinas as $rutina) : ?>
                 <div class="panel">
@@ -51,7 +54,7 @@
             <a href="index.php?controller=Rutinas&action=deleteRutinaDiaria&id=<?= $rutina->id_rutina ?>"
                onclick="return confirm('Estas seguro de borrar esta rutina?')"
                class="boton boton-volver">Eliminar Rutina Diaria</a>
-            <a href="index.php?controller=Rutinas&action=editarRutina&id=<?= $rutina->id_rutina ?>" class="boton boton-volver">Actualizar Rutina</a>
+            <a href="index.php?controller=Rutinas&action=getRutinaActualizar&id=<?= $rutina->id_rutina?>" class="boton boton-volver">Actualizar</a>
         </div>
         <?php endforeach; ?>
     <?php else : ?>
