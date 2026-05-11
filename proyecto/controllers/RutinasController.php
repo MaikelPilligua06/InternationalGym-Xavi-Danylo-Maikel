@@ -169,9 +169,39 @@ class RutinasController{
     {
         $id = $_SESSION['id'];
         $model = new RutinasModel();
+        $rutina = $model->getById($_GET['id']);
+        $usuarioEjercicios    = $model->getUsuariosEjercicios($id);
+        $todoslosEjercicios   = $model->getTodosLosEjercicios();
+        $usuarioAlimentacion  = $model->getUsuarioAlimentacion($id);
+        $todosLosPlatos       = $model->getTodosLosPlatos();
+        $usuarioSesiones      = $model->getUsuarioSesion($id);
+        $todasLasSesiones     = $model->getTodasLasSesiones();
+        $ejerciciosActuales = $model->getEjerciciosByRutina($_GET['id']);
+        $platosActuales     = $model->getPlatosByRutina($_GET['id']);
+        $sesionesActuales   = $model->getSesionesByRutina($_GET['id']);
         require 'views/Rutinas/rutinasEditar.php';
     }
-    public function actualizarRutiar(){
+    public function actualizarRutiar()
+    {
+        if (!empty($_POST)) {
+            $id            = $_GET['id'];
+            $nombre_rutina = $_POST['nombreRutina'];
+            $fechaTiempo   = $_POST['fechaTiempo'];
+            $objetivo      = $_POST['objetivo'];
+            $ejercicios    = $_POST['id_ejercicio']   ?? [];
+            $platos        = $_POST['id_plato']        ?? [];
+            $sesiones      = $_POST['id_sesion']       ?? [];
+            $peso          = $_POST['peso']            ?? [];
+            $series        = $_POST['series']          ?? [];
+            $repeticiones  = $_POST['repeticiones']    ?? [];
 
+            $model = new RutinasModel();
+            $model->updateRutina($id, $nombre_rutina, $fechaTiempo, $objetivo,
+                $ejercicios, $platos, $sesiones,
+                $series, $repeticiones, $peso);
+
+            header('Location: index.php?controller=Rutinas&action=redirectRutinas');
+            exit;
+        }
     }
 }
