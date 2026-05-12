@@ -128,6 +128,7 @@ class AlimentacionController{
             $model = new AlimentacionModel();
             $plato = $model->deletePlato($_GET["id"]);
             header("Location: index.php?controller=Alimentacion&action=getTodosLosPlatos");
+            exit;
         } catch (Exception $e) {
             $_SESSION['error_fatal'] = $e->getMessage();
             require "views/error_fatal.php";

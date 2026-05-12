@@ -149,12 +149,14 @@ class AlimentacionModel{
     public function deletePlato($id){
         try{
             $db = conectar();
+            // Primero borrar las relaciones
             $stmt = $db->prepare("DELETE FROM Usuario_Alimentacion WHERE id_alimentacion = :id");
             $stmt->execute([':id' => $id]);
+            // Luego borrar el plato en sí
             $stmt = $db->prepare("DELETE FROM Alimentacion WHERE id = :id");
             $stmt->execute([':id' => $id]);
         } catch (PDOException $e) {
-            throw new Exception("Error al eliminar el plato");
+            throw new Exception("Error al eliminar el plato: " . $e->getMessage());
         }
     }
 }

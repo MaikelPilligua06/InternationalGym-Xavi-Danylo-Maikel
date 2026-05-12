@@ -1,0 +1,103 @@
+.contenedor-auth {
+    width: 450px;
+    max-width: calc(100% - 32px);
+    margin: 64px auto;
+    background: var(--tn-bg-2);
+    border: 1px solid var(--tn-border);
+    border-radius: 16px;
+    padding: 40px;
+    box-sizing: border-box;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.contenedor-auth h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--tn-yellow);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin: 0 0 24px 0;
+    text-align: center;
+}
+
+.alerta-error {
+    font-size: 14px;
+    color: red;
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.formulario-auth {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.formulario-auth input[type="text"],
+.formulario-auth input[type="password"] {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--tn-border);
+    border-radius: 10px;
+    color: var(--tn-text);
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.formulario-auth input[type="text"]:focus,
+.formulario-auth input[type="password"]:focus {
+    outline: none;
+    border-color: var(--tn-yellow);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.separador-auth {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 12px;
+    color: var(--tn-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.contenedor-auth button {
+    width: 100%;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.contenedor-auth button:hover {
+    transform: translateY(-1px);
+}
+
+.btn-auth-entrar {
+    background: linear-gradient(180deg, var(--tn-yellow-2), var(--tn-yellow));
+    color: black;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+
+
+.btn-auth-registro {
+    background: black;
+    border: 1px solid var(--tn-border);
+    color: var(--tn-text);
+    margin-top: 12px;
+}
+
+.btn-auth-registro:hover {
+    background: rgba(255, 255, 255, .08);
+}
