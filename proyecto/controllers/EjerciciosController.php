@@ -23,7 +23,9 @@ class EjerciciosController{
     // Función para ver la informacion de un ejercicio
     public function infoEjercicio(){
         $model = new EjerciciosModel();
+        $usuarioId = $_SESSION['id'];
         $ejercicios = $model->getById($_GET["id"]);
+        $apuntado = $model->estaApuntado($_GET["id"], $usuarioId);
         require "views/Ejercicios/ejercicios_ver.php";
     }
 

@@ -127,5 +127,21 @@ class EjerciciosModel
             ':foto' => $ejercicio->foto
         ]);
     }
-
+    public function estaApuntado($id, $usuarioId){
+        $db = conectar();
+        $stmt = $db->prepare("
+        SELECT id_usuario, id_ejercicio FROM Usuario_Ejercicio 
+        WHERE id_usuario = :id_usuario AND id_ejercicio = :id_ejercicio
+    ");
+        $stmt->execute([
+            ':id_usuario'  => $usuarioId,
+            ':id_ejercicio' => $id
+        ]);
+        $resultado = $stmt->fetch(PDO::FETCH_OBJ);
+        if ($resultado) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -20,9 +20,18 @@
         <h3>Calorías: <?= $ejercicios->calorias ?></h3>
         <img class="imagen-actual" src="views/gymFotos/ejercicios/<?= $ejercicios->foto ?>"/>
     </div>
-    <form action="index.php?controller=Ejercicios&action=addEjercicio&id=<?= $ejercicios->id ?>" method="POST">
-        <button class="boton-actualizar">Añadir a mi entrenamiento</button>
-    </form>
+    <?php if (!$apuntado): ?>
+        <form action="index.php?controller=Ejercicios&action=addEjercicio&id=<?= $ejercicios->id ?>" method="POST">
+            <button type="submit" class="boton-actualizar">Añadir a mi entrenamiento</button>
+        </form>
+    <?php else: ?>
+        <form action="index.php?controller=Ejercicios&action=eliminarEjercicio&id=<?= $ejercicios->id ?>" method="POST">
+            <button type="submit" class="boton-borrar" onclick="return confirm('¿Estás seguro de que deseas eliminar este ejercicio?');">
+                Eliminar
+            </button>
+        </form>
+    <?php endif; ?>
+
 </main>
 <?php
     include 'views/footer.php';
