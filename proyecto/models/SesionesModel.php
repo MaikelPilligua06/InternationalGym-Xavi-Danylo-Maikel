@@ -116,11 +116,12 @@ WHERE usuario_sesion.id_usuario = :id;
     public function sesionesUsuarioEntrenador($usuario){
         $db = conectar();
         $stmt = $db->prepare("
-        SELECT s.id, s.nombreClase, s.calorias, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion, s.id_entrenador
-        FROM SesionesDeClases s
-        INNER JOIN Usuarios u ON s.id_entrenador = u.id
-        WHERE u.id = :id
-    ");
+            SELECT s.id, s.nombreClase, s.calorias, s.tipoDeClases, 
+            s.fechaClases, s.duracion, s.descripcion, s.id_entrenador
+            FROM SesionesDeClases s
+            INNER JOIN UsuarioEntrenador ue ON ue.id_entrenador = s.id_entrenador
+            WHERE ue.id_usuario = :id
+        ");
         $stmt->execute([':id' => $usuario]);
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

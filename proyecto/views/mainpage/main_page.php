@@ -130,9 +130,6 @@
                         <p><?= $fila->fechaClases ?></p>
                     </a>
                     <div class="button">
-                    <a href="index.php?controller=Sesiones&action=eliminarSesion&id=<?= $fila->id ?>">
-                        <button>Eliminar</button>
-                    </a>
                 </div>
                 </div>
 
