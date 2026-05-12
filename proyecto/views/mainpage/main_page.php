@@ -36,7 +36,8 @@
         <?php if (!empty($rutinas)) : ?>
         <?php foreach ($rutinas as $rutina): ?>
             <?php foreach ($rutina->ejercicios as $ejercicio): ?>
-                <div class="Alimentacion-datos">
+        <a class="nombre-item" href="index.php?controller=Ejercicios&action=infoEjercicio&id=<?= $ejercicio->id ?>">
+        <div class="Alimentacion-datos">
                     <ul>
                         <li>Nombre de ejercicio: <?= htmlspecialchars($ejercicio->nombreEjercicio) ?></li>
                         <li>Series: <?= $ejercicio->series ?></li>
@@ -45,6 +46,7 @@
                         <li>Calorías: <?= $ejercicio->calorias ?></li>
                     </ul>
                 </div>
+        </a>
     <hr/> <br/>
             <?php endforeach; ?>
         <?php endforeach; ?>
@@ -78,16 +80,38 @@
     </div>
     <div class="Alimentacion">
         <h3>Seguimiento de tu alimentación</h3>
+        <?php if (!empty($rutinas)) : ?>
+        <?php foreach ($rutinas as $rutina): ?>
+        <?php foreach ($rutina->platos as $platos): ?>
+        <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $platos->id ?>">
         <div class="Alimentacion-datos">
-            <ul>
-                <li>Nombre del Plato: </li>
-                <li>Calorias:</li>
-                <li>Proteinas:</li>
-                <li>Grasas: </li>
-                <li>Carbohidratos: </li>
-
-            </ul>
+                <ul>
+                    <li>Nombre del Plato: <?=$platos->nombrePlato ?></li>
+                    <li>Calorias: <?=$platos->calorias ?></li>
+                    <li>Proteinas: <?=$platos->proteinas ?></li>
+                    <li>Grasas:  <?=$platos->grasas ?></li>
+                    <li>Carbohidratos: <?=$platos->carbohidratos ?></li>
+                </ul>
         </div>
+        </a>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+        <?php else : ?>
+        <div class="Alimentacion-datos">
+            <h3>No hemos encontrado ningún ejercicio en la rutina de hoy.</h3>
+            <h4>Actualiza tu Rutina Diaria!</h4>
+            <div class="pagina-acciones">
+                <a href="index.php?controller=Rutinas&action=redirectRutinas">
+                        <button>Actualizar Rutina diaria</button>
+                </a>
+                </div>
+                <div class="pagina-acciones">
+                    <a href="index.php?controller=Rutinas&action=crearRutina">
+                        <button>Crear una Rutina</button>
+                    </a>
+                </div>
+        </div>
+        <?php endif; ?>
     </div>
 
     <div class="Entrenador">
