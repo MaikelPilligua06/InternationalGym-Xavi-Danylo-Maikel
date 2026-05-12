@@ -44,7 +44,7 @@ include 'views/header.php';
                 <p><?= $entrenador->descripcion; ?></p>
             </div>
             <div class="imagen">
-                <img src="views/gymFotos/entrenador.png" alt="Entrenador">
+                <img src="/views/gymFotos/<?= $entrenador->foto; ?>" alt="Entrenador">
             </div>
         </a>
     </div>
