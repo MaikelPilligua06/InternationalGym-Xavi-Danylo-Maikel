@@ -176,15 +176,19 @@ class RutinasController{
         if (!isset($_SESSION['rutina_sesiones'])) {
             $_SESSION['rutina_sesiones'] = [];
         }
-        $id = $_SESSION['id'];
+
+        if (isset($_GET['id']) && !empty($_GET['id'])) {
+            $_SESSION['rutinaId'] = $_GET['id'];
+        }
+        $id    = $_SESSION['id'];
         $model = new RutinasModel();
-        $rutinas = $model->getById($_GET['id']);
-        $usuarioEjercicios    = $model->getUsuariosEjercicios($id);
-        $todoslosEjercicios   = $model->getTodosLosEjercicios();
-        $usuarioAlimentacion  = $model->getUsuarioAlimentacion($id);
-        $todosLosPlatos       = $model->getTodosLosPlatos();
-        $usuarioSesiones      = $model->getUsuarioSesion($id);
-        $todasLasSesiones     = $model->getTodasLasSesiones();
+        $rutinas             = $model->getById($_SESSION['rutinaId']);
+        $usuarioEjercicios   = $model->getUsuariosEjercicios($id);
+        $todoslosEjercicios  = $model->getTodosLosEjercicios();
+        $usuarioAlimentacion = $model->getUsuarioAlimentacion($id);
+        $todosLosPlatos      = $model->getTodosLosPlatos();
+        $usuarioSesiones     = $model->getUsuarioSesion($id);
+        $todasLasSesiones    = $model->getTodasLasSesiones();
         require 'views/Rutinas/rutinasEditar.php';
     }
     public function actualizarRutiar()
@@ -213,30 +217,30 @@ class RutinasController{
 
     public function editAgregarEjercicio(){
         if (isset($_POST['id'])) {
-            $id       = $_POST['id'];
-            $nombreEjercicio   = $_POST['nombreEjercicio'];
-            $descripcion =  $_POST['descripcion'];
-            $foto = $_POST['foto'];
-            $calorias = $_POST['calorias'];
-
+            $_SESSION['rutinaId'] = $_POST['id_rutina'];
+            $id              = $_POST['id'];
+            $nombreEjercicio = $_POST['nombreEjercicio'];
+            $descripcion     = $_POST['descripcion'];
+            $foto            = $_POST['foto'];
+            $calorias        = $_POST['calorias'];
             $rutinaEjercicio = new RutinasModel();
             $rutinaEjercicio->guardarEjercicio($id, $nombreEjercicio, $descripcion, $foto, $calorias);
         }
-        header('Location: index.php?controller=Rutinas&action=getRutinaActualizar');
+        header('Location: index.php?controller=Rutinas&action=getRutinaActualizar&id=' . $_SESSION['rutinaId']);
         exit;
     }
     public function quitarEditEjercicio(){
         if (isset($_GET['index'])) {
             $index = $_GET['index'];
-
             $quitarEjercicio = new RutinasModel();
             $quitarEjercicio->eliminarEjercicio($index);
         }
-        header('Location: index.php?controller=Rutinas&action=getRutinaActualizar');
+        header('Location: index.php?controller=Rutinas&action=getRutinaActualizar&id=' . $_SESSION['rutinaId']);
         exit;
     }
     public function editAgregarPlato(){
         if (isset($_POST['id'])) {
+            $_SESSION['rutinaId'] = $_POST['id_rutina'];
             $id       = $_POST['id'];
             $objetivo = $_POST['objetivo'];
             $calorias = $_POST['calorias'];
@@ -250,7 +254,7 @@ class RutinasController{
             $rutinaPlato = new RutinasModel();
             $rutinaPlato->guardarPlato($id, $objetivo, $calorias, $nombrePlato, $descripcion, $proteinas, $carbohidratos, $grasas, $foto);
         }
-        header('Location: index.php?controller=Rutinas&action=getRutinaActualizar');
+        header('Location: index.php?controller=Rutinas&action=getRutinaActualizar&id=' . $_SESSION['rutinaId']);
         exit;
     }
     public function quitarEditPlato(){
@@ -259,11 +263,12 @@ class RutinasController{
             $quitarPlato = new RutinasModel();
             $quitarPlato->eliminarPlato($index);
         }
-        header('Location: index.php?controller=Rutinas&action=getRutinaActualizar');
+        header('Location: index.php?controller=Rutinas&action=getRutinaActualizar&id=' . $_SESSION['rutinaId']);
         exit;
     }
     public function agregarEditSesion(){
         if (isset($_POST['id'])) {
+            $_SESSION['rutinaId'] = $_POST['id_rutina'];
             $id       = $_POST['id'];
             $nombreClase = $_POST['nombreClase'];
             $tipoDeClases = $_POST['tipoDeClases'];
@@ -277,7 +282,7 @@ class RutinasController{
             $rutinaSesiones = new RutinasModel();
             $rutinaSesiones->agregarSesion($id, $nombreClase, $tipoDeClases, $fechaClases, $duracion, $id_entrenador, $descripcion, $foto, $calorias);
         }
-        header('Location: index.php?controller=Rutinas&action=getRutinaActualizar');
+        header('Location: index.php?controller=Rutinas&action=getRutinaActualizar&id=' . $_SESSION['rutinaId']);
         exit;
     }
     public function quitarEditSesion()
@@ -287,7 +292,7 @@ class RutinasController{
             $quitarSesion = new RutinasModel();
             $quitarSesion->eliminarSesion($index);
         }
-        header('Location: index.php?controller=Rutinas&action=getRutinaActualizar');
+        header('Location: index.php?controller=Rutinas&action=getRutinaActualizar&id=' . $_SESSION['rutinaId']);
         exit;
     }
 }
