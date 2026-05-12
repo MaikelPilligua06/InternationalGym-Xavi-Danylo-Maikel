@@ -422,4 +422,52 @@ class RutinasModel{
         return $rutinas;
 
     }
+    public function updateRutina($id, $nombre_rutina, $fechaTiempo, $objetivo, $ejercicios, $platos, $sesiones, $series, $repeticiones, $peso){
+        $db = conectar();
+
+        $stmt = $db->prepare("
+        UPDATE Rutina 
+        SET nombre_rutina = :nombre_rutina, objetivo = :objetivo, fechaTiempo = :fechaTiempo
+        WHERE id_rutina = :id_rutina
+    ");
+        $stmt->execute([
+            ':nombre_rutina' => $nombre_rutina,
+            ':objetivo'      => $objetivo,
+            ':fechaTiempo'   => $fechaTiempo,
+            ':id_rutina'     => $id
+        ]);
+
+        $stmt = $db->prepare("DELETE FROM Contiene WHERE id_rutina = :id_rutina");
+        $stmt->execute([':id_rutina' => $id]);
+
+        foreach ($ejercicios as $i => $id_ejercicio) {
+            if ($id_ejercicio != '') {
+                $stmt = $db->prepare("
+                INSERT INTO Contiene (id_rutina, id_ejercicio, series, repeticiones, peso)
+                VALUES (:id_rutina, :id_ejercicio, :series, :repeticiones, :peso)
+            ");
+                $stmt->execute([
+                    ':id_rutina'    => $id,
+                    ':id_ejercicio' => $id_ejercicio,
+                    ':series'       => $series[$i]       ?? 0,
+                    ':repeticiones' => $repeticiones[$i] ?? 0,
+                    ':peso'         => $peso[$i]          ?? 0
+                ]);
+            }
+        }
+
+        foreach ($platos as $id_plato) {
+            if ($id_plato != '') {
+                $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_alimentacion) VALUES (:id_rutina, :id_alimentacion)");
+                $stmt->execute([':id_rutina' => $id, ':id_alimentacion' => $id_plato]);
+            }
+        }
+
+        foreach ($sesiones as $id_sesion) {
+            if ($id_sesion != '') {
+                $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_sesion) VALUES (:id_rutina, :id_sesion)");
+                $stmt->execute([':id_rutina' => $id, ':id_sesion' => $id_sesion]);
+            }
+        }
+    }
 }

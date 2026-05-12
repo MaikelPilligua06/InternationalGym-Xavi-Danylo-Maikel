@@ -9,8 +9,9 @@
 </head>
 <body>
 <?php
-include 'views/header.php';
-?>
+    include 'views/header.php';
+    ?>
+
 <main class="pagina">
     <div class="pagina-cabecera">
         <div class="pagina-acciones">
@@ -18,30 +19,36 @@ include 'views/header.php';
                onclick="return confirm('Al volver no se guardaran los datos')">Volver</a>
         </div>
     </div>
+
     <?php foreach ($rutinas as $rutina) : ?>
         <div class="rutina-form">
-            <form id="formRutina" action="index.php?controller=Rutinas&action=guardar" method="POST">
+            <form id="formRutina" action="index.php?controller=Rutinas&action=actualizarRutiar&id=<?= $rutina->id_rutina ?>" method="POST">
+                <input type="hidden" name="id_rutina" value="<?= $rutina->id_rutina ?>">
+
                 <div class="panel">
                     <h2>Nombre</h2>
                     <div class="rutina-campos">
-                        <input type="text" name="nombreRutina" value="<?= $rutina->nombre_rutina; ?>">
+                        <input type="text" name="nombreRutina" value="<?= $rutina->nombre_rutina ?>">
                     </div>
+
                     <h2>Objetivo</h2>
                     <div class="rutina-campos">
-                    <select name="objetivo">
-                            <option value="perder peso" <?= $rutina->objetivo == 'Perder peso' ? 'selected' : '' ?>>Perder peso</option>
+                        <select name="objetivo">
+                            <option value="perder peso"  <?= $rutina->objetivo == 'perder peso'  ? 'selected' : '' ?>>Perder peso</option>
                             <option value="ganar fuerza" <?= $rutina->objetivo == 'ganar fuerza' ? 'selected' : '' ?>>Ganar fuerza</option>
-                            <option value="estabilidad" <?= $rutina->objetivo == 'Estabilidad' ? 'selected' : '' ?>>Estabilidad</option>
-                    </select>
+                            <option value="estabilidad"  <?= $rutina->objetivo == 'estabilidad'  ? 'selected' : '' ?>>Estabilidad</option>
+                        </select>
                     </div>
+
                     <h2>Tiempo estimado</h2>
                     <div class="rutina-campos">
-                        <input type="time" name="fechaTiempo" value="<?= $rutina->fechaTiempo; ?>">
+                        <input type="time" name="fechaTiempo" value="<?= $rutina->fechaTiempo ?>">
                     </div>
-                    <?php foreach ($_SESSION['rutina_platos'] as $i => $p) : ?>
+
+                    <?php foreach ($_SESSION['rutina_platos'] as $p) : ?>
                         <input type="hidden" name="id_plato[]" value="<?= htmlspecialchars($p['id']) ?>">
                     <?php endforeach; ?>
-                    <?php foreach ($_SESSION['rutina_sesiones'] as $i => $s) : ?>
+                    <?php foreach ($_SESSION['rutina_sesiones'] as $s) : ?>
                         <input type="hidden" name="id_sesion[]" value="<?= htmlspecialchars($s['id']) ?>">
                     <?php endforeach; ?>
 
@@ -50,10 +57,40 @@ include 'views/header.php';
                     </div>
                 </div>
 
+                <?php if (!empty($rutina->ejercicios)) : ?>
+                    <div class="panel">
+                        <div class="panel-titulo">Ejercicios Actuales</div>
+                        <div class="rutina-seleccionados">
+                            <?php foreach ($rutina->ejercicios as $e) : ?>
+                                <div class="resumen-elemento">
+                                    <input type="hidden" name="id_ejercicio[]" value="<?= $e->id ?>">
+                                    <div class="resumen-elemento-cabecera">
+                                        <span class="elemento-nombre"><?= htmlspecialchars($e->nombreEjercicio) ?></span>
+                                        <span class="elemento-calorias"><?= $e->calorias ?> kcal</span>
+                                    </div>
+                                    <div class="resumen-elemento-campos">
+                                        <div class="campo-input-grupo">
+                                            <input type="number" name="series[]" value="<?= $e->series ?>" min="1" max="100" required>
+                                            <label>Series</label>
+                                        </div>
+                                        <div class="campo-input-grupo">
+                                            <input type="number" name="repeticiones[]" value="<?= $e->repeticiones ?>" min="1" max="100" required>
+                                            <label>Reps</label>
+                                        </div>
+                                        <div class="campo-input-grupo">
+                                            <input type="number" name="peso[]" value="<?= $e->peso ?>" min="0" max="500" required>
+                                            <label>Kg</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
 
                 <?php if (!empty($_SESSION['rutina_ejercicios'])) : ?>
                     <div class="panel">
-                        <div class="panel-titulo">Ejercicios Seleccionados</div>
+                        <div class="panel-titulo">Ejercicios Nuevos</div>
                         <div class="rutina-seleccionados">
                             <?php foreach ($_SESSION['rutina_ejercicios'] as $i => $e) : ?>
                                 <div class="resumen-elemento">
@@ -83,19 +120,28 @@ include 'views/header.php';
                         </div>
                     </div>
                 <?php endif; ?>
+
             </form>
-            <?php endforeach; ?>
 
+            <?php if (!empty($rutina->sesiones)) : ?>
+                <div class="panel">
+                    <div class="panel-titulo">Sesiones Actuales</div>
+                    <div class="rutina-seleccionados">
+                        <?php foreach ($rutina->sesiones as $s) : ?>
+                            <div class="resumen-elemento">
+                                <div class="resumen-elemento-cabecera">
+                                    <span class="elemento-nombre"><?= htmlspecialchars($s->nombreClase) ?></span>
+                                    <span class="elemento-calorias"><?= $s->calorias ?> kcal</span>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
 
-
-
-
-
-
-            <!-- Sesiones seleccionadas -->
             <?php if (!empty($_SESSION['rutina_sesiones'])) : ?>
                 <div class="panel">
-                    <div class="panel-titulo">Sesiones Seleccionadas</div>
+                    <div class="panel-titulo">Sesiones Nuevas</div>
                     <div class="rutina-seleccionados">
                         <?php foreach ($_SESSION['rutina_sesiones'] as $i => $s) : ?>
                             <div class="resumen-elemento">
@@ -111,10 +157,25 @@ include 'views/header.php';
                 </div>
             <?php endif; ?>
 
-            <!-- Platos seleccionados -->
+            <?php if (!empty($rutina->platos)) : ?>
+                <div class="panel">
+                    <div class="panel-titulo">Platos Actuales</div>
+                    <div class="rutina-seleccionados">
+                        <?php foreach ($rutina->platos as $p) : ?>
+                            <div class="resumen-elemento">
+                                <div class="resumen-elemento-cabecera">
+                                    <span class="elemento-nombre"><?= htmlspecialchars($p->nombrePlato) ?></span>
+                                    <span class="elemento-calorias"><?= $p->calorias ?> kcal</span>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <?php if (!empty($_SESSION['rutina_platos'])) : ?>
                 <div class="panel">
-                    <div class="panel-titulo">Platos Seleccionados</div>
+                    <div class="panel-titulo">Platos Nuevos</div>
                     <div class="rutina-seleccionados">
                         <?php foreach ($_SESSION['rutina_platos'] as $i => $p) : ?>
                             <div class="resumen-elemento">
@@ -129,15 +190,14 @@ include 'views/header.php';
                     </div>
                 </div>
             <?php endif; ?>
+
+            <?php $id_rutina_actual = $rutina->id_rutina; ?>
         </div>
-    </section>
+    <?php endforeach; ?>
 
     <hr/><br/>
 
     <section>
-        <a href="index.php?controller=Rutinas&action=crearRutina" class="boton boton-volver">
-            Actualizar ejercicios, alimentación y sesiones
-        </a>
         <h3>Ejercicios</h3>
         <div class="dividir">
             <div class="panel">
@@ -152,7 +212,8 @@ include 'views/header.php';
                                 </a>
                             </div>
                             <form method="POST" action="index.php?controller=Rutinas&action=editAgregarEjercicio">
-                                <input type="hidden" name="id"              value="<?= htmlspecialchars($ejercicio->id)?>">
+                                <input type="hidden" name="id_rutina"       value="<?= $_SESSION['id_rutina_edit'] ?>">
+                                <input type="hidden" name="id"              value="<?= htmlspecialchars($ejercicio->id) ?>">
                                 <input type="hidden" name="nombreEjercicio" value="<?= htmlspecialchars($ejercicio->nombreEjercicio) ?>">
                                 <input type="hidden" name="descripcion"     value="<?= htmlspecialchars($ejercicio->descripcion) ?>">
                                 <input type="hidden" name="calorias"        value="<?= htmlspecialchars($ejercicio->calorias) ?>">
@@ -165,6 +226,7 @@ include 'views/header.php';
                     <p>No tienes ejercicios guardados.</p>
                 <?php endif; ?>
             </div>
+
             <div class="panel">
                 <div class="panel-titulo">Explorar ejercicios</div>
                 <?php if (!empty($todoslosEjercicios)) : ?>
@@ -176,11 +238,12 @@ include 'views/header.php';
                                     <div class="elemento-meta"><?= $ejercicio->calorias ?> kcal</div>
                                 </a>
                             </div>
-                            <form method="POST" action="index.php?controller=Rutinas&action=editAgregarEjercicio&id=<?= $ejercicio->id ?>">
-                                <input type="hidden" name="id"              value="<?= $ejercicio->id ?>">
+                            <form method="POST" action="index.php?controller=Rutinas&action=editAgregarEjercicio">
+                                <input type="hidden" name="id_rutina"       value="<?= $_SESSION['rutinaId'] ?>">
+                                <input type="hidden" name="id"              value="<?= htmlspecialchars($ejercicio->id) ?>">
                                 <input type="hidden" name="nombreEjercicio" value="<?= htmlspecialchars($ejercicio->nombreEjercicio) ?>">
                                 <input type="hidden" name="descripcion"     value="<?= htmlspecialchars($ejercicio->descripcion) ?>">
-                                <input type="hidden" name="calorias"        value="<?= $ejercicio->calorias ?>">
+                                <input type="hidden" name="calorias"        value="<?= htmlspecialchars($ejercicio->calorias) ?>">
                                 <input type="hidden" name="foto"            value="<?= htmlspecialchars($ejercicio->foto) ?>">
                                 <button type="submit" class="boton boton-principal">Añadir</button>
                             </form>
@@ -207,6 +270,19 @@ include 'views/header.php';
                                     <div class="elemento-meta"><?= $plato->calorias ?> kcal · <?= $plato->proteinas ?>g prot.</div>
                                 </a>
                             </div>
+                            <form method="POST" action="index.php?controller=Rutinas&action=editAgregarPlato">
+                                <input type="hidden" name="id_rutina"       value="<?= $_SESSION['rutinaId'] ?>">
+                                <input type="hidden" name="id"            value="<?= $plato->id ?>">
+                                <input type="hidden" name="objetivo"      value="<?= htmlspecialchars($plato->objetivo) ?>">
+                                <input type="hidden" name="calorias"      value="<?= $plato->calorias ?>">
+                                <input type="hidden" name="nombrePlato"   value="<?= htmlspecialchars($plato->nombrePlato) ?>">
+                                <input type="hidden" name="descripcion"   value="<?= htmlspecialchars($plato->descripcion) ?>">
+                                <input type="hidden" name="proteinas"     value="<?= $plato->proteinas ?>">
+                                <input type="hidden" name="carbohidratos" value="<?= $plato->carbohidratos ?>">
+                                <input type="hidden" name="grasas"        value="<?= $plato->grasas ?>">
+                                <input type="hidden" name="foto"          value="<?= htmlspecialchars($plato->foto) ?>">
+                                <button type="submit" class="boton boton-principal">Añadir</button>
+                            </form>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
@@ -226,6 +302,7 @@ include 'views/header.php';
                                 </a>
                             </div>
                             <form method="POST" action="index.php?controller=Rutinas&action=editAgregarPlato">
+                                <input type="hidden" name="id_rutina"       value="<?= $_SESSION['rutinaId'] ?>">
                                 <input type="hidden" name="id"            value="<?= $plato->id ?>">
                                 <input type="hidden" name="objetivo"      value="<?= htmlspecialchars($plato->objetivo) ?>">
                                 <input type="hidden" name="calorias"      value="<?= $plato->calorias ?>">
@@ -261,6 +338,7 @@ include 'views/header.php';
                                 </a>
                             </div>
                             <form method="POST" action="index.php?controller=Rutinas&action=agregarEditSesion">
+                                <input type="hidden" name="id_rutina"       value="<?= $_SESSION['rutinaId'] ?>">
                                 <input type="hidden" name="id"            value="<?= $sesion->id ?>">
                                 <input type="hidden" name="nombreClase"   value="<?= htmlspecialchars($sesion->nombreClase) ?>">
                                 <input type="hidden" name="tipoDeClases"  value="<?= htmlspecialchars($sesion->tipoDeClases) ?>">
@@ -270,7 +348,7 @@ include 'views/header.php';
                                 <input type="hidden" name="descripcion"   value="<?= htmlspecialchars($sesion->descripcion) ?>">
                                 <input type="hidden" name="calorias"      value="<?= $sesion->calorias ?>">
                                 <input type="hidden" name="foto"          value="<?= htmlspecialchars($sesion->foto) ?>">
-                                <button type="submit" class="boton boton-principal">Añadir a tu Rutina</button>
+                                <button type="submit" class="boton boton-principal">Añadir</button>
                             </form>
                         </div>
                     <?php endforeach; ?>
@@ -291,6 +369,7 @@ include 'views/header.php';
                                 </a>
                             </div>
                             <form method="POST" action="index.php?controller=Rutinas&action=agregarEditSesion">
+                                <input type="hidden" name="id_rutina"       value="<?= $_SESSION['rutinaId'] ?>">
                                 <input type="hidden" name="id"            value="<?= $sesion->id ?>">
                                 <input type="hidden" name="nombreClase"   value="<?= htmlspecialchars($sesion->nombreClase) ?>">
                                 <input type="hidden" name="tipoDeClases"  value="<?= htmlspecialchars($sesion->tipoDeClases) ?>">
@@ -300,9 +379,8 @@ include 'views/header.php';
                                 <input type="hidden" name="descripcion"   value="<?= htmlspecialchars($sesion->descripcion) ?>">
                                 <input type="hidden" name="calorias"      value="<?= $sesion->calorias ?>">
                                 <input type="hidden" name="foto"          value="<?= htmlspecialchars($sesion->foto) ?>">
-                                <button type="submit" class="boton boton-principal">Añadir a tu Rutina</button>
+                                <button type="submit" class="boton boton-principal">Añadir</button>
                             </form>
-                            <button type="submit" class="boton boton-principal">Añadir a tus preferencias</button>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
@@ -311,9 +389,11 @@ include 'views/header.php';
             </div>
         </div>
     </section>
+
 </main>
+
 <?php
-include 'views/footer.php';
-?>
+    include 'views/footer.php';
+    ?>
 </body>
 </html>
