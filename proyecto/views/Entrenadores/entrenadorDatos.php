@@ -17,7 +17,7 @@
     <h1><?php echo $entrenador->nombreUsuario, ' ',  $entrenador->apellido;?></h1>
     <h2>Correo Electronico: <?php echo $entrenador->correoElectronico;?></h2
     <p><?php echo $entrenador->descripcion;?></p>
-    <img src="views/usuarios/<?= $entrenador->foto;?> ?>"
+    <img src="views/gymFotos/<?= $entrenador->foto?>">
 </div>
 
 <div class="carrusel-movil">
