@@ -5,54 +5,60 @@
     <title><?php echo $entrenador->nombreUsuario;?></title>
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="views/styles.css">
-
+    <link rel="stylesheet" href="views/entrenador2.css">
 </head>
 <body>
 <?php
-    include 'views/header.php';
-    ?>
+include 'views/header.php';
+?>
 
-<div>
+<!-- Bloc de perfil utilitzant les teves classes originals -->
+<div class="publicaciones">
     <h1><?php echo $entrenador->nombreUsuario, ' ',  $entrenador->apellido;?></h1>
-    <h2>Correo Electronico: <?php echo $entrenador->correoElectronico;?></h2
-    <p><?php echo $entrenador->descripcion;?></p>
-<<<<<<< HEAD
-    <img src="views/gymFotos/<?= $entrenador->foto;?> ?>"
-=======
-    <img src="views/gymFotos/<?= $entrenador->foto?>">
->>>>>>> fdc32c50d5ff48dea1ab6e26ab206c8f453510d1
+    <div class="tarjeta">
+        <p class="tarjeta-subtitulo">Correo Electrónico: <?php echo $entrenador->correoElectronico;?></p>
+        <p><?php echo $entrenador->descripcion;?></p>
+    </div>
+    <img src="views/gymFotos/<?= $entrenador->foto?>" alt="Entrenador">
 </div>
 
-<div class="carrusel-movil">
-    <h2>Sesiones del entrenador</h2>
+<!-- Carrusel de sessions utilitzant les teves classes originals -->
+<div class="carrusel">
+    <h1>Sesiones del entrenador</h1>
     <div class="pista">
         <?php if(!empty($sesiones)) :?>
             <?php foreach ($sesiones as $sesion): ?>
-                <div class="tarjeta-movil">
+                <div class="tarjeta">
                     <a href="index.php?controller=Sesiones&action=getId&id=<?= $sesion->id ?>">
-                        <h4>Nombre de la clase: <?= $sesion->nombreClase ?></h4>
-                        <h4>TIpo de clases: <?= $sesion->tipoDeClases ?></h4>
-                        <p><strong>Calorias:</strong> <?= $sesion->calorias ?></p>
-                        <p><strong>Fecha:</strong> <?= $sesion->fechaClases ?></p>
-                        <p><strong>Duracion:</strong> <?= $sesion->duracion ?></p>
+                        <h3 class="tarjeta-titulo"><?= $sesion->nombreClase ?></h3>
+                        <p class="tarjeta-subtitulo">Tipo: <?= $sesion->tipoDeClases ?></p>
+                        <p>Calorías: <?= $sesion->calorias ?></p>
+                        <p>Fecha: <?= $sesion->fechaClases ?></p>
+                        <p>Duración: <?= $sesion->duracion ?></p>
                     </a>
                     <a href="index.php?controller=Sesiones&action=apuntarme&id=<?= $sesion->id ?>">
-                        <button>Apuntate</button>
+                        <button class="btn-apuntar">Apúntate</button>
                     </a>
                 </div>
             <?php endforeach; ?>
         <?php else : ?>
-            <h1>No tiene sesiones actualmente</h1>
+            <div class="vacio">
+                <h3>No tiene sesiones actualmente</h3>
+            </div>
         <?php endif; ?>
     </div>
 </div>
-<form>
-    <button>Cambiar de entrenador</button>
-    <button>Volver</button>
-</form>
+
+<!-- Formuari de botons inferiors utilitzant els teus estils de botó -->
+<div class="carrusel" style="text-align: center;">
+    <form style="display: inline-flex; gap: 16px;">
+        <button class="btn-eliminar" type="button" onclick="history.back()">Volver</button>
+        <button class="btn-apuntar" type="submit">Cambiar de entrenador</button>
+    </form>
+</div>
+
 <?php
-    include 'views/footer.php';
+include 'views/footer.php';
 ?>
 </body>
 </html>

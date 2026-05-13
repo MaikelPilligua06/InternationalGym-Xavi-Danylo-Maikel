@@ -5,8 +5,7 @@
     <title>Todos los Entrenadores</title>
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="views/entrenador.css">
-    <link rel="stylesheet" href="views/entrenadores.css">
+    <link rel="stylesheet" href="views/entrenadores1.css"
 
 
 </head>
@@ -20,7 +19,7 @@ include 'views/header.php';
     <?php foreach($lista as $entrenadorUsuario): ?>
         <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenadorUsuario->id;?>">
             <div class="texto">
-                <h2><?php echo $entrenadorUsuario->nombreUsuario, '', $entrenadorUsuario->apellido;?></h2>
+                <h2><?php echo $entrenadorUsuario->nombreUsuario, ' ', $entrenadorUsuario->apellido;?></h2>
                 <h2><?php echo $entrenadorUsuario->correoElectronico;?></h2>
                 <h2><?php echo $entrenadorUsuario->descripcion;?></h2>
             </div>
@@ -41,6 +40,7 @@ include 'views/header.php';
         <a href="index.php?controller=Entrenador&action=getEntrenador&id=<?= $entrenador->id; ?>">
             <div class="texto">
                 <h3><?= $entrenador->nombreUsuario . ' ' . $entrenador->apellido; ?></h3>
+                <p><strong><?php echo $entrenador->correoElectronico;?></strong></p>
                 <p><?= $entrenador->descripcion; ?></p>
             </div>
             <div class="imagen">

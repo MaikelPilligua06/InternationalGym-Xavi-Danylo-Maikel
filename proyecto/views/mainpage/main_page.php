@@ -14,13 +14,15 @@
 ?>
 <main>
 <div class="pagina-principal">
-	<div class="perdidaCal">
+    <div class="Ejercicios">
+        <h2>Resumen</h2>
+    </div>
+	<div class="Fotos">
 		<a href="index.php?controller=Resumen&action=verResumen">
-			<img src="" alt ="Perdida de Calorias" img="kCAL"/>
-		</a>
-		<?php
-			echo "Haz perdido un total de x Calorias";
-		?>
+            <img src="/views/gymFotos/calendario1.jpeg"/>
+            <div class="textoIMG">Ver tu Resumen</div>
+        </a>
+
 	</div>
     <div class="Ejercicios">
         <h2>Ejercicios</h2>

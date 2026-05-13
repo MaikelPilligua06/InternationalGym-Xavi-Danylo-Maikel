@@ -1,0 +1,125 @@
+.publicaciones, .carrusel {
+    width: 600px;
+    max-width: calc(100% - 32px);
+    margin: 32px auto;
+}
+
+.publicaciones {
+    background: var(--tn-bg-2);
+    border: 1px solid var(--tn-border);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.publicaciones h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--tn-yellow);
+}
+
+.publicaciones .tarjeta {
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.publicaciones img {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    margin: 12px 0 0 0;
+}
+
+.carrusel h1 {
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--tn-yellow);
+    margin: 0 0 16px 0;
+}
+
+.pista {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.tarjeta {
+    background: var(--tn-bg-2);
+    border: 1px solid var(--tn-border);
+    border-radius: 16px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tarjeta a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.tarjeta-titulo {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--tn-yellow);
+    margin: 0 0 6px 0;
+}
+
+.tarjeta-subtitulo {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--tn-muted);
+    margin: 0 0 6px 0;
+}
+
+.tarjeta p {
+    margin: 0;
+    line-height: 1.5;
+    color: var(--tn-text);
+}
+
+.btn-eliminar {
+    background: rgba(255, 92, 58, .08);
+    border: 1px solid rgba(255, 92, 58, .25);
+    color: #ff5c3a;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-apuntar {
+    background: var(--tn-yellow);
+    color: #111;
+    font-weight: 800;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.tarjeta a + a {
+    align-self: flex-start;
+}
+
+.vacio {
+    background: var(--tn-bg-2);
+    border: 1px solid var(--tn-border);
+    border-radius: 16px;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.vacio h3 {
+    color: var(--tn-muted);
+    margin: 0;
+}

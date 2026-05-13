@@ -1,0 +1,109 @@
+.contenido, .contenido-oscuro {
+    width: 600px;
+    max-width: calc(100% - 32px);
+    margin: 24px auto;
+}
+
+.contenido h1 {
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--tn-yellow);
+    margin: 0 0 16px 0;
+}
+
+
+.contenido a {
+    background: black;
+    border: 1px solid var(--tn-yellow);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+
+.contenido-oscuro a {
+    background: var(--tn-bg-2);
+    border: 1px solid var(--tn-border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.texto {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.contenido .texto h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--tn-text);
+}
+
+.contenido .texto h2:first-child {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--tn-yellow);
+    margin-bottom: 4px;
+}
+
+.contenido .texto h2:nth-child(2) {
+    font-size: 14px;
+    color: var(--tn-muted);
+}
+
+.imagen img {
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--tn-border);
+    width: 600px;
+    max-width: calc(100% - 32px);
+    margin: 32px auto;
+}
+
+.logo {
+    width: 600px;
+    max-width: calc(100% - 32px);
+    margin: 0 auto 16px auto;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--tn-yellow);
+}
+
+.contenido-oscuro .texto h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--tn-yellow);
+}
+
+.contenido-oscuro .texto p {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--tn-text);
+}
