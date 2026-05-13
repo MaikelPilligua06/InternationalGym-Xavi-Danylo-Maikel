@@ -6,7 +6,7 @@
     <title>Crear Rutina — InternationalGYM</title>
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="views/Rutinas/rutinas.css">
+    <link rel="stylesheet" href="views/rutinas2.css">
 </head>
 <body>
 
