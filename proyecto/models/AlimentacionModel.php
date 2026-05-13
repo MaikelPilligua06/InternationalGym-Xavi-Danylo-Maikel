@@ -7,13 +7,12 @@ class AlimentacionModel{
             $db = conectar();
             $stmt = $db->prepare(
                 "
-                SELECT a.id, a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.id
-                FROM Alimentacion a
-                JOIN Usuario_Alimentacion ua ON a.id = ua.id_alimentacion
-                JOIN Usuarios u ON u.id = ua.id_usuario
-                WHERE ua.id_usuario = :usuarioId
-                "
-            );
+                    SELECT a.id, a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.id AS id_usuario
+                    FROM Alimentacion a
+                    JOIN Usuario_Alimentacion ua ON a.id = ua.id_alimentacion
+                    JOIN Usuarios u ON u.id = ua.id_usuario
+                    WHERE ua.id_usuario = :usuarioId
+                ");
             $stmt->execute([":usuarioId" => $usuarioId]);
             $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $alimentacion = [];
@@ -44,6 +43,16 @@ class AlimentacionModel{
     public function agregarPlato($id, $usuarioId){
         try {
             $db = conectar();
+            $stmt = $db->prepare("SELECT COUNT(*) FROM Usuario_Alimentacion WHERE id_usuario = :id_usuario AND id_alimentacion = :id_alimentacion");
+            $stmt->execute([
+                ':id_usuario' => $usuarioId,
+                ':id_alimentacion' => $id
+            ]);
+            $existe = $stmt->fetchColumn();
+
+            if ($existe > 0) {
+                throw new Exception("Ya tienes este plato agregado.");
+            }
             $stmt = $db->prepare("INSERT INTO Usuario_Alimentacion (id_usuario, id_alimentacion) VALUES (:id_usuario, :id_alimentacion)");
             $stmt->execute([
                 ':id_usuario' => $usuarioId,
