@@ -58,9 +58,7 @@
     box-shadow: var(--tn-shadow);
 }
 
-/* ==========================================================================
-   NUEVO: Títulos (Nombre, Objetivo, Tiempo) con Sombra Limpia
-   ========================================================================== */
+
 .panel h2 {
     font-size: .85rem;
     font-weight: 800;
@@ -72,9 +70,7 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
 
-/* ==========================================================================
-   NUEVO: Fondo para los paneles de escritura (Inputs y Selects)
-   ========================================================================== */
+
 .rutina-campos input[type="text"],
 .rutina-campos select,
 .rutina-campos input[type="time"] {
