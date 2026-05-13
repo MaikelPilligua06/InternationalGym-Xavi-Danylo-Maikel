@@ -4,8 +4,8 @@
     <meta name="author" content="InternationalGYM">
     <title>Listado de sesiones</title>
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="views/sesion.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <?php include 'views/header.php'; ?>
@@ -23,8 +23,18 @@
 <?php endif; ?>
 
 <h1>Mis sesiones</h1>
-
 <div class="carrusel">
+    <?php if (!empty($_SESSION['mensaje'])): ?>
+        <p class="correcto"><?= $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?></p>
+    <?php endif; ?>
+
+    <?php if (!empty($_SESSION['error'])): ?>
+        <p class="error"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+    <?php endif; ?>
+
+    <?php if (!empty($_SESSION['error_fatal'])): ?>
+        <p class="error"><?= $_SESSION['error_fatal']; unset($_SESSION['error_fatal']); ?></p>
+    <?php endif; ?>
     <div class="pista">
         <?php if (!empty($lista)) : ?>
             <?php foreach($lista as $fila): ?>
