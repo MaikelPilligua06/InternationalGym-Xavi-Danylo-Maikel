@@ -1,0 +1,86 @@
+/* Contenedor principal de la página (Centrado y limpio) */
+.pagina {
+    width: 600px;
+    max-width: calc(100% - 32px);
+    margin: 32px auto;
+}
+
+/* El título principal o enlaces de cabecera */
+.pagina h1 {
+    font-size: 20px;
+    color: var(--tn-yellow);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+
+.panel {
+    background: var(--tn-bg-2);
+    border: 1px solid var(--tn-border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+
+.panel a {
+    text-decoration: none;
+    color: var(--tn-text);
+}
+
+.panel h2 {
+    font-size: 14px;
+    color: var(--tn-muted);
+    text-transform: uppercase;
+    margin: 0 0 4px 0;
+}
+
+.panel h3 {
+    font-size: 18px;
+    color: var(--tn-yellow);
+    margin: 0 0 12px 0;
+}
+
+.panel p {
+    margin: 6px 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+
+.boton, .boton-volver, button {
+    display: inline-block;
+    background: var(--tn-yellow);
+    color: black !important;
+    padding: 10px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    margin-top: 12px;
+    margin-right: 8px;
+}
+
+.panel a[href*="eliminar"],
+.panel a[href*="delete"] {
+    background: rgba(255, 92, 58, 0.1) !important;
+    border: 1px solid rgba(255, 92, 58, 0.3);
+    color: red !important; /* Rojo estético */
+    font-weight: 700;
+}
+
+
+.pagina div:not(.panel) {
+    background: var(--tn-bg-2);
+    border: 1px solid var(--tn-border);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+}
+
+.pagina div:not(.panel) h3 {
+    color: var(--tn-muted);
+    margin-bottom: 16px;
+}
