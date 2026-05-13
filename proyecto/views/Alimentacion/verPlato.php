@@ -6,6 +6,8 @@
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="views/platos.css">
+    <link rel="stylesheet" href="views/alimentacion.css">
+
 </head>
 <body>
 <?php
@@ -28,9 +30,14 @@ include 'views/header.php';
     <h3>Descripción: <?= $alimentacion->descripcion ?> </h3>
     <img src="views/gymFotos/alimentacion/<?= $alimentacion->foto?>"/>
     <div class="botones-plato">
+        <?php if(!$apuntado) : ?>
         <a href="index.php?controller=Alimentacion&action=addPlatoUsuario&id=<?= $alimentacion->id ?>">
             <button class="btn-agregar">Agregar plato</button>
         </a>
+        <?php else: ?>
+            <a href="index.php?controller=Alimentacion&action=eliminarPlato&id=<?= $alimentacion->id; ?>">
+                <button class="btn-eliminar" type="button">Eliminar</button>
+            </a>        <?php endif;?>
         <button class="btn-volver" onclick="history.back()">Volver</button>
     </div>
 </div>

@@ -1,49 +1,70 @@
 <?php
 require_once "models/EntrenadorModel.php";
 require_once "models/SesionesModel.php";
-class EntrenadorController{
-    public function getAllEntrenadores(){
+
+class EntrenadorController {
+
+    public function getAllEntrenadores() {
         try {
             $model = new EntrenadorModel();
             $entrenadores = $model->getAll();
             $usuario = $_SESSION['id'] ?? null;
-            $lista = ($usuario) ? $model->getUsuarioEntrenador($usuario) : [];
+            $lista = $usuario ? $model->getUsuarioEntrenador($usuario) : [];
             require "views/Entrenadores/todosLosEntrenadores.php";
         } catch (Exception $e) {
             $_SESSION['error_fatal'] = $e->getMessage();
             require "views/error_fatal.php";
         }
     }
-    public function getEntrenador(){
-        try{
+
+    public function getEntrenador() {
+        try {
+            $id = $_GET['id'] ?? null;
+            if (!$id) {
+                header("Location: index.php?controller=Entrenador&action=getAllEntrenadores");
+                exit;
+            }
             $model = new EntrenadorModel();
-            $entrenador = $model->verEntrenador($_GET['id']);
-            $sesiones = $model->verSesiones($_GET['id']);
+            $entrenador = $model->verEntrenador($id);
+            $sesiones = $model->verSesiones($id);
             require "views/Entrenadores/entrenadorDatos.php";
         } catch (Exception $e) {
             $_SESSION['error_fatal'] = $e->getMessage();
             require "views/error_fatal.php";
         }
     }
-    public function apuntarme(){
+
+    public function apuntarme() {
         try {
+            $id = $_GET['id'] ?? null;
             $usuario = $_SESSION['id'] ?? null;
+            if (!$id || !$usuario) {
+                header("Location: index.php?controller=Entrenador&action=getAllEntrenadores");
+                exit;
+            }
             $model = new SesionesModel();
-            $sesion = $model->asignarSesion($_GET['id'], $usuario);
-            header("Location: index.php?controller=Entrenador&action=getEntrenador");
+            $model->asignarSesion($id, $usuario);
+            $_SESSION['mensaje'] = "Te has apuntado a la sesión correctamente";
+            header("Location: index.php?controller=Entrenador&action=getEntrenador&id=" . $id);
             exit;
         } catch (Exception $e) {
             $_SESSION['error_fatal'] = $e->getMessage();
             require "views/error_fatal.php";
         }
     }
+
     public function cambiarEntrenador() {
         try {
-            $usuario = $_SESSION['id'];
+            $id = $_GET['id'] ?? null;
+            $usuario = $_SESSION['id'] ?? null;
+            if (!$id || !$usuario) {
+                header("Location: index.php?controller=Entrenador&action=getAllEntrenadores");
+                exit;
+            }
             $model = new EntrenadorModel();
-            $model->updateEntrenador($_GET['id'], $usuario);
+            $model->updateEntrenador($id, $usuario);
             $_SESSION['mensaje'] = "Entrenador cambiado correctamente";
-            header("Location: index.php?controller=Entrenador&action=getEntrenador&id=" . $_GET['id']);
+            header("Location: index.php?controller=Entrenador&action=getEntrenador&id=" . $id);
             exit;
         } catch (Exception $e) {
             $_SESSION['error_fatal'] = $e->getMessage();

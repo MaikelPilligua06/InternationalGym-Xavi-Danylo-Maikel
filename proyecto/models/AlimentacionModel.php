@@ -173,4 +173,25 @@ class AlimentacionModel{
             throw new Exception("Error al eliminar el plato");
         }
     }
+    public function verificarPlato($id, $usuarioId){
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("
+            SELECT id_usuario, id_alimentacion FROM Usuario_Alimentacion 
+            WHERE id_usuario = :id_usuario AND id_alimentacion = :id_alimentacion
+        ");
+            $stmt->execute([
+                ':id_usuario' => $usuarioId,
+                ':id_alimentacion' => $id
+            ]);
+            $resultado = $stmt->fetch(PDO::FETCH_OBJ);
+            if ($resultado) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            throw new Exception("Error al verificar el plato");
+        }
+    }
 }

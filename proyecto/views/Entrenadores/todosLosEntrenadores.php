@@ -5,14 +5,20 @@
     <title>Todos los Entrenadores</title>
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="views/entrenadores1.css"
-
+    <link rel="stylesheet" href="views/entrenadores1.css">
+    <link rel="stylesheet" href="views/entrenador2.css">
 
 </head>
 <?php
 include 'views/header.php';
 ?>
+<?php if (!empty($_SESSION['mensaje'])): ?>
+    <p class="correcto"><?= $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?></p>
+<?php endif; ?>
 
+<?php if (!empty($_SESSION['error'])): ?>
+    <p class="error"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+<?php endif; ?>
 <div class="contenido">
 
     <h1>Tu Entrenador es</h1>
