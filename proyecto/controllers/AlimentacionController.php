@@ -6,9 +6,7 @@ class AlimentacionController{
             $model = new AlimentacionModel();
             $usuarioId = $_SESSION['id'];
             $alimentacion = $model->getPlatosUsuario($usuarioId);
-            $_SESSION['mensaje'] = "Platos del usuario obtenidos correctamente";
             $todosLosPlatos = $model->getTodosLosPlatos();
-            $_SESSION['mensaje'] = "Platos obtenidos por preferencia";
             require "views/Alimentacion/alimentacionUsuario.php";
         } catch (Exception $e) {
             $_SESSION['error_fatal'] = $e->getMessage();
@@ -71,6 +69,7 @@ class AlimentacionController{
             $model = new AlimentacionModel();
             $usuarioId = $_SESSION['id'];
             $model->agregarPlato($_GET['id'], $usuarioId);
+            $_SESSION['mensaje'] = "Plato añadido correctamente";
             header("Location: index.php?controller=Alimentacion&action=index");
             exit;
         } catch (Exception $e) {
@@ -84,10 +83,10 @@ class AlimentacionController{
             $model = new AlimentacionModel();
             $usuarioId = $_SESSION['id'];
             $model->eliminarPlatoUsuario($_GET["id"], $usuarioId);
+            $_SESSION['mensaje'] = "Plato eliminado correctamente";
             header("Location: index.php?controller=Alimentacion&action=index");
             exit;
         } catch (Exception $e) {
-            var_dump($e->getMessage());
             $_SESSION['error_fatal'] = $e->getMessage();
             require "views/error_fatal.php";
         }
@@ -97,10 +96,10 @@ class AlimentacionController{
             $model = new AlimentacionModel();
             $usuarioId = $_SESSION['id'];
             $model->eliminarPlatoUsuario($_GET["id"], $usuarioId);
+            $_SESSION['mensaje'] = "Plato eliminado correctamente";
             header('Location: index.php?controller=Rutinas&action=crearRutina');
             exit;
         } catch (Exception $e) {
-            var_dump($e->getMessage());
             $_SESSION['error_fatal'] = $e->getMessage();
             require "views/error_fatal.php";
         }
@@ -142,6 +141,7 @@ class AlimentacionController{
             }
             $model = new AlimentacionModel();
             $plato = $model->deletePlato($_GET["id"]);
+            $_SESSION['mensaje'] = "Plato eliminado correctamente";
             header("Location: index.php?controller=Alimentacion&action=getTodosLosPlatos");
             exit;
         } catch (Exception $e) {

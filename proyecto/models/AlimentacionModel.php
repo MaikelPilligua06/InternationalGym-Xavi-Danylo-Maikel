@@ -59,8 +59,8 @@ class AlimentacionModel{
                 ':id_alimentacion' => $id
             ]);
         } catch (PDOException $e) {
-            throw new Exception("Error al agregar los platos");
-        }
+            error_log($e->getMessage());
+            throw new Exception($e->getMessage());        }
     }
     public function eliminarPlatoUsuario($id, $usuarioId){
         try {
@@ -71,10 +71,12 @@ class AlimentacionModel{
                 ':id_alimentacion' => $id
             ]);
         } catch (PDOException $e) {
-            throw new Exception("Error al eliminar los platos");
+            error_log($e->getMessage());
+            throw new Exception($e->getMessage());
         }
     }
-    public function getCalorias($usuarioId){
+    public function getCalorias($usuarioId)
+    {
         try {
             $db = conectar();
             $stmt = $db->prepare("SELECT * FROM Usuario_Alimentacion");
@@ -83,7 +85,8 @@ class AlimentacionModel{
             foreach ($resultado as $fila) {
             }
         } catch (PDOException $e) {
-            throw new Exception("Error al obtener calorias");
+            error_log($e->getMessage());
+            throw new Exception("Error al obtener las calorías");
         }
     }
     public function guardar($plato){
@@ -95,33 +98,32 @@ class AlimentacionModel{
                 VALUES (:objetivo, :calorias, :nombrePlato, :descripcion, :proteinas, :carbohidratos, :grasas, :foto)");
             $extensiones = array(0 => 'image/jpg', 1 => 'image/jpeg', 2 => 'image/png');
             $max_tamanyo = 1024 * 1024 * 8;
-
-            $ruta_indexphp = dirname(realpath(__FILE__));
-            $ruta_fichero_origen = $_FILES['foto']['tmp_name'];
-            // $ruta_nuevo_destino = $ruta_indexphp . "/../views/gymFotos/" . $_FILES['foto']['name'];
-            $ruta_nuevo_destino = $base_dir . "/views/gymFotos/alimentacion/" . $_FILES['foto']['name'];
-            if (in_array($_FILES['foto']['type'], $extensiones)) {
-                if ($_FILES['foto']['size'] < $max_tamanyo) {
-                    if (move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
-                        $plato->foto = $_FILES['foto']['name'];
-                        $stmt->execute([
-                            ':objetivo' => $plato->objetivo,
-                            ':calorias' => $plato->calorias,
-                            ':nombrePlato' => $plato->nombrePlato,
-                            ':descripcion' => $plato->descripcion,
-                            ':proteinas' => $plato->proteinas,
-                            ':carbohidratos' => $plato->carbohidratos,
-                            ':grasas' => $plato->grasas,
-                            ':foto' => $plato->foto
-                        ]);
-                        return "Plato creado correctamente";
-                    }
-                } else {
-                    return "Error: el archivo es demasiado grande.";
-                }
+            if (!in_array($_FILES['foto']['type'], $extensiones)) {
+                throw new Exception("Usa una imagen jpg, jpeg o png.");
             }
+            if ($_FILES['foto']['size'] >= $max_tamanyo) {
+                throw new Exception("La foto es demasiado grande");
+            }
+
+            $ruta_fichero_origen  = $_FILES['foto']['tmp_name'];
+            $ruta_nuevo_destino   = $base_dir . "/views/gymFotos/alimentacion/" . $_FILES['foto']['name'];
+
+            if (!move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
+                throw new Exception("Error al subir la imagen.");
+            }
+            $stmt->execute([
+                ':objetivo'      => $plato->objetivo,
+                ':calorias'      => $plato->calorias,
+                ':nombrePlato'   => $plato->nombrePlato,
+                ':descripcion'   => $plato->descripcion,
+                ':proteinas'     => $plato->proteinas,
+                ':carbohidratos' => $plato->carbohidratos,
+                ':grasas'        => $plato->grasas,
+                ':foto'          => $plato->foto
+            ]);
         } catch (PDOException $e) {
-            throw new Exception("Error al crear el plato");
+            error_log($e->getMessage());
+            throw new Exception("Error al guardar el plato");
         }
     }
     //* Función para ver la información de un plato/
@@ -131,12 +133,16 @@ class AlimentacionModel{
             $stmt = $db->prepare("SELECT * FROM Alimentacion WHERE id = :id");
             $stmt->execute([':id' => $id]);
             $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (!$resultado) {
+                throw new Exception("Plato no encontrado.");
+            }
             foreach ($resultado as $plato) {
                 $alimentacion = new Alimentacion($plato);
             }
             return $alimentacion;
         } catch (PDOException $e) {
-            throw new Exception("Error al obtener los platos");
+            error_log($e->getMessage());
+            throw new Exception("Error al obtener el plato");
         }
     }
     // Funcion para ver todos los platos para borrar
@@ -158,14 +164,13 @@ class AlimentacionModel{
     public function deletePlato($id){
         try{
             $db = conectar();
-            // Primero borrar las relaciones
             $stmt = $db->prepare("DELETE FROM Usuario_Alimentacion WHERE id_alimentacion = :id");
             $stmt->execute([':id' => $id]);
-            // Luego borrar el plato en sí
             $stmt = $db->prepare("DELETE FROM Alimentacion WHERE id = :id");
             $stmt->execute([':id' => $id]);
         } catch (PDOException $e) {
-            throw new Exception("Error al eliminar el plato: " . $e->getMessage());
+            error_log($e->getMessage());
+            throw new Exception("Error al eliminar el plato");
         }
     }
 }
