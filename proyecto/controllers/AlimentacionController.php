@@ -16,7 +16,9 @@ class AlimentacionController{
     public function verPlato(){
         try {
             $model = new AlimentacionModel();
+            $usuarioId = $_SESSION['id'];
             $alimentacion = $model->getPlato($_GET['id']);
+            $apuntado = $model->verificarPlato($_GET['id'], $usuarioId);
             require "views/Alimentacion/verPlato.php";
         } catch (Exception $e) {
             $_SESSION['error_fatal'] = $e->getMessage();

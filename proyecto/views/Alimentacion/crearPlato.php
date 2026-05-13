@@ -1,10 +1,4 @@
-<html lang="es"><?php if (!empty($_SESSION['mensaje'])): ?>
-    <p class="correcto"><?= $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?></p>
-<?php endif; ?>
-
-<?php if (!empty($_SESSION['error'])): ?>
-    <p class="error"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
-<?php endif; ?>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="InternationalGYM">
