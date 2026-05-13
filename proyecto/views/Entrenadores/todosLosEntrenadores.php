@@ -26,7 +26,7 @@ include 'views/header.php';
             </div>
 
             <div class="imagen">
-                <img src="views/gymFotos/entrenadaor1.jpg" alt="Entrenador">
+                <img src="views/gymFotos/<?=$entrenadorUsuario->foto;?>" alt="Entrenador">
             </div>
         </a>
     <?php endforeach; ?>

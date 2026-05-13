@@ -17,7 +17,11 @@
     <h1><?php echo $entrenador->nombreUsuario, ' ',  $entrenador->apellido;?></h1>
     <h2>Correo Electronico: <?php echo $entrenador->correoElectronico;?></h2
     <p><?php echo $entrenador->descripcion;?></p>
+<<<<<<< HEAD
     <img src="views/gymFotos/<?= $entrenador->foto;?> ?>"
+=======
+    <img src="views/gymFotos/<?= $entrenador->foto?>">
+>>>>>>> fdc32c50d5ff48dea1ab6e26ab206c8f453510d1
 </div>
 
 <div class="carrusel-movil">

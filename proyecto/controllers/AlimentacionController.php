@@ -70,12 +70,13 @@ class AlimentacionController{
         try {
             $model = new AlimentacionModel();
             $usuarioId = $_SESSION['id'];
-            $alimentacion = $model->agregarPlato($_GET['id'], $usuarioId);
+            $model->agregarPlato($_GET['id'], $usuarioId);
             header("Location: index.php?controller=Alimentacion&action=index");
             exit;
         } catch (Exception $e) {
-            $_SESSION['error_fatal'] = $e->getMessage();
-            require "views/error_fatal.php";
+            $_SESSION['error'] = $e->getMessage();
+            header("Location: index.php?controller=Alimentacion&action=index");
+            exit;
         }
     }
     public function eliminarPlato(){
@@ -86,6 +87,20 @@ class AlimentacionController{
             header("Location: index.php?controller=Alimentacion&action=index");
             exit;
         } catch (Exception $e) {
+            var_dump($e->getMessage());
+            $_SESSION['error_fatal'] = $e->getMessage();
+            require "views/error_fatal.php";
+        }
+    }
+    public function eliminarRutinaPlato(){
+        try {
+            $model = new AlimentacionModel();
+            $usuarioId = $_SESSION['id'];
+            $model->eliminarPlatoUsuario($_GET["id"], $usuarioId);
+            header('Location: index.php?controller=Rutinas&action=crearRutina');
+            exit;
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
             $_SESSION['error_fatal'] = $e->getMessage();
             require "views/error_fatal.php";
         }
