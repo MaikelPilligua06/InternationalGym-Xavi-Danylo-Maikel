@@ -1,6 +1,4 @@
-/* views/styles.css — Perfil de usuario */
 
-/* ── LAYOUT GENERAL ── */
 .perfil,
 .entrenador-info {
     max-width: 520px;
@@ -14,7 +12,7 @@
     box-sizing: border-box;
 }
 
-/* ── TÍTULOS ── */
+
 .perfil h2 {
     font-size: 22px;
     color: white;
@@ -32,7 +30,7 @@
     margin: 0 0 5px;
 }
 
-/* Textos solo lectura */
+
 .perfil p {
     background-color: black;
     border: 1px solid dimgray;
@@ -57,7 +55,7 @@
     font-family: Arial, sans-serif;
 }
 
-/* INPUTS SUELTOS */
+
 .perfil input[type="tel"]{
     width: 100%;
     background-color: black;
@@ -76,7 +74,7 @@
     border-color: gold;
 }
 
-/*  SELECT  */
+
 .perfil select {
     width: 100%;
     background-color: black;
@@ -123,7 +121,7 @@
     background-color: yellow;
 }
 
-/* ── BOTÓN CERRAR SESIÓN ── */
+
 .perfil > .button {
     margin-top: 14px;
     padding-top: 14px;

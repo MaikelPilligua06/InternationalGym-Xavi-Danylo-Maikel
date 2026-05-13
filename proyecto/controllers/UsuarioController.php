@@ -1,17 +1,17 @@
 <?php
 require_once "models/UsuarioModel.php";
 
-class UsuarioController{
-    public function index(){
+class UsuarioController {
+
+    public function index() {
         $model = new UsuarioModel();
-        $usuarioId = $_SESSION['id'];
-        $usuario = $model->getAll($usuarioId);
-        $entrenadores = ($usuarioId) ? $model->getEntrenadorUsuario($usuarioId) : [];
+        $usuarioId = $_SESSION['id'] ?? null;
+        $usuario = $usuarioId ? $model->getAll($usuarioId) : [];
+        $entrenadores = $usuarioId ? $model->getEntrenadorUsuario($usuarioId) : [];
         require "views/perfilUsuario.php";
     }
 
-
-    public function actualizar(){
+    public function actualizar() {
         if (isset($_POST['actualizar'])) {
             $numeroTelefono = $_POST['numeroTelefono'];
             $correoElectronico = $_POST['correoElectronico'];
@@ -25,59 +25,52 @@ class UsuarioController{
             exit();
         }
     }
-    public function crear(){
-        if(!empty($_POST)){
-            $datos = [
-                'nombreUsuario' => $_POST['nombreUsuario'],
-                'apellido' => $_POST['apellido'],
-                'numeroTelefono' => $_POST['numeroTelefono'],
-                'tipoDocumento' => $_POST['tipoDocumento'],
-                'numeroDocumento' => $_POST['numeroDocumento'],
-                'correoElectronico' => $_POST['correoElectronico'],
-                'contrasenia' => $_POST['contrasenia'],
-                'edad' => $_POST['edad'],
-                'genero' => $_POST['genero'],
-                'peso' => $_POST['peso'],
-                'altura' => $_POST['altura'],
-                'objetivo' => $_POST['objetivo'],
-                'fechaDeAlta' => $_POST['fechaDeAlta'],
-                'foto' => $_POST['foto'],
-                'id_entrenador' => $_POST['id_entrenador']
 
-            ];
+    public function crear() {
+        if (!empty($_POST)) {
+            $nombreUsuario = $_POST['nombreUsuario'] ?? null;
+            $apellido = $_POST['apellido'] ?? null;
+            $numeroTelefono = $_POST['numeroTelefono'] ?? null;
+            $tipoDocumento = $_POST['tipoDocumento'] ?? null;
+            $numeroDocumento = $_POST['numeroDocumento'] ?? null;
+            $correoElectronico = $_POST['correoElectronico'] ?? null;
+            $contrasenia = $_POST['contrasenia'] ?? null;
+            $edad = $_POST['edad'] ?? null;
+            $genero = $_POST['genero'] ?? null;
+            $peso = $_POST['peso'] ?? null;
+            $altura = $_POST['altura'] ?? null;
+            $objetivo = $_POST['objetivo'] ?? null;
+
+            $foto = isset($_FILES['foto']['name']) ? $_FILES['foto']['name'] : '';
+            $id_entrenador = $_POST['entrenador_id'] ?? $_POST['id_entrenador'] ?? null;
+
+            $model = new UsuarioModel();
+
+            $model->save(
+                $nombreUsuario,
+                $apellido,
+                $numeroTelefono,
+                $tipoDocumento,
+                $numeroDocumento,
+                $correoElectronico,
+                $contrasenia,
+                $edad,
+                $genero,
+                $peso,
+                $altura,
+                $objetivo,
+                $foto,
+                $id_entrenador
+            );
         }
-
-        $model = new UsuarioModel();
-        $usuario = new Usuario($datos);
-        $model->save($usuario);
-        header("Location: index.php");
-        exit;
-                $nombreUsuario = $_POST['nombreUsuario'];
-                $apellido = $_POST['apellido'];
-                $numeroTelefono = $_POST['numeroTelefono'];
-                $tipoDocumento = $_POST['tipoDocumento'];
-                $numeroDocumento = $_POST['numeroDocumento'];
-                $correoElectronico = $_POST['correoElectronico'];
-                $contrasenia = $_POST['contrasenia'];
-                $edad = $_POST['edad'];
-                $genero = $_POST['genero'];
-                $peso = $_POST['peso'];
-                $altura = $_POST['altura'];
-                $objetivo = $_POST['objetivo'];
-                $foto = $_FILES['foto']['name'];
-                $id_entrenador = $_POST['entrenador_id'];
-
-                $model = new UsuarioModel();
-                $model->save($nombreUsuario, $apellido, $numeroTelefono, $tipoDocumento, $numeroDocumento, $correoElectronico, $contrasenia, $edad, $genero, $peso, $altura, $objetivo,  $foto, $id_entrenador);
-
 
         header("Location: index.php");
         exit();
     }
-    public function registro(){
+
+    public function registro() {
         $model = new UsuarioModel();
         $entrenadores = $model->getEntrenadores();
         require "views/login/registro.php";
     }
-
 }
