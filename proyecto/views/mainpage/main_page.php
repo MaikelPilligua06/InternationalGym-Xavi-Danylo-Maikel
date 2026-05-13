@@ -47,27 +47,29 @@
                     </ul>
                 </div>
         </a>
-    <hr/> <br/>
-            <?php endforeach; ?>
+        <!-- ... tu código anterior ... -->
+        <hr/> <br/>
+        <?php endforeach; ?>
         <?php endforeach; ?>
         <?php else : ?>
-        <div class="pagina-cabecera">
-        <div class="Alimentacion-datos">
+        <div class="Alimentacion">
+            <h3>Ejercicios de hoy</h3>
+            <div class="Alimentacion-datos">
                 <h3>No hemos encontrado ningún ejercicio en la rutina de hoy.</h3>
-                <h4>Actualiza tu Rutina Diaria!</h4>
-                <div class="pagina-acciones">
-                    <a href="index.php?controller=Rutinas&action=redirectRutinas">
-                        <button>Actualizar Rutina diaria</button>
+                <p style="color: gray; font-size: 14px; margin-bottom: 16px;">¡Actualiza tu Rutina Diaria para empezar a entrenar!</p>
+
+                <div class="seSion" style="gap: 16px;">
+                    <a href="index.php?controller=Rutinas&action=redirectRutinas" class="Entrenador" style="padding: 0; border: none;">
+                        <h4>Actualizar Rutina diaria</h4>
                     </a>
-                </div>
-                <div class="pagina-acciones">
-                    <a href="index.php?controller=Rutinas&action=crearRutina">
-                        <button>Crear una Rutina</button>
+                    <a href="index.php?controller=Rutinas&action=crearRutina" class="Entrenador" style="padding: 0; border: none;">
+                        <h4 style="color: white; border-color: gray;">Crear una Rutina</h4>
                     </a>
                 </div>
             </div>
         </div>
         <?php endif; ?>
+
     </div>
     <div class="Ejercicios">
         <h2>Alimentacion</h2>
@@ -79,40 +81,40 @@
         </a>
     </div>
     <div class="Alimentacion">
-        <h3>Seguimiento de tu alimentación</h3>
+        <h2>Seguimiento de tu alimentación</h2>
         <?php if (!empty($rutinas)) : ?>
-        <?php foreach ($rutinas as $rutina): ?>
-        <?php foreach ($rutina->platos as $platos): ?>
-        <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $platos->id ?>">
-        <div class="Alimentacion-datos">
-                <ul>
-                    <li>Nombre del Plato: <?=$platos->nombrePlato ?></li>
-                    <li>Calorias: <?=$platos->calorias ?></li>
-                    <li>Proteinas: <?=$platos->proteinas ?></li>
-                    <li>Grasas:  <?=$platos->grasas ?></li>
-                    <li>Carbohidratos: <?=$platos->carbohidratos ?></li>
-                </ul>
-        </div>
-        </a>
+            <?php foreach ($rutinas as $rutina): ?>
+                <?php foreach ($rutina->platos as $platos): ?>
+                    <div style="margin-bottom: 24px;">
+                        <h3 style="color: yellow; margin-bottom: 8px;">🍽️ <?= htmlspecialchars($platos->nombrePlato) ?></h3>
+                        <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $platos->id ?>" class="Alimentacion-datos">
+                            <ul>
+                                <li>Calorías: <?= $platos->calorias ?> kcal</li>
+                                <li>Proteínas: <?= $platos->proteinas ?>g</li>
+                                <li>Grasas: <?= $platos->grasas ?>g</li>
+                                <li>Carbohidratos: <?= $platos->carbohidratos ?>g</li>
+                            </ul>
+                        </a>
+                    </div>
                 <?php endforeach; ?>
             <?php endforeach; ?>
         <?php else : ?>
-        <div class="Alimentacion-datos">
-            <h3>No hemos encontrado ningún ejercicio en la rutina de hoy.</h3>
-            <h4>Actualiza tu Rutina Diaria!</h4>
-            <div class="pagina-acciones">
-                <a href="index.php?controller=Rutinas&action=redirectRutinas">
-                        <button>Actualizar Rutina diaria</button>
-                </a>
-                </div>
-                <div class="pagina-acciones">
-                    <a href="index.php?controller=Rutinas&action=crearRutina">
-                        <button>Crear una Rutina</button>
+            <div class="Alimentacion-datos">
+                <h3>No hemos encontrado ningún plato en la rutina de hoy.</h3>
+                <p style="color: gray; font-size: 14px; margin-bottom: 16px;">¡Actualiza tu Rutina Diaria!</p>
+
+                <div class="seSion" style="gap: 16px;">
+                    <a href="index.php?controller=Rutinas&action=redirectRutinas" class="Entrenador" style="padding: 0; border: none;">
+                        <h4>Actualizar Rutina diaria</h4>
+                    </a>
+                    <a href="index.php?controller=Rutinas&action=crearRutina" class="Entrenador" style="padding: 0; border: none;">
+                        <h4 style="color: white; border-color: white;">Crear una Rutina</h4>
                     </a>
                 </div>
-        </div>
+            </div>
         <?php endif; ?>
     </div>
+
 
     <div class="Entrenador">
 
