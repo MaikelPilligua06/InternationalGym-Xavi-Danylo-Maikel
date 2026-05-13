@@ -437,3 +437,38 @@ a:focus, button:focus, input:focus{ outline: 2px solid var(--tn-yellow); outline
     justify-content: center;
     margin-top: 24px;
 }
+
+
+
+.contenedor-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.bloque-error {
+    text-align: center;
+    background: var(--tn-bg-2);
+    color: var(--tn-yellow);
+    border: 1px solid var(--tn-border);
+    border-radius: 10px;
+    padding: 40px 60px;
+    max-width: 500px;
+}
+
+.error-titulo {
+    color: var(--tn-yellow);
+    margin-bottom: 16px;
+}
+
+
+.btn-errores {
+    background: linear-gradient(180deg, var(--tn-yellow-2), var(--tn-yellow));
+    color:#111;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+

@@ -19,6 +19,18 @@
         </div>
     <?php endif; ?>
 
+    <?php if (!empty($_SESSION['mensaje'])): ?>
+        <p class="correcto"><?= $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?></p>
+    <?php endif; ?>
+
+    <?php if (!empty($_SESSION['error'])): ?>
+        <p class="error"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+    <?php endif; ?>
+
+    <?php if (!empty($_SESSION['error_fatal'])): ?>
+        <p class="error"><?= $_SESSION['error_fatal']; unset($_SESSION['error_fatal']); ?></p>
+    <?php endif; ?>
+
     <h2 class="titulo-alimentacion">Lista de Alimentación</h2>
     <p class="texto-alimentacion">Total de calorías obtenidas a través de su lista de comida:</p>
 
