@@ -159,7 +159,9 @@
                                 <input type="hidden" name="descripcion"     value="<?= htmlspecialchars($ejercicio->descripcion) ?>">
                                 <input type="hidden" name="calorias"        value="<?= htmlspecialchars($ejercicio->calorias) ?>">
                                 <input type="hidden" name="foto"            value="<?= htmlspecialchars($ejercicio->foto) ?>">
-                                <button type="submit" class="boton boton-principal">Añadir</button>
+                                <button type="submit" class="boton boton-principal">Añadir Rutina </button>
+                                <a href="index.php?controller=Ejercicios&action=eliminarRutinaEjercicio&id=<?= htmlspecialchars($ejercicio->id)?>"
+                                    class="boton-quitar">Eliminar de preferencias</a>
                             </form>
                         </div>
                     <?php endforeach; ?>
@@ -184,7 +186,10 @@
                                 <input type="hidden" name="descripcion"     value="<?= htmlspecialchars($ejercicio->descripcion) ?>">
                                 <input type="hidden" name="calorias"        value="<?= $ejercicio->calorias ?>">
                                 <input type="hidden" name="foto"            value="<?= htmlspecialchars($ejercicio->foto) ?>">
-                                <button type="submit" class="boton boton-principal">Añadir</button>
+                                <button type="submit" class="boton boton-principal" >Añadir Rutina</button>
+                                <a class="boton boton-principal" href="index.php?controller=Ejercicios&action=addPreferenciaRutina&id=<?= $ejercicio->id ?>">
+                                    Añadir a Preferencias
+                                </a>
                             </form>
                         </div>
                     <?php endforeach; ?>
@@ -208,6 +213,21 @@
                                     <div class="elemento-nombre"><?= htmlspecialchars($plato->nombrePlato) ?></div>
                                     <div class="elemento-meta"><?= $plato->calorias ?> kcal · <?= $plato->proteinas ?>g prot.</div>
                                 </a>
+
+                                <form method="POST" action="index.php?controller=Rutinas&action=agregarPlato">
+                                    <input type="hidden" name="id"            value="<?= $plato->id ?>">
+                                    <input type="hidden" name="objetivo"      value="<?= htmlspecialchars($plato->objetivo) ?>">
+                                    <input type="hidden" name="calorias"      value="<?= $plato->calorias ?>">
+                                    <input type="hidden" name="nombrePlato"   value="<?= htmlspecialchars($plato->nombrePlato) ?>">
+                                    <input type="hidden" name="descripcion"   value="<?= htmlspecialchars($plato->descripcion) ?>">
+                                    <input type="hidden" name="proteinas"     value="<?= $plato->proteinas ?>">
+                                    <input type="hidden" name="carbohidratos" value="<?= $plato->carbohidratos ?>">
+                                    <input type="hidden" name="grasas"        value="<?= $plato->grasas ?>">
+                                    <input type="hidden" name="foto"          value="<?= htmlspecialchars($plato->foto) ?>">
+                                    <button type="submit" class="boton boton-principal">Añadir</button>
+                                </form>
+                                <a href="index.php?controller=Alimentacion&action=eliminarRutinaPlato&id=<?= $plato->id ?>"
+                                   class="boton-quitar">Eliminar de preferencias</a>
                             </div>
                         </div>
                     <?php endforeach; ?>

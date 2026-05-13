@@ -20,6 +20,15 @@ class EjerciciosController{
         exit();
 
     }
+    public function addPreferenciaRutina(){
+        $model = new EjerciciosModel();
+        $usuario = $_SESSION['id'];
+        $model->guardar($_GET['id'], $usuario);
+        header('Location: index.php?controller=Rutinas&action=crearRutina');
+        exit();
+
+    }
+
     // Función para ver la informacion de un ejercicio
     public function infoEjercicio(){
         $model = new EjerciciosModel();
@@ -34,6 +43,12 @@ class EjerciciosController{
         $model = new EjerciciosModel();
         $model->delete($_GET["id"]);
         header("Location: index.php?controller=Ejercicios&action=listadoEjercicios");
+        exit;
+    }
+    public function eliminarRutinaEjercicio(){
+        $model = new EjerciciosModel();
+        $model->delete($_GET["id"]);
+        header('Location: index.php?controller=Rutinas&action=crearRutina');
         exit;
     }
     // Función para añadir ejercicio admin
