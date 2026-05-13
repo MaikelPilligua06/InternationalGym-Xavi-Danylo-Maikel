@@ -14,13 +14,15 @@
             <a href="index.php?controller=Sesiones&action=index">Sesiones</a>
             <a href="index.php?controller=Entrenador&action=getAllEntrenadores">Entrenadores</a>
             <a href="index.php?controller=Alimentacion&action=index">Alimentación</a>
-            <a href="index.php?controller=Usuario&action=index">Mi Perfil</a>
         </nav>
 
         <div class="tn-actions">
-            <a class="tn-btn tn-btn--ghost" href="#login">Acceder</a>
-            <a class="tn-btn tn-btn--primary" href="#prueba">Prueba gratis</a>
-
+            <?php if (isset($_SESSION['id'])): ?>
+            <a class="tn-btn tn-btn--primary" href="index.php?controller=Usuario&action=index">Mi Perfil</a>
+            <?php else :?>
+                <a class="tn-btn tn-btn--ghost" href="index.php?controller=Auth&action=login">Acceder</a>
+                <a class="tn-btn tn-btn--primary" href="index.php?controller=Usuario&action=registro">Prueba gratis</a>
+            <?php endif;?>
             <button class="tn-burger" type="button" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
             </button>
