@@ -6,7 +6,7 @@
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
 
-    <link rel="stylesheet" href="views/LOGIN.css">
+    <link rel="stylesheet" href="views/CSS/LOGIN.css">
 </head>
 <body>
 <?php
