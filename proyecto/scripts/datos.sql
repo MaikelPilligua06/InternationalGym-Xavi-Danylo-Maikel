@@ -29,3 +29,4 @@ INSERT INTO Ejercicios(nombreEjercicio, descripcion, calorias, foto) VALUES ('Fo
 INSERT INTO Ejercicios(nombreEjercicio, descripcion, calorias, foto) VALUES ('Extensiones de tríceps', 'Extensión de brazos con peso (mancuerna o polea) para aislar el tríceps', 3, 'extensiones.jpeg');
 INSERT INTO Ejercicios(nombreEjercicio, descripcion, calorias, foto) VALUES ('Curl con barra', 'Flexión de brazos levantando una barra, centrado en el bíceps.', 3, 'curl con barrra.jpg');
 INSERT INTO Ejercicios(nombreEjercicio, descripcion, calorias, foto) VALUES ('Curl alterno con mancuernas', 'Variante donde trbajas cada brazo por separado, mejorando equilibrio y control.', 3, 'curl alterno.jpeg');
+

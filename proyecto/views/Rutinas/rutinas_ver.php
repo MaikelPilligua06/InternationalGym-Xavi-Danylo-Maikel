@@ -6,7 +6,7 @@
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <!-- Se añade ?v=1 para forzar al navegador a leer el nuevo CSS -->
     <link rel="stylesheet" href="styles.css?v=1">
-    <link rel="stylesheet" href="views/rutiinas.css?v=1">
+    <link rel="stylesheet" href="views/CSS/rutiinas.css?v=1">
 </head>
 <body>
 <?php include 'views/header.php'; ?>

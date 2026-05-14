@@ -5,7 +5,7 @@
     <title>Registro Usuario</title>
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="views/registro.css">
+    <link rel="stylesheet" href="views/CSS/registro.css">
 </head>
 <body>
 <?php include 'views/header.php'; ?>

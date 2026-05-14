@@ -5,7 +5,7 @@
     <title>Perfil</title>
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="views/perfil.css">
+    <link rel="stylesheet" href="views/CSS/perfil.css">
 </head>
 <body>
 <?php

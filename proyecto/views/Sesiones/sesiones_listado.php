@@ -4,7 +4,7 @@
     <meta name="author" content="InternationalGYM">
     <title>Listado de sesiones</title>
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="views/sesion.css">
+    <link rel="stylesheet" href="views/CSS/sesion.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
