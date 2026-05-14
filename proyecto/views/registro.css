@@ -1,0 +1,77 @@
+.formulario-registro {
+    flex: 1 0 auto !important;
+    width: 600px;
+    max-width: calc(100% - 32px);
+    margin: 32px auto;
+    background: var(--tn-bg-2);
+    border: 1px solid var(--tn-border);
+    border-radius: 16px;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+
+.pista {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+
+h1 {
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--tn-yellow);
+    margin: 0 0 20px 0;
+}
+
+
+.tarjeta-subtitulo {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--tn-muted);
+    margin: 6px 0 0 0;
+}
+
+
+input[type="text"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+input[type="file"],
+select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--tn-border);
+    border-radius: 10px;
+    padding: 12px;
+    color: var(--tn-text);
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+input:focus, select:focus {
+    border-color: var(--tn-yellow);
+}
+
+
+.btn-apuntar {
+    background: linear-gradient(180deg, var(--tn-yellow-2), var(--tn-yellow));
+    color: black;
+    font-weight: 800;
+    font-size: 15px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: opacity 0.2s ease;
+}
+
+.btn-apuntar:hover {
+    opacity: 0.9;
+}
