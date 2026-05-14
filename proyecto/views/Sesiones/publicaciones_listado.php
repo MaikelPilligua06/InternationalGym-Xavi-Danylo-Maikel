@@ -5,12 +5,15 @@
     <title>Publicaciones del entrenador</title>
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="views/CSS/sesion2.css"
 </head>
 <body>
 <?php
     include 'views/header.php';
     ?>
-<h1>Mis publicaciones</h1>
+<div class="titulo-publicaciones">
+    <h1>Mis publicaciones</h1>
+</div>
 
 
 <?php if (isset($sesiones) && !empty($sesiones)): ?>

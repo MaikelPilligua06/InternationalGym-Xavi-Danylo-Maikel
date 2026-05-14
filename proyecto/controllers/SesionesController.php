@@ -102,7 +102,7 @@ class SesionesController
                     'fechaClases' => $_POST['fechaClases'],
                     'duracion' => $_POST['duracion'],
                     'descripcion' => $_POST['descripcion'],
-                    'foto' => $_FILES['foto']
+                    'foto' => $_FILES['foto']['name']
                 ];
             }
             $id_entrenador = $_SESSION['id'];
@@ -120,14 +120,18 @@ class SesionesController
     public function misPublicaciones()
     {
         try {
-            if ($_SESSION['rol'] !== 'entrenador') {
+
+            if ($_SESSION['rol'] !== 'entrenador' && $_SESSION['rol'] !== 'admin') {
                 header("Location: index.php?controller=Sesiones&action=index");
                 exit;
             }
+
             $model = new SesionesModel();
             $usuario = $_SESSION['id'];
             $sesiones = $model->misPub($usuario);
+
             require "views/Sesiones/publicaciones_listado.php";
+
         } catch (Exception $e) {
             $_SESSION['error_fatal'] = $e->getMessage();
             require "views/error_fatal.php";

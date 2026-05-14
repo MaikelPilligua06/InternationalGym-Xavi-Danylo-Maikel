@@ -133,7 +133,7 @@ class SesionesModel{
         try{
             $db = conectar();
             $stmt = $db->prepare("
-                SELECT s.id, s.nombreClase, s.calorias, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion
+                SELECT s.id, s.nombreClase, s.calorias, s.tipoDeClases, s.fechaClases, s.duracion, s.descripcion, s.foto
                 FROM SesionesDeClases s
                 WHERE s.id_entrenador = :id
                 ");

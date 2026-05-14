@@ -1,0 +1,105 @@
+.titulo-publicaciones{
+    width: 700px;
+    margin: 40px auto 30px auto;
+    background-color: rgb(30,30,30);
+    border: 1px solid rgb(255,200,0);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(255,200,0,0.2);
+}
+
+.titulo-publicaciones h1{
+    margin: 0;
+    color: rgb(255,200,0);
+    font-size: 32px;
+    letter-spacing: 1px;
+}
+
+h1{
+    text-align: center;
+    margin: 40px 0;
+    color: rgb(255,200,0);
+    font-size: 32px;
+}
+
+.carrusel-movil{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.pista{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.tarjeta-movil{
+    width: 700px;
+    background-color: rgb(30,30,30);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(255,200,0,0.2);
+    border: 1px solid rgb(255,200,0);
+}
+
+.tarjeta-movil h2{
+    color: rgb(255,200,0);
+    margin-bottom: 20px;
+    font-size: 28px;
+    border-bottom: 2px solid rgb(255,200,0);
+    padding-bottom: 10px;
+}
+
+.tarjeta-movil p{
+    margin: 12px 0;
+    font-size: 17px;
+    text-align: left;
+}
+
+.tarjeta-movil a{
+    text-decoration: none;
+}
+
+.tarjeta-movil button{
+    margin-top: 20px;
+    margin-right: 10px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(255,200,0);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tarjeta-movil button:hover{
+    background-color: rgb(255,220,80);
+    transform: scale(1.05);
+}
+
+body > p{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+body > p button{
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(255,200,0);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+body > p button:hover{
+    background-color: rgb(255,220,80);
+    transform: scale(1.05);
+}
