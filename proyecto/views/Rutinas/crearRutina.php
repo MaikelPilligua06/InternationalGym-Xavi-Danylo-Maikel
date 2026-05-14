@@ -20,7 +20,17 @@
                onclick="return confirm('Al volver se borraran esta rutina que no has guardado')">Volver</a>
         </div>
     </div>
+    <?php if (!empty($_SESSION['mensaje'])): ?>
+        <p class="correcto"><?= $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?></p>
+    <?php endif; ?>
 
+    <?php if (!empty($_SESSION['error'])): ?>
+        <p class="error"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+    <?php endif; ?>
+
+    <?php if (!empty($_SESSION['error_fatal'])): ?>
+        <p class="error"><?= $_SESSION['error_fatal']; unset($_SESSION['error_fatal']); ?></p>
+    <?php endif; ?>
     <section>
         <h3>Crear Rutina</h3>
         <div class="rutina-form">

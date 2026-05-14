@@ -12,7 +12,19 @@
 <?php include 'views/header.php'; ?>
 
 <main class="pagina">
+    <?php if (!empty($_SESSION['mensaje'])): ?>
+        <p class="correcto"><?= $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?></p>
+    <?php endif; ?>
+
+    <?php if (!empty($_SESSION['error'])): ?>
+        <p class="error"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+    <?php endif; ?>
+
+    <?php if (!empty($_SESSION['error_fatal'])): ?>
+        <p class="error"><?= $_SESSION['error_fatal']; unset($_SESSION['error_fatal']); ?></p>
+    <?php endif; ?>
     <?php if (!empty($rutinas)) : ?>
+<<<<<<< HEAD
     <?php foreach ($rutinas as $rutina) : ?>
     <div class="panel">
         <a href="index.php?controller=Rutinas&action=verRutina&id=<?= $rutina->id_rutina?>" class="panel-enlace">
@@ -31,6 +43,26 @@
         </div>
     </div>
     <?php endforeach; ?>
+=======
+        <?php foreach ($rutinas as $rutina) : ?>
+            <div class="panel">
+                <a href="index.php?controller=Rutinas&action=verRutina&id=<?= $rutina->id_rutina?>" class="panel-enlace">
+                    <h2>Todas tus Rutinas</h2>
+                    <h3><?= htmlspecialchars($rutina->nombre_rutina) ?> — <?= $rutina->calorias_total ?> kcal</h3>
+                    <p><strong>Objetivo:</strong> <?= $rutina->objetivo?></p>
+                    <p>Tiempo estimado haciendo la rutina: <?= $rutina->fechaTiempo?></p>
+                    <p>Calorias consumidas por ejercicios: <?= $rutina->calorias_ejercicios ?></p>
+                    <p>Calorias consumidas por sesiones: <?= $rutina->calorias_sesiones ?></p>
+                    <p>Calorias ingeridas por platos: <?= $rutina->calorias_platos ?></p>
+                </a>
+                <div class="panel-acciones">
+                    <a href="index.php?controller=Rutinas&action=getRutinaActualizar&id=<?= $rutina->id_rutina?>" class="boton boton-volver">Actualizar</a>
+                    <a href="index.php?controller=Rutinas&action=eliminarRutinaDef&id=<?= $rutina->id_rutina ?>" class="boton boton-eliminar">Borrar</a>
+                    <a href="index.php?controller=Rutinas&action=crearRutinaDiaria&id=<?= $rutina->id_rutina ?>" class="boton boton-diaria">Rutina del día</a>
+                </div>
+            </div>
+        <?php endforeach; ?>
+>>>>>>> 811f5ff7a1168dedec37d6f61381bcd65e9e1dd0
     <?php else : ?>
         <h1 class="titulo-vacio">Si no tienes una rutina, ¡créala tú mismo!</h1>
         <div class="panel-vacio">

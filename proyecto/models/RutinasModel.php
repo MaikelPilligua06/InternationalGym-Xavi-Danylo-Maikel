@@ -8,75 +8,91 @@ require_once "SesionesDeClases.php";
 class RutinasModel{
     // Funcion para ver los ejercicios del usuario(rutina)
     public function verRutinas($id){
-        $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Rutina where id_usuario = :id");
-        $stmt->execute([":id" => $id]);
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        try{
+            $db = conectar();
+            $stmt = $db->prepare("SELECT * FROM Rutina where id_usuario = :id");
+            $stmt->execute([":id" => $id]);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al obtener las rutinas");
+        }
     }
     public function getRutinaUsuario($id){
-        $db = conectar();
-        $stmt = $db->prepare("
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("
             SELECT id_rutina, id_usuario, nombre_rutina, objetivo, fechaTiempo
             FROM Rutina
             WHERE id_usuario = :id
         ");
-        $stmt->execute([':id' => $id]);
-        $rutinas = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $stmt->execute([':id' => $id]);
+            $rutinas = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-        foreach ($rutinas as $rutina) {
-            $stmt = $db->prepare("
+            foreach ($rutinas as $rutina) {
+                $stmt = $db->prepare("
                 SELECT  e.nombreEjercicio, e.calorias, e.foto, c.series, c.repeticiones, c.peso,
                 (e.calorias * c.series * c.repeticiones) AS calorias
                 FROM Contiene c
                 JOIN Ejercicios e ON c.id_ejercicio = e.id
                 WHERE c.id_rutina = :id_rutina
         ");
-            $stmt->execute([':id_rutina' => $rutina->id_rutina]);
-            $rutina->ejercicios = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $stmt->execute([':id_rutina' => $rutina->id_rutina]);
+                $rutina->ejercicios = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-            $stmt = $db->prepare("
+                $stmt = $db->prepare("
                 SELECT s.calorias
                 FROM Contiene c
                 JOIN SesionesDeClases s ON c.id_sesion = s.id
                 WHERE c.id_rutina = :id_rutina
             ");
-            $stmt->execute([':id_rutina' => $rutina->id_rutina]);
-            $rutina->sesiones = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $stmt->execute([':id_rutina' => $rutina->id_rutina]);
+                $rutina->sesiones = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-            $stmt = $db->prepare("
+                $stmt = $db->prepare("
                 SELECT a.calorias, a.nombrePlato, a.proteinas, a.foto
                 FROM Contiene c
                 JOIN Alimentacion a ON c.id_alimentacion = a.id
                 WHERE c.id_rutina = :id_rutina
             ");
-            $stmt->execute([':id_rutina' => $rutina->id_rutina]);
+                $stmt->execute([':id_rutina' => $rutina->id_rutina]);
 
-            $rutina->platos = $stmt->fetchAll(PDO::FETCH_OBJ);
-            $rutina->calorias_ejercicios = 0;
-            $rutina->calorias_sesiones   = 0;
-            $rutina->calorias_platos     = 0;
-            foreach ($rutina->ejercicios as $e) $rutina->calorias_ejercicios += $e->calorias;
-            foreach ($rutina->sesiones   as $s) $rutina->calorias_sesiones   += $s->calorias;
-            foreach ($rutina->platos     as $p) $rutina->calorias_platos     += $p->calorias;
-            $rutina->calorias_total = $rutina->calorias_ejercicios + $rutina->calorias_sesiones;
+                $rutina->platos = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $rutina->calorias_ejercicios = 0;
+                $rutina->calorias_sesiones = 0;
+                $rutina->calorias_platos = 0;
+                foreach ($rutina->ejercicios as $e) $rutina->calorias_ejercicios += $e->calorias;
+                foreach ($rutina->sesiones as $s) $rutina->calorias_sesiones += $s->calorias;
+                foreach ($rutina->platos as $p) $rutina->calorias_platos += $p->calorias;
+                $rutina->calorias_total = $rutina->calorias_ejercicios + $rutina->calorias_sesiones;
+            }
+            return $rutinas;
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al obtener la rutina del usuario");
         }
-        return $rutinas;
     }
     public function rutinaDiaria($id, $usuarioId){
-        $db = conectar();
-        $stmt = $db->prepare("
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("
             INSERT INTO FechaRutina (id_rutina, id_usuario)
             VALUES (:id_rutina, :id_usuario)
         ");
-        $stmt->execute([
-            ':id_rutina' => $id,
-            'id_usuario' => $usuarioId
-        ]);
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+            $stmt->execute([
+                ':id_rutina' => $id,
+                'id_usuario' => $usuarioId
+            ]);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al seleccionar tu rutina diaria");
+        }
     }
     public function getRutinaDiaria($id){
-        $db = conectar();
-        $stmt = $db->prepare("
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("
             SELECT r.id_rutina, r.id_usuario, r.nombre_rutina, r.objetivo, r.fechaTiempo
             FROM Rutina r
             JOIN FechaRutina fr ON r.id_rutina = fr.id_rutina
@@ -84,123 +100,153 @@ class RutinasModel{
             AND fr.id_usuario = :id
             AND fr.fecha_inicio = CURDATE()
         ");
-        $stmt->execute([':id' => $id]);
-        $diaRutina = $stmt->fetchAll(PDO::FETCH_OBJ);
-        foreach ($diaRutina as $rutina) {
-            $stmt = $db->prepare("
+            $stmt->execute([':id' => $id]);
+            $diaRutina = $stmt->fetchAll(PDO::FETCH_OBJ);
+            foreach ($diaRutina as $rutina) {
+                $stmt = $db->prepare("
                 SELECT e.nombreEjercicio, e.foto, c.series, c.repeticiones, c.peso,
                 (e.calorias * c.series * c.repeticiones) AS calorias
                 FROM Contiene c
                 JOIN Ejercicios e ON c.id_ejercicio = e.id
                 WHERE c.id_rutina = :id_rutina
             ");
-            $stmt->execute([':id_rutina' => $rutina->id_rutina]);
-            $rutina->ejercicios = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $stmt->execute([':id_rutina' => $rutina->id_rutina]);
+                $rutina->ejercicios = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-            $stmt = $db->prepare("
+                $stmt = $db->prepare("
                 SELECT s.id, s.nombreClase, s.tipoDeClases, s.fechaClases,     
                 s.duracion, s.descripcion, s.foto, s.calorias
                 FROM Contiene c
                 JOIN SesionesDeClases s ON c.id_sesion = s.id
                 WHERE c.id_rutina = :id_rutina
             ");
-            $stmt->execute([':id_rutina' => $rutina->id_rutina]);
-            $rutina->sesiones = $stmt->fetchAll(PDO::FETCH_OBJ);
-            $stmt = $db->prepare("
+                $stmt->execute([':id_rutina' => $rutina->id_rutina]);
+                $rutina->sesiones = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $stmt = $db->prepare("
                 SELECT a.id, a.nombrePlato, a.descripcion, a.calorias, 
                 a.proteinas, a.carbohidratos, a.grasas, a.foto
                 FROM Contiene c
                 JOIN Alimentacion a ON c.id_alimentacion = a.id
                 WHERE c.id_rutina = :id_rutina
             ");
-            $stmt->execute([':id_rutina' => $rutina->id_rutina]);
-            $rutina->platos = $stmt->fetchAll(PDO::FETCH_OBJ);
-            $rutina->calorias_ejercicios = 0;
-            $rutina->calorias_sesiones   = 0;
-            $rutina->calorias_platos     = 0;
-            foreach ($rutina->ejercicios as $e) $rutina->calorias_ejercicios += $e->calorias;
-            foreach ($rutina->sesiones   as $s) $rutina->calorias_sesiones   += $s->calorias;
-            foreach ($rutina->platos     as $p) $rutina->calorias_platos     += $p->calorias;
-            $rutina->calorias_total = $rutina->calorias_ejercicios + $rutina->calorias_sesiones ;
+                $stmt->execute([':id_rutina' => $rutina->id_rutina]);
+                $rutina->platos = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $rutina->calorias_ejercicios = 0;
+                $rutina->calorias_sesiones = 0;
+                $rutina->calorias_platos = 0;
+                foreach ($rutina->ejercicios as $e) $rutina->calorias_ejercicios += $e->calorias;
+                foreach ($rutina->sesiones as $s) $rutina->calorias_sesiones += $s->calorias;
+                foreach ($rutina->platos as $p) $rutina->calorias_platos += $p->calorias;
+                $rutina->calorias_total = $rutina->calorias_ejercicios + $rutina->calorias_sesiones;
+            }
+            return $diaRutina;
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al obtener tu rutina diaria");
         }
-        return $diaRutina;
     }
     public function getUsuariosEjercicios($id){
-        $db = conectar();
-        $stmt = $db->prepare("
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("
                 SELECT ejercicio.*, usuario_ejercicio.id_usuario
         FROM Ejercicios ejercicio
         JOIN Usuario_Ejercicio usuario_ejercicio 
         ON ejercicio.id = usuario_ejercicio.id_ejercicio
         WHERE usuario_ejercicio.id_usuario = :id
         ");
-        $stmt->execute([":id" => $id]);
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $usuarioEjercicios = [];
-        foreach($resultado as $fila){
-            $usuarioEjercicios[] = new Ejercicios($fila);
+            $stmt->execute([":id" => $id]);
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $usuarioEjercicios = [];
+            foreach ($resultado as $fila) {
+                $usuarioEjercicios[] = new Ejercicios($fila);
+            }
+            return $usuarioEjercicios;
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al obtener tus ejercicios");
         }
-        return $usuarioEjercicios;
     }
     public function getTodosLosEjercicios(){
-        $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Ejercicios ORDER BY RAND() LIMIT 5");
-        $stmt->execute();
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $todoslosEjercicios = [];
-        foreach($resultado as $fila){
-            $todoslosEjercicios[] = new Ejercicios($fila);
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("SELECT * FROM Ejercicios ORDER BY RAND() LIMIT 5");
+            $stmt->execute();
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $todoslosEjercicios = [];
+            foreach ($resultado as $fila) {
+                $todoslosEjercicios[] = new Ejercicios($fila);
+            }
+            return $todoslosEjercicios;
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al obtener los ejercicios");
         }
-        return $todoslosEjercicios;
     }
     public function getUsuarioAlimentacion($id){
-        $db = conectar();
-        $stmt = $db->prepare("
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("
                       SELECT a.id, a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.id
                 FROM Alimentacion a
                 JOIN Usuario_Alimentacion ua ON a.id = ua.id_alimentacion
                 JOIN Usuarios u ON u.id = ua.id_usuario
                 WHERE ua.id_usuario = :usuarioId
                 ");
-        $stmt->execute([":usuarioId" => $id]);
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $usuarioAlimentacion = [];
-        foreach($resultado as $fila){
-            $usuarioAlimentacion[] = new Alimentacion($fila);
+            $stmt->execute([":usuarioId" => $id]);
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $usuarioAlimentacion = [];
+            foreach ($resultado as $fila) {
+                $usuarioAlimentacion[] = new Alimentacion($fila);
+            }
+            return $usuarioAlimentacion;
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al obtener tu alimentación");
         }
-        return $usuarioAlimentacion;
     }
     public function getTodosLosPlatos(){
-        $db = conectar();
-        $stmt = $db->prepare("SELECT * FROM Alimentacion ORDER BY RAND() LIMIT 5");
-        $stmt->execute();
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $todosLosPlatos = [];
-        foreach($resultado as $fila){
-            $todosLosPlatos[] = new Alimentacion($fila);
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("SELECT * FROM Alimentacion ORDER BY RAND() LIMIT 5");
+            $stmt->execute();
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $todosLosPlatos = [];
+            foreach ($resultado as $fila) {
+                $todosLosPlatos[] = new Alimentacion($fila);
+            }
+            return $todosLosPlatos;
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al obtener los platos");
         }
-        return $todosLosPlatos;
     }
     public function getUsuarioSesion($id){
-        $db = conectar();
-        $stmt = $db->prepare("
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("
             SELECT sesiones.*, usuario_sesion.id_usuario
             FROM SesionesDeClases sesiones
             JOIN Usuario_Sesion usuario_sesion 
             ON sesiones.id = usuario_sesion.id_sesion
             WHERE usuario_sesion.id_usuario = :id;
         ");
-        $stmt->execute([":id" => $id]);
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $usuarioSesiones = [];
-        foreach($resultado as $fila){
-            $usuarioSesiones[] = new SesionesDeClases($fila);
+            $stmt->execute([":id" => $id]);
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $usuarioSesiones = [];
+            foreach ($resultado as $fila) {
+                $usuarioSesiones[] = new SesionesDeClases($fila);
+            }
+            return $usuarioSesiones;
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al obtener tus sesiones");
         }
-        return $usuarioSesiones;
     }
     public function getTodasLasSesiones(){
-        $db = conectar();
-        $stmt = $db->query("
+        try {
+            $db = conectar();
+            $stmt = $db->query("
             SELECT s.*, u.nombreUsuario AS nombreEntrenador
             FROM SesionesDeClases s
             JOIN Usuarios u ON s.id_entrenador = u.id
@@ -208,13 +254,17 @@ class RutinasModel{
             ORDER BY RAND()
             LIMIT 5;
         ");
-        $stmt->execute();
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $todasLasSesiones = [];
-        foreach($resultado as $fila){
-            $todasLasSesiones[] = new SesionesDeClases($fila);
+            $stmt->execute();
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $todasLasSesiones = [];
+            foreach ($resultado as $fila) {
+                $todasLasSesiones[] = new SesionesDeClases($fila);
+            }
+            return $todasLasSesiones;
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al obtener todas las sesiones");
         }
-        return $todasLasSesiones;
     }
 
     public function guardarEjercicio($id, $nombreEjercicio, $descripcion, $foto, $calorias){
@@ -310,164 +360,188 @@ class RutinasModel{
         }
     }
     public function guardarRutina($nombre_rutina, $ejercicios, $platos, $sesiones, $id, $fechaTiempo, $objetivo, $series, $repeticiones, $peso) {
-        $db = conectar();
-        $stmt = $db->prepare("INSERT INTO Rutina (id_usuario, nombre_rutina, objetivo, fechaTiempo) VALUES (:id_usuario, :nombre_rutina, :objetivo, :fechaTiempo) ");
-        $stmt->execute([
-            ':id_usuario'    => $id,
-            ':nombre_rutina' => $nombre_rutina,
-            ':objetivo'      => $objetivo,
-            ':fechaTiempo'   => $fechaTiempo
-        ]);
-        $stmt = $db->prepare("SELECT id_rutina FROM Rutina WHERE id_usuario = :id_usuario AND nombre_rutina = :nombre_rutina ORDER BY id_rutina DESC LIMIT 1");
-        $stmt->execute([':id_usuario' => $id, ':nombre_rutina' => $nombre_rutina]);
-        $rutina = $stmt->fetch(PDO::FETCH_ASSOC);
-        $id_rutina = $rutina['id_rutina'];
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("INSERT INTO Rutina (id_usuario, nombre_rutina, objetivo, fechaTiempo) VALUES (:id_usuario, :nombre_rutina, :objetivo, :fechaTiempo) ");
+            $stmt->execute([
+                ':id_usuario' => $id,
+                ':nombre_rutina' => $nombre_rutina,
+                ':objetivo' => $objetivo,
+                ':fechaTiempo' => $fechaTiempo
+            ]);
+            $stmt = $db->prepare("SELECT id_rutina FROM Rutina WHERE id_usuario = :id_usuario AND nombre_rutina = :nombre_rutina ORDER BY id_rutina DESC LIMIT 1");
+            $stmt->execute([':id_usuario' => $id, ':nombre_rutina' => $nombre_rutina]);
+            $rutina = $stmt->fetch(PDO::FETCH_ASSOC);
+            $id_rutina = $rutina['id_rutina'];
 
-        foreach ($ejercicios as $ejercicio => $id_ejercicio) {
-            if ($id_ejercicio != '') {
-                $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_ejercicio, series, repeticiones, peso) VALUES (:id_rutina, :id_ejercicio, :series, :repeticiones, :peso)");
-                $stmt->execute([
-                    ':id_rutina' => $id_rutina,
-                    ':id_ejercicio' => $id_ejercicio,
-                    ':series'       => $series[$ejercicio],
-                    ':repeticiones' => $repeticiones[$ejercicio],
-                    ':peso'         => $peso[$ejercicio]
-                ]);
+            foreach ($ejercicios as $ejercicio => $id_ejercicio) {
+                if ($id_ejercicio != '') {
+                    $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_ejercicio, series, repeticiones, peso) VALUES (:id_rutina, :id_ejercicio, :series, :repeticiones, :peso)");
+                    $stmt->execute([
+                        ':id_rutina' => $id_rutina,
+                        ':id_ejercicio' => $id_ejercicio,
+                        ':series' => $series[$ejercicio],
+                        ':repeticiones' => $repeticiones[$ejercicio],
+                        ':peso' => $peso[$ejercicio]
+                    ]);
+                }
             }
-        }
-        foreach ($platos as $id_plato) {
-            if ($id_plato != '') {
-                $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_alimentacion) VALUES (:id_rutina, :id_alimentacion)");
-                $stmt->execute([':id_rutina' => $id_rutina, ':id_alimentacion' => $id_plato]);
+            foreach ($platos as $id_plato) {
+                if ($id_plato != '') {
+                    $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_alimentacion) VALUES (:id_rutina, :id_alimentacion)");
+                    $stmt->execute([':id_rutina' => $id_rutina, ':id_alimentacion' => $id_plato]);
+                }
             }
-        }
 
-        foreach ($sesiones as $id_sesion) {
-            if ($id_sesion != '') {
-                $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_sesion) VALUES (:id_rutina, :id_sesion)");
-                $stmt->execute([':id_rutina' => $id_rutina, ':id_sesion' => $id_sesion]);
+            foreach ($sesiones as $id_sesion) {
+                if ($id_sesion != '') {
+                    $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_sesion) VALUES (:id_rutina, :id_sesion)");
+                    $stmt->execute([':id_rutina' => $id_rutina, ':id_sesion' => $id_sesion]);
+                }
             }
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al crear la rutina");
         }
     }
     public function eliminarRutinaDia($id, $usuarioId){
-        $db = conectar();
-        $stmt = $db->prepare("DELETE FROM FechaRutina WHERE id_rutina = :id_rutina AND id_usuario = :id_usuario");
-        $stmt->execute([
-            ':id_rutina'  => $id,
-            ':id_usuario' => $usuarioId
-        ]);
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("DELETE FROM FechaRutina WHERE id_rutina = :id_rutina AND id_usuario = :id_usuario");
+            $stmt->execute([
+                ':id_rutina' => $id,
+                ':id_usuario' => $usuarioId
+            ]);
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al eliminar la rutina diaria");
+        }
     }
     public function deleteRutina($id, $usuarioId){
-        $db = conectar();
-        $stmt = $db->prepare("DELETE FROM FechaRutina WHERE id_rutina = :id_rutina");
-        $stmt->execute([':id_rutina' => $id]);
-        $stmt = $db->prepare("DELETE FROM Contiene WHERE id_rutina = :id_rutina");
-        $stmt->execute([':id_rutina' => $id]);
-        $stmt = $db->prepare("DELETE FROM Rutina WHERE id_rutina = :id_rutina AND id_usuario = :id_usuario");
-        $stmt->execute([
-            ':id_rutina' => $id,
-            ':id_usuario' => $usuarioId
-        ]);
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("DELETE FROM FechaRutina WHERE id_rutina = :id_rutina");
+            $stmt->execute([':id_rutina' => $id]);
+            $stmt = $db->prepare("DELETE FROM Contiene WHERE id_rutina = :id_rutina");
+            $stmt->execute([':id_rutina' => $id]);
+            $stmt = $db->prepare("DELETE FROM Rutina WHERE id_rutina = :id_rutina AND id_usuario = :id_usuario");
+            $stmt->execute([
+                ':id_rutina' => $id,
+                ':id_usuario' => $usuarioId
+            ]);
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al eliminar la rutina");
+        }
     }
     public function getById($id){
-        $db = conectar();
-        $stmt = $db->prepare("
+        try {
+            $db = conectar();
+            $stmt = $db->prepare("
             SELECT id_rutina, id_usuario, nombre_rutina, objetivo, fechaTiempo
             FROM Rutina
             WHERE id_rutina = :id_rutina
         ");
-        $stmt->execute([':id_rutina' => $id]);
-        $rutinas = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $stmt->execute([':id_rutina' => $id]);
+            $rutinas = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-        foreach ($rutinas as $rutina) {
-            $stmt = $db->prepare("
+            foreach ($rutinas as $rutina) {
+                $stmt = $db->prepare("
                 SELECT e.id, e.nombreEjercicio, e.calorias, e.foto, c.series, c.repeticiones, c.peso,
                 (e.calorias * c.series * c.repeticiones) AS calorias
                 FROM Contiene c
                 JOIN Ejercicios e ON c.id_ejercicio = e.id
                 WHERE c.id_rutina = :id_rutina
             ");
-            $stmt->execute([':id_rutina' => $rutina->id_rutina]);
-            $rutina->ejercicios = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $stmt->execute([':id_rutina' => $rutina->id_rutina]);
+                $rutina->ejercicios = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-            $stmt = $db->prepare("
+                $stmt = $db->prepare("
                 SELECT s.nombreClase, s.tipoDeClases, s.calorias, u.nombreUsuario
                 FROM Contiene c
                 JOIN SesionesDeClases s ON c.id_sesion = s.id
                 JOIN Usuarios u ON s.id = u.id
                 WHERE c.id_rutina = :id_rutina
             ");
-            $stmt->execute([':id_rutina' => $rutina->id_rutina]);
-            $rutina->sesiones = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $stmt->execute([':id_rutina' => $rutina->id_rutina]);
+                $rutina->sesiones = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-            $stmt = $db->prepare("
+                $stmt = $db->prepare("
                 SELECT a.id, a.calorias, a.nombrePlato, a.proteinas, a.foto
                 FROM Contiene c
                 JOIN Alimentacion a ON c.id_alimentacion = a.id
                 WHERE c.id_rutina = :id_rutina
             ");
-            $stmt->execute([':id_rutina' => $rutina->id_rutina]);
-            $rutina->platos = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $stmt->execute([':id_rutina' => $rutina->id_rutina]);
+                $rutina->platos = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-            $rutina->calorias_ejercicios = 0;
-            $rutina->calorias_sesiones   = 0;
-            $rutina->calorias_platos     = 0;
+                $rutina->calorias_ejercicios = 0;
+                $rutina->calorias_sesiones = 0;
+                $rutina->calorias_platos = 0;
 
-            foreach ($rutina->ejercicios as $e) $rutina->calorias_ejercicios += $e->calorias;
-            foreach ($rutina->sesiones   as $s) $rutina->calorias_sesiones   += $s->calorias;
-            foreach ($rutina->platos     as $p) $rutina->calorias_platos     += $p->calorias;
+                foreach ($rutina->ejercicios as $e) $rutina->calorias_ejercicios += $e->calorias;
+                foreach ($rutina->sesiones as $s) $rutina->calorias_sesiones += $s->calorias;
+                foreach ($rutina->platos as $p) $rutina->calorias_platos += $p->calorias;
 
-            $rutina->calorias_total = $rutina->calorias_ejercicios + $rutina->calorias_sesiones;
+                $rutina->calorias_total = $rutina->calorias_ejercicios + $rutina->calorias_sesiones;
+            }
+            return $rutinas;
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al obtener la rutina");
         }
-        return $rutinas;
-
     }
     public function updateRutina($id, $nombre_rutina, $fechaTiempo, $objetivo, $ejercicios, $platos, $sesiones, $series, $repeticiones, $peso){
-        $db = conectar();
+        try {
+            $db = conectar();
 
-        $stmt = $db->prepare("
+            $stmt = $db->prepare("
         UPDATE Rutina 
         SET nombre_rutina = :nombre_rutina, objetivo = :objetivo, fechaTiempo = :fechaTiempo
         WHERE id_rutina = :id_rutina
     ");
-        $stmt->execute([
-            ':nombre_rutina' => $nombre_rutina,
-            ':objetivo'      => $objetivo,
-            ':fechaTiempo'   => $fechaTiempo,
-            ':id_rutina'     => $id
-        ]);
+            $stmt->execute([
+                ':nombre_rutina' => $nombre_rutina,
+                ':objetivo' => $objetivo,
+                ':fechaTiempo' => $fechaTiempo,
+                ':id_rutina' => $id
+            ]);
 
-        $stmt = $db->prepare("DELETE FROM Contiene WHERE id_rutina = :id_rutina");
-        $stmt->execute([':id_rutina' => $id]);
+            $stmt = $db->prepare("DELETE FROM Contiene WHERE id_rutina = :id_rutina");
+            $stmt->execute([':id_rutina' => $id]);
 
-        foreach ($ejercicios as $i => $id_ejercicio) {
-            if ($id_ejercicio != '') {
-                $stmt = $db->prepare("
+            foreach ($ejercicios as $i => $id_ejercicio) {
+                if ($id_ejercicio != '') {
+                    $stmt = $db->prepare("
                 INSERT INTO Contiene (id_rutina, id_ejercicio, series, repeticiones, peso)
                 VALUES (:id_rutina, :id_ejercicio, :series, :repeticiones, :peso)
             ");
-                $stmt->execute([
-                    ':id_rutina'    => $id,
-                    ':id_ejercicio' => $id_ejercicio,
-                    ':series'       => $series[$i]       ?? 0,
-                    ':repeticiones' => $repeticiones[$i] ?? 0,
-                    ':peso'         => $peso[$i]          ?? 0
-                ]);
+                    $stmt->execute([
+                        ':id_rutina' => $id,
+                        ':id_ejercicio' => $id_ejercicio,
+                        ':series' => $series[$i] ?? 0,
+                        ':repeticiones' => $repeticiones[$i] ?? 0,
+                        ':peso' => $peso[$i] ?? 0
+                    ]);
+                }
             }
-        }
 
-        foreach ($platos as $id_plato) {
-            if ($id_plato != '') {
-                $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_alimentacion) VALUES (:id_rutina, :id_alimentacion)");
-                $stmt->execute([':id_rutina' => $id, ':id_alimentacion' => $id_plato]);
+            foreach ($platos as $id_plato) {
+                if ($id_plato != '') {
+                    $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_alimentacion) VALUES (:id_rutina, :id_alimentacion)");
+                    $stmt->execute([':id_rutina' => $id, ':id_alimentacion' => $id_plato]);
+                }
             }
-        }
 
-        foreach ($sesiones as $id_sesion) {
-            if ($id_sesion != '') {
-                $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_sesion) VALUES (:id_rutina, :id_sesion)");
-                $stmt->execute([':id_rutina' => $id, ':id_sesion' => $id_sesion]);
+            foreach ($sesiones as $id_sesion) {
+                if ($id_sesion != '') {
+                    $stmt = $db->prepare("INSERT INTO Contiene (id_rutina, id_sesion) VALUES (:id_rutina, :id_sesion)");
+                    $stmt->execute([':id_rutina' => $id, ':id_sesion' => $id_sesion]);
+                }
             }
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            throw new Exception("Error al actualizar la rutina");
         }
     }
 }
