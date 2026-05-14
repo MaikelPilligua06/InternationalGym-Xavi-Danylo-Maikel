@@ -24,26 +24,16 @@ class ResumenController
     public function verResumen()
     {
         try {
-            $usuarioSesion = $_SESSION['usuario'] ?? null;
-            if (is_array($usuarioSesion)) {
-                $idUsuario = $usuarioSesion['id'] ?? $usuarioSesion['id_usuario'] ?? null;
-            } else {
-                $idUsuario = $usuarioSesion;
-            }
-            if (!$idUsuario) {
-                header("Location: index.php?controller=Auth&action=login");
-                exit;
-            }
-
+            $usuarioId = $_SESSION['usuario'];
 
             $fechaInicio = trim(htmlspecialchars($_GET['fecha_inicio'] ?? date('Y-m-01')));
             $fechaFin    = trim(htmlspecialchars($_GET['fecha_fin']    ?? date('Y-m-d')));
 
             $model = new ResumenModel();
 
-            $resumen = $model->getCaloriasConsumidasPorFechas($idUsuario);
+            $resumen = $model->getCaloriasConsumidasPorFechas($usuarioId, $fechaInicio, $fechaFin);
 
-            require_once __DIR__ . "/../views/Objetivo/resumen_ver.php";
+            require "views/Objetivo/resumen_ver.php";
 
         } catch (Exception $e) {
             $_SESSION['error_fatal'] = $e->getMessage();

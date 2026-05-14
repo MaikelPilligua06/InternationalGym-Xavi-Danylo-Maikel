@@ -222,7 +222,7 @@
                                 </a>
                             </div>
                             <form method="POST" action="index.php?controller=Rutinas&action=editAgregarEjercicio">
-                                <input type="hidden" name="id_rutina"       value="<?= $_SESSION['id_rutina_edit'] ?>">
+                                <input type="hidden" name="id_rutina"       value="<?= $_SESSION['rutinaId']?>">
                                 <input type="hidden" name="id"              value="<?= htmlspecialchars($ejercicio->id) ?>">
                                 <input type="hidden" name="nombreEjercicio" value="<?= htmlspecialchars($ejercicio->nombreEjercicio) ?>">
                                 <input type="hidden" name="descripcion"     value="<?= htmlspecialchars($ejercicio->descripcion) ?>">

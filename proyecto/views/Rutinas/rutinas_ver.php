@@ -28,7 +28,7 @@
                 <a href="index.php?controller=Rutinas&action=verRutina&id=<?= $rutina->id_rutina?>" class="panel-enlace">
                     <h2>Todas tus Rutinas</h2>
                     <h3><?= htmlspecialchars($rutina->nombre_rutina) ?> — <?= $rutina->calorias_total ?> kcal</h3>
-                    <p><strong>Objetivo:</strong> <?= $rutina->objective?></p>
+                    <p><strong>Objetivo:</strong> <?= $rutina->objetivo?></p>
                     <p>Tiempo estimado haciendo la rutina: <?= $rutina->fechaTiempo?></p>
                     <p>Calorias consumidas por ejercicios: <?= $rutina->calorias_ejercicios ?></p>
                     <p>Calorias consumidas por sesiones: <?= $rutina->calorias_sesiones ?></p>

@@ -13,7 +13,7 @@ include 'views/header.php';
 ?>
 <main class="pagina">
     <div class="pagina-acciones">
-        <a href="index.php?controller=Rutinas&action=volver" class="boton boton-volver">Volver</a>
+        <a class="boton boton-volver" onclick="history.back()">Volver</a>
     </div>
     <?php if (!empty($_SESSION['mensaje'])): ?>
         <p class="correcto"><?= $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?></p>
@@ -69,7 +69,7 @@ include 'views/header.php';
                     </a>
                 <?php endforeach; ?>
             </div>
-            <a href="index.php?controller=Rutinas&action=actualizarRutina" class="boton boton-volver">Actualizar</a>
+            <a href="index.php?controller=Rutinas&action=getRutinaActualizar&id=<?= $rutina->id_rutina?>" class="boton boton-volver">Actualizar</a>
             <a href="index.php?controller=Rutinas&action=eliminarRutinaDef&id=<?= $rutina->id_rutina ?>"
                class="boton boton-volver">Borrar
             </a>
