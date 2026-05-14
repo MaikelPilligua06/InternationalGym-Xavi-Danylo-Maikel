@@ -66,6 +66,7 @@ class RutinasController{
                 $rutinaEjercicio = new RutinasModel();
                 $rutinaEjercicio->guardarEjercicio($id, $nombreEjercicio, $descripcion, $foto, $calorias);
             }
+            $_SESSION['mensaje'] = "Ejercicio añadido correctamente";
             header('Location: index.php?controller=Rutinas&action=crearRutina');
             exit;
         } catch (Exception $e) {
@@ -81,6 +82,7 @@ class RutinasController{
                 $quitarEjercicio = new RutinasModel();
                 $quitarEjercicio->eliminarEjercicio($index);
             }
+            $_SESSION['mensaje'] = "Ejercicio eliminado correctamente";
             header('Location: index.php?controller=Rutinas&action=crearRutina');
             exit;
         } catch (Exception $e) {
@@ -105,6 +107,7 @@ class RutinasController{
                 $rutinaPlato = new RutinasModel();
                 $rutinaPlato->guardarPlato($id, $objetivo, $calorias, $nombrePlato, $descripcion, $proteinas, $carbohidratos, $grasas, $foto);
             }
+            $_SESSION['mensaje'] = "Plato añadido correctamente";
             header('Location: index.php?controller=Rutinas&action=crearRutina');
             exit;
         } catch (Exception $e) {
@@ -119,6 +122,7 @@ class RutinasController{
                 $quitarPlato = new RutinasModel();
                 $quitarPlato->eliminarPlato($index);
             }
+            $_SESSION['mensaje'] = "Plato quitado correctamente";
             header('Location: index.php?controller=Rutinas&action=crearRutina');
             exit;
         } catch (Exception $e) {
@@ -142,6 +146,7 @@ class RutinasController{
                 $rutinaSesiones = new RutinasModel();
                 $rutinaSesiones->agregarSesion($id, $nombreClase, $tipoDeClases, $fechaClases, $duracion, $id_entrenador, $descripcion, $foto, $calorias);
             }
+            $_SESSION['mensaje'] = "Sesion añadida correctamente";
             header('Location: index.php?controller=Rutinas&action=crearRutina');
             exit;
         } catch (Exception $e) {
@@ -156,6 +161,7 @@ class RutinasController{
                 $quitarSesion = new RutinasModel();
                 $quitarSesion->eliminarSesion($index);
             }
+            $_SESSION['mensaje'] = "Sesion quitada correctamente";
             header('Location: index.php?controller=Rutinas&action=crearRutina');
             exit;
         } catch (Exception $e) {
@@ -216,8 +222,8 @@ class RutinasController{
         try{
             $usuarioId = $_SESSION['id'];
             $model = new RutinasModel();
-            $_SESSION['mensaje'] = "Rutina eliminada";
             $delete = $model->deleteRutina($_GET['id'], $usuarioId);
+            $_SESSION['mensaje'] = "Rutina eliminada";
             header('Location: index.php?controller=Rutinas&action=redirectRutinas');
             exit;
         } catch (Exception $e) {
@@ -309,6 +315,7 @@ class RutinasController{
                 $rutinaEjercicio = new RutinasModel();
                 $rutinaEjercicio->guardarEjercicio($id, $nombreEjercicio, $descripcion, $foto, $calorias);
             }
+            $_SESSION['mensaje'] = "Ejercicio añadido correctamente";
             header('Location: index.php?controller=Rutinas&action=getRutinaActualizar&id=' . $_SESSION['rutinaId']);
             exit;
         } catch (Exception $e) {
@@ -323,6 +330,7 @@ class RutinasController{
                 $quitarEjercicio = new RutinasModel();
                 $quitarEjercicio->eliminarEjercicio($index);
             }
+            $_SESSION['mensaje'] = "Ejercicio eliminado correctamente";
             header('Location: index.php?controller=Rutinas&action=getRutinaActualizar&id=' . $_SESSION['rutinaId']);
             exit;
         } catch (Exception $e) {
@@ -346,6 +354,7 @@ class RutinasController{
                 $rutinaPlato = new RutinasModel();
                 $rutinaPlato->guardarPlato($id, $objetivo, $calorias, $nombrePlato, $descripcion, $proteinas, $carbohidratos, $grasas, $foto);
             }
+            $_SESSION['mensaje'] = "Plato añadido correctamente";
             header('Location: index.php?controller=Rutinas&action=getRutinaActualizar&id=' . $_SESSION['rutinaId']);
             exit;
         } catch (Exception $e) {
@@ -360,6 +369,7 @@ class RutinasController{
                 $quitarPlato = new RutinasModel();
                 $quitarPlato->eliminarPlato($index);
             }
+            $_SESSION['mensaje'] = "Plato quitado correctamente";
             header('Location: index.php?controller=Rutinas&action=getRutinaActualizar&id=' . $_SESSION['rutinaId']);
             exit;
         }  catch (Exception $e) {
@@ -384,6 +394,7 @@ class RutinasController{
                 $rutinaSesiones = new RutinasModel();
                 $rutinaSesiones->agregarSesion($id, $nombreClase, $tipoDeClases, $fechaClases, $duracion, $id_entrenador, $descripcion, $foto, $calorias);
             }
+            $_SESSION['mensaje'] = "Sesion añadida correctamente";
             header('Location: index.php?controller=Rutinas&action=getRutinaActualizar&id=' . $_SESSION['rutinaId']);
             exit;
         } catch (Exception $e) {
@@ -399,6 +410,7 @@ class RutinasController{
                 $quitarSesion = new RutinasModel();
                 $quitarSesion->eliminarSesion($index);
             }
+            $_SESSION['mensaje'] = "Sesion quitada correctamente";
             header('Location: index.php?controller=Rutinas&action=getRutinaActualizar&id=' . $_SESSION['rutinaId']);
             exit;
         } catch (Exception $e) {

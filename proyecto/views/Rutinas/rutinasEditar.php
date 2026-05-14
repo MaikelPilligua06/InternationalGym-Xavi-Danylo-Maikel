@@ -19,7 +19,17 @@
                onclick="return confirm('Al volver no se guardaran los datos')">Volver</a>
         </div>
     </div>
+    <?php if (!empty($_SESSION['mensaje'])): ?>
+        <p class="correcto"><?= $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?></p>
+    <?php endif; ?>
 
+    <?php if (!empty($_SESSION['error'])): ?>
+        <p class="error"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+    <?php endif; ?>
+
+    <?php if (!empty($_SESSION['error_fatal'])): ?>
+        <p class="error"><?= $_SESSION['error_fatal']; unset($_SESSION['error_fatal']); ?></p>
+    <?php endif; ?>
     <?php foreach ($rutinas as $rutina) : ?>
         <div class="rutina-form">
             <form id="formRutina" action="index.php?controller=Rutinas&action=actualizarRutiar&id=<?= $rutina->id_rutina ?>" method="POST">
