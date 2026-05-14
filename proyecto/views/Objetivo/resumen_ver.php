@@ -6,9 +6,20 @@
 <?php include 'views/header.php'; ?>
 
 <section class="resumen-page">
+
     <div class="contenedor-plato">
         <h1>Pérdida Calórica</h1>
+        <?php if (!empty($_SESSION['mensaje'])): ?>
+            <p class="correcto"><?= $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?></p>
+        <?php endif; ?>
 
+        <?php if (!empty($_SESSION['error'])): ?>
+            <p class="error"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+        <?php endif; ?>
+
+        <?php if (!empty($_SESSION['error_fatal'])): ?>
+            <p class="error"><?= $_SESSION['error_fatal']; unset($_SESSION['error_fatal']); ?></p>
+        <?php endif; ?>
         <form method="GET" action="index.php">
             <input type="hidden" name="controller" value="Resumen">
             <input type="hidden" name="action" value="index">
