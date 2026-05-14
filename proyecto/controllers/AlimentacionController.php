@@ -27,7 +27,7 @@ class AlimentacionController{
     }
     public function crear_plato_form(){
         try{
-            if ($_SESSION['rol'] !== 'admin') {
+            if ($_SESSION['rol'] !== 'admin' && $_SESSION['rol'] !== 'entrenador') {
                 header("Location: index.php?controller=Sesiones&action=index");
                 exit;
             }
@@ -40,19 +40,19 @@ class AlimentacionController{
     }
     public function crear(){
         try {
-            if ($_SESSION['rol'] !== 'admin') {
+            if ($_SESSION['rol'] !== 'admin' && $_SESSION['rol'] !== 'entrenador') {
                 header("Location: index.php?controller=Sesiones&action=index");
                 exit;
             }
             if (!empty($_POST)) {
                 $datos = [
-                    'nombrePlato' => $_POST['nombrePlato'],
-                    'objetivo' => $_POST['objetivo'],
-                    'descripcion' => $_POST['descripcion'],
-                    'calorias' => $_POST['calorias'],
-                    'proteinas' => $_POST['proteinas'],
-                    'carbohidratos' => $_POST['carbohidratos'],
-                    'grasas' => $_POST['grasas'],
+                    'nombrePlato' =>  trim(htmlspecialchars($_POST['nombrePlato'])),
+                    'objetivo' =>  trim(htmlspecialchars($_POST['objetivo'])),
+                    'descripcion' =>  trim(htmlspecialchars($_POST['descripcion'])),
+                    'calorias' =>  trim(htmlspecialchars($_POST['calorias'])),
+                    'proteinas' =>  trim(htmlspecialchars($_POST['proteinas'])),
+                    'carbohidratos' =>  trim(htmlspecialchars($_POST['carbohidratos'])),
+                    'grasas' =>  trim(htmlspecialchars($_POST['grasas'])),
                     'foto' => $_FILES['foto']
                 ];
             }
@@ -71,7 +71,6 @@ class AlimentacionController{
             $model = new AlimentacionModel();
             $usuarioId = $_SESSION['id'];
             $model->agregarPlato($_GET['id'], $usuarioId);
-            $_SESSION['mensaje'] = "Plato añadido correctamente";
             header("Location: index.php?controller=Alimentacion&action=index");
             exit;
         } catch (Exception $e) {
@@ -111,7 +110,7 @@ class AlimentacionController{
     public function editPlato(){
         try {
             if ($_SESSION['rol'] !== 'admin') {
-                header("Location: index.php?controller=Sesiones&action=index");
+                header("Location: index.php?controller=Alimentacion&action=index");
                 exit;
             }
             $model = new AlimentacionModel();
@@ -120,7 +119,7 @@ class AlimentacionController{
             require "views/error_fatal.php";
         }
     }
-    // funcion para eliminar platos, SOLO ADMIN
+    // funcion para eliminar platos, SOLO ADMINc
     public function getTodosLosPlatos(){
         try {
             if ($_SESSION['rol'] !== 'admin') {
