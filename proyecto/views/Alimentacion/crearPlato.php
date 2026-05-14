@@ -5,7 +5,7 @@
     <title>Crear plato</title>
     <link rel="icon" href="views/gymFotos/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="views/crearPlato.css"
+    <link rel="stylesheet" href="views/CSS/crearPlato.css"
 </head>
 <body>
 <?php

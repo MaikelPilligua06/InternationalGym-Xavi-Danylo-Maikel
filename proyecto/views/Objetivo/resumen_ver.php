@@ -1,7 +1,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="views/resumen.css">
+    <link rel="stylesheet" href="views/CSS/resumen.css">
 </head>
 <?php include 'views/header.php'; ?>
 <main>
