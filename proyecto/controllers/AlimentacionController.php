@@ -59,6 +59,7 @@ class AlimentacionController{
             $model = new AlimentacionModel();
             $plato = new Alimentacion($datos);
             $model->guardar($plato);
+            $_SESSION['mensaje'] = "Plato creado correctamente";
             header("Location: index.php?controller=Alimentacion&action=index");
             exit;
         } catch (Exception $e) {
@@ -71,6 +72,7 @@ class AlimentacionController{
             $model = new AlimentacionModel();
             $usuarioId = $_SESSION['id'];
             $model->agregarPlato($_GET['id'], $usuarioId);
+            $_SESSION['mensaje'] = "Plato agregado correctamente";
             header("Location: index.php?controller=Alimentacion&action=index");
             exit;
         } catch (Exception $e) {
@@ -79,6 +81,21 @@ class AlimentacionController{
             exit;
         }
     }
+    public function addPlatoUsuarioRutina(){
+        try {
+            $model = new AlimentacionModel();
+            $usuarioId = $_SESSION['id'];
+            $model->agregarPlato($_GET['id'], $usuarioId);
+            $_SESSION['mensaje'] = "Plato agregado correctamente";
+            header('Location: index.php?controller=Rutinas&action=crearRutina');
+            exit;
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+            header("Location: index.php?controller=Alimentacion&action=index");
+            exit;
+        }
+    }
+
     public function eliminarPlato(){
         try {
             $model = new AlimentacionModel();
@@ -93,6 +110,19 @@ class AlimentacionController{
         }
     }
     public function eliminarRutinaPlato(){
+        try {
+            $model = new AlimentacionModel();
+            $usuarioId = $_SESSION['id'];
+            $model->eliminarPlatoUsuario($_GET["id"], $usuarioId);
+            $_SESSION['mensaje'] = "Plato eliminado correctamente";
+            header('Location: index.php?controller=Rutinas&action=crearRutina');
+            exit;
+        } catch (Exception $e) {
+            $_SESSION['error_fatal'] = $e->getMessage();
+            require "views/error_fatal.php";
+        }
+    }
+    public function borrarPlatoPref(){
         try {
             $model = new AlimentacionModel();
             $usuarioId = $_SESSION['id'];

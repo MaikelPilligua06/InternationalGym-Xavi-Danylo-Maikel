@@ -15,6 +15,17 @@ include 'views/header.php';
 
 <main class="pagina">
     <div class="contenedor-auth">
+        <?php if (!empty($_SESSION['mensaje'])): ?>
+            <p class="correcto"><?= $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?></p>
+        <?php endif; ?>
+
+        <?php if (!empty($_SESSION['error'])): ?>
+            <p class="error"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+        <?php endif; ?>
+
+        <?php if (!empty($_SESSION['error_fatal'])): ?>
+            <p class="error"><?= $_SESSION['error_fatal']; unset($_SESSION['error_fatal']); ?></p>
+        <?php endif; ?>
         <h1>Login</h1>
 
         <!-- Bloque de errores adaptado -->

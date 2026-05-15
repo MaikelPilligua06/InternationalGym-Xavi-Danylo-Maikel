@@ -28,11 +28,11 @@ class SesionesController
             }
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $datos = [
-                    'tipoDeClases' => $_POST['tipoDeClases'],
-                    'calorias' => $_POST['calorias'],
-                    'fechaClases' => $_POST['fechaClases'],
-                    'duracion' => $_POST['duracion'],
-                    'id_entrenador' => $_SESSION['id'],
+                    'tipoDeClases' => trim(htmlspecialchars($_POST['tipoDeClases'])),
+                    'calorias' => trim(htmlspecialchars($_POST['calorias'])),
+                    'fechaClases' => trim(htmlspecialchars($_POST['fechaClases'])),
+                    'duracion' => trim(htmlspecialchars($_POST['duracion'])),
+                    'id_entrenador' => trim(htmlspecialchars($_SESSION['id'])),
                     'foto' => $_FILES['foto']
                 ];
             }
@@ -96,13 +96,13 @@ class SesionesController
             }
             if (!empty($_POST)) {
                 $datos = [
-                    'nombreClase' => $_POST['nombreClase'],
-                    'calorias' => $_POST ['calorias'],
-                    'tipoDeClases' => $_POST['tipoDeClases'],
-                    'fechaClases' => $_POST['fechaClases'],
-                    'duracion' => $_POST['duracion'],
-                    'descripcion' => $_POST['descripcion'],
-                    'foto' => $_FILES['foto']['name']
+                    'nombreClase' => trim(htmlspecialchars($_POST['nombreClase'])),
+                    'calorias' => trim(htmlspecialchars($_POST ['calorias'])),
+                    'tipoDeClases' => trim(htmlspecialchars($_POST['tipoDeClases'])),
+                    'fechaClases' => trim(htmlspecialchars($_POST['fechaClases'])),
+                    'duracion' => trim(htmlspecialchars($_POST['duracion'])),
+                    'descripcion' => trim(htmlspecialchars($_POST['descripcion'])),
+                    'foto' => trim(htmlspecialchars($_FILES['foto']['name']))
                 ];
             }
             $id_entrenador = $_SESSION['id'];
@@ -151,7 +151,33 @@ class SesionesController
             require "views/error_fatal.php";
         }
     }
-
+    public function eliminarSesionRutina()
+    {
+        try{
+            $model = new SesionesModel();
+            $model->delete($_GET["id"]);
+            $_SESSION['mensaje'] = "Has eliminado la sesion correctamente";
+            header('Location: index.php?controller=Rutinas&action=crearRutina');
+            exit;
+        } catch (Exception $e) {
+            $_SESSION['error_fatal'] = $e->getMessage();
+            require "views/error_fatal.php";
+        }
+    }
+    public function apuntarmeRutina()
+    {
+        try {
+            $usuario = $_SESSION['id'];
+            $model = new SesionesModel();
+            $sesion = $model->asignarSesion($_GET['id'], $usuario);
+            $_SESSION['mensaje'] = "Te has apuntado correctamente";
+            header('Location: index.php?controller=Rutinas&action=crearRutina');
+            exit;
+        } catch (Exception $e) {
+            $_SESSION['error_fatal'] = $e->getMessage();
+            require "views/error_fatal.php";
+        }
+    }
     public function eliminarEntrenador()
     {
         try {
@@ -196,7 +222,7 @@ class SesionesController
             if (!empty($_POST)) {
                 $sesiones = new SesionesDeClases($_POST);
                 $model = new SesionesModel();
-                $sesiones->foto = $_POST['foto_actual'];
+                $sesiones->foto = trim($_POST['foto_actual']);
                 $model->update($_GET['id'], $sesiones);
                 header("Location: index.php?controller=Sesiones&action=misPublicaciones");
                 exit;

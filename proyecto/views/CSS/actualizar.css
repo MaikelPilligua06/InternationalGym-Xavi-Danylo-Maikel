@@ -1,0 +1,88 @@
+html, body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+main {
+    flex: 1;
+    width: min(700px, calc(100% - 30px));
+    margin: 40px auto;
+    background: rgb(18,18,18);
+    border: 1px solid rgb(40,40,40);
+    border-radius: 20px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+label {
+    color: rgb(255,210,0);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgb(50,50,50);
+    background: rgb(25,25,25);
+    color: white;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: rgb(255,210,0);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 14px;
+    border: 1px solid rgb(50,50,50);
+    object-fit: cover;
+}
+
+input[type="file"] {
+    padding: 10px;
+    background: rgb(25,25,25);
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 20px;
+    }
+
+    button {
+        width: 100%;
+    }
+}

@@ -41,6 +41,7 @@
                 <ul class="lista-platos"><?php foreach ($alimentacion as $platoUsuario): ?>
                         <li class="plato-item">
                             <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $platoUsuario->id ?>">
+                                <img class="foto-plato" src="views/gymFotos/alimentacion/<?= $platoUsuario->foto ?>"/>
                                 <p>Nombre del plato: <?= $platoUsuario->nombrePlato; ?></p>
                                 <p>Proteinas: <?= $platoUsuario->proteinas; ?></p>
                                 <p>Calorias: <?= $platoUsuario->calorias; ?> kcal</p>
@@ -66,6 +67,7 @@
             <?php foreach ($todosLosPlatos as $plato): ?>
                 <li class="plato-item">
                     <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $plato->id ?>">
+                        <img class="foto-plato" src="views/gymFotos/alimentacion/<?= $plato->foto ?>"/>
                         <p>Nombre del plato: <?= $plato->nombrePlato; ?></p>
                         <p>Proteinas: <?= $plato->proteinas; ?></p>
                         <p>Calorias: <?= $plato->calorias; ?> kcal</p>

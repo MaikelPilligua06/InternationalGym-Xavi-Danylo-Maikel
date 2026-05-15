@@ -195,24 +195,31 @@ class SesionesModel{
     {
         try {
             $db = conectar();
+            if (!empty($_FILES['foto']['name'])) {
+                $extensiones = ['image/jpg', 'image/jpeg', 'image/png'];
+                $max_tamanyo = 1024 * 1024 * 8;
+                $base_dir    = "/var/www/html";
+
+                if (!in_array($_FILES['foto']['type'], $extensiones)) {
+                    throw new Exception("Usa una imagen jpg, jpeg o png.");
+                }
+                if ($_FILES['foto']['size'] >= $max_tamanyo) {
+                    throw new Exception("La foto es demasiado grande");
+                }
+
+                $ruta_fichero_origen = $_FILES['foto']['tmp_name'];
+                $ruta_nuevo_destino  = $base_dir . "/views/gymFotos/sesiones/" . $_FILES['foto']['name'];
+
+                if (!move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
+                    throw new Exception("Error al subir la imagen.");
+                }
+
+                $sesiones->foto = $_FILES['foto']['name'];
+            }
             $stmt = $db->prepare("
                 UPDATE SesionesDeClases SET nombreClase = :nombreClase, calorias = :calorias, tipoDeClases = :tipoDeClases, 
                 fechaClases = :fechaClases, duracion = :duracion, descripcion = :descripcion, foto = :foto WHERE id = :id
                 ");
-            $base_dir = "/var/www/html";
-            $extensiones = array(0 => 'image/jpg', 1 => 'image/jpeg', 2 => 'image/png');
-            $max_tamanyo = 1024 * 1024 * 8;
-            if (!in_array($_FILES['foto']['type'], $extensiones)) {
-                throw new Exception("Usa una imagen jpg, jpeg o png.");
-            }
-            if ($_FILES['foto']['size'] >= $max_tamanyo) {
-                throw new Exception("La foto es demasiado grande");
-            }
-            $ruta_fichero_origen  = $_FILES['foto']['tmp_name'];
-            $ruta_nuevo_destino   = $base_dir . "/views/gymFotos/sesiones/" . $_FILES['foto']['name'];
-            if (!move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
-                throw new Exception("Error al subir la imagen.");
-            }
             $stmt->execute([
                 ':id' => $id,
                 ':nombreClase' => $sesiones->nombreClase,

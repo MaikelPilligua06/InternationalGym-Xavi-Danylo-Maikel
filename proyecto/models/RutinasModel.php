@@ -187,12 +187,12 @@ class RutinasModel{
         try {
             $db = conectar();
             $stmt = $db->prepare("
-                      SELECT a.id, a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.id
+                SELECT a.id, a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.id AS id_usuario  
                 FROM Alimentacion a
                 JOIN Usuario_Alimentacion ua ON a.id = ua.id_alimentacion
                 JOIN Usuarios u ON u.id = ua.id_usuario
                 WHERE ua.id_usuario = :usuarioId
-                ");
+            ");
             $stmt->execute([":usuarioId" => $id]);
             $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $usuarioAlimentacion = [];

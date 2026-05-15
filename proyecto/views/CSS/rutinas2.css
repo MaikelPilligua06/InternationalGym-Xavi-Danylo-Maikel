@@ -2,6 +2,8 @@
     width: min(var(--tn-max), calc(100% - 32px));
     margin-inline: auto;
     padding: 2rem 0 5rem;
+    text-align: center;
+    align-items: center;
 }
 .pagina-cabecera {
     display: flex;

@@ -39,7 +39,6 @@ class RutinasController{
             if (!isset($_SESSION['rutina_sesiones'])) {
                 $_SESSION['rutina_sesiones'] = [];
             }
-
             $id = $_SESSION['id'];
             $rutinas = new RutinasModel();
             $usuarioEjercicios = $rutinas->getUsuariosEjercicios($id);

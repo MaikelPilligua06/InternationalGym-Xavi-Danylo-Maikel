@@ -129,3 +129,11 @@
     70%  { opacity: 1; }
     100% { opacity: 0; display: none; }
 }
+.foto-plato {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--tn-border);
+    flex-shrink: 0;
+}

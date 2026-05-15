@@ -152,22 +152,31 @@ class EjerciciosController{
     }
     public function actualizarEjercicio() {
         try {
+
             if ($_SESSION['rol'] !== 'admin') {
                 header("Location: index.php?controller=Ejercicios&action=listadoEjercicios");
                 exit;
             }
+
             $datos = [
                 'nombreEjercicio' => trim(htmlspecialchars($_POST['nombreEjercicio'])),
                 'descripcion'     => trim(htmlspecialchars($_POST['descripcion'])),
                 'calorias'        => trim(htmlspecialchars($_POST['calorias'])),
             ];
+
             $ejercicio = new Ejercicios($datos);
+
             $ejercicio->foto = trim($_POST['foto_actual']);
+
             $model = new EjerciciosModel();
-            $model->update($id, $ejercicio);
+
+            $model->update($_GET['id'], $ejercicio);
+
             $_SESSION['mensaje'] = "Ejercicio actualizado correctamente";
+
             header("Location: index.php?controller=Ejercicios&action=verEjercicios");
             exit;
+
         } catch (Exception $e) {
             $_SESSION['error_fatal'] = $e->getMessage();
             require "views/error_fatal.php";

@@ -7,7 +7,7 @@ class AlimentacionModel{
             $db = conectar();
             $stmt = $db->prepare(
                 "
-                    SELECT a.id, a.nombrePlato, a.calorias, a.proteinas, a.descripcion, u.id AS id_usuario
+                    SELECT a.id, a.nombrePlato, a.calorias, a.proteinas, a.descripcion, a.foto, u.id AS id_usuario
                     FROM Alimentacion a
                     JOIN Usuario_Alimentacion ua ON a.id = ua.id_alimentacion
                     JOIN Usuarios u ON u.id = ua.id_usuario
@@ -106,8 +106,7 @@ class AlimentacionModel{
             }
 
             $ruta_fichero_origen  = $_FILES['foto']['tmp_name'];
-            $ruta_nuevo_destino   = $base_dir . "/views/gymFotos/alimentacion/" . $_FILES['foto']['name'];
-
+            $ruta_nuevo_destino = $base_dir . "/views/gymFotos/alimentacion/" . $_FILES['foto']['name'];
             if (!move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)) {
                 throw new Exception("Error al subir la imagen.");
             }
@@ -119,7 +118,7 @@ class AlimentacionModel{
                 ':proteinas'     => $plato->proteinas,
                 ':carbohidratos' => $plato->carbohidratos,
                 ':grasas'        => $plato->grasas,
-                ':foto'          => $plato->foto
+                'foto' => $_FILES['foto']['name']
             ]);
         } catch (PDOException $e) {
             error_log($e->getMessage());

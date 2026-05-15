@@ -1,6 +1,7 @@
 <?php
 class Alimentacion{
     public $id;
+    public $id_plato;
     public $objetivo;
     public $calorias;
     public $nombrePlato;
@@ -11,6 +12,7 @@ class Alimentacion{
     public $foto;
     public function __construct($datos = []) {
         $this->id                   = $datos["id"] ?? null;
+        $this->id_plato             = $datos["id_plato"] ?? null;
         $this->objetivo             = $datos["objetivo"] ?? null;
         $this->calorias             = $datos["calorias"] ?? null;
         $this->nombrePlato          = $datos["nombrePlato"] ?? null;

@@ -218,7 +218,6 @@
                 <?php if (!empty($usuarioAlimentacion)) : ?>
                     <?php foreach ($usuarioAlimentacion as $plato) : ?>
                         <div class="fila-elemento">
-                            <div>
                                 <a href="index.php?controller=Alimentacion&action=verPlato&id=<?= $plato->id ?>">
                                     <div class="elemento-nombre"><?= htmlspecialchars($plato->nombrePlato) ?></div>
                                     <div class="elemento-meta"><?= $plato->calorias ?> kcal · <?= $plato->proteinas ?>g prot.</div>
@@ -235,10 +234,8 @@
                                     <input type="hidden" name="grasas"        value="<?= $plato->grasas ?>">
                                     <input type="hidden" name="foto"          value="<?= htmlspecialchars($plato->foto) ?>">
                                     <button type="submit" class="boton boton-principal">Añadir</button>
+                                    <a href="index.php?controller=Alimentacion&action=borrarPlatoPref&id=<?=htmlspecialchars($plato->id)?>" class="boton-quitar">Eliminar de preferencias</a>
                                 </form>
-                                <a href="index.php?controller=Alimentacion&action=eliminarRutinaPlato&id=<?= $plato->id ?>"
-                                   class="boton-quitar">Eliminar de preferencias</a>
-                            </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
@@ -268,6 +265,10 @@
                                 <input type="hidden" name="grasas"        value="<?= $plato->grasas ?>">
                                 <input type="hidden" name="foto"          value="<?= htmlspecialchars($plato->foto) ?>">
                                 <button type="submit" class="boton boton-principal">Añadir</button>
+
+                                <a class="boton boton-principal" href="index.php?controller=Alimentacion&action=addPlatoUsuarioRutina&id=<?= $plato->id ?>">
+                                    Añadir a Preferencias
+                                </a>
                             </form>
                         </div>
                     <?php endforeach; ?>
@@ -303,6 +304,8 @@
                                 <input type="hidden" name="calorias"      value="<?= $sesion->calorias ?>">
                                 <input type="hidden" name="foto"          value="<?= htmlspecialchars($sesion->foto) ?>">
                                 <button type="submit" class="boton boton-principal">Añadir a tu Rutina</button>
+                                <a href="index.php?controller=Sesiones&action=eliminarSesionRutina&id=<?=htmlspecialchars($sesion->id)?>" class="boton-quitar">
+                                    Eliminar de preferencias</a>
                             </form>
                         </div>
                     <?php endforeach; ?>
@@ -333,8 +336,8 @@
                                 <input type="hidden" name="calorias"      value="<?= $sesion->calorias ?>">
                                 <input type="hidden" name="foto"          value="<?= htmlspecialchars($sesion->foto) ?>">
                                 <button type="submit" class="boton boton-principal">Añadir a tu Rutina</button>
+                                <a href="index.php?controller=Sesiones&action=apuntarmeRutina&id=<?=htmlspecialchars($sesion->id)?>" class="boton boton-principal">Añadir a tus preferencias</a>
                             </form>
-                            <button type="submit" class="boton boton-principal">Añadir a tus preferencias</button>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
