@@ -24,7 +24,7 @@
         <p class="error"><?= $_SESSION['error_fatal']; unset($_SESSION['error_fatal']); ?></p>
     <?php endif; ?>
     <?php if (!empty($rutinas)) : ?>
-<<<<<<< HEAD
+
     <?php foreach ($rutinas as $rutina) : ?>
     <div class="panel">
         <a href="index.php?controller=Rutinas&action=verRutina&id=<?= $rutina->id_rutina?>" class="panel-enlace">
@@ -43,7 +43,7 @@
         </div>
     </div>
     <?php endforeach; ?>
-=======
+
         <?php foreach ($rutinas as $rutina) : ?>
             <div class="panel">
                 <a href="index.php?controller=Rutinas&action=verRutina&id=<?= $rutina->id_rutina?>" class="panel-enlace">
@@ -62,7 +62,7 @@
                 </div>
             </div>
         <?php endforeach; ?>
->>>>>>> 811f5ff7a1168dedec37d6f61381bcd65e9e1dd0
+
     <?php else : ?>
         <h1 class="titulo-vacio">Si no tienes una rutina, ¡créala tú mismo!</h1>
         <div class="panel-vacio">
