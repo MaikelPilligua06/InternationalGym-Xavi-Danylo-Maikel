@@ -19,4 +19,5 @@ php /var/www/html/scripts/admin.php
 php /var/www/html/scripts/entrenador.php
 php /var/www/html/scripts/sesiones.php 
 php /var/www/html/scripts/usuario.php
+php /var/www/html/scripts/rutinas.php
 exec "$@"
